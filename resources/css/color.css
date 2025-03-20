@@ -1,0 +1,41 @@
+.text-n100 {
+  color: #ffffff;
+}
+.bg-n100 {
+  background-color: #ffffff;
+}
+
+.text-b100 {
+  color: #e2ebf6;
+}
+.bg-b100 {
+  background-color: #e2ebf6;
+}
+
+.text-b200 {
+  color: #5783be;
+}
+.bg-b200 {
+  background-color: #5783be;
+}
+
+.text-b300 {
+  color: #021c62;
+}
+.bg-b300 {
+  background-color: #021c62;
+}
+
+.text-n900 {
+  color: #000000;
+}
+.bg-n900 {
+  background-color: #000000;
+}
+
+.text-y900 {
+  color: #ffcb00;
+}
+.bg-y900 {
+  background-color: #ffcb00;
+}

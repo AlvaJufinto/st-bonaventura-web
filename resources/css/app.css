@@ -1,3 +1,45 @@
+@import url("./color.css");
+@import url("./font.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: "Frank Ruhl Libre", serif;
+}
+
+.shadow-basic {
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.outer-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner-wrapper {
+  width: 1200px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.section-title {
+  color: var(--n-900, #000);
+  font-family: "Frank Ruhl Libre";
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 72px */
+  letter-spacing: -1.056px;
+}
+
+.section-absolute {
+  height: clamp(800px, 80vh, 800px);
+}
