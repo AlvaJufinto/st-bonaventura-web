@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InformationController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -18,8 +21,21 @@ use Inertia\Inertia;
 |
 */
 
+// PUBLIC
 Route::get('/', HomeController::class)->name('home.guest.index');
 
+
+Route::prefix('tentang')->group(function () {
+  Route::get('/dewan-paroki', [AboutController::class, 'council'])->name('council.guest.index');
+  Route::get('/sejarah', [AboutController::class, 'history'])->name('history.guest.index');
+});
+
+Route::prefix('informasi')->group(function () {
+  Route::get('/warta-minggu', [InformationController::class, 'news'])->name('news.guest.index');
+});
+
+
+// ADMIN
 Route::middleware('auth')->group(function () {
   Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

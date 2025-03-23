@@ -6,11 +6,16 @@ import KaritatifIcon from "@/assets/icon/home/karitatif-icon.svg";
 import PrayIcon from "@/assets/icon/home/pray-icon.svg";
 import BonaImg from "@/assets/img/st-bonaventura-home.png";
 import BonaLogo from "@/assets/logo/logo-bonaventura.png";
+import ArticleCard from "@/Components/guest/shared/ArticleCard/ArticleCard";
 import Button from "@/Components/guest/shared/Button/Button";
+import Footer from "@/Components/guest/shared/Footer/Footer";
 import Navbar from "@/Components/guest/shared/Navbar/Navbar";
+import NewsCard from "@/Components/guest/shared/NewsCard/NewsCard";
 import { Head, router } from "@inertiajs/react";
 
-const MassInformation = [
+import ShortcutCard from "./ShortcutCard";
+
+const WeeklyMass = [
   {
     day: "Sabtu",
     data: [
@@ -38,6 +43,37 @@ const MassInformation = [
       {
         time: "18.30",
         type: "offline",
+      },
+    ],
+  },
+];
+
+const DailyMass = [
+  {
+    day: "Senin - Sabtu",
+    data: [
+      {
+        time: "06.30",
+        type: "offline & online",
+      },
+    ],
+  },
+];
+
+const FirstFridayMass = [
+  {
+    data: [
+      {
+        time: "06.30",
+        type: "offline",
+      },
+      {
+        time: "12.00",
+        type: "offline",
+      },
+      {
+        time: "19.00",
+        type: "offline & online",
       },
     ],
   },
@@ -125,16 +161,83 @@ const Shortcuts = [
   },
 ];
 
+const News = [
+  {
+    date: "28 January 2024",
+    title: "Warta Minggu Paroki Pulomas",
+    subtitle: "Hari Minggu Biasa IV",
+    link: "https://res.cloudinary.com/di0dpswey/image/upload/v1742524732/st-bonaventura/ku421vx2hc8ooesnlu4c.pdf",
+  },
+  {
+    date: "4 February 2024",
+    title: "Warta Minggu Paroki Pulomas",
+    subtitle: "Hari Minggu Biasa V",
+    link: "https://res.cloudinary.com/di0dpswey/image/upload/v1742524732/st-bonaventura/ku421vx2hc8ooesnlu4c.pdf",
+  },
+  {
+    date: "11 February 2024",
+    title: "Warta Minggu Paroki Pulomas",
+    subtitle: "Hari Minggu Biasa VI",
+    link: "https://res.cloudinary.com/di0dpswey/image/upload/v1742524732/st-bonaventura/ku421vx2hc8ooesnlu4c.pdf",
+  },
+  {
+    date: "18 February 2024",
+    title: "Warta Minggu Paroki Pulomas",
+    subtitle: "Hari Minggu Biasa VII",
+    link: "https://res.cloudinary.com/di0dpswey/image/upload/v1742524732/st-bonaventura/ku421vx2hc8ooesnlu4c.pdf",
+  },
+];
+
+function MassInformationSection({ title, data }) {
+  return (
+    <div>
+      <div className="py-3 border border-black border-x-0">
+        <h1 className="border-top uppercase tracking-widest text-xl">
+          {title}
+        </h1>
+      </div>
+      <div className="flex flex-col gap-4 mt-8">
+        {data.map((mass, index) => (
+          <div key={index}>
+            {mass.day && (
+              <h1 className="font-secondary text-xl font-bold mb-3">
+                {mass.day}
+              </h1>
+            )}
+            <div className="flex flex-col gap-2">
+              {mass.data.map((data, dataIndex) => (
+                <div
+                  key={dataIndex}
+                  className="font-secondary flex justify-between"
+                >
+                  <p className="font-secondary text-lg">{data.time}</p>
+                  <p
+                    className={`font-secondary text-lg uppercase ${
+                      data.type.includes("online") ? "text-b200 font-bold" : ""
+                    }`}
+                  >
+                    {data.type}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function IntroductionLeft() {
   return (
-    <div className="bg-white h-full flex-1 shadow-basic flex  items-stretch gap-[52px]">
+    <div className="bg-white h-full flex-1 shadow-basic flex  items-stretch gap-10">
       <img
         src={BonaImg}
         className="h-auto w-[310px] object-cover"
         alt="Bonaventura Image"
       />
-      <div className="py-[40px]">
-        <p className="font-secondary text-xs font-bold">
+      <div className="py-12">
+        <p className="font-secondary text-sm font-bold">
           Tentang Paroki Pulomas
         </p>
         <h1 className="mt-[6px] text-b200 text-3xl">
@@ -162,40 +265,10 @@ function IntroductionRight() {
   return (
     <div className="bg-white !h-auto w-[380px] grow-0 shadow-basic flex gap-[40px]">
       <div className="p-[40px]">
-        <h1 className="mt-[6px] text-b200 text-3xl">
+        <h1 className="mt-3 mb-5 text-b200 text-3xl">
           Jadwal Perayaan Ekaristi
         </h1>
-        <div className="mt-6 py-3 border border-black border-x-0">
-          <h1 className="border-top tracking-widest text-xl">MISA MINGGUAN</h1>
-        </div>
-        <div className="flex flex-col gap-8 mt-10">
-          {MassInformation.map((mass, index) => (
-            <div key={index}>
-              <h1 className="font-secondary text-xl font-bold mb-3">
-                {mass.day}
-              </h1>
-              <div className="flex flex-col gap-2">
-                {mass.data.map((data, dataIndex) => (
-                  <div
-                    key={dataIndex}
-                    className="font-secondary flex justify-between"
-                  >
-                    <p className="font-secondary text-lg">{data.time}</p>
-                    <p
-                      className={`font-secondary text-lg uppercase ${
-                        data.type.includes("online")
-                          ? "text-b200 font-bold"
-                          : ""
-                      }`}
-                    >
-                      {data.type}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        <MassInformationSection title="Misa Mingguan" data={WeeklyMass} />
       </div>
     </div>
   );
@@ -238,7 +311,7 @@ export default function Index() {
       <div className="outer-wrapper !mb-32">
         <div className="inner-wrapper">
           <h1 className="text-center section-title mb-20">
-            Karya Pelayanan St. Bonaventura Pulomas
+            Karya Pelayanan Santo Bonaventura Pulo Mas
           </h1>
           <div className="grid grid-cols-3 gap-20">
             {Services.map((service, index) => (
@@ -256,31 +329,133 @@ export default function Index() {
           </div>
         </div>
       </div>
+
       <div className="outer-wrapper  bg-b100 mb-32">
-        <div className="inner-wrapper">
+        <div className="inner-wrapper !items-start">
           <div className="py-10 flex gap-20">
             {Shortcuts.map((shortcut, index) => (
-              <div
-                key={index}
-                className="flex flex-col gap-6 items-start justify-stretch"
-              >
-                <p className="font-secondary uppercase font-bold">
-                  {shortcut.type}
-                </p>
-                <h1 className="text-3xl text-b200">{shortcut.name}</h1>
-                <p className="font-secondary">{shortcut.description}</p>
-
-                <Button
-                  className="w-full"
-                  onClick={() => router.visit(shortcut.url)}
-                >
-                  Baca
-                </Button>
-              </div>
+              <ShortcutCard key={index} data={shortcut} />
             ))}
           </div>
         </div>
       </div>
+      <div className="outer-wrapper mb-32">
+        <div className="inner-wrapper !py-10">
+          <h1 className="section-title mb-10">Kegiatan Akan Datang</h1>
+        </div>
+        <div className="outer-wrapper bg-b100 w-auto">
+          <div className="inner-wrapper !flex-row !items-stretch">
+            <div className="h-auto relative">
+              <img
+                className="h-auto object-cover object-center"
+                src="https://res.cloudinary.com/di0dpswey/image/upload/v1742568986/st-bonaventura/khdo1jf6ygrmtbouldsu.png"
+                alt="Foto Kegiatan"
+              />
+              <div className="absolute w-full left-0 top-1/2 flex justify-between px-5">
+                <div className="LEFT text-2xl size-10 rounded-full grid place-items-center bg-n100 font-extrabold cursor-pointer">
+                  &#x2039;
+                </div>
+                <div className="RIGHT text-2xl size-10 rounded-full grid place-items-center bg-n100 font-extrabold cursor-pointer">
+                  &#x203A;
+                </div>
+              </div>
+            </div>
+            <div className="p-5 flex flex-col gap-5 w-[500px]">
+              <p className="text-b200 font-secondary font-semibold text-sm">
+                20 Okt 2024
+              </p>
+              <h1 className="text-b200 text-3xl">
+                RAKA Paroki Pulomas: Sinergi Seksi dan Subseksi untuk Anggaran
+                2025 RAKA (Rapat Karya)
+              </h1>
+              {/* <p className="font-secondary font-bold">BERITA - PAROKI</p> */}
+              <div className="flex flex-col gap-4 h-full justify-start">
+                <p className="font-secondary">
+                  Hai Bonavers! Minggu, 20 Oktober 2024 kemarin, Paroki Pulomas
+                  mengadakan RAKA yang dihadiri Hai Bonavers! Minggu, 20 Oktober
+                  2024 kemarin, Paroki Pulomas mengadakan RAKA yang dihadiri...
+                </p>
+                {/* <Link className="w-full" href="/">
+                <Button className="w-full">Baca</Button>
+              </Link> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="outer-wrapper mb-32 gap-10">
+        <h1 className="text-center section-title">Berita & Kegiatan</h1>
+        <div className="inner-wrapper !items-start">
+          <ArticleCard />
+        </div>
+        <div className="inner-wrapper !items-start !grid !grid-cols-3 gap-5">
+          <ArticleCard type="secondary" />
+          <ArticleCard type="secondary" />
+          <ArticleCard type="secondary" />
+          <div className="mt-5 flex flex-start">
+            <Button className="h-20 px-10" onClick={() => router.visit("/")}>
+              Baca Artikel Lain
+            </Button>
+          </div>
+        </div>
+      </div>
+      <div className="outer-wrapper mb-32">
+        <div className="inner-wrapper !items-start">
+          <h1 className="text-center w-full section-title">Warta Minggu</h1>
+          <div className="py-10 w-full flex flex-col gap-5">
+            {News.map((newsItem, index) => (
+              <NewsCard key={index} data={newsItem} />
+            ))}
+          </div>
+          <Button className="h-20 px-10" onClick={() => router.visit("/")}>
+            Baca Warta Minggu Lain
+          </Button>
+        </div>
+      </div>
+      <div className="outer-wrapper mb-32 bg-b100">
+        <div className="inner-wrapper !py-10">
+          <h1 className="section-title mb-10">Jadwal Perayaan Ekaristi</h1>
+          <div className="grid grid-cols-3 gap-10">
+            <div>
+              <ol className="list-decimal">
+                <li>
+                  Datang lebih awal, sekitar 10-15 menit sebelum misa dimulai.
+                </li>
+                <li>Berpakaian sopan dan rapi.</li>
+                <li>
+                  Disediakan area khusus bagi pengguna kursi roda di dekat
+                  tempat duduk lansia.
+                </li>
+                <li>
+                  Untuk misa online bisa mengunjungi Channel Youtube Komsos
+                  Santo Bonaventura Pulo Mas.
+                </li>
+              </ol>
+              <Button
+                className="w-full mt-5 py-10"
+                onClick={() =>
+                  window.open(
+                    "https://www.youtube.com/@KomsosBonaventura/streams",
+                    "_blank"
+                  )
+                }
+              >
+                Tonton Misa Live Streaming
+              </Button>
+            </div>
+            <MassInformationSection title="Misa mingguan" data={WeeklyMass} />
+            <div className="flex flex-col gap-10">
+              <MassInformationSection title="Misa mingguan" data={DailyMass} />
+              <MassInformationSection
+                title="Jumat Pertama"
+                data={FirstFridayMass}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
     </div>
   );
 }

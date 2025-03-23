@@ -11,11 +11,12 @@ const LINKS = [
   {
     isMenu: true,
     name: "Tentang",
+    urlPrefix: "/tentang",
     menu: [
       {
         name: "Dewan Paroki",
         url: "/dewan-paroki",
-        urlName: "dph.guest.index",
+        urlName: "council.guest.index",
       },
       { name: "Sejarah", url: "/sejarah", urlName: "history.guest.index" },
       {
@@ -28,6 +29,7 @@ const LINKS = [
   {
     isMenu: true,
     name: "Informasi",
+    urlPrefix: "/informasi",
     menu: [
       {
         name: "Berita & Kegiatan",
@@ -70,7 +72,7 @@ const LINKS = [
 export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full flex justify-center shadow-basic px-6 h-20 z-[1] bg-white">
-      <div className="w-[1200px] px-4 flex justify-between">
+      <div className="w-[1150px] px-4 flex justify-between">
         <div className="h-full flex items-center">
           <img src={LogoNavImg} alt="Logo Nav" className="h-16" />
         </div>
@@ -84,7 +86,7 @@ export default function Navbar() {
                     {link.menu.map((submenu, subIndex) => (
                       <Link
                         key={subIndex}
-                        href={submenu.url}
+                        href={link.urlPrefix + submenu.url}
                         className="block font-secondary text-xs px-4 py-2 hover:bg-gray-200"
                       >
                         {submenu.name}

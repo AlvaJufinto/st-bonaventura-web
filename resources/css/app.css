@@ -22,7 +22,7 @@
 }
 
 .inner-wrapper {
-  width: 1200px;
+  width: 1150px;
   max-width: 100%;
   display: flex;
   flex-direction: column;
@@ -31,15 +31,36 @@
 }
 
 .section-title {
-  color: var(--n-900, #000);
+  /* color: var(--n-900, #000); */
   font-family: "Frank Ruhl Libre";
-  font-size: 48px;
+  font-size: 2.5rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 420;
   line-height: 150%; /* 72px */
   letter-spacing: -1.056px;
+  margin-bottom: 3.5rem;
+}
+
+.small-title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #5783be;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
 }
 
 .section-absolute {
   height: clamp(800px, 80vh, 800px);
+}
+
+.img-background {
+  background-image: url("./../js/assets/img/background/background.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.disabled {
+  -webkit-user-drag: none;
+  user-drag: none;
+  user-select: none;
 }
