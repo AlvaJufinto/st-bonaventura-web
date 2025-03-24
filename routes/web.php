@@ -28,6 +28,7 @@ Route::get('/', HomeController::class)->name('home.guest.index');
 Route::prefix('tentang')->group(function () {
   Route::get('/dewan-paroki', [AboutController::class, 'council'])->name('council.guest.index');
   Route::get('/sejarah', [AboutController::class, 'history'])->name('history.guest.index');
+  Route::get('/santo-pelindung', [AboutController::class, 'saint'])->name('saint.guest.index');
 });
 
 Route::prefix('informasi')->group(function () {

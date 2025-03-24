@@ -15,4 +15,9 @@ class AboutController extends Controller
   {
     return Inertia::render("About/History");
   }
+
+  public function saint(Request $request)
+  {
+    return Inertia::render('About/Saint');
+  }
 }
