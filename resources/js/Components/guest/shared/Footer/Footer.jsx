@@ -33,7 +33,7 @@ export default function Footer() {
                   key={index}
                   src={social.img}
                   className="w-10 cursor-pointer"
-                  onClick={() => window.open(social.urk, "_blank")}
+                  onClick={() => window.open(social.url, "_blank")}
                   alt="Logo Socials"
                 />
               ))}

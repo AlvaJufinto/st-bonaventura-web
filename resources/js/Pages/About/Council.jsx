@@ -46,7 +46,7 @@ export default function Council() {
         <>
           <Navbar />
           <div className="disabled ">
-            <div className="outer-wrapper !py-40 !justify-start img-background min-h-svh">
+            <div className="outer-wrapper !py-40 !justify-start min-h-svh">
               <div className="inner-wrapper !items-start !justify-start relative">
                 <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
                 <div className="mb-5">

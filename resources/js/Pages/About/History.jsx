@@ -58,7 +58,7 @@ export default function History() {
       <Navbar />
       <div className="img-background outer-wrapper">
         <div className="inner-wrapper !pt-40 !pb-20">
-          <h1 className="text-b300 section-title ">
+          <h1 className="text-b300 section-title w-3/4">
             Perjalanan Panjang Gereja Santo Bonaventura Pulo Mas
           </h1>
           <img src={MainHero} alt="main-hero" />

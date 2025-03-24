@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SacramentController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,6 +34,15 @@ Route::prefix('tentang')->group(function () {
 
 Route::prefix('informasi')->group(function () {
   Route::get('/warta-minggu', [InformationController::class, 'news'])->name('news.guest.index');
+});
+
+Route::prefix('sakramen')->group(function () {
+  Route::get('/baptis', [SacramentController::class, 'baptism'])->name('baptism.guest.index');
+  Route::get('/komuni-pertama', [SacramentController::class, 'communion'])->name('communion.guest.index');
+  Route::get('/krisma', [SacramentController::class, 'confirmation'])->name('confirmation.guest.index');
+  Route::get('/rekonsiliasi', [SacramentController::class, 'reconciliation'])->name('reconciliation.guest.index');
+  Route::get('/perminyakan', [SacramentController::class, 'anointing'])->name('anointing.guest.index');
+  Route::get('/perkawinan', [SacramentController::class, 'marriage'])->name('marriage.guest.index');
 });
 
 
