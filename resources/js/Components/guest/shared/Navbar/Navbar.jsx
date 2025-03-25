@@ -94,7 +94,7 @@ export default function Navbar() {
                         href={link.urlPrefix + submenu.url}
                         className={`block font-secondary text-xs px-4 py-2 hover:bg-gray-200  ${
                           url.includes(link.urlPrefix + submenu.url)
-                            ? "!text-b300 font-semibold"
+                            ? "text-b300 font-semibold"
                             : ""
                         }`}
                       >
@@ -110,7 +110,7 @@ export default function Navbar() {
                 key={index}
                 href={link.url}
                 className={`flex items-center ${
-                  url === link.url ? "!text-b300 font-semibold" : ""
+                  url === link.url ? "text-b300 font-semibold" : ""
                 }`}
               >
                 {link.name}
