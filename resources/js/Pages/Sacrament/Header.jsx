@@ -118,20 +118,20 @@ export default function Header({ children, type = "Baptis" }) {
             menyambut Anda untuk menerima sakramen-sakramen yang membawa
             perubahan dalam hidup rohani Anda.
           </p>
-          <div className="!py-6 !px-14 !pr-4 inner-wrapper absolute -bottom-12 bg-n100 w-full shadow-basic !grid grid-cols-6 gap-20">
-            {DATA.map((route, i) => (
-              <Link
-                className={`w-1/2 ${
-                  url === route.url ? "text-b300 font-semibold" : ""
-                }`}
-                key={i}
-                href={route.url}
-                preserveScroll
-              >
-                {route.name}
-              </Link>
-            ))}
-          </div>
+        </div>
+        <div className="!py-6 !px-14 !pr-4 inner-wrapper absolute -bottom-12 bg-n100 w-full shadow-basic !grid grid-cols-6 gap-20">
+          {DATA.map((route, i) => (
+            <Link
+              className={`w-1/2 ${
+                url === route.url ? "text-b300 font-semibold" : ""
+              }`}
+              key={i}
+              href={route.url}
+              preserveScroll
+            >
+              {route.name}
+            </Link>
+          ))}
         </div>
       </div>
       <div className="outer-wrapper py-10 pb-40">

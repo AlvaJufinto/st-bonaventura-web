@@ -44,7 +44,7 @@ const STEPS = [
 
 export default function Reconciliation() {
   return (
-    <Header>
+    <Header type="Rekonsiliasi">
       <h1 className="text-2xl text-b200 font-bold">Tata Cara Sakramen Tobat</h1>
 
       <ul className="mt-5 px-5 list-decimal">

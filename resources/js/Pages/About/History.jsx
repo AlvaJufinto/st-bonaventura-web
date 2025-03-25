@@ -6,6 +6,7 @@ import Footer from "@/Components/guest/shared/Footer/Footer";
 import Navbar from "@/Components/guest/shared/Navbar/Navbar";
 import { Head } from "@inertiajs/react";
 
+import GallerySlider from "./GallerySlider";
 import VideoContainer from "./VideoContainer";
 
 const TIMELINE = [
@@ -81,7 +82,7 @@ export default function History() {
           </p>
           <VideoContainer />
           <div className="my-40">
-            <h1 className="my-10 text-b300 font-semibold flex items-center gap-2 font-secondary tracking-wider uppercase text-2xl">
+            <h1 className="mb-20 text-b300 font-semibold flex items-center gap-2 font-secondary tracking-wider uppercase text-2xl">
               Sejarah Singkat
             </h1>
             <div className="grid grid-cols-3 gap-10 gap-y-20">
@@ -98,8 +99,9 @@ export default function History() {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
+      <GallerySlider />
+      <Footer />
     </div>
   );
 }

@@ -14,6 +14,8 @@ import NewsCard from "@/Components/guest/shared/NewsCard/NewsCard";
 import { Head, router } from "@inertiajs/react";
 
 import ShortcutCard from "./ShortcutCard";
+import Slider from "./Slider";
+import Statistics from "./Statistics";
 
 const WeeklyMass = [
   {
@@ -76,25 +78,6 @@ const FirstFridayMass = [
         type: "offline & online",
       },
     ],
-  },
-];
-
-const ChurchStatistic = [
-  {
-    name: "Daya Tampung Umat",
-    data: 500,
-  },
-  {
-    name: "Jumlah Lingkungan",
-    data: 49,
-  },
-  {
-    name: "Usia Paroki Pulomas",
-    data: 46,
-  },
-  {
-    name: "Komunitas & Kategorial",
-    data: 21,
   },
 ];
 
@@ -241,12 +224,12 @@ function IntroductionLeft() {
           Tentang Paroki Pulomas
         </p>
         <h1 className="mt-[6px] text-b200 text-3xl">
-          Selamat Datang di Gereja Santo Bonaventura Pulo Mas
+          Selamat Datang di Gereja Santo Bonaventura Paroki Pulo Mas
         </h1>
         <p className="pt-[20px] text-lg font-secondary">
           Gereja Santo Bonaventura adalah Gereja Katolik yang terletak di Pulo
           Mas, Jakarta Timur. Gereja St. Bonaventura berdiri sejak tahun 1977
-          dan saat ini dilayani oleh imam Diosesan Jakarta (KAJ). Gereja St.
+          dan saat ini dilayani oleh imam Diosesan Jakarta (KAJ). Gereja St.
           Bonaventura hadir sebagai "Oase" yang menemani perjalanan rohani umat
           Katolik dan tempat menimba sisi spiritual kristiani bagi umat Katolik
           di mana saja.
@@ -277,11 +260,9 @@ function IntroductionRight() {
 export default function Index() {
   return (
     <div>
-      <Head title="Home" />
+      <Head title="Beranda" />
       <Navbar />
-      <div className="outer-wrapper h-[600px] w-full bg-slate-200 ">
-        <div className="inner-wrapper">asdasd</div>
-      </div>
+      <Slider />
       <div className="w-full relative outer-wrapper">
         <div className="inner-wrapper !items-stretch !flex-row absolute top-[-80px] flex gap-[20px] min-h-[580px]">
           {/* LEFT */}
@@ -291,23 +272,7 @@ export default function Index() {
         </div>
       </div>
       <div className="section-absolute"></div>
-      <div className="outer-wrapper mb-32">
-        <div className="inner-wrapper !flex-row">
-          {ChurchStatistic.map((stat, index) => (
-            <div
-              key={index}
-              className={`grow flex flex-col items-center gap-2 ${
-                index !== ChurchStatistic.length - 1
-                  ? "border-r border-gray-300"
-                  : ""
-              }`}
-            >
-              <p className="text-8xl">{stat.data}</p>
-              <p className="font-secondary text-b200">{stat.name}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      <Statistics />
       <div className="outer-wrapper !mb-32">
         <div className="inner-wrapper">
           <h1 className="text-center section-title mb-20">

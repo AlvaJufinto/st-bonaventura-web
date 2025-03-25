@@ -4,11 +4,44 @@ import { Head } from "@inertiajs/react";
 
 import { usePageBlock } from "./usePageBlock";
 
-const CouncilData = [
-  ...Array.from({ length: 22 }, (_, i) => ({
-    title: "KETUA I Ketua I DP / PGDP",
-    name: "Romo Stephanus Royke Djakarya Pr,",
-  })),
+const COUNCIL_DATA = [
+  { title: "Ketua Umum DP / PGDP", name: "Romo Stephanus Royke Djakarya Pr" },
+  { title: "Ketua I DP / PGDP", name: "Antonius Arfin Samosir, Pr." },
+  { title: "Wakil Ketua I DP / PGDP", name: "Hubertus Hartono Sondakh" },
+  { title: "Wakil Ketua II DP / PGDP", name: "Thomas Lim Kian Heng" },
+  { title: "Sekretaris I DP / PGDP", name: "Ivon Sri Darmayanti" },
+  {
+    title: "Sekretaris II DP / PGDP",
+    name: "Andreas Henry Mixson Lumban Batu",
+  },
+  { title: "Sekretaris III DP / PGDP", name: "Maria Odilia Damayanti" },
+  { title: "Bendahara I DP / PGDP", name: "Caecilia Supojo Niniek Dhamayanti" },
+  { title: "Bendahara II DP / PGDP", name: "Marcelina Felicia Linda Wiryadi" },
+  { title: "Bendahara III DP / PGDP", name: "Carolus Boromeus Dedi" },
+  { title: "Bidang Peribadatan", name: "Stephanus Pudji Ludianto" },
+  { title: "Bidang Pewartaan", name: "Fransiskus Xaverius Yanuar Ekaputra" },
+  { title: "Bidang Pewartaan", name: "Maria Mili Fonge" },
+  {
+    title: "Bidang Persekutuan & Pendampingan Teritorial dan Kategorial",
+    name: "Martinus Robert Polana",
+  },
+  {
+    title: "Bidang Persekutuan & Pendampingan Teritorial dan Kategorial",
+    name: "Ferry Olin Binsar",
+  },
+  { title: "Bidang Pelayanan & Team Khusus", name: "Theresia Ferrania" },
+  { title: "Bidang Pelayanan & Team Khusus", name: "Agnes Amelia Yowanda" },
+  { title: "Bidang Kesaksian", name: "Fransiskus Xaverius Adviadi Nugroho" },
+  {
+    title: "Bidang Pelatihan dan Pengembangan Paroki",
+    name: "Marianus Ari Winarto",
+  },
+  {
+    title: "Bidang Perencanaan & Evaluasi",
+    name: "Yohanes Bambang Kristianto",
+  },
+  { title: "Bidang Perencanaan & Evaluasi", name: "Bernadus Wibisanto" },
+  { title: "Pendampingan Bagian", name: "Fredericus Sugiarso Budihardjo" },
 ];
 
 function CouncilCard({ data }) {
@@ -32,7 +65,7 @@ export default function Council() {
 
   return (
     <div className={`relative ${isBlocked ? "blackout" : ""}`}>
-      <Head title="Santo Bonaventura">
+      <Head title="Dewan Paroki">
         {/* Prevent screen recording on mobile */}
         <meta
           name="viewport"
@@ -54,7 +87,7 @@ export default function Council() {
                   <h1 className="section-title">Dewan Paroki Harian</h1>
                 </div>
                 <div className="grid grid-cols-4 gap-24">
-                  {CouncilData.map((council, i) => (
+                  {COUNCIL_DATA.map((council, i) => (
                     <CouncilCard key={i} data={council} />
                   ))}
                 </div>
@@ -68,7 +101,7 @@ export default function Council() {
                   <h1 className="section-title">Dewan Paroki Pleno</h1>
                 </div>
                 <div className="grid grid-cols-4 gap-10">
-                  {CouncilData.map((council, i) => (
+                  {COUNCIL_DATA.map((council, i) => (
                     <CouncilCard key={i} data={council} />
                   ))}
                 </div>

@@ -1,5 +1,5 @@
 import LogoNavImg from "@/assets/logo/logo-bona-nav.svg";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
 const LINKS = [
   {
@@ -70,6 +70,10 @@ const LINKS = [
 ];
 
 export default function Navbar() {
+  const { url } = usePage();
+
+  console.log(url);
+
   return (
     <nav className="fixed top-0 left-0 w-full flex justify-center shadow-basic px-6 h-20 z-[1] bg-white">
       <div className="w-[1150px] px-4 flex justify-between">
@@ -87,7 +91,11 @@ export default function Navbar() {
                       <Link
                         key={subIndex}
                         href={link.urlPrefix + submenu.url}
-                        className="block font-secondary text-xs px-4 py-2 hover:bg-gray-200"
+                        className={`block font-secondary text-xs px-4 py-2 hover:bg-gray-200  ${
+                          url.includes(link.urlPrefix + submenu.url)
+                            ? "!text-b300 font-semibold"
+                            : ""
+                        }`}
                       >
                         {submenu.name}
                       </Link>
@@ -97,7 +105,13 @@ export default function Navbar() {
               );
             }
             return (
-              <Link key={index} href={link.url} className="flex items-center">
+              <Link
+                key={index}
+                href={link.url}
+                className={`flex items-center ${
+                  url === link.url ? "!text-b300 font-semibold" : ""
+                }`}
+              >
                 {link.name}
               </Link>
             );

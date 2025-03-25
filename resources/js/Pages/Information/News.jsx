@@ -33,7 +33,7 @@ const NewsData = [
 export default function News() {
   return (
     <div>
-      <Head title="News" />
+      <Head title="Warta Minggu" />
       <Navbar />
       <div className="outer-wrapper pt-10 h-[70vh] img-background">
         <div className="inner-wrapper !items-start !justify-start">
