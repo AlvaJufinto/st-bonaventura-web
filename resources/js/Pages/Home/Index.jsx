@@ -1,3 +1,5 @@
+import ChevronLeft from "@/assets/icon/chevron-left.svg";
+import ChevronRight from "@/assets/icon/chevron-right.svg";
 import AsakIcon from "@/assets/icon/home/asak-icon.svg";
 import CategorialIcon from "@/assets/icon/home/categorial-icon.svg";
 import EucharistIcon from "@/assets/icon/home/eucharist-icon.svg";
@@ -318,10 +320,10 @@ export default function Index() {
               />
               <div className="absolute w-full left-0 top-1/2 flex justify-between px-5">
                 <div className="LEFT text-2xl size-10 rounded-full grid place-items-center bg-n100 font-extrabold cursor-pointer">
-                  &#x2039;
+                  <img src={ChevronLeft} alt="icon" />
                 </div>
                 <div className="RIGHT text-2xl size-10 rounded-full grid place-items-center bg-n100 font-extrabold cursor-pointer">
-                  &#x203A;
+                  <img src={ChevronRight} alt="icon" />
                 </div>
               </div>
             </div>
@@ -358,7 +360,10 @@ export default function Index() {
           <ArticleCard type="secondary" />
           <ArticleCard type="secondary" />
           <div className="mt-5 flex flex-start">
-            <Button className="h-20 px-10" onClick={() => router.visit("/")}>
+            <Button
+              className="h-20 px-10"
+              onClick={() => router.visit(route("articles.guest.index"))}
+            >
               Baca Artikel Lain
             </Button>
           </div>
@@ -372,7 +377,10 @@ export default function Index() {
               <NewsCard key={index} data={newsItem} />
             ))}
           </div>
-          <Button className="h-20 px-10" onClick={() => router.visit("/")}>
+          <Button
+            className="h-20 px-10"
+            onClick={() => router.visit(route("news.guest.index"))}
+          >
             Baca Warta Minggu Lain
           </Button>
         </div>

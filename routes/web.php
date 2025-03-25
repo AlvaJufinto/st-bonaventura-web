@@ -22,9 +22,11 @@ use Inertia\Inertia;
 |
 */
 
+
+
+
 // PUBLIC
 Route::get('/', HomeController::class)->name('home.guest.index');
-
 
 Route::prefix('tentang')->group(function () {
   Route::get('/dewan-paroki', [AboutController::class, 'council'])->name('council.guest.index');
@@ -45,6 +47,9 @@ Route::prefix('sakramen')->group(function () {
   Route::get('/perkawinan', [SacramentController::class, 'marriage'])->name('marriage.guest.index');
 });
 
+Route::fallback(function () {
+  return Inertia::render('Page503');
+});
 
 // ADMIN
 Route::middleware('auth')->group(function () {
@@ -58,5 +63,7 @@ Route::middleware('auth')->group(function () {
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 require __DIR__ . '/auth.php';

@@ -87,7 +87,10 @@ export default function History() {
             </h1>
             <div className="grid grid-cols-3 gap-10 gap-y-20">
               {TIMELINE.map((data, i) => (
-                <div className="flex flex-col gap-5 px-8 py-4 border border-l-blue-800 border-y-0 border-r-0">
+                <div
+                  key={i}
+                  className="flex flex-col gap-5 px-8 py-4 border border-l-blue-800 border-y-0 border-r-0"
+                >
                   <h1 className="text-7xl font-semibold">{data.year}</h1>
                   <p className="font-secondary text-xl font-bold text-b200">
                     {data.title}

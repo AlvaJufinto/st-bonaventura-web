@@ -52,6 +52,7 @@ const LINKS = [
   {
     isMenu: true,
     name: "Wilayah",
+    urlPrefix: "/wilayah",
     menu: [
       { name: "Peta", url: `/peta`, urlName: "peta.index" },
       ...Array.from({ length: 11 }, (_, i) => ({

@@ -88,11 +88,17 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="w-full flex justify-between items-center">
-            <p className="mt-5 font-bold font-secondary">
+          <div className="mt-10 w-full flex justify-between items-center">
+            <p className="font-bold font-secondary">
               Copyright © 2024 All rights reserved
             </p>
-            {/* <p>Designed & Developed by Stanislaus Alva</p> */}
+            <a
+              className="font-watermark text-xs"
+              href="https://alvajufinto.vercel.app/"
+              target="_blank"
+            >
+              Designed & Developed by Stanislaus Alva
+            </a>
           </div>
         </div>
       </div>
