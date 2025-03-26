@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import ApplicationLogo from "@/Components/admin/ApplicationLogo";
+import Logo from "@/assets/logo/logo-bona.svg";
 import Dropdown from "@/Components/admin/Dropdown";
 import NavLink from "@/Components/admin/NavLink";
 import ResponsiveNavLink from "@/Components/admin/ResponsiveNavLink";
@@ -18,7 +18,7 @@ export default function Authenticated({ user, header, children }) {
             <div className="flex">
               <div className="shrink-0 flex items-center">
                 <Link href="/">
-                  <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                  <img className="h-12" src={Logo} alt="logo" />
                 </Link>
               </div>
 
@@ -29,12 +29,12 @@ export default function Authenticated({ user, header, children }) {
                 >
                   Dashboard
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   href={route("articles.index")}
                   active={route().current("articles.index")}
                 >
                   Article
-                </NavLink>
+                </NavLink> */}
               </div>
             </div>
 
@@ -45,7 +45,7 @@ export default function Authenticated({ user, header, children }) {
                     <span className="inline-flex rounded-md">
                       <button
                         type="button"
-                        className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                        className="font-secondary inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                       >
                         {user.name}
 
@@ -66,9 +66,9 @@ export default function Authenticated({ user, header, children }) {
                   </Dropdown.Trigger>
 
                   <Dropdown.Content>
-                    <Dropdown.Link href={route("profile.edit")}>
+                    {/* <Dropdown.Link href={route("profile.edit")}>
                       Profile
-                    </Dropdown.Link>
+                    </Dropdown.Link> */}
                     <Dropdown.Link
                       href={route("logout")}
                       method="post"
@@ -162,7 +162,7 @@ export default function Authenticated({ user, header, children }) {
 
       {header && (
         <header className="bg-white shadow">
-          <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <div className="font-secondary max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             {header}
           </div>
         </header>

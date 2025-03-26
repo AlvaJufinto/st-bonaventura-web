@@ -52,12 +52,14 @@ Route::fallback(function () {
 });
 
 // ADMIN
-Route::middleware('auth')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
   Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
   })->name('dashboard');
 
+
   Route::resource('/articles', ArticleController::class);
+  Route::resource('/warta-minggu', NewsController::class);
 
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

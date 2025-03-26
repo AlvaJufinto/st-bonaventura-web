@@ -8,7 +8,7 @@ import { Transition } from "@headlessui/react";
 import { Head, useForm } from "@inertiajs/react";
 
 export default function Create({ auth, articleStatus }) {
-  console.log(articleStatus);
+  // console.log(articleStatus);
 
   const { data, setData, errors, put, reset, processing, recentlySuccessful } =
     useForm({

@@ -7,7 +7,7 @@ export default function Dashboard({ auth }) {
     <AuthenticatedLayout
       user={auth.user}
       header={
-        <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 className="font-secondary font-semibold text-xl text-gray-800 leading-tight">
           Dashboard
         </h2>
       }
@@ -15,7 +15,9 @@ export default function Dashboard({ auth }) {
       <Head title="Dashboard" />
 
       <Wrapper>
-        <div className="p-6 text-gray-900">You're logged in!</div>
+        <div className="p-6 text-gray-900 font-secondary">
+          Halo, {auth.user.username}!
+        </div>
       </Wrapper>
     </AuthenticatedLayout>
   );

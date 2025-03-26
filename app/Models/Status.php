@@ -17,4 +17,9 @@ class Status extends Model
   {
     return $this->hasMany(Article::class);
   }
+
+  public function news()
+  {
+    return $this->hasMany(News::class);
+  }
 }
