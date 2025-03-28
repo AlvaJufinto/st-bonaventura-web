@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     ]);
 
     \App\Models\Status::create([
-      'name' => 'deleted',
+      'name' => 'archived',
     ]);
 
     \App\Models\Status::create([

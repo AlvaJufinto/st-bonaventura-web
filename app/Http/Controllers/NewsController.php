@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class NewsController extends Controller
@@ -31,7 +33,20 @@ class NewsController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $validatedData = $request->validate([
+      'title' => 'nullable|string|max:255',
+      'alternate_title' => 'required|string|max:255',
+      'document_name' => 'required|string|max:255',
+      'user_id' => 'required|integer|exists:users,id',
+      'status_id' => 'required|integer|exists:statuses,id',
+    ]);
+
+
+    News::create(
+      $validatedData
+    );
+
+    return to_route('warta-minggu.create');
   }
 
   /**

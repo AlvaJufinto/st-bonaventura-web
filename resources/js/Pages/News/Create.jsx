@@ -11,28 +11,25 @@ import { Head, useForm } from "@inertiajs/react";
 
 export default function Create({ auth, statuses }) {
   const [file, setFile] = useState(null);
-  // const [pdfPreview, setPdfPreview] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
 
   const { data, setData, errors, post, reset, processing, recentlySuccessful } =
     useForm({
       title: "Warta Minggu Paroki Pulomas",
-      alternateTitle: "",
-      documentName: "",
-      statusId: 2,
+      alternate_title: "",
+      document_name: "",
+      status_id: 2,
+      user_id: auth?.user?.id,
     });
 
-  // Handle file input change
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile && selectedFile.type === "application/pdf") {
       setFile(selectedFile);
-      // setPdfPreview(URL.createObjectURL(selectedFile));
       setUploadError(null);
     } else {
       setFile(null);
-      // setPdfPreview(null);
       setUploadError("Please upload a valid PDF file.");
     }
   };
@@ -51,18 +48,18 @@ export default function Create({ auth, statuses }) {
       });
 
       const result = await response.json();
+      console.log("🚀 ~ uploadFile ~ result:", result);
 
       if (result.ok) {
-        setData("documentName", result.file.fileName);
+        setData("document_name", result.file.fileName);
+        console.log(data);
       } else {
         throw new Error("Upload unsuccessful");
       }
     } catch (error) {
-      console.error("Error uploading file:", error);
       setUploadError("Failed to upload file.");
     } finally {
       setUploading(false);
-      // setPdfPreview(null);
       setFile(null);
     }
   };
@@ -77,17 +74,13 @@ export default function Create({ auth, statuses }) {
 
     await uploadFile(file);
 
-    if (data.documentName) {
-      console.log("Bisa le");
-      post(route("articles.store"), {
-        preserveScroll: true,
-        onSuccess: () => {
-          reset();
-          setFile(null);
-          // setPdfPreview(null);
-        },
-      });
-    }
+    post(route("warta-minggu.store"), {
+      preserveScroll: true,
+      onSuccess: () => {
+        reset("title", "alternate_title", "status_id", "document_name");
+        setFile(null);
+      },
+    });
   };
 
   return (
@@ -115,23 +108,23 @@ export default function Create({ auth, statuses }) {
           </div>
 
           <div>
-            <InputLabel htmlFor="alternateTitle" value="Alternate Title" />
+            <InputLabel htmlFor="alternate_title" value="Alternate Title" />
             <TextInput
-              id="alternateTitle"
-              value={data.alternateTitle}
-              onChange={(e) => setData("alternateTitle", e.target.value)}
+              id="alternate_title"
+              value={data.alternate_title}
+              onChange={(e) => setData("alternate_title", e.target.value)}
               type="text"
               className="mt-1 block w-full"
             />
-            <InputError message={errors.alternateTitle} className="mt-2" />
+            <InputError message={errors.alternate_title} className="mt-2" />
           </div>
 
           <div>
             <InputLabel htmlFor="status" value="Status" />
             <select
               id="status"
-              value={data.statusId}
-              onChange={(e) => setData("statusId", e.target.value)}
+              value={data.status_id}
+              onChange={(e) => setData("status_id", e.target.value)}
               className="font-secondary mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none capitalize focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             >
               {statuses.map((status) => (
@@ -156,6 +149,7 @@ export default function Create({ auth, statuses }) {
               value={file ? file[0]?.name : ""}
               onChange={handleFileChange}
               disabled={uploading}
+              // key={file ? file.name : "new"}
             />
             {uploading && (
               <p className="text-sm text-gray-500 font-secondary">
@@ -191,7 +185,9 @@ export default function Create({ auth, statuses }) {
               leave="transition ease-in-out"
               leaveTo="opacity-0"
             >
-              <p className="text-sm text-gray-600">Saved.</p>
+              <p className="text-sm text-green-500 font-secondary font-semibold">
+                Warta Minggu Berhsil dibuat
+              </p>
             </Transition>
           </div>
         </form>

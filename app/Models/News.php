@@ -14,8 +14,8 @@ class News extends Model
     'title',
     'alternate_title',
     'document_name',
-    'user_id',
     'status_id',
+    'user_id',
   ];
 
   public function user(): BelongsTo
