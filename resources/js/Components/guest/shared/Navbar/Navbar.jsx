@@ -1,3 +1,4 @@
+import Arrow from "@/assets/icon/chevron-left.svg";
 import LogoNavImg from "@/assets/logo/logo-bona-nav.svg";
 import { Link, usePage } from "@inertiajs/react";
 
@@ -70,55 +71,67 @@ const LINKS = [
   },
 ];
 
+function ScrollToTop() {
+  return (
+    <div
+      onClick={() => window.scrollTo(0, 0)}
+      className="cursor-pointer fixed right-0 bottom-0 size-12 shadow-basic grid place-items-center m-10 z-20 bg-n100"
+    >
+      <img src={Arrow} alt="arrow" className="size-6 rotate-90" />
+    </div>
+  );
+}
+
 export default function Navbar() {
   const { url } = usePage();
 
-  console.log(url);
-
   return (
-    <nav className="fixed top-0 left-0 w-full flex justify-center shadow-basic px-6 h-20 z-[1] bg-white">
-      <div className="w-[1150px] px-4 flex justify-between">
-        <div className="h-full flex items-center">
-          <img src={LogoNavImg} alt="Logo Nav" className="h-16" />
-        </div>
-        <div className="flex gap-6 ">
-          {LINKS.map((link, index) => {
-            if (link.isMenu) {
-              return (
-                <div key={index} className="flex items-center relative group">
-                  <p className="cursor-pointer">{link.name}</p>
-                  <div className="absolute left-0 top-[100%] bg-white shadow-md w-max opacity-0 scale-y-0 origin-top transition-all duration-300 group-hover:opacity-100 group-hover:scale-y-100 z-1">
-                    {link.menu.map((submenu, subIndex) => (
-                      <Link
-                        key={subIndex}
-                        href={link.urlPrefix + submenu.url}
-                        className={`block font-secondary text-xs px-4 py-2 hover:bg-gray-200  ${
-                          url.includes(link.urlPrefix + submenu.url)
-                            ? "text-b300 font-semibold"
-                            : ""
-                        }`}
-                      >
-                        {submenu.name}
-                      </Link>
-                    ))}
+    <>
+      <nav className="fixed top-0 left-0 w-full flex justify-center shadow-basic px-6 h-20 z-[1] bg-white">
+        <div className="w-[1150px] px-4 flex justify-between">
+          <div className="h-full flex items-center">
+            <img src={LogoNavImg} alt="Logo Nav" className="h-16" />
+          </div>
+          <div className="flex gap-6 ">
+            {LINKS.map((link, index) => {
+              if (link.isMenu) {
+                return (
+                  <div key={index} className="flex items-center relative group">
+                    <p className="cursor-pointer">{link.name}</p>
+                    <div className="absolute left-0 top-[100%] bg-white shadow-md w-max opacity-0 scale-y-0 origin-top transition-all duration-300 group-hover:opacity-100 group-hover:scale-y-100 z-1">
+                      {link.menu.map((submenu, subIndex) => (
+                        <Link
+                          key={subIndex}
+                          href={link.urlPrefix + submenu.url}
+                          className={`block font-secondary text-xs px-4 py-2 hover:bg-gray-200  ${
+                            url.includes(link.urlPrefix + submenu.url)
+                              ? "text-b300 font-semibold"
+                              : ""
+                          }`}
+                        >
+                          {submenu.name}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                );
+              }
+              return (
+                <Link
+                  key={index}
+                  href={link.url}
+                  className={`flex items-center ${
+                    url === link.url ? "text-b300 font-semibold" : ""
+                  }`}
+                >
+                  {link.name}
+                </Link>
               );
-            }
-            return (
-              <Link
-                key={index}
-                href={link.url}
-                className={`flex items-center ${
-                  url === link.url ? "text-b300 font-semibold" : ""
-                }`}
-              >
-                {link.name}
-              </Link>
-            );
-          })}
+            })}
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+      <ScrollToTop />
+    </>
   );
 }

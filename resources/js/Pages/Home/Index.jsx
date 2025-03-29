@@ -249,17 +249,22 @@ function IntroductionLeft() {
 function IntroductionRight() {
   return (
     <div className="bg-white !h-auto w-[380px] grow-0 shadow-basic flex gap-[40px]">
-      <div className="p-[40px]">
-        <h1 className="mt-3 mb-5 text-b200 text-3xl">
-          Jadwal Perayaan Ekaristi
-        </h1>
+      <div className="p-[40px] flex flex-col justify-between">
+        <h1 className="mt-3 text-b200 text-3xl">Jadwal Perayaan Ekaristi</h1>
         <MassInformationSection title="Misa Mingguan" data={WeeklyMass} />
+        <Button
+          className="w-full mt-10"
+          onClick={() => router.replace("#jadwal-misa")}
+        >
+          Selengkapnya
+        </Button>
       </div>
     </div>
   );
 }
 
-export default function Index() {
+export default function Index({ news }) {
+  console.log("🚀 ~ Index ~ news:", news);
   return (
     <div>
       <Head title="Beranda" />
@@ -373,18 +378,25 @@ export default function Index() {
         <div className="inner-wrapper !items-start">
           <h1 className="text-center w-full section-title">Warta Minggu</h1>
           <div className="py-10 w-full flex flex-col gap-5">
-            {News.map((newsItem, index) => (
-              <NewsCard key={index} data={newsItem} />
-            ))}
+            {news.length > 0 ? (
+              news.map((news, index) => <NewsCard key={index} data={news} />)
+            ) : (
+              <div className="w-full min-h-80 flex justify-center items-center text-2xl font-secondary font-semibold text-gray-800 leading-tight">
+                Tidak Ada Warta Minggu
+              </div>
+            )}
           </div>
-          <Button
-            className="h-20 px-10"
-            onClick={() => router.visit(route("news.guest.index"))}
-          >
-            Baca Warta Minggu Lain
-          </Button>
+          {news.length > 0 && (
+            <Button
+              className="h-20 px-10"
+              onClick={() => router.visit(route("news.guest.index"))}
+            >
+              Baca Warta Minggu Lain
+            </Button>
+          )}
         </div>
       </div>
+      <div className="h-32" id="jadwal-misa"></div>
       <div className="outer-wrapper mb-32 bg-b100">
         <div className="inner-wrapper !py-10">
           <h1 className="section-title mb-10">Jadwal Perayaan Ekaristi</h1>
@@ -418,7 +430,7 @@ export default function Index() {
             </div>
             <MassInformationSection title="Misa mingguan" data={WeeklyMass} />
             <div className="flex flex-col gap-10">
-              <MassInformationSection title="Misa mingguan" data={DailyMass} />
+              <MassInformationSection title="Misa harian" data={DailyMass} />
               <MassInformationSection
                 title="Jumat Pertama"
                 data={FirstFridayMass}
@@ -427,7 +439,6 @@ export default function Index() {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );

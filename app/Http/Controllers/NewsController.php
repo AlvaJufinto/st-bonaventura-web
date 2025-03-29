@@ -36,17 +36,40 @@ class NewsController extends Controller
     $validatedData = $request->validate([
       'title' => 'nullable|string|max:255',
       'alternate_title' => 'required|string|max:255',
-      'document_name' => 'required|string|max:255',
+      "file" => 'required|file|mimes:pdf|max:2048',
       'user_id' => 'required|integer|exists:users,id',
       'status_id' => 'required|integer|exists:statuses,id',
     ]);
 
+    $file = $request->file('file');
 
-    News::create(
-      $validatedData
-    );
+    $client = new \GuzzleHttp\Client();
 
-    return to_route('warta-minggu.create');
+    try {
+      $response = $client->post('http://asset.stbonaventura.org/upload', [
+        'multipart' => [
+          [
+            'name'     => 'file',
+            'contents' => fopen($file->getPathname(), 'r'),
+            'filename' => $file->getClientOriginalName(),
+          ],
+        ],
+      ]);
+
+      $responseData = json_decode($response->getBody()->getContents(), true);
+
+      if (!isset($responseData['file']['fileName'])) {
+        return back()->withErrors(['file' => 'File upload failed.']);
+      }
+
+      $validatedData['document_name'] = $responseData['file']['fileName'];
+
+      News::create($validatedData);
+
+      return to_route('warta-minggu.create')->with('success', 'News created successfully.');
+    } catch (\Exception $e) {
+      return back()->withErrors(['file' => 'Error uploading file: ' . $e->getMessage()]);
+    }
   }
 
   /**

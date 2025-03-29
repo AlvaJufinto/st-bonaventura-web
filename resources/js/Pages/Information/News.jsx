@@ -1,7 +1,7 @@
 import Footer from "@/Components/guest/shared/Footer/Footer";
 import Navbar from "@/Components/guest/shared/Navbar/Navbar";
 import NewsCard from "@/Components/guest/shared/NewsCard/NewsCard";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 
 const NewsData = [
   {
@@ -30,7 +30,7 @@ const NewsData = [
   },
 ];
 
-export default function News() {
+export default function News({ news }) {
   return (
     <div>
       <Head title="Warta Minggu" />
@@ -50,10 +50,27 @@ export default function News() {
           </p>
         </div>
       </div>
-      <div className="py-20 outer-wrapper !justify-start min-h-svh">
+      <div id="data"></div>
+      <div className="py-24 outer-wrapper !justify-start min-h-svh">
         <div className="inner-wrapper gap-5">
-          {NewsData.map((news, index) => (
-            <NewsCard data={news} />
+          {news.data.length > 0 ? (
+            news.data.map((news, index) => <NewsCard key={index} data={news} />)
+          ) : (
+            <div className="w-full min-h-80 flex justify-center items-center text-2xl font-secondary font-semibold text-gray-800 leading-tight">
+              Tidak Ada Warta Minggu
+            </div>
+          )}
+        </div>
+        <div className="flex justify-center mt-10 space-x-2">
+          {news.links.map((link, index) => (
+            <Link
+              key={index}
+              href={`${link.url}#data` || "#"}
+              className={`px-4 text-xl font-secondary py-2 text-b300 rounded ${
+                link.active ? "underline" : ""
+              } ${!link.url ? "pointer-events-none" : ""}`}
+              dangerouslySetInnerHTML={{ __html: link.url ? link.label : "" }}
+            />
           ))}
         </div>
       </div>
