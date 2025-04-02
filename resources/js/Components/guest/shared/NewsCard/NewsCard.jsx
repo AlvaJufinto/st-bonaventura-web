@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 export default function NewsCard({ data }) {
   const formattedDate = dateFormatter(data.created_at);
 
-  const ASSET_URL = import.meta.env.VITE_ASSET_URL;
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
 
   return (
     <div className="border border-neutral-300 border-x-0 w-full flex justify-between items-center h-20">

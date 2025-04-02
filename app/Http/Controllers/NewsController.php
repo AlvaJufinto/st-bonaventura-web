@@ -45,10 +45,10 @@ class NewsController extends Controller
 
     $client = new \GuzzleHttp\Client();
 
-    $ASSET_URL = env('ASSET_URL');
+    $PUBLIC_ASSET_URL = env('PUBLIC_ASSET_URL');
 
     try {
-      $response = $client->post("{$ASSET_URL}/upload", [
+      $response = $client->post("{$PUBLIC_ASSET_URL}/upload", [
         'multipart' => [
           [
             'name'     => 'file',
