@@ -11,6 +11,7 @@ import BonaLogo from "@/assets/logo/logo-bonaventura.png";
 import ArticleCard from "@/Components/guest/shared/ArticleCard/ArticleCard";
 import Button from "@/Components/guest/shared/Button/Button";
 import Footer from "@/Components/guest/shared/Footer/Footer";
+import LazyImage from "@/Components/guest/shared/LazyImage";
 import Navbar from "@/Components/guest/shared/Navbar/Navbar";
 import NewsCard from "@/Components/guest/shared/NewsCard/NewsCard";
 import { Head, router } from "@inertiajs/react";
@@ -216,9 +217,9 @@ function MassInformationSection({ title, data }) {
 function IntroductionLeft() {
   return (
     <div className="bg-white h-full flex-1 shadow-basic flex  items-stretch gap-10">
-      <img
+      <LazyImage
         src={BonaImg}
-        className="h-auto w-[310px] object-cover"
+        className="!h-auto !w-[310px] object-cover"
         alt="Bonaventura Image"
       />
       <div className="py-12">
@@ -264,7 +265,6 @@ function IntroductionRight() {
 }
 
 export default function Index({ news }) {
-  console.log("🚀 ~ Index ~ news:", news);
   return (
     <div>
       <Head title="Beranda" />

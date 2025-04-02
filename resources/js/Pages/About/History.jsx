@@ -3,6 +3,7 @@ import Img1978 from "@/assets/img/history/1978.png";
 import Img1981 from "@/assets/img/history/1981.png";
 import MainHero from "@/assets/img/history/main-hero-history.png";
 import Footer from "@/Components/guest/shared/Footer/Footer";
+import LazyImage from "@/Components/guest/shared/LazyImage";
 import Navbar from "@/Components/guest/shared/Navbar/Navbar";
 import { Head } from "@inertiajs/react";
 
@@ -62,7 +63,7 @@ export default function History() {
           <h1 className="text-b300 section-title w-3/4">
             Perjalanan Panjang Gereja Santo Bonaventura Pulo Mas
           </h1>
-          <img src={MainHero} alt="main-hero" />
+          <LazyImage src={MainHero} alt="main-hero" />
         </div>
       </div>
       <div className="outer-wrapper bg-b100">

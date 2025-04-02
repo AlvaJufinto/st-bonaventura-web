@@ -5,6 +5,7 @@ import biography4 from "@/assets/img/saint/4.png";
 import Wide from "@/assets/img/saint/st-bona-wide.png";
 import Hero from "@/assets/img/saint/st-bonaventura.png";
 import Footer from "@/Components/guest/shared/Footer/Footer";
+import LazyImage from "@/Components/guest/shared/LazyImage";
 import Navbar from "@/Components/guest/shared/Navbar/Navbar";
 import { Head } from "@inertiajs/react";
 
@@ -40,9 +41,9 @@ export default function Saint() {
           <h1 className="text-b300 section-title">Tentang Santo Bonaventura</h1>
 
           <div className="flex gap-5 w-3/4">
-            <img
+            <LazyImage
               src={Hero}
-              className="w-auto object-cover object-center"
+              className="!w-auto object-cover object-center"
               alt="hero-img"
             />
             <p className="font-secondary text-2xl">
@@ -77,9 +78,9 @@ export default function Saint() {
                     {bio.description}
                   </p>
                 </div>
-                <img
+                <LazyImage
                   src={bio.img}
-                  className="mt-10 h-96 w-full object-cover"
+                  className="mt-10 !h-96 !w-full object-cover"
                   alt={bio.title}
                 />
               </div>
@@ -90,7 +91,7 @@ export default function Saint() {
               Pengakuan Sebagai Santo dan Pengaruhnya
             </h1>
             <div className="flex gap-10 w-3/4">
-              <img src={biography4} alt="Biography" />
+              <LazyImage className="!w-auto" src={biography4} alt="Biography" />
               <p className="font-secondary text-xl">
                 Bonaventura diangkat menjadi Kardinal oleh Paus Gregorius X pada
                 1273 dan menghadiri Konsili Lyon II pada tahun 1274. Namun,

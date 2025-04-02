@@ -6,6 +6,7 @@ import Hero1 from "@/assets/img/gallery/hero-1.png";
 import Hero2 from "@/assets/img/gallery/hero-2.png";
 import Hero3 from "@/assets/img/gallery/hero-3.png";
 import Hero4 from "@/assets/img/gallery/hero-4.png";
+import LazyImage from "@/Components/guest/shared/LazyImage";
 
 const images = [Hero1, Hero2, Hero3, Hero4];
 
@@ -46,7 +47,7 @@ export default function GallerySlider() {
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {images.map((image, index) => (
-              <img
+              <LazyImage
                 key={index}
                 src={image}
                 alt={`Gallery Image ${index + 1}`}
@@ -69,7 +70,6 @@ export default function GallerySlider() {
             <img className="cursor-pointer" src={ChevronRight} alt="" />
           </button>
 
-          {/* Dots Navigation */}
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
             {images.map((_, index) => (
               <span

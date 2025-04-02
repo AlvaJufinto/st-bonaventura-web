@@ -15,7 +15,7 @@ class InformationController extends Controller
   {
     $news = News::query()
       ->orderBy('created_at', 'desc')
-      ->where('status_id', 2)
+      ->where('status_id', 3)
       ->paginate(5);
 
 

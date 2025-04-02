@@ -1,9 +1,11 @@
+import { dateFormatter } from "@/utils";
+
 import Button from "../Button/Button";
 
 export default function NewsCard({ data }) {
-  const date = new Date(data.created_at);
-  const options = { day: "2-digit", month: "long", year: "numeric" };
-  const formattedDate = date.toLocaleDateString("en-GB", options);
+  const formattedDate = dateFormatter(data.created_at);
+
+  const ASSET_URL = import.meta.env.VITE_ASSET_URL;
 
   return (
     <div className="border border-neutral-300 border-x-0 w-full flex justify-between items-center h-20">
@@ -18,10 +20,7 @@ export default function NewsCard({ data }) {
       <Button
         className="w-60 h-full"
         onClick={() =>
-          window.open(
-            `http://asset.stbonaventura.org/uploads/${data.document_name}`,
-            "_blank"
-          )
+          window.open(`${ASSET_URL}/uploads/${data.document_name}`, "_blank")
         }
       >
         Baca

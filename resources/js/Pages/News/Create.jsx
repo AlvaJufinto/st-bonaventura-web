@@ -11,7 +11,7 @@ export default function Create({ auth, statuses }) {
   const { data, setData, errors, post, reset, processing, recentlySuccessful } =
     useForm({
       title: "Warta Minggu Paroki Pulomas",
-      alternate_title: null,
+      alternate_title: "",
       file: null,
       status_id: 2,
       user_id: auth?.user?.id,
@@ -23,7 +23,7 @@ export default function Create({ auth, statuses }) {
     post(route("warta-minggu.store"), {
       preserveScroll: true,
       onSuccess: () => {
-        reset("title", "alternate_title", "status_id", "file");
+        reset("alternate_title", "title", "status_id", "file");
         document.getElementById("fileInput").value = "";
       },
       onError: () => {

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Hero1 from "@/assets/img/gallery/hero-1.png";
 import Hero2 from "@/assets/img/gallery/hero-2.png";
 import Hero3 from "@/assets/img/gallery/hero-3.png";
+import LazyImage from "@/Components/guest/shared/LazyImage";
 
 const images = [Hero1, Hero2, Hero3];
 
@@ -14,25 +15,19 @@ export default function Slider() {
       setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000); // Change image every 3 seconds
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="relative w-full h-[85vh] overflow-hidden bg-slate-200">
-      {/* Images Container (Moves left/right) */}
       <div
-        className="flex w-full h-full transition-transform duration-700 ease-in-out "
+        className="flex w-full h-full transition-transform duration-700 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Slide ${index + 1}`}
-            className="w-full h-full object-cover flex-shrink-0"
-          />
+          <LazyImage key={index} src={image} alt={`Slide ${index + 1}`} />
         ))}
       </div>
 
@@ -53,7 +48,6 @@ export default function Slider() {
         </div>
       </div>
 
-      {/* Dots Navigation */}
       <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {images.map((_, index) => (
           <span
@@ -61,7 +55,6 @@ export default function Slider() {
             className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${
               index === currentIndex ? "bg-white" : "bg-gray-400"
             }`}
-            // onClick={() => setCurrentIndex(index)}
           ></span>
         ))}
       </div>

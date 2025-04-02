@@ -52,7 +52,7 @@ export default function News({ news }) {
       </div>
       <div id="data"></div>
       <div className="py-24 outer-wrapper !justify-start min-h-svh">
-        <div className="inner-wrapper gap-5">
+        <div className="inner-wrapper gap-5 h-[600px]">
           {news.data.length > 0 ? (
             news.data.map((news, index) => <NewsCard key={index} data={news} />)
           ) : (
