@@ -13,7 +13,13 @@ class NewsController extends Controller
   /**
    * Display a listing of the resource.
    */
-  public function index() {}
+  public function index()
+  {
+    $news = News::with(['status', 'user'])->paginate(20);
+    $statuses = Status::get();
+
+    return Inertia::render("News/Index", compact('news', 'statuses'));
+  }
 
   /**
    * Show the form for creating a new resource.
@@ -21,7 +27,6 @@ class NewsController extends Controller
   public function create()
   {
     $statuses = Status::all();
-
 
     return Inertia::render('News/Create', [
       'statuses' => $statuses,

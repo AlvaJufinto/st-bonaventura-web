@@ -89,9 +89,12 @@ export default function Navbar() {
     <>
       <nav className="fixed top-0 left-0 w-full flex justify-center shadow-basic px-6 h-20 z-[1] bg-white">
         <div className="w-[1150px] px-4 flex justify-between">
-          <div className="h-full flex items-center">
+          <Link
+            href={route("home.guest.index")}
+            className="h-full flex items-center"
+          >
             <img src={LogoNavImg} alt="Logo Nav" className="h-16" />
-          </div>
+          </Link>
           <div className="flex gap-6 ">
             {LINKS.map((link, index) => {
               if (link.isMenu) {
