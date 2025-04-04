@@ -39,7 +39,7 @@ export default function Authenticated({ user, children, header }) {
           </button>
         </div>
 
-        <nav className="mt-6 space-y-2 flex flex-col gap-4">
+        <nav className="mt-6 flex flex-col space-y-2">
           {LINKS.map((link, i) => (
             <NavLink
               key={i}
@@ -95,8 +95,6 @@ export default function Authenticated({ user, children, header }) {
       </header>
 
       <div className="flex-1 flex flex-col py-12 pl-48">
-        {/* Top Navigation */}
-
         <main className="flex-1">{children}</main>
       </div>
     </div>

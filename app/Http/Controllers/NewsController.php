@@ -10,6 +10,25 @@ use Inertia\Inertia;
 
 class NewsController extends Controller
 {
+  public function approve($id)
+  {
+    $news = News::findOrFail($id);
+    $news->status_id = 3;
+    $news->save();
+
+    return back()->with('success', 'Warta Minggu berhasil disetujui.');
+  }
+
+
+  public function revert($id)
+  {
+    $news = News::findOrFail($id);
+    $news->status_id = 2;
+    $news->save();
+
+    return back()->with('success', 'Warta Minggu berhasil dikembalikan menjadi review.');
+  }
+
   /**
    * Display a listing of the resource.
    */
@@ -73,19 +92,12 @@ class NewsController extends Controller
 
       News::create($validatedData);
 
-      return to_route('warta-minggu.create')->with('success', 'News created successfully.');
+      return to_route('warta-minggu.create')->with('success', 'Warta Minggu berhasil diunggah.');
     } catch (\Exception $e) {
       return back()->withErrors(['file' => 'Error uploading file: ' . $e->getMessage()]);
     }
   }
 
-  /**
-   * Display the specified resource.
-   */
-  public function show(string $id)
-  {
-    //
-  }
 
   /**
    * Show the form for editing the specified resource.
@@ -100,9 +112,22 @@ class NewsController extends Controller
    */
   public function update(Request $request, string $id)
   {
-    //
-  }
+    $request->validate([
+      'title' => 'nullable|string|max:255',
+      'alternate_title' => 'required|string|max:255',
+      'status_id' => 'required|integer|exists:statuses,id',
+    ]);
 
+    $news = News::findOrFail($id);
+
+    $news->update([
+      'title' => $request->input('title'),
+      'alternate_title' => $request->input('alternate_title'),
+      'status_id' => $request->input('status_id'),
+    ]);
+
+    return redirect()->route('warta-minggu.index')->with('success', 'Warta Minggu berhasil diupdate');
+  }
   /**
    * Remove the specified resource from storage.
    */
