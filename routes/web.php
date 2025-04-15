@@ -7,6 +7,8 @@ use App\Http\Controllers\InformationController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SacramentController;
+use App\Http\Controllers\TerritorialController;
+use App\Http\Controllers\WilayahController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -47,9 +49,10 @@ Route::prefix('sakramen')->group(function () {
   Route::get('/perkawinan', [SacramentController::class, 'marriage'])->name('marriage.guest.index');
 });
 
-Route::fallback(function () {
-  return Inertia::render('Page503');
-});
+
+Route::get('/wilayah/peta', [TerritorialController::class, 'map'])->name('map.guest.index');
+Route::get('/wilayah/{wilayah:slug}', [TerritorialController::class, 'show'])->name('map.guest.show');
+
 
 // ADMIN
 Route::prefix('admin')->middleware('auth')->group(function () {
@@ -58,21 +61,22 @@ Route::prefix('admin')->middleware('auth')->group(function () {
   })->name('dashboard');
 
 
+  // artikel / berita
   Route::resource('/articles', ArticleController::class);
 
+  // warta minggu
   Route::patch('/warta-minggu/{id}/approve', [NewsController::class, 'approve'])->name('warta-minggu.approve');
   Route::patch('/warta-minggu/{id}/approve', [NewsController::class, 'approve'])->name('warta-minggu.approve');
   Route::patch('/warta-minggu/{id}/revert', [NewsController::class, 'revert'])->name('warta-minggu.revert');
-
   Route::resource('/warta-minggu', NewsController::class);
 
-  Route::resource('/warta-minggu', NewsController::class);
+  Route::resource('/wilayah', TerritorialController::class)->except(['show']);
+
 
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 
 
 require __DIR__ . '/auth.php';

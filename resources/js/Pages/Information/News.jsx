@@ -3,33 +3,6 @@ import Navbar from "@/Components/guest/shared/Navbar/Navbar";
 import NewsCard from "@/Components/guest/shared/NewsCard/NewsCard";
 import { Head, Link } from "@inertiajs/react";
 
-const NewsData = [
-  {
-    date: "28 January 2024",
-    title: "Warta Minggu Paroki Pulomas",
-    subtitle: "Hari Minggu Biasa IV",
-    link: "https://res.cloudinary.com/di0dpswey/image/upload/v1742524732/st-bonaventura/ku421vx2hc8ooesnlu4c.pdf",
-  },
-  {
-    date: "4 February 2024",
-    title: "Warta Minggu Paroki Pulomas",
-    subtitle: "Hari Minggu Biasa V",
-    link: "https://res.cloudinary.com/di0dpswey/image/upload/v1742524732/st-bonaventura/ku421vx2hc8ooesnlu4c.pdf",
-  },
-  {
-    date: "11 February 2024",
-    title: "Warta Minggu Paroki Pulomas",
-    subtitle: "Hari Minggu Biasa VI",
-    link: "https://res.cloudinary.com/di0dpswey/image/upload/v1742524732/st-bonaventura/ku421vx2hc8ooesnlu4c.pdf",
-  },
-  {
-    date: "18 February 2024",
-    title: "Warta Minggu Paroki Pulomas",
-    subtitle: "Hari Minggu Biasa VII",
-    link: "https://res.cloudinary.com/di0dpswey/image/upload/v1742524732/st-bonaventura/ku421vx2hc8ooesnlu4c.pdf",
-  },
-];
-
 export default function News({ news }) {
   return (
     <div>

@@ -7,7 +7,7 @@ import Pagination from "@/Components/admin/Pagination";
 import PrimaryButton from "@/Components/admin/PrimaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Wrapper from "@/Layouts/Wrapper";
-import { dateFormatter } from "@/utils";
+import { dateFormatter, statusColors } from "@/utils";
 import { Head, router, useForm } from "@inertiajs/react";
 
 export default function Index({ auth, news, statuses }) {
@@ -20,12 +20,6 @@ export default function Index({ auth, news, statuses }) {
     errors: editErrors,
   } = useForm({});
   const totalPages = news.last_page;
-
-  const statusColors = {
-    1: "bg-gray-300",
-    2: "bg-yellow-300",
-    3: "bg-green-300",
-  };
 
   const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
 

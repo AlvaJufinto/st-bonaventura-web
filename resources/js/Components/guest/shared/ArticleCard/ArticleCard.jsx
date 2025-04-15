@@ -15,7 +15,7 @@ export default function ArticleCard({ type = "primary" }) {
           <p className="text-b200 font-secondary font-semibold text-sm">
             20 Okt 2024
           </p>
-          <h1 className="text-b200 text-3xl">
+          <h1 className="text-b300 text-3xl">
             RAKA Paroki Pulomas: Sinergi Seksi dan Subseksi untuk Anggaran 2025
             RAKA (Rapat Karya)
           </h1>
@@ -46,7 +46,7 @@ export default function ArticleCard({ type = "primary" }) {
           <p className="text-b200 font-secondary font-semibold text-sm">
             20 Okt 2024
           </p>
-          <h1 className="text-b200 text-3xl">
+          <h1 className="text-b300 text-3xl">
             RAKA Paroki Pulomas: Sinergi Seksi dan Subseksi untuk Anggaran 2025
             RAKA (Rapat Karya)
           </h1>

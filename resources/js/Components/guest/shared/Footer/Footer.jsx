@@ -93,7 +93,7 @@ export default function Footer() {
               Copyright © 2024 All rights reserved
             </p>
             <a
-              className="font-watermark text-xs"
+              className="font-watermark text-sm"
               href="https://alvajufinto.vercel.app/"
               target="_blank"
             >

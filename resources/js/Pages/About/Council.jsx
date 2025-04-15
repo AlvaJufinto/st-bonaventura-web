@@ -66,7 +66,6 @@ export default function Council() {
   return (
     <div className={`relative ${isBlocked ? "blackout" : ""}`}>
       <Head title="Dewan Paroki">
-        {/* Prevent screen recording on mobile */}
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=no"
@@ -78,7 +77,7 @@ export default function Council() {
       ) : (
         <>
           <Navbar />
-          <div className="disabled ">
+          <div className="disabled">
             <div className="outer-wrapper !py-40 !justify-start min-h-svh">
               <div className="inner-wrapper !items-start !justify-start relative">
                 <div className="absolute inset-0 bg-transparent pointer-events-none"></div>

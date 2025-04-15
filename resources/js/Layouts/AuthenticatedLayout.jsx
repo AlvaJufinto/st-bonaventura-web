@@ -14,7 +14,46 @@ const LINKS = [
     href: "warta-minggu.index",
     name: "Warta Minggu",
   },
+
+  {
+    href: "wilayah.index",
+    name: "Wilayah & Lingkungan",
+  },
 ];
+
+function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
+  return (
+    <aside
+      className={`z-20 fixed top-0 left-0 h-full w-45 bg-white border-r border-gray-200 p-4 ${
+        isSidebarOpen ? "block" : "hidden"
+      } sm:block`}
+    >
+      <div className="flex items-center justify-between">
+        <Link href="/">
+          <img className="h-12" src={Logo} alt="logo" />
+        </Link>
+        <button
+          className="sm:hidden p-2 rounded-md text-gray-500 hover:text-gray-700"
+          onClick={() => setIsSidebarOpen(false)}
+        >
+          ✖
+        </button>
+      </div>
+
+      <nav className="mt-6 flex flex-col space-y-2">
+        {LINKS.map((link, i) => (
+          <NavLink
+            key={i}
+            href={route(link.href)}
+            active={route().current(link.href)}
+          >
+            {link.name}
+          </NavLink>
+        ))}
+      </nav>
+    </aside>
+  );
+}
 
 export default function Authenticated({ user, children, header }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -22,37 +61,12 @@ export default function Authenticated({ user, children, header }) {
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
-      <aside
-        className={`z-20 fixed top-0 left-0 h-full w-45 bg-white border-r border-gray-200 p-4 ${
-          isSidebarOpen ? "block" : "hidden"
-        } sm:block`}
-      >
-        <div className="flex items-center justify-between">
-          <Link href="/">
-            <img className="h-12" src={Logo} alt="logo" />
-          </Link>
-          <button
-            className="sm:hidden p-2 rounded-md text-gray-500 hover:text-gray-700"
-            onClick={() => setIsSidebarOpen(false)}
-          >
-            ✖
-          </button>
-        </div>
+      <Sidebar
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
 
-        <nav className="mt-6 flex flex-col space-y-2">
-          {LINKS.map((link, i) => (
-            <NavLink
-              key={i}
-              href={route(link.href)}
-              active={route().current(link.href)}
-            >
-              {link.name}
-            </NavLink>
-          ))}
-        </nav>
-      </aside>
-
-      <header className="fixed w-full z-10 bg-white border-b pl-56 border-gray-200 p-4 flex justify-between items-center">
+      <header className="fixed w-full z-10 bg-white border-b pl-60 border-gray-200 p-4 flex justify-between items-center">
         {header}
         <button
           className="sm:hidden p-2 rounded-md text-gray-500 hover:text-gray-700"
@@ -94,7 +108,7 @@ export default function Authenticated({ user, children, header }) {
         </div>
       </header>
 
-      <div className="flex-1 flex flex-col py-12 pl-48">
+      <div className="flex-1 flex flex-col py-12 pl-52">
         <main className="flex-1">{children}</main>
       </div>
     </div>

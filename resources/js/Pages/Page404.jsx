@@ -4,7 +4,7 @@ import Footer from "@/Components/guest/shared/Footer/Footer";
 import Navbar from "@/Components/guest/shared/Navbar/Navbar";
 import { Head, router } from "@inertiajs/react";
 
-export default function Page503() {
+export default function Page404() {
   return (
     <div>
       <Head title="Halaman Tidak Tersedia"></Head>

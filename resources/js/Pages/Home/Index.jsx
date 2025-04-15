@@ -1,5 +1,3 @@
-import ChevronLeft from "@/assets/icon/chevron-left.svg";
-import ChevronRight from "@/assets/icon/chevron-right.svg";
 import AsakIcon from "@/assets/icon/home/asak-icon.svg";
 import CategorialIcon from "@/assets/icon/home/categorial-icon.svg";
 import EucharistIcon from "@/assets/icon/home/eucharist-icon.svg";
@@ -129,48 +127,21 @@ const Shortcuts = [
     name: "Berita dan Kegiatan",
     description:
       "Jangan ketinggalan! Tetap update dengan informasi kegiatan dan berita terbaru seputar Paroki Pulomas. Klik link di bawah ini:",
-    url: "/berita-kegiatan",
+    // urlName: "article.guest.index",
   },
   {
     type: "informasi",
     name: "Sakramen",
     description:
       "Dapatkan segala informasi terbaru tentang syarat, ketentuan, dan pendaftaran kegiatan sakramental dapat ditemukan di link berikut:",
-    url: "/sakramen/baptis",
+    urlName: "baptism.guest.index",
   },
   {
     type: "informasi",
     name: "Warta Minggu",
     description:
       "Jangan ketinggalan! Tetap update dengan informasi kegiatan dan berita terbaru seputar Paroki Pulomas. Klik link di bawah ini:",
-    url: "/warta-minggu",
-  },
-];
-
-const News = [
-  {
-    date: "28 January 2024",
-    title: "Warta Minggu Paroki Pulomas",
-    subtitle: "Hari Minggu Biasa IV",
-    link: "https://res.cloudinary.com/di0dpswey/image/upload/v1742524732/st-bonaventura/ku421vx2hc8ooesnlu4c.pdf",
-  },
-  {
-    date: "4 February 2024",
-    title: "Warta Minggu Paroki Pulomas",
-    subtitle: "Hari Minggu Biasa V",
-    link: "https://res.cloudinary.com/di0dpswey/image/upload/v1742524732/st-bonaventura/ku421vx2hc8ooesnlu4c.pdf",
-  },
-  {
-    date: "11 February 2024",
-    title: "Warta Minggu Paroki Pulomas",
-    subtitle: "Hari Minggu Biasa VI",
-    link: "https://res.cloudinary.com/di0dpswey/image/upload/v1742524732/st-bonaventura/ku421vx2hc8ooesnlu4c.pdf",
-  },
-  {
-    date: "18 February 2024",
-    title: "Warta Minggu Paroki Pulomas",
-    subtitle: "Hari Minggu Biasa VII",
-    link: "https://res.cloudinary.com/di0dpswey/image/upload/v1742524732/st-bonaventura/ku421vx2hc8ooesnlu4c.pdf",
+    urlName: "news.guest.index",
   },
 ];
 
@@ -311,7 +282,7 @@ export default function Index({ news }) {
           </div>
         </div>
       </div>
-      <div className="outer-wrapper mb-32">
+      {/* <div className="outer-wrapper mb-32">
         <div className="inner-wrapper !py-10">
           <h1 className="section-title mb-10">Kegiatan Akan Datang</h1>
         </div>
@@ -340,21 +311,17 @@ export default function Index({ news }) {
                 RAKA Paroki Pulomas: Sinergi Seksi dan Subseksi untuk Anggaran
                 2025 RAKA (Rapat Karya)
               </h1>
-              {/* <p className="font-secondary font-bold">BERITA - PAROKI</p> */}
               <div className="flex flex-col gap-4 h-full justify-start">
                 <p className="font-secondary">
                   Hai Bonavers! Minggu, 20 Oktober 2024 kemarin, Paroki Pulomas
                   mengadakan RAKA yang dihadiri Hai Bonavers! Minggu, 20 Oktober
                   2024 kemarin, Paroki Pulomas mengadakan RAKA yang dihadiri...
                 </p>
-                {/* <Link className="w-full" href="/">
-                <Button className="w-full">Baca</Button>
-              </Link> */}
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="outer-wrapper mb-32 gap-10">
         <h1 className="text-center section-title">Berita & Kegiatan</h1>
         <div className="inner-wrapper !items-start">

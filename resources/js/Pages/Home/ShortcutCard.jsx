@@ -7,12 +7,13 @@ export default function ShortcutCard({ data }) {
       <h1 className="text-3xl text-b200">{data.name}</h1>
       <p className="font-secondary">{data.description}</p>
 
-      <Button
+      <a
+        target="_blank"
         className="w-full"
-        onClick={() => window.open(data.url, "_blank")}
+        href={data.urlName ? route(data.urlName) : "/not-found"}
       >
-        Baca
-      </Button>
+        <Button className="w-full">Baca</Button>
+      </a>
     </div>
   );
 }

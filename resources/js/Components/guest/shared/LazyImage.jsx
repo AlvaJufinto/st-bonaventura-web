@@ -32,6 +32,7 @@ export default function LazyImage({ src, alt, className }) {
 
   return (
     <img
+      loading="lazy"
       src={isLoaded ? src : lowResSrc || src} // Use low-res if available, else fallback to original
       alt={alt}
       className={`w-full h-full object-cover flex-shrink-0 transition-opacity duration-700 ease-in-out ${className} ${
