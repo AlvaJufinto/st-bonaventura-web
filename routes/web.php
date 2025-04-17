@@ -49,9 +49,10 @@ Route::prefix('sakramen')->group(function () {
   Route::get('/perkawinan', [SacramentController::class, 'marriage'])->name('marriage.guest.index');
 });
 
-
-Route::get('/wilayah/peta', [TerritorialController::class, 'map'])->name('map.guest.index');
-Route::get('/wilayah/{wilayah:slug}', [TerritorialController::class, 'show'])->name('map.guest.show');
+Route::prefix('wilayah')->group(function () {
+  Route::get('/peta', [TerritorialController::class, 'map'])->name('map.guest.index');
+  Route::get('/{wilayah:slug}', [TerritorialController::class, 'showGuest'])->name('map.guest.show');
+});
 
 
 // ADMIN
@@ -70,7 +71,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
   Route::patch('/warta-minggu/{id}/revert', [NewsController::class, 'revert'])->name('warta-minggu.revert');
   Route::resource('/warta-minggu', NewsController::class);
 
-  Route::resource('/wilayah', TerritorialController::class)->except(['show']);
+  Route::resource('/teritorial', TerritorialController::class)->except(['showGuest']);
 
 
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

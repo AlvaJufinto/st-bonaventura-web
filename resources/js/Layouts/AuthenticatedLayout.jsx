@@ -16,7 +16,7 @@ const LINKS = [
   },
 
   {
-    href: "wilayah.index",
+    href: "teritorial.index",
     name: "Wilayah & Lingkungan",
   },
 ];
@@ -95,6 +95,9 @@ export default function Authenticated({ user, children, header }) {
               </button>
             </Dropdown.Trigger>
             <Dropdown.Content>
+              <Dropdown.Link href={route("profile.edit")} as="button">
+                Profile
+              </Dropdown.Link>
               <Dropdown.Link
                 href={route("logout")}
                 method="post"

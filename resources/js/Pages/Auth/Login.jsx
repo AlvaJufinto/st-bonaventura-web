@@ -6,7 +6,7 @@ import InputLabel from "@/Components/admin/InputLabel";
 import PrimaryButton from "@/Components/admin/PrimaryButton";
 import TextInput from "@/Components/admin/TextInput";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 
 export default function Login({ status, canResetPassword }) {
   const { data, setData, post, processing, errors, reset } = useForm({
@@ -83,14 +83,14 @@ export default function Login({ status, canResetPassword }) {
         </div>
 
         <div className="flex items-center justify-end mt-4">
-          {canResetPassword && (
+          {/* {canResetPassword && (
             <Link
               href={route("password.request")}
               className="font-secondary underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Forgot your password?
             </Link>
-          )}
+          )} */}
 
           <PrimaryButton className="ms-4" disabled={processing}>
             Log in

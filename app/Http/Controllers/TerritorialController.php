@@ -22,7 +22,7 @@ class TerritorialController extends Controller
     return inertia('Territorial/Map', compact('wilayah'));
   }
 
-  public function show(Organization $wilayah)
+  public function showGuest(Organization $wilayah)
   {
     $wilayah->load([
       'children' => function ($query) {
@@ -54,39 +54,56 @@ class TerritorialController extends Controller
       });
     });
 
-    return Inertia::render('Territorial/Index', compact('territories'));
+    return Inertia::render('Territorial/Index', compact('territories', 'statuses'));
   }
 
   /**
    * Show the form for creating a new resource.
    */
-  public function create()
-  {
-    //
-  }
+  public function create() {}
 
   /**
    * Store a newly created resource in storage.
    */
   public function store(Request $request)
   {
-    //
+    $validatedData = $request->validate([
+      'name' => 'required|string|max:100',
+      'alternate_name' => 'required|string|max:100',
+      'address' => 'required|string|max:100',
+      'user_id' => 'required|integer|exists:users,id',
+      'status_id' => 'required|integer|exists:statuses,id',
+      'parent_id' => 'nullable|integer|exists:organizations,id',
+      'organization_type_id' => 'required|integer|exists:organization_types,id'
+    ]);
+
+    Organization::create($validatedData);
+
+    return to_route('teritorial.index')->with('success', 'Wilayah / lingkungan berhasil dibuat.');
   }
 
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(string $id)
-  {
-    //
-  }
+  public function edit(string $id) {}
 
   /**
    * Update the specified resource in storage.
    */
   public function update(Request $request, string $id)
   {
-    //
+    $validatedData = $request->validate([
+      'name' => 'nullable|string|max:255',
+      'alternate_name' => 'nullable|string|max:255',
+      'address' => 'nullable|string|max:100',
+      'status_id' => 'nullable|integer|exists:statuses,id',
+    ]);
+
+    $news = Organization::findOrFail($id);
+
+    $news->update($validatedData);
+
+    return redirect()->route('teritorial.index')->with('success', 'Wilayah/Lingkunganberhasil diupdate');
   }
 
   /**

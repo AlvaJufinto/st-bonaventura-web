@@ -28,10 +28,6 @@ export default function Index({ auth, news, statuses }) {
     setEditableData(item);
   };
 
-  const handleChange = (e, field) => {
-    setEditableData({ ...editableData, [field]: e.target.value });
-  };
-
   const saveEdit = (id) => {
     patch(route("warta-minggu.update", id), {
       data: editableData,
@@ -133,7 +129,12 @@ export default function Index({ auth, news, statuses }) {
                       <input
                         type="text"
                         value={editableData.title || ""}
-                        onChange={(e) => handleChange(e, "title")}
+                        onChange={(e) =>
+                          setEditableData({
+                            ...editableData,
+                            title: e.target.value,
+                          })
+                        }
                         className="w-full border rounded-md p-2 font-secondary text-sm"
                       />
                     ) : (
@@ -143,15 +144,6 @@ export default function Index({ auth, news, statuses }) {
                     )}
                   </td>
                   <td className="p-3 text-sm">
-                    {/* {editingId === item.id ? (
-                      <CustomDatePicker
-                        selectedDate={
-                          editableData.created_at || item.created_at
-                        }
-                        onDateChange={handleDateChange}
-                      />
-                    ) : (
-                    )} */}
                     <span className="font-secondary text-sm">
                       {dateFormatter(item.created_at)}
                     </span>
@@ -161,7 +153,12 @@ export default function Index({ auth, news, statuses }) {
                       <input
                         type="text"
                         value={editableData.alternate_title || ""}
-                        onChange={(e) => handleChange(e, "alternate_title")}
+                        onChange={(e) =>
+                          setEditableData({
+                            ...editableData,
+                            alternate_title: e.target.value,
+                          })
+                        }
                         className="w-full border rounded-md p-2 font-secondary text-sm"
                       />
                     ) : (

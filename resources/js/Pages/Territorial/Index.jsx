@@ -7,7 +7,11 @@ import Wrapper from "@/Layouts/Wrapper";
 import { statusColors } from "@/utils";
 import { Head, router } from "@inertiajs/react";
 
+import ChildrenTable from "./ChildrenTable";
+import CreateTeritorial from "./CreateTeritorial";
+
 export default function Index({ auth, territories }) {
+  console.log("🚀 ~ Index ~ territories:", territories);
   const [expandedTerritories, setExpandedTerritories] = useState({}); // Track expanded rows
 
   const toggleExpansion = (territoryId) => {
@@ -46,7 +50,7 @@ export default function Index({ auth, territories }) {
             className="mb-4 !text-base font-secondary"
             onClick={() => router.visit(route("territorial.create"))}
           >
-            + Buat Territorial Baru
+            + Buat Wilayah Baru
           </PrimaryButton>
         </div>
 
@@ -82,7 +86,7 @@ export default function Index({ auth, territories }) {
                     } hover:bg-gray-200 transition duration-300 ease-in-out`}
                   >
                     <td className="px-3 py-3 text-center">
-                      {territory.children && territory.children.length > 0 && (
+                      {true && (
                         <button
                           className="w-6 h-6 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
                           onClick={() => toggleExpansion(territory.id)}
@@ -113,7 +117,7 @@ export default function Index({ auth, territories }) {
                     <td
                       className={`p-3 ${
                         statusColors[territory.status_id]
-                      } text-sm font-secondary`}
+                      } text-sm font-secondary uppercase  font-bold tracking-wider`}
                     >
                       {territory.status.name}
                     </td>
@@ -143,92 +147,15 @@ export default function Index({ auth, territories }) {
                     </td>
                   </tr>
 
-                  {territory.children && territory.children.length > 0 && (
-                    <tr className="border-b border-gray-200">
-                      <td colSpan={6} className="p-0">
-                        <div
-                          className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                            expandedTerritories[territory.id]
-                              ? "max-h-96 opacity-100 mb-20"
-                              : "max-h-0 opacity-0"
-                          }`}
-                        >
-                          <div className="py-2 pl-10 bg-gray-50">
-                            <table className="w-full table-fixed">
-                              <tbody>
-                                <tr className="bg-slate-600 text-white">
-                                  <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-10"></th>
-                                  <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[200px]">
-                                    Nama Lingkungan
-                                  </th>
-                                  <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[150px]">
-                                    Nama Lingkungan Kedua
-                                  </th>
-                                  <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[250px]">
-                                    Alamat
-                                  </th>
-                                  <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[100px]">
-                                    Status
-                                  </th>
-                                  <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[150px]">
-                                    Actions
-                                  </th>
-                                </tr>
-                                {territory.children.map((child, childIndex) => (
-                                  <tr
-                                    key={child.id}
-                                    className={`${
-                                      childIndex % 2 === 0
-                                        ? "bg-gray-100"
-                                        : "bg-white"
-                                    } hover:bg-gray-200 transition-colors duration-200 border-l-2 border-blue-400`}
-                                  >
-                                    <td className="py-2"></td>
-                                    <td className="py-1 px-3 text-sm font-secondary">
-                                      {child?.name}
-                                    </td>
-                                    <td className="py-2 px-3 text-sm font-secondary">
-                                      {child?.alternate_name}
-                                    </td>
-                                    <td className="py-2 px-3 text-sm font-secondary">
-                                      {child?.address}
-                                    </td>
-                                    <td
-                                      className={`py-2 px-3 ${
-                                        statusColors[child.status_id]
-                                      } text-sm font-secondary`}
-                                    >
-                                      {child.status.name}
-                                    </td>
-                                    <td className="space-x-2 py-2 px-3 text-sm">
-                                      <Button
-                                        type="default"
-                                        size="sm"
-                                        onClick={() => startEditing(child)}
-                                      >
-                                        Edit
-                                      </Button>
-                                      <Button
-                                        type="warning"
-                                        size="sm"
-                                        onClick={() => startEditing(child)}
-                                      >
-                                        Edit
-                                      </Button>
-                                    </td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  )}
+                  <ChildrenTable
+                    territory={territory}
+                    expandedTerritories={expandedTerritories}
+                  />
                 </React.Fragment>
               ))}
             </tbody>
           </table>
+          <CreateTeritorial type="wilayah" />
         </div>
       </Wrapper>
     </AuthenticatedLayout>
