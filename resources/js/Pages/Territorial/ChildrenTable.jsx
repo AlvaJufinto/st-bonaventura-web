@@ -2,40 +2,18 @@ import { useState } from "react";
 
 import Button from "@/Components/admin/Button";
 import { statusColors } from "@/utils";
-import { useForm, usePage } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 
 import CreateTeritorial from "./CreateTeritorial";
 
 export default function ChildrenTable({ expandedTerritories, territory }) {
-  const {
-    props: { auth, statuses },
-  } = usePage();
-  const formattedStatuses = Object.values(statuses);
-  const [isCreating, setIsCreating] = useState(false);
   const [editingChildId, setEditingChildId] = useState(null);
-  const { data, setData, post, errors, reset } = useForm({
+  const { data, setData, patch, errors } = useForm({
     name: "",
     alternate_name: "",
     address: "",
     status_id: 3,
-    user_id: auth.user.id,
-    organization_type_id: 2,
-    parent_id: territory.id,
   });
-
-  const handleCreateSubmit = (e) => {
-    e.preventDefault();
-
-    post(route("teritorial.store"), {
-      preserveScroll: true,
-      onSuccess: () => {
-        reset("name", "alternate_name", "address", "status_id");
-      },
-      onError: (err) => {
-        console.log(err);
-      },
-    });
-  };
 
   const startEditing = (child) => {
     setEditingChildId(child.id);
@@ -47,17 +25,16 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
     });
   };
 
-  const saveEdit = (childId) => {
-    // Implement save logic here, e.g., POST the updated data to your server
-    // patch('teritorial.update', id {
-    //   data:
-    // })
+  const saveEdit = (id) => {
+    patch(route("teritorial.update", id), {
+      preserveScroll: true,
+    });
 
     setEditingChildId(null);
   };
 
   const cancelEdit = () => {
-    setEditingChildId(null); // Reset to cancel edit mode
+    setEditingChildId(null);
   };
 
   return (
