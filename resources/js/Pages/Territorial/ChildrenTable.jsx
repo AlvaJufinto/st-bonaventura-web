@@ -131,7 +131,7 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
                           >
                             Save
                           </Button>
-                          <Button type="default" size="sm" onClick={cancelEdit}>
+                          <Button type="danger" size="sm" onClick={cancelEdit}>
                             Cancel
                           </Button>
                         </>

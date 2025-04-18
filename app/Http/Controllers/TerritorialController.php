@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use App\Models\Organization;
 use App\Models\Status;
 use Illuminate\Http\Request;
@@ -32,6 +33,23 @@ class TerritorialController extends Controller
 
 
     return inertia('Territorial/Show', compact('wilayah'));
+  }
+
+  public function approve($id)
+  {
+    $news = Organization::findOrFail($id);
+    $news->status_id = 3;
+    $news->save();
+
+    return back()->with('success', 'Wilayah/Lingkungan berhasil disetujui.');
+  }
+  public function revert($id)
+  {
+    $news = Organization::findOrFail($id);
+    $news->status_id = 2;
+    $news->save();
+
+    return back()->with('success', 'Wilayah/Lingkungan berhasil dikembalikan menjadi review.');
   }
 
   /**
@@ -103,7 +121,7 @@ class TerritorialController extends Controller
 
     $news->update($validatedData);
 
-    return redirect()->route('teritorial.index')->with('success', 'Wilayah/Lingkunganberhasil diupdate');
+    return redirect()->route('teritorial.index')->with('success', 'Wilayah/Lingkungan berhasil diupdate');
   }
 
   /**

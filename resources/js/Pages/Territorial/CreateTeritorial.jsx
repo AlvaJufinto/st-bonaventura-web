@@ -52,8 +52,8 @@ export default function CreateTeritorial({ type, territoryId = null }) {
       onSuccess: () => {
         reset("name", "alternate_name", "address", "status_id");
       },
-      onError: (err) => {
-        console.log(err);
+      onError: () => {
+        // console.log(err);
       },
     });
   };

@@ -67,10 +67,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
   // warta minggu
   Route::patch('/warta-minggu/{id}/approve', [NewsController::class, 'approve'])->name('warta-minggu.approve');
-  Route::patch('/warta-minggu/{id}/approve', [NewsController::class, 'approve'])->name('warta-minggu.approve');
   Route::patch('/warta-minggu/{id}/revert', [NewsController::class, 'revert'])->name('warta-minggu.revert');
   Route::resource('/warta-minggu', NewsController::class);
 
+  Route::patch('/teritorial/{id}/approve', [TerritorialController::class, 'approve'])->name('teritorial.approve');
+  Route::patch('/teritorial/{id}/revert', [TerritorialController::class, 'revert'])->name('teritorial.revert');
   Route::resource('/teritorial', TerritorialController::class)->except(['showGuest']);
 
 
