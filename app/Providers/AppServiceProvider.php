@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Organization;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 
@@ -21,7 +22,11 @@ class AppServiceProvider extends ServiceProvider
    */
   public function boot(): void
   {
-    $wilayahAll = Organization::where('organization_type_id', 1)->get();
+    $wilayahAll = collect(); // default empty collection
+
+    if (Schema::hasTable('organizations')) {
+      $wilayahAll = Organization::where('organization_type_id', 1)->get();
+    }
 
     Inertia::share([
       'wilayahAll' => $wilayahAll
