@@ -23,6 +23,8 @@ class User extends Authenticatable
     'email',
     'password',
     'role_id',
+    'organization_id',
+    'profile_picture',
   ];
 
   /**
@@ -50,8 +52,13 @@ class User extends Authenticatable
     return $this->hasMany(Article::class);
   }
 
-  public function users()
+  public function role()
   {
     return $this->belongsToMany(Role::class, 'user_role');
+  }
+
+  public function organizations()
+  {
+    return $this->hasOne(Organization::class, 'organization_id');
   }
 }

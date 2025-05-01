@@ -91,7 +91,8 @@ class DatabaseSeeder extends Seeder
 
     $this->call([
       WilayahSeeder::class,
-      OrganizationSeeder::class
+      OrganizationSeeder::class,
+      UserSeeder::class,
     ]);
   }
 }
