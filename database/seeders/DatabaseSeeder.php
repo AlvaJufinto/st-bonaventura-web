@@ -14,11 +14,25 @@ class DatabaseSeeder extends Seeder
   {
     // \App\Models\User::factory(10)->create();
 
-    \App\Models\Role::insert([
-      'name' => 'admin',
-      'role_level' => 1,
-      'description' => 'Administrator',
-    ]);
+    \App\Models\Role::insert(
+      [
+        [
+          'name' => 'admin',
+          'role_level' => 1,
+          'description' => 'Highest authority',
+        ],
+        [
+          'name' => 'moderator',
+          'role_level' => 2,
+          'description' => 'for komsos',
+        ],
+        [
+          'name' => 'contributor',
+          'role_level' => 3,
+          'description' => 'for sektretariat, ketua organisasi e.g. wilayah, lingkungan',
+        ]
+      ]
+    );
 
     \App\Models\Status::insert([
       [
@@ -36,7 +50,7 @@ class DatabaseSeeder extends Seeder
     \App\Models\User::insert([
       [
         'username' => 'admin',
-        'name' => 'God',
+        'name' => 'Alva',
         'email' => 'admin@gmail.com',
         'password' => bcrypt('AlvaJufinto2005'),
         'email_verified_at' => now(),
@@ -44,7 +58,7 @@ class DatabaseSeeder extends Seeder
       ],
       [
         'username' => 'komsos',
-        'name' => 'komsos_bona',
+        'name' => 'Komsos Bona',
         'email' => 'komsosbona@gmail.com',
         'password' => bcrypt('Password123'),
         'email_verified_at' => now(),
@@ -55,16 +69,29 @@ class DatabaseSeeder extends Seeder
     \App\Models\OrganizationType::insert([
       [
         'name' => 'Wilayah',
-        'description' => 'Wilayah',
+        'description' => 'Head dari Lingkungan',
       ],
       [
         'name' => 'Lingkungan',
         'description' => 'Lingkungan',
       ],
+      [
+        'name' => 'Bidang',
+        'description' => 'Head dari Seksi',
+      ],
+      [
+        'name' => 'Seksi',
+        'description' => 'Seksi',
+      ],
+      [
+        'name' => 'Bagian',
+        'description' => 'Can be Head of Bagian',
+      ],
     ]);
 
     $this->call([
       WilayahSeeder::class,
+      OrganizationSeeder::class
     ]);
   }
 }

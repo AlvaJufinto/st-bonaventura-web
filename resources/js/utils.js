@@ -9,3 +9,18 @@ export const statusColors = {
   2: "bg-yellow-300",
   3: "bg-green-300",
 };
+
+export const getProperty = (type) =>
+  type == "wilayah"
+    ? {
+        name: "Nama Wilayah",
+        secondaryName: "Nama Wilayah Kedua",
+        address: "Alamat",
+        button: "Buat Wilayah Baru",
+      }
+    : {
+        name: "Nama Lingkungan",
+        secondaryName: "Nama Lingkungan Kedua",
+        address: "Alamat",
+        button: "Buat Lingkungan Baru",
+      };

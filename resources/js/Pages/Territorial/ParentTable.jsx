@@ -15,11 +15,10 @@ export default function ParentTable({
   setExpandedTerritories,
 }) {
   const {
-    props: { statuses: rawStatuses },
+    props: { statuses },
   } = usePage();
-  const statuses = Object.values(rawStatuses);
   const [editingParentId, setEditingParentId] = useState(null);
-  const { data, setData, patch } = useForm({});
+  const { data, setData, patch, reset, processing } = useForm({});
 
   const { openDetailSidebar } = useDetailSidebar();
 
@@ -43,16 +42,21 @@ export default function ParentTable({
   const saveEdit = (id) => {
     patch(route("teritorial.update", id), {
       preserveScroll: true,
+      onSuccess: () => {
+        setEditingParentId(null);
+      },
     });
-    setEditingParentId(null);
   };
 
   const cancelEdit = () => {
     setEditingParentId(null);
+    reset();
   };
 
   const handleDetailClick = (territory) => {
-    openDetailSidebar(<DetailSidebarInfo territory={territory} />);
+    openDetailSidebar({
+      body: <DetailSidebarInfo territory={territory} />,
+    });
   };
 
   const approveItem = (id) => {
@@ -72,25 +76,28 @@ export default function ParentTable({
       <thead>
         <tr className="bg-slate-800 text-white">
           <th className="p-2 text-left font-secondary text-xs uppercase font-semibold w-1"></th>
-          <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[120px]">
-            Nama Lingkungan
+          <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[100px]">
+            Nama Wilayah
           </th>
           <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[200px]">
-            Nama Lingkungan Kedua
+            Nama Wilayah Kedua
           </th>
-          <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[150px]">
+          <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[100px]">
             Alamat
           </th>
           <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[150px]">
+            Ketua
+          </th>
+          <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[100px]">
             Status
           </th>
-          <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[300px]">
+          <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[350px]">
             Actions
           </th>
         </tr>
       </thead>
       <tbody>
-        {territories.map((territory, index) => (
+        {territories?.map((territory, index) => (
           <React.Fragment key={territory.id}>
             <tr
               className={`${
@@ -155,6 +162,18 @@ export default function ParentTable({
                 )}
               </td>
 
+              <td className="p-3 text-sm font-secondary truncate">
+                {editingParentId === territory.id
+                  ? "Test"
+                  : // <input
+                    //   type="text"
+                    //   value={data.head.username}
+                    //   onChange={(e) => setData("address", e.target.value)}
+                    //   className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md font-secondary"
+                    // />
+                    territory?.head?.username || "-"}
+              </td>
+
               <td
                 className={`p-3 ${
                   statusColors[territory.status_id]
@@ -172,7 +191,7 @@ export default function ParentTable({
                       </button>
                     </Dropdown.Trigger>
                     <Dropdown.Content>
-                      {statuses.map((status) => (
+                      {statuses?.map((status) => (
                         <Dropdown.Link
                           key={status.id}
                           className="capitalize font-secondary font-normal text-sm"
@@ -199,6 +218,7 @@ export default function ParentTable({
                     <Button
                       type="success"
                       size="sm"
+                      isLoading={processing}
                       onClick={() => saveEdit(territory.id)}
                     >
                       Save

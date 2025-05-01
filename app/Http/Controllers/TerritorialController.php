@@ -57,18 +57,20 @@ class TerritorialController extends Controller
    */
   public function index()
   {
-    $statuses = Status::all()->keyBy('id');
+    $statuses = Status::all();
 
     $territories = Organization::where('organization_type_id', 1)
-      ->with(['type', 'children' => function ($query) {
-        $query->where('organization_type_id', 2)->with('type');
+      ->with(['type', 'head', 'children' => function ($query) {
+        $query->where('organization_type_id', 2)->with(['type', 'parent', 'head']);
       }])
       ->get();
 
     $territories->each(function ($territory) use ($statuses) {
-      $territory->status = $statuses[$territory->status_id] ?? null;
+      // Find the status directly based on status_id
+      $territory->status = $statuses->firstWhere('id', $territory->status_id) ?? null;
       $territory->children->each(function ($child) use ($statuses) {
-        $child->status = $statuses[$child->status_id] ?? null;
+        // Find the child's status similarly
+        $child->status = $statuses->firstWhere('id', $child->status_id) ?? null;
       });
     });
 
@@ -114,6 +116,7 @@ class TerritorialController extends Controller
       'name' => 'nullable|string|max:255',
       'alternate_name' => 'nullable|string|max:255',
       'address' => 'nullable|string|max:100',
+      'description' => 'nullable|string|max:255',
       'status_id' => 'nullable|integer|exists:statuses,id',
     ]);
 

@@ -22,11 +22,7 @@ export default class ErrorBoundary extends React.Component {
             Oops, terjadi kesalahan!
           </h1>
           <p className="text-gray-700 mb-4 font-secondary">
-            Ada yang tidak berjalan dengan semestinya.
-          </p>
-          <p className="text-gray-700 mb-4 font-secondary">
-            Kalau sudah ketemu error ini refresh saja aplikasinya dan segera
-            hubungi developer.
+            Segera hubungi developer.
           </p>
           {import.meta.env.DEV && (
             <pre className="bg-white p-4 rounded shadow text-left text-red-500 overflow-auto max-w-2xl">

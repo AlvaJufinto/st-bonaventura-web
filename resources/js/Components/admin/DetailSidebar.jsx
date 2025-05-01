@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
+import Button from "./Button";
+
 const DetailSidebarContext = createContext();
 
 export function useDetailSidebar() {
@@ -8,10 +10,13 @@ export function useDetailSidebar() {
 
 export function DetailSidebarProvider({ children }) {
   const [isDetailSidebarOpen, setDetailSidebarOpen] = useState(false);
-  const [detailSidebarContent, setDetailSidebarContent] = useState(null);
+  const [detailSidebarContent, setDetailSidebarContent] = useState({
+    body: null,
+    footer: null,
+  });
 
-  const openDetailSidebar = (content) => {
-    setDetailSidebarContent(content);
+  const openDetailSidebar = ({ body, footer = null }) => {
+    setDetailSidebarContent({ body, footer });
     setDetailSidebarOpen(true);
   };
 
@@ -33,7 +38,7 @@ export function DetailSidebarProvider({ children }) {
   );
 }
 
-export default function DetailSidebar({ title = "" }) {
+export default function DetailSidebar() {
   const { isDetailSidebarOpen, closeDetailSidebar, detailSidebarContent } =
     useDetailSidebar();
 
@@ -49,6 +54,8 @@ export default function DetailSidebar({ title = "" }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isDetailSidebarOpen]);
 
+  if (!detailSidebarContent) return null;
+
   return (
     <div
       className={`fixed inset-0 z-50 bg-black bg-opacity-20 transition-opacity duration-300 ${
@@ -59,7 +66,7 @@ export default function DetailSidebar({ title = "" }) {
       onClick={closeDetailSidebar}
     >
       <div
-        className={`fixed right-0 top-0 w-full sm:w-1/3 h-full bg-white shadow-lg transform transition-transform duration-300 ${
+        className={`fixed flex flex-col justify-between right-0 top-0 w-full sm:w-1/2 h-full bg-white shadow-lg transform transition-transform duration-300 ${
           isDetailSidebarOpen ? "translate-x-0" : "translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -72,12 +79,23 @@ export default function DetailSidebar({ title = "" }) {
           >
             &times;
           </button>
-          <h1 className="font-secondary tracking-wider uppercase text-xl">
+          <h1 className="font-secondary font-semibold tracking-wider uppercase text-xl">
             Detail
           </h1>
         </div>
-        <div className="p-4 pb-32 h-full overflow-y-auto">
-          {detailSidebarContent}
+
+        <div className="p-4 pb-20 flex-1 overflow-y-auto">
+          {detailSidebarContent.body}
+        </div>
+
+        <div className="h-12 flex gap-2 items-center p-8 border-t">
+          {detailSidebarContent.footer ? (
+            detailSidebarContent.footer
+          ) : (
+            <>
+              <Button onClick={closeDetailSidebar}>Close</Button>
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -1,14 +1,17 @@
 import { useState } from "react";
 
 import Button from "@/Components/admin/Button";
+import { useDetailSidebar } from "@/Components/admin/DetailSidebar";
 import { statusColors } from "@/utils";
 import { useForm } from "@inertiajs/react";
 
 import CreateTeritorial from "./CreateTeritorial";
+import DetailSidebarInfo from "./DetailSidebarInfo";
 
 export default function ChildrenTable({ expandedTerritories, territory }) {
+  const { openDetailSidebar } = useDetailSidebar();
   const [editingChildId, setEditingChildId] = useState(null);
-  const { data, setData, patch, errors } = useForm({
+  const { data, setData, patch } = useForm({
     name: "",
     alternate_name: "",
     address: "",
@@ -33,13 +36,17 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
     setEditingChildId(null);
   };
 
+  const handleDetailClick = (territory) => {
+    openDetailSidebar({ body: <DetailSidebarInfo territory={territory} /> });
+  };
+
   const cancelEdit = () => {
     setEditingChildId(null);
   };
 
   return (
     <tr className="border-b border-gray-200">
-      <td colSpan={6} className="p-0">
+      <td colSpan={7} className="p-0">
         <div
           className={`overflow-hidden transition-all duration-500 ease-in-out ${
             expandedTerritories[territory.id]
@@ -64,7 +71,7 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
                   <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[100px]">
                     Status
                   </th>
-                  <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[150px]">
+                  <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[300px]">
                     Actions
                   </th>
                 </tr>
@@ -121,7 +128,7 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
                     >
                       {child.status.name}
                     </td>
-                    <td className="space-x-2 py-2 px-3 text-sm font-secondary">
+                    <td className="flex space-x-2 py-2 px-3 text-sm font-secondary">
                       {editingChildId === child.id ? (
                         <>
                           <Button
@@ -150,6 +157,12 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
                             onClick={() => startEditing(child)}
                           >
                             Revert
+                          </Button>
+                          <Button
+                            type="primary"
+                            onClick={() => handleDetailClick(child)}
+                          >
+                            Detail
                           </Button>
                         </>
                       )}

@@ -181,7 +181,7 @@ class WilayahSeeder extends Seeder
         'status_id' => 3,
       ]);
 
-      if(isset($item['lingkungan'])){
+      if (isset($item['lingkungan'])) {
         foreach ($item['lingkungan'] as [$name, $altName, $address]) {
           Organization::create([
             'name' => $name,
@@ -192,8 +192,7 @@ class WilayahSeeder extends Seeder
             'parent_id' => $wilayah->id,
           ]);
         }
-
-      } 
+      }
     }
   }
 }

@@ -3,13 +3,13 @@ import { useState } from "react";
 import Button from "@/Components/admin/Button";
 import InputError from "@/Components/admin/InputError";
 import InputLabel from "@/Components/admin/InputLabel";
+import { getProperty } from "@/utils";
 import { useForm, usePage } from "@inertiajs/react";
 
 export default function CreateTeritorial({ type, territoryId = null }) {
   const {
     props: { auth, statuses },
   } = usePage();
-  const formattedStatuses = Object.values(statuses);
   const [isCreating, setIsCreating] = useState(false);
 
   const payload =
@@ -20,6 +20,8 @@ export default function CreateTeritorial({ type, territoryId = null }) {
           parent_id: territoryId,
         };
 
+  const property = getProperty(type);
+
   const { data, setData, post, errors, reset } = useForm({
     name: "",
     alternate_name: "",
@@ -29,21 +31,6 @@ export default function CreateTeritorial({ type, territoryId = null }) {
     ...payload,
   });
 
-  const property =
-    type == "wilayah"
-      ? {
-          name: "Nama Wilayah",
-          secondaryName: "Nama Wilayah Kedua",
-          address: "Alamat",
-          button: "Buat Wilayah Baru",
-        }
-      : {
-          name: "Nama Lingkungan",
-          secondaryName: "Nama Lingkungan Kedua",
-          address: "Alamat",
-          button: "Buat Lingkungan Baru",
-        };
-
   const handleCreateSubmit = (e) => {
     e.preventDefault();
 
@@ -51,10 +38,9 @@ export default function CreateTeritorial({ type, territoryId = null }) {
       preserveScroll: true,
       onSuccess: () => {
         reset("name", "alternate_name", "address", "status_id");
+        setIsCreating(false);
       },
-      onError: () => {
-        // console.log(err);
-      },
+      onError: () => {},
     });
   };
 
@@ -112,7 +98,7 @@ export default function CreateTeritorial({ type, territoryId = null }) {
                 }
                 className="font-secondary block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none capitalize focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
               >
-                {formattedStatuses.map((status) => (
+                {statuses.map((status) => (
                   <option
                     key={status.id}
                     value={status.id}
@@ -134,7 +120,7 @@ export default function CreateTeritorial({ type, territoryId = null }) {
               Batal
             </Button>
             <Button type="success" size="sm" htmlType="submit">
-              Simpan
+              Save
             </Button>
           </div>
         </form>

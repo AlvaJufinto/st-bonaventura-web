@@ -10,7 +10,13 @@ export default {
     "./resources/views/**/*.blade.php",
     "./resources/js/**/*.jsx",
   ],
-  safelist: ["bg-green-300", "bg-yellow-500", "bg-red-500"],
+  safelist: [
+    "bg-green-300",
+    "bg-yellow-500",
+    "bg-red-500",
+    "bg-gray-300",
+    "bg-yellow-300",
+  ],
 
   theme: {
     extend: {
