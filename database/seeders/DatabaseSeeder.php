@@ -24,12 +24,22 @@ class DatabaseSeeder extends Seeder
         [
           'name' => 'moderator',
           'role_level' => 2,
-          'description' => 'for komsos',
+          'description' => 'for komsos and',
+        ],
+        [
+          'name' => 'dph',
+          'role_level' => 2,
+          'description' => 'dph',
         ],
         [
           'name' => 'contributor',
           'role_level' => 3,
           'description' => 'for sektretariat, ketua organisasi e.g. wilayah, lingkungan',
+        ],
+        [
+          'name' => 'dpp',
+          'role_level' => 3,
+          'description' => 'dpp',
         ]
       ]
     );
@@ -50,19 +60,23 @@ class DatabaseSeeder extends Seeder
     \App\Models\User::insert([
       [
         'username' => 'admin',
-        'name' => 'Alva',
-        'email' => 'admin@gmail.com',
+        'name' => 'fufufafa',
+        'email' => 'alva@stbonaventura.org',
         'password' => bcrypt('AlvaJufinto2005'),
         'email_verified_at' => now(),
         'role_id' => 1,
+        'status_id' => 3,
+        'profile_picture' => '2025-05-02-11x51x34-KUI.png',
       ],
       [
         'username' => 'komsos',
         'name' => 'Komsos Bona',
-        'email' => 'komsosbona@gmail.com',
+        'email' => 'komsos@stbonaventura.org',
         'password' => bcrypt('Password123'),
         'email_verified_at' => now(),
-        'role_id' => 1,
+        'role_id' => 2,
+        'status_id' => 3,
+        'profile_picture' => null,
       ]
     ]);
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SacramentController;
 use App\Http\Controllers\TerritorialController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WilayahController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -23,9 +24,6 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-
 
 // PUBLIC
 Route::get('/', HomeController::class)->name('home.guest.index');
@@ -70,14 +68,20 @@ Route::prefix('admin')->middleware('auth')->group(function () {
   Route::patch('/warta-minggu/{id}/revert', [NewsController::class, 'revert'])->name('warta-minggu.revert');
   Route::resource('/warta-minggu', NewsController::class);
 
+  // teritorial
   Route::patch('/teritorial/{id}/approve', [TerritorialController::class, 'approve'])->name('teritorial.approve');
   Route::patch('/teritorial/{id}/revert', [TerritorialController::class, 'revert'])->name('teritorial.revert');
   Route::resource('/teritorial', TerritorialController::class)->except(['showGuest']);
 
+  // User
+  Route::resource('user', UserController::class);
 
+  // Profile
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
 });
 
 

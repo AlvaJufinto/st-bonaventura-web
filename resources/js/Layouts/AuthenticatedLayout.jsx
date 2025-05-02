@@ -16,10 +16,14 @@ const LINKS = [
     href: "warta-minggu.index",
     name: "Warta Minggu",
   },
-
   {
     href: "teritorial.index",
     name: "Wilayah & Lingkungan",
+  },
+
+  {
+    href: "user.index",
+    name: "Pengurus",
   },
 ];
 

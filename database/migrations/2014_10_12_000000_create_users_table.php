@@ -18,6 +18,7 @@ return new class extends Migration
       $table->string('name');
       $table->string('email')->unique();
       $table->string('password');
+      $table->string('status_id')->default(3)->nullable();
       $table->foreignId('role_id')->nullable();
       $table->foreignId('organization_id')->nullable();
       $table->timestamp('email_verified_at')->nullable();
