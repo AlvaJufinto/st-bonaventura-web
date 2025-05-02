@@ -3,21 +3,21 @@ export default function Profile({ user }) {
 
   return (
     <div className="flex items-center font-secondary">
-      {user.profile_picture ? (
+      {user?.profile_picture ? (
         <img
           className="size-10 rounded-full mr-2"
-          src={`${ASSET_URL}/uploads/${user.profile_picture}`}
+          src={`${ASSET_URL}/uploads/${user?.profile_picture}`}
           alt=""
         />
       ) : (
         <img
-          className="size-10 rounded-full mr-2"
+          className="size-10 rounded-full mr-2 object-fill"
           src="https://fisika.uad.ac.id/wp-content/uploads/blank-profile-picture-973460_1280.png"
           alt=""
         />
       )}
 
-      {user.name}
+      {user?.name}
     </div>
   );
 }

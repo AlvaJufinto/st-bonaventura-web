@@ -24,3 +24,11 @@ export const getProperty = (type) =>
         address: "Alamat",
         button: "Buat Lingkungan Baru",
       };
+
+export const debounce = (fn, delay) => {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn(...args), delay);
+  };
+};

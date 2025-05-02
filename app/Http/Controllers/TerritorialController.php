@@ -66,10 +66,8 @@ class TerritorialController extends Controller
       ->get();
 
     $territories->each(function ($territory) use ($statuses) {
-      // Find the status directly based on status_id
       $territory->status = $statuses->firstWhere('id', $territory->status_id) ?? null;
       $territory->children->each(function ($child) use ($statuses) {
-        // Find the child's status similarly
         $child->status = $statuses->firstWhere('id', $child->status_id) ?? null;
       });
     });
@@ -118,6 +116,8 @@ class TerritorialController extends Controller
       'address' => 'nullable|string|max:100',
       'description' => 'nullable|string|max:255',
       'status_id' => 'nullable|integer|exists:statuses,id',
+      'head_id' => 'nullable|integer|exists:users,id',
+
     ]);
 
     $news = Organization::findOrFail($id);

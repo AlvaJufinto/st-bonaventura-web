@@ -12,6 +12,32 @@ class UserController extends Controller
   /**
    * Display a listing of the resource.
    */
+  public function getUsers(Request $request)
+  {
+    $query = User::query();
+
+    // --- Perbaikan: Filter status_id = 3 selalu diterapkan ---
+    $query->where('status_id', 3);
+    $query->whereDoesntHave('organization');
+    // --- Akhir Perbaikan ---
+
+    // Filter berdasarkan search term jika ada
+    if ($search = $request->input('search')) {
+      $query->where(function ($q) use ($search) {
+        $q->where('name', 'like', '%' . $search . '%')
+          ->orWhere('username', 'like', '%' . $search . '%')
+          ->orWhere('email', 'like', '%' . $search . '%');
+      });
+    }
+
+    $users = $query->limit(10)->get(); // Contoh: ambil 10 hasil pertama
+
+    // Kembalikan dalam format JSON
+    return response()->json([
+      'data' => $users,
+    ]);
+  }
+
   public function index()
   {
     $users = User::with(['role', 'organization', 'status'])->paginate(30);

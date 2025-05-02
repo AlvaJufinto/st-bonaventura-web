@@ -74,6 +74,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
   Route::resource('/teritorial', TerritorialController::class)->except(['showGuest']);
 
   // User
+  Route::get('/api/get-users', [UserController::class, 'getUsers'])->name('api.get-users');
   Route::resource('user', UserController::class);
 
   // Profile

@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import Button from "@/Components/admin/Button";
 import { useDetailSidebar } from "@/Components/admin/DetailSidebar";
 import Dropdown from "@/Components/admin/Dropdown";
+import Profile from "@/Components/admin/Profile";
 import { statusColors } from "@/utils";
 import { useForm, usePage } from "@inertiajs/react";
 
 import ChildrenTable from "./ChildrenTable";
 import DetailSidebarInfo from "./DetailSidebarInfo";
+import SelectHead from "./SelectHead";
 
 export default function ParentTable({
   territories,
@@ -36,10 +38,12 @@ export default function ParentTable({
       alternate_name: territory.alternate_name,
       address: territory.address,
       status_id: territory.status_id,
+      head_id: territory.head_id,
     });
   };
 
   const saveEdit = (id) => {
+    console.log(data);
     patch(route("teritorial.update", id), {
       preserveScroll: true,
       onSuccess: () => {
@@ -85,7 +89,7 @@ export default function ParentTable({
           <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[100px]">
             Alamat
           </th>
-          <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[150px]">
+          <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[250px]">
             Ketua
           </th>
           <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[100px]">
@@ -162,16 +166,24 @@ export default function ParentTable({
                 )}
               </td>
 
-              <td className="p-3 text-sm font-secondary truncate">
-                {editingParentId === territory.id
-                  ? "Test"
-                  : // <input
-                    //   type="text"
-                    //   value={data.head.username}
-                    //   onChange={(e) => setData("address", e.target.value)}
-                    //   className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md font-secondary"
-                    // />
-                    territory?.head?.username || "-"}
+              <td className="p-3 text-sm font-secondary">
+                {editingParentId === territory.id && (
+                  <SelectHead
+                    data={data}
+                    setData={setData}
+                    currentHead={territory.head}
+                  />
+                )}
+
+                {territory?.head && editingParentId !== territory.id && (
+                  <Profile user={territory.head} />
+                )}
+
+                {editingParentId !== territory.id && !territory.head && (
+                  <span className="text-sm font-secondary text-gray-500">
+                    Tidak ada ketua
+                  </span>
+                )}
               </td>
 
               <td
