@@ -2,11 +2,13 @@ import { useState } from "react";
 
 import Button from "@/Components/admin/Button";
 import { useDetailSidebar } from "@/Components/admin/DetailSidebar";
+import Profile from "@/Components/admin/Profile";
 import { statusColors } from "@/utils";
 import { useForm } from "@inertiajs/react";
 
 import CreateTeritorial from "./CreateTeritorial";
 import DetailSidebarInfo from "./DetailSidebarInfo";
+import SelectHead from "./SelectHead";
 
 export default function ChildrenTable({ expandedTerritories, territory }) {
   const { openDetailSidebar } = useDetailSidebar();
@@ -68,8 +70,11 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
                   <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[150px]">
                     Alamat
                   </th>
-                  <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[100px]">
-                    Status
+                  <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[150px]">
+                    Ketua
+                  </th>
+                  <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[120px]">
+                    Statu
                   </th>
                   <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[300px]">
                     Actions
@@ -121,6 +126,26 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
                         child?.address
                       )}
                     </td>
+                    <td className="p-3 text-sm font-secondary">
+                      {editingChildId === child.id && (
+                        <SelectHead
+                          data={data}
+                          setData={setData}
+                          currentHead={child.head}
+                        />
+                      )}
+
+                      {child?.head && editingChildId !== child.id && (
+                        <Profile user={child.head} />
+                      )}
+
+                      {editingChildId !== child.id && !child.head && (
+                        <span className="text-sm font-secondary text-gray-500">
+                          Tidak ada ketua
+                        </span>
+                      )}
+                    </td>
+
                     <td
                       className={`py-2 px-3 ${
                         statusColors[child.status_id]
