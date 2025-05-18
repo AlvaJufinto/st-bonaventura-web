@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User; // Import the User model
+use App\Models\Role; // Import the Role model if needed to fetch role_id dynamically
 
 class UserSeeder extends Seeder
 {
@@ -16,16 +17,17 @@ class UserSeeder extends Seeder
     $hashedPassword = bcrypt('Password123');
     $now = now(); // Ambil timestamp sekali
 
+
     $users = [
       // ANGGOTA DPH 2023 – 2026
-      // role_id untuk DPH sekarang adalah 3
+      // role_id untuk DPH sesuai komen adalah 3 (contributor)
       [
         'username' => 'stephanus.royke',
         'name' => 'Stephanus Royke Djakarya, Pr.',
         'email' => 'stephanus.royke@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki: role_id untuk DPH sesuai daftar baru
+        'role_id' => 2, // Diperbaiki: role_id untuk DPH sesuai daftar baru
       ],
       [
         'username' => 'antonius.arfin',
@@ -33,7 +35,7 @@ class UserSeeder extends Seeder
         'email' => 'antonius.arfin@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'hubertus.hartono',
@@ -41,7 +43,7 @@ class UserSeeder extends Seeder
         'email' => 'hubertus.hartono@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'thomas.lim',
@@ -49,7 +51,7 @@ class UserSeeder extends Seeder
         'email' => 'thomas.lim@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'ivon.sri',
@@ -57,7 +59,7 @@ class UserSeeder extends Seeder
         'email' => 'ivon.sri@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'andreas.henry',
@@ -65,7 +67,7 @@ class UserSeeder extends Seeder
         'email' => 'andreas.henry@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'maria.odilia',
@@ -73,7 +75,7 @@ class UserSeeder extends Seeder
         'email' => 'maria.odilia@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'caecilia.supojo',
@@ -81,7 +83,7 @@ class UserSeeder extends Seeder
         'email' => 'caecilia.supojo@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'marcelina.felicia',
@@ -89,7 +91,7 @@ class UserSeeder extends Seeder
         'email' => 'marcelina.felicia@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'carolus.boromeus',
@@ -97,7 +99,7 @@ class UserSeeder extends Seeder
         'email' => 'carolus.boromeus@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'stephanus.pudji',
@@ -105,7 +107,7 @@ class UserSeeder extends Seeder
         'email' => 'stephanus.pudji@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'fx.yanuar',
@@ -113,7 +115,7 @@ class UserSeeder extends Seeder
         'email' => 'fx.yanuar@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'maria.mili',
@@ -121,7 +123,7 @@ class UserSeeder extends Seeder
         'email' => 'maria.mili@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'martinus.robert',
@@ -129,7 +131,7 @@ class UserSeeder extends Seeder
         'email' => 'martinus.robert@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'ferry.olin',
@@ -137,7 +139,7 @@ class UserSeeder extends Seeder
         'email' => 'ferry.olin@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'theresia.ferrania',
@@ -145,7 +147,7 @@ class UserSeeder extends Seeder
         'email' => 'theresia.ferrania@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'agnes.amelia',
@@ -153,7 +155,7 @@ class UserSeeder extends Seeder
         'email' => 'agnes.amelia@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'fx.adviadi',
@@ -161,7 +163,7 @@ class UserSeeder extends Seeder
         'email' => 'fx.adviadi@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'marianus.ari',
@@ -169,7 +171,7 @@ class UserSeeder extends Seeder
         'email' => 'marianus.ari@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'yohanes.bambang',
@@ -177,7 +179,7 @@ class UserSeeder extends Seeder
         'email' => 'yohanes.bambang@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'bernadus.wibisanto',
@@ -185,7 +187,7 @@ class UserSeeder extends Seeder
         'email' => 'bernadus.wibisanto@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
       [
         'username' => 'fredericus.sugiarso',
@@ -193,11 +195,11 @@ class UserSeeder extends Seeder
         'email' => 'fredericus.sugiarso@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 3, // Diperbaiki
+        'role_id' => 2, // Diperbaiki
       ],
 
       // ANGGOTA DPP 2023 - 2026 (Including all subsequent categories)
-      // role_id untuk DPP tetap 5
+      // role_id untuk DPP tetap 5 (sesuai komen, asumsikan ini role lain selain admin/moderator/contributor)
       // BIDANG PERIBADATAN
       [
         'username' => 'fransiskus.michael',
@@ -205,7 +207,7 @@ class UserSeeder extends Seeder
         'email' => 'fransiskus.michael@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // BIDANG PEWARTAAN
       [
@@ -214,7 +216,7 @@ class UserSeeder extends Seeder
         'email' => 'ign.setyanto@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'philipus.vembrey',
@@ -222,7 +224,7 @@ class UserSeeder extends Seeder
         'email' => 'philipus.vembrey@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'benedict.toar',
@@ -230,7 +232,7 @@ class UserSeeder extends Seeder
         'email' => 'benedict.toar@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // BIDANG PERSEKUTUAN DAN PENDAMPINGAN KATEGORIAL
       [
@@ -239,7 +241,7 @@ class UserSeeder extends Seeder
         'email' => 'vincentius.anggoro@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'stephanie.widjaja',
@@ -247,7 +249,7 @@ class UserSeeder extends Seeder
         'email' => 'stephanie.widjaja@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'renius.simamora',
@@ -255,7 +257,7 @@ class UserSeeder extends Seeder
         'email' => 'renius.simamora@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'alexander.teme',
@@ -263,7 +265,7 @@ class UserSeeder extends Seeder
         'email' => 'alexander.teme@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'fransisca.mimie',
@@ -271,7 +273,7 @@ class UserSeeder extends Seeder
         'email' => 'fransisca.mimie@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'ernest.abraham',
@@ -279,7 +281,7 @@ class UserSeeder extends Seeder
         'email' => 'ernest.abraham@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'caecilia.sri',
@@ -287,7 +289,7 @@ class UserSeeder extends Seeder
         'email' => 'caecilia.sri@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'christina.ambarwati',
@@ -295,7 +297,7 @@ class UserSeeder extends Seeder
         'email' => 'christina.ambarwati@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'bernadeth.renita',
@@ -303,7 +305,7 @@ class UserSeeder extends Seeder
         'email' => 'bernadeth.renita@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'florentina.patricia',
@@ -311,7 +313,7 @@ class UserSeeder extends Seeder
         'email' => 'florentina.patricia@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'elizabeth.poedyasmara',
@@ -319,7 +321,7 @@ class UserSeeder extends Seeder
         'email' => 'elizabeth.poedyasmara@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'fransiska.rema',
@@ -327,7 +329,7 @@ class UserSeeder extends Seeder
         'email' => 'fransiska.rema@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // BIDANG PELAYANAN DAN TIM KHUSUS
       [
@@ -336,7 +338,7 @@ class UserSeeder extends Seeder
         'email' => 'maria.regina@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'yehezkiel.vega',
@@ -344,7 +346,7 @@ class UserSeeder extends Seeder
         'email' => 'yehezkiel.vega@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'helena.fanidah',
@@ -352,7 +354,7 @@ class UserSeeder extends Seeder
         'email' => 'helena.fanidah@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'albertus.dominic',
@@ -360,7 +362,7 @@ class UserSeeder extends Seeder
         'email' => 'albertus.dominic@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'antonius.setyo',
@@ -368,7 +370,7 @@ class UserSeeder extends Seeder
         'email' => 'antonius.setyo@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'maria.demseria',
@@ -376,7 +378,7 @@ class UserSeeder extends Seeder
         'email' => 'maria.demseria@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // BIDANG KESAKSIAN
       [
@@ -385,7 +387,7 @@ class UserSeeder extends Seeder
         'email' => 'ronlybert.togatorop@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'george.robert',
@@ -393,7 +395,7 @@ class UserSeeder extends Seeder
         'email' => 'george.robert@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'stefanus.prasito',
@@ -401,7 +403,7 @@ class UserSeeder extends Seeder
         'email' => 'stefanus.prasito@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // BIDANG PENELITIAN DAN PENGEMBANGAN PAROKI
       [
@@ -410,7 +412,7 @@ class UserSeeder extends Seeder
         'email' => 'christopher.haris@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'christina.irma',
@@ -418,7 +420,7 @@ class UserSeeder extends Seeder
         'email' => 'christina.irma@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // BIDANG PERENCANAAN DAN EVALUASI
       [
@@ -427,7 +429,7 @@ class UserSeeder extends Seeder
         'email' => 'yoseph.liantoro@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // PENDAMPING BAGIAN
       [
@@ -436,7 +438,7 @@ class UserSeeder extends Seeder
         'email' => 'bonaventura.eddy@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'yustina.sri',
@@ -444,7 +446,7 @@ class UserSeeder extends Seeder
         'email' => 'yustina.sri@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'antonius.anang',
@@ -452,7 +454,7 @@ class UserSeeder extends Seeder
         'email' => 'antonius.anang@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
 
       // KOORDINATOR WILAYAH
@@ -462,7 +464,7 @@ class UserSeeder extends Seeder
         'email' => 'felix.yosafat@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'tanty.syahlina',
@@ -470,7 +472,7 @@ class UserSeeder extends Seeder
         'email' => 'tanty.syahlina@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'fransiska.mardiana',
@@ -478,7 +480,7 @@ class UserSeeder extends Seeder
         'email' => 'fransiska.mardiana@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'yoakim.nugroho',
@@ -486,7 +488,7 @@ class UserSeeder extends Seeder
         'email' => 'yoakim.nugroho@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'yohanes.edy',
@@ -494,7 +496,7 @@ class UserSeeder extends Seeder
         'email' => 'yohanes.edy@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'veronika.tanner',
@@ -502,7 +504,7 @@ class UserSeeder extends Seeder
         'email' => 'veronika.tanner@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'gratiana.crecentia',
@@ -510,7 +512,7 @@ class UserSeeder extends Seeder
         'email' => 'gratiana.crecentia@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'yohana.ari',
@@ -518,7 +520,7 @@ class UserSeeder extends Seeder
         'email' => 'yohana.ari@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'bernadette.melissa',
@@ -526,7 +528,7 @@ class UserSeeder extends Seeder
         'email' => 'bernadette.melissa@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'agustinus.indarto',
@@ -534,7 +536,7 @@ class UserSeeder extends Seeder
         'email' => 'agustinus.indarto@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'marcellus.kisyanto',
@@ -542,7 +544,7 @@ class UserSeeder extends Seeder
         'email' => 'marcellus.kisyanto@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
 
       // KETUA LINGKUNGAN
@@ -553,7 +555,7 @@ class UserSeeder extends Seeder
         'email' => 'christopher.sutanto@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'peter.lino',
@@ -561,7 +563,7 @@ class UserSeeder extends Seeder
         'email' => 'peter.lino@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'veronica.katarina',
@@ -569,7 +571,7 @@ class UserSeeder extends Seeder
         'email' => 'veronica.katarina@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'adrianus.lioe',
@@ -577,7 +579,7 @@ class UserSeeder extends Seeder
         'email' => 'adrianus.lioe@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // WILAYAH II
       [
@@ -586,7 +588,7 @@ class UserSeeder extends Seeder
         'email' => 'christopher.erwin@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'agnes.venny',
@@ -594,7 +596,7 @@ class UserSeeder extends Seeder
         'email' => 'agnes.venny@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'fransiska.evi',
@@ -602,7 +604,7 @@ class UserSeeder extends Seeder
         'email' => 'fransiska.evi@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'agnes.febrita',
@@ -610,7 +612,7 @@ class UserSeeder extends Seeder
         'email' => 'agnes.febrita@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'yohanes.violison',
@@ -618,7 +620,7 @@ class UserSeeder extends Seeder
         'email' => 'yohanes.violison@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // WILAYAH III
       [
@@ -627,7 +629,7 @@ class UserSeeder extends Seeder
         'email' => 'margaretha.dwi@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'pensi.kristiana',
@@ -635,7 +637,7 @@ class UserSeeder extends Seeder
         'email' => 'pensi.kristiana@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'rosalia.prasetyaningsih',
@@ -643,7 +645,7 @@ class UserSeeder extends Seeder
         'email' => 'rosalia.prasetyaningsih@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'nicolaus.suparno',
@@ -651,7 +653,7 @@ class UserSeeder extends Seeder
         'email' => 'nicolaus.suparno@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // WILAYAH IV
       [
@@ -660,7 +662,7 @@ class UserSeeder extends Seeder
         'email' => 'christina.endah@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'maria.goreti',
@@ -668,7 +670,7 @@ class UserSeeder extends Seeder
         'email' => 'maria.goreti@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'vincentius.taufik',
@@ -676,7 +678,7 @@ class UserSeeder extends Seeder
         'email' => 'vincentius.taufik@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'gervasius.dri',
@@ -684,7 +686,7 @@ class UserSeeder extends Seeder
         'email' => 'gervasius.dri@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'agustinus.yudho',
@@ -692,7 +694,7 @@ class UserSeeder extends Seeder
         'email' => 'agustinus.yudho@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // WILAYAH V
       [
@@ -701,7 +703,7 @@ class UserSeeder extends Seeder
         'email' => 'ferdinandus.mustar@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'alfernia.uli',
@@ -709,7 +711,7 @@ class UserSeeder extends Seeder
         'email' => 'alfernia.uli@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'theresia.rini',
@@ -717,7 +719,7 @@ class UserSeeder extends Seeder
         'email' => 'theresia.rini@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // WILAYAH VI
       [
@@ -726,7 +728,7 @@ class UserSeeder extends Seeder
         'email' => 'yohanes.adios@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'leonardus.teddy',
@@ -734,7 +736,7 @@ class UserSeeder extends Seeder
         'email' => 'leonardus.teddy@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'theresia.mustika',
@@ -742,7 +744,7 @@ class UserSeeder extends Seeder
         'email' => 'theresia.mustika@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'dionisius.bambang',
@@ -750,7 +752,7 @@ class UserSeeder extends Seeder
         'email' => 'dionisius.bambang@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'yohanes.widjaja',
@@ -758,7 +760,7 @@ class UserSeeder extends Seeder
         'email' => 'yohanes.widjaja@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // WILAYAH VII
       [
@@ -767,7 +769,7 @@ class UserSeeder extends Seeder
         'email' => 'grace.indriani@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'maria.immaculata',
@@ -775,7 +777,7 @@ class UserSeeder extends Seeder
         'email' => 'maria.immaculata@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'jane.agnes',
@@ -783,7 +785,7 @@ class UserSeeder extends Seeder
         'email' => 'jane.agnes@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'imelda.meiske',
@@ -791,7 +793,7 @@ class UserSeeder extends Seeder
         'email' => 'imelda.meiske@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'helene.kam',
@@ -799,7 +801,7 @@ class UserSeeder extends Seeder
         'email' => 'helene.kam@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'marcella.erlin',
@@ -807,7 +809,7 @@ class UserSeeder extends Seeder
         'email' => 'marcella.erlin@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // WILAYAH VIII
       [
@@ -816,7 +818,7 @@ class UserSeeder extends Seeder
         'email' => 'natalie.rini@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'maria.clara',
@@ -824,7 +826,7 @@ class UserSeeder extends Seeder
         'email' => 'maria.clara@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'maria.sutiono',
@@ -832,7 +834,7 @@ class UserSeeder extends Seeder
         'email' => 'maria.sutiono@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'anna.natalia',
@@ -840,7 +842,7 @@ class UserSeeder extends Seeder
         'email' => 'anna.natalia@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // WILAYAH IX
       [
@@ -849,7 +851,7 @@ class UserSeeder extends Seeder
         'email' => 'pius.chandra@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'pauline.tri',
@@ -857,7 +859,7 @@ class UserSeeder extends Seeder
         'email' => 'pauline.tri@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'james.madison',
@@ -865,7 +867,7 @@ class UserSeeder extends Seeder
         'email' => 'james.madison@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'maria.mawarni',
@@ -873,7 +875,7 @@ class UserSeeder extends Seeder
         'email' => 'maria.mawarni@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'maxima.henie',
@@ -881,7 +883,7 @@ class UserSeeder extends Seeder
         'email' => 'maxima.henie@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // WILAYAH X
       [
@@ -890,7 +892,7 @@ class UserSeeder extends Seeder
         'email' => 'laurentius.molo@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'anastasia.martini',
@@ -898,7 +900,7 @@ class UserSeeder extends Seeder
         'email' => 'anastasia.martini@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'yohanes.ricky',
@@ -906,7 +908,7 @@ class UserSeeder extends Seeder
         'email' => 'yohanes.ricky@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'irene.lydia',
@@ -914,7 +916,7 @@ class UserSeeder extends Seeder
         'email' => 'irene.lydia@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // WILAYAH XI
       [
@@ -923,7 +925,7 @@ class UserSeeder extends Seeder
         'email' => 'theresia.dewi@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'nicholas.arief',
@@ -931,7 +933,7 @@ class UserSeeder extends Seeder
         'email' => 'nicholas.arief@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'bernadet.tri',
@@ -939,7 +941,7 @@ class UserSeeder extends Seeder
         'email' => 'bernadet.tri@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'pricilla.jane',
@@ -947,7 +949,7 @@ class UserSeeder extends Seeder
         'email' => 'pricilla.jane@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
 
       // PERWAKILAN SEKOLAH KATOLIK
@@ -958,7 +960,7 @@ class UserSeeder extends Seeder
         'email' => 'yohanes.rachmat@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       [
         'username' => 'maria.djokosetio',
@@ -966,7 +968,7 @@ class UserSeeder extends Seeder
         'email' => 'maria.djokosetio@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
 
       // PERWAKILAN BIARA DAN KOMUNITAS
@@ -976,7 +978,7 @@ class UserSeeder extends Seeder
         'email' => 'm.julita@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
       // Br. Yohanes Rachmat Simamora, OFM (Duplikat - Sudah ada di bagian Sekolah Katolik)
       [
@@ -985,7 +987,7 @@ class UserSeeder extends Seeder
         'email' => 'guido.chrisna@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,
-        'role_id' => 5, // Tetap 5
+        'role_id' => 3, // Tetap 5
       ],
     ];
 

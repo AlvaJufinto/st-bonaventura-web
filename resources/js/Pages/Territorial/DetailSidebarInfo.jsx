@@ -5,7 +5,10 @@ import Button from "@/Components/admin/Button";
 import Dropdown from "@/Components/admin/Dropdown";
 import InputError from "@/Components/admin/InputError";
 import InputLabel from "@/Components/admin/InputLabel";
+import Profile from "@/Components/admin/Profile";
 import { useForm, usePage } from "@inertiajs/react";
+
+import SelectHead from "./SelectHead";
 
 const CreateNewLingkungan = ({ parentId }) => {
   const {
@@ -197,6 +200,7 @@ const DetailSidebarInfo = ({ territory }) => {
   };
 
   const currentTerritory = findUpdatedTerritory();
+
   const type =
     currentTerritory?.organization_type_id === 1 ? "wilayah" : "lingkungan";
 
@@ -210,6 +214,7 @@ const DetailSidebarInfo = ({ territory }) => {
     address: currentTerritory?.address || "",
     description: currentTerritory?.description || "",
     status_id: currentTerritory?.status_id || "",
+    head_id: currentTerritory?.head_id || "",
   });
 
   const saveEdit = () => {
@@ -229,8 +234,10 @@ const DetailSidebarInfo = ({ territory }) => {
         address: currentTerritory.address || "",
         description: currentTerritory.description || "",
         status_id: currentTerritory.status_id || "",
+        head_id: currentTerritory.head_id || "",
       });
     }
+    setIsSidebarEditing(false);
   }, [currentTerritory]);
 
   if (!currentTerritory) {
@@ -274,7 +281,21 @@ const DetailSidebarInfo = ({ territory }) => {
       <div className="space-y-2">
         <InputLabel>Ketua : </InputLabel>
         <p className="text-sm text-gray-500 font-secondary">
-          {currentTerritory?.head?.name || "-"}
+          {isSidebarEditing && (
+            <SelectHead
+              data={data}
+              setData={setData}
+              currentHead={currentTerritory.head}
+            />
+          )}
+          {currentTerritory.head && !isSidebarEditing && (
+            <Profile user={currentTerritory.head} />
+          )}
+          {!isSidebarEditing && !currentTerritory.head && (
+            <span className="text-sm font-secondary text-gray-500">
+              Tidak ada ketua
+            </span>
+          )}
         </p>
       </div>
 

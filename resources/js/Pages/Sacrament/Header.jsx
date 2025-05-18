@@ -6,9 +6,9 @@ import HeaderImg from "@/assets/img/sacrament/header.png";
 import Marriage from "@/assets/img/sacrament/marriage.png";
 import Reconciliation from "@/assets/img/sacrament/reconciliation.png";
 import Sick from "@/assets/img/sacrament/sick.png";
-import Button from "@/Components/guest/shared/Button/Button";
-import Footer from "@/Components/guest/shared/Footer/Footer";
-import Navbar from "@/Components/guest/shared/Navbar/Navbar";
+import Button from "@/Components/guest/Button/Button";
+import Footer from "@/Components/guest/Footer/Footer";
+import Navbar from "@/Components/guest/Navbar/Navbar";
 import { Head, Link, usePage } from "@inertiajs/react";
 
 const PREFIX = "/sakramen";

@@ -2,9 +2,9 @@ import Img1976 from "@/assets/img/history/1976.png";
 import Img1978 from "@/assets/img/history/1978.png";
 import Img1981 from "@/assets/img/history/1981.png";
 import MainHero from "@/assets/img/history/main-hero-history.png";
-import Footer from "@/Components/guest/shared/Footer/Footer";
-import LazyImage from "@/Components/guest/shared/LazyImage";
-import Navbar from "@/Components/guest/shared/Navbar/Navbar";
+import Footer from "@/Components/guest/Footer/Footer";
+import LazyImage from "@/Components/guest/LazyImage";
+import Navbar from "@/Components/guest/Navbar/Navbar";
 import { Head } from "@inertiajs/react";
 
 import GallerySlider from "./GallerySlider";

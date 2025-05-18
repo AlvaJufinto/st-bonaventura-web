@@ -11,7 +11,7 @@ import CreateTeritorial from "./CreateTeritorial";
 import ParentTable from "./ParentTable";
 
 export default function Index({ auth, territories }) {
-  const [expandedTerritories, setExpandedTerritories] = useState({}); // Track expanded rows
+  const [expandedTerritories, setExpandedTerritories] = useState({});
 
   return (
     <DetailSidebarProvider>

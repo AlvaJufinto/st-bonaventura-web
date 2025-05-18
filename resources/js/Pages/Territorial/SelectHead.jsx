@@ -6,9 +6,7 @@ import { debounce } from "@/utils";
 export default function SelectHead({ data, setData, currentHead }) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [availableUsers, setAvailableUsers] = useState(
-    currentHead ? [currentHead] : []
-  );
+  const [availableUsers, setAvailableUsers] = useState([]);
   const [loadingUsers, setLoadingUsers] = useState(false);
   const [displayedHead, setDisplayedHead] = useState(currentHead || null);
 
@@ -137,9 +135,7 @@ export default function SelectHead({ data, setData, currentHead }) {
         throw new Error(`HTTP error! status: ${response.status}`);
 
       const json = await response.json();
-      setAvailableUsers(
-        currentHead ? [currentHead, ...json?.data] : [...json?.data]
-      );
+      setAvailableUsers([...json?.data] || []);
     } catch (error) {
       console.error("Error fetching users:", error);
       setAvailableUsers([]);
@@ -148,7 +144,7 @@ export default function SelectHead({ data, setData, currentHead }) {
     }
   };
 
-  const fetchUsersDebounced = React.useCallback(debounce(fetchUsers, 1000), []);
+  const fetchUsersDebounced = React.useCallback(debounce(fetchUsers, 800), []);
 
   const badgeText = displayedHead ? displayedHead?.name : "Pilih Ketua";
 
@@ -185,6 +181,7 @@ export default function SelectHead({ data, setData, currentHead }) {
               type="text"
               placeholder="Cari pengurus..."
               value={searchTerm}
+              autoFocus
               onChange={handleSearchChange}
               className="font-secondary w-full px-2 py-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />

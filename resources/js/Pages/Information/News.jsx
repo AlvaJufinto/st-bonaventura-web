@@ -1,6 +1,6 @@
-import Footer from "@/Components/guest/shared/Footer/Footer";
-import Navbar from "@/Components/guest/shared/Navbar/Navbar";
-import NewsCard from "@/Components/guest/shared/NewsCard/NewsCard";
+import Footer from "@/Components/guest/Footer/Footer";
+import Navbar from "@/Components/guest/Navbar/Navbar";
+import NewsCard from "@/Components/guest/NewsCard/NewsCard";
 import { Head, Link } from "@inertiajs/react";
 
 export default function News({ news }) {

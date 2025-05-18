@@ -1,7 +1,7 @@
 import UnderConstruction from "@/assets/img/under-construction.png";
-import Button from "@/Components/guest/shared/Button/Button";
-import Footer from "@/Components/guest/shared/Footer/Footer";
-import Navbar from "@/Components/guest/shared/Navbar/Navbar";
+import Button from "@/Components/guest/Button/Button";
+import Footer from "@/Components/guest/Footer/Footer";
+import Navbar from "@/Components/guest/Navbar/Navbar";
 import { Head, router } from "@inertiajs/react";
 
 export default function Page404() {

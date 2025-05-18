@@ -6,7 +6,7 @@ import Hero1 from "@/assets/img/gallery/hero-1.png";
 import Hero2 from "@/assets/img/gallery/hero-2.png";
 import Hero3 from "@/assets/img/gallery/hero-3.png";
 import Hero4 from "@/assets/img/gallery/hero-4.png";
-import LazyImage from "@/Components/guest/shared/LazyImage";
+import LazyImage from "@/Components/guest/LazyImage";
 
 const images = [Hero1, Hero2, Hero3, Hero4];
 

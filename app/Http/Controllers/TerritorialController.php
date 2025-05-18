@@ -23,17 +23,25 @@ class TerritorialController extends Controller
     return inertia('Territorial/Map', compact('wilayah'));
   }
 
-  public function showGuest(Organization $wilayah)
+  public function showGuest(Organization $territorial)
   {
-    $wilayah->load([
+    if (!in_array($territorial->organization_type_id, [1, 2])) {
+      abort(404);
+    }
+
+    $territory = $territorial->load([
+      'type',
+      'head',
       'children' => function ($query) {
-        $query->where('organization_type_id', 2);
+        $query->where('organization_type_id', 2)->with(['type', 'head']);
       },
     ]);
 
 
-    return inertia('Territorial/Show', compact('wilayah'));
+    return inertia('Territorial/Show', compact('territory'));
   }
+
+
 
   public function approve($id)
   {

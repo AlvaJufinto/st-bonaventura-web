@@ -1,8 +1,39 @@
 import Button from "@/Components/admin/Button";
 import Profile from "@/Components/admin/Profile";
 import { statusColors } from "@/utils";
+import { router, usePage } from "@inertiajs/react";
 
-export default function Table({ users }) {
+export function highlight(text, keyword) {
+  if (!keyword) return text;
+
+  const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const regex = new RegExp(`(${escapedKeyword})`, "gi");
+  const parts = text.split(regex);
+
+  return parts.map((part, i) =>
+    regex.test(part) ? (
+      <mark key={i} className="bg-yellow-200 text-black font-secondary">
+        {part}
+      </mark>
+    ) : (
+      part
+    )
+  );
+}
+
+const loginAs = (user) => {
+  if (confirm(`Login as ${user.name}?`)) {
+    router.post(route("impersonate.login", user.id));
+  }
+};
+
+export default function Table({ users, searchTerm }) {
+  const {
+    props: {
+      permissions: { canImpersonate },
+    },
+  } = usePage();
+
   return (
     <table className="w-full border-collapse">
       <thead>
@@ -22,13 +53,13 @@ export default function Table({ users }) {
           <th className="p-3 text-left font-secondary text-sm uppercase font-semibold">
             Status
           </th>
-          <th className="p-3 text-left font-secondary text-sm uppercase font-semibold">
+          <th className="p-3 text-left font-secondary text-sm uppercase font-semibold w-[250px]">
             Actions
           </th>
         </tr>
       </thead>
       <tbody>
-        {users.data.map((user, index) => (
+        {users.map((user, index) => (
           <tr
             key={user.id}
             className={`${
@@ -36,14 +67,24 @@ export default function Table({ users }) {
             } hover:bg-gray-200 transition duration-300 ease-in-out`}
           >
             <td className="p-3 text-sm font-secondary">
-              <Profile user={user} />
+              <Profile
+                user={{ ...user, name: highlight(user.name, searchTerm) }}
+              />
             </td>
-            <td className="p-3 text-sm font-secondary">{user.email}</td>
-            {/* <td className="p-3 text-sm font-secondary capitalize">
-              {user.role?.name || "-"}
-            </td> */}
             <td className="p-3 text-sm font-secondary">
-              {user.organization?.name || "-"}
+              {highlight(user.email, searchTerm)}
+            </td>
+            <td className="p-3 text-sm font-secondary">
+              {user?.organizations.length === 0 && "Tidak ada"}
+              {user?.organizations.length > 1 ? (
+                <ul className="font-secondary list-decimal">
+                  {user.organizations.map((org, i) => (
+                    <li key={i}>{highlight(org.name, searchTerm)}</li>
+                  ))}
+                </ul>
+              ) : (
+                highlight(user?.organizations[0]?.name ?? "", searchTerm)
+              )}
             </td>
             <td
               className={`py-2 px-3 ${
@@ -52,8 +93,13 @@ export default function Table({ users }) {
             >
               {user.status.name}
             </td>
-            <td className="p-3 text-sm">
+            <td className="p-3 text-sm flex gap-2">
               <Button type="default">Detail</Button>
+              {canImpersonate && (
+                <Button type="primary" onClick={() => loginAs(user)}>
+                  Log in as User
+                </Button>
+              )}
             </td>
           </tr>
         ))}

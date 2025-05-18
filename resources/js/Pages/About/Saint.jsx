@@ -4,9 +4,9 @@ import biography3 from "@/assets/img/saint/3.png";
 import biography4 from "@/assets/img/saint/4.png";
 import Wide from "@/assets/img/saint/st-bona-wide.png";
 import Hero from "@/assets/img/saint/st-bonaventura.png";
-import Footer from "@/Components/guest/shared/Footer/Footer";
-import LazyImage from "@/Components/guest/shared/LazyImage";
-import Navbar from "@/Components/guest/shared/Navbar/Navbar";
+import Footer from "@/Components/guest/Footer/Footer";
+import LazyImage from "@/Components/guest/LazyImage";
+import Navbar from "@/Components/guest/Navbar/Navbar";
 import { Head } from "@inertiajs/react";
 
 const BIOGRAPHY = [

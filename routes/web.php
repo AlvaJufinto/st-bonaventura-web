@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\Auth\ImpersonateController;
+use App\Http\Controllers\BidangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\NewsController;
@@ -49,12 +51,20 @@ Route::prefix('sakramen')->group(function () {
 
 Route::prefix('wilayah')->group(function () {
   Route::get('/peta', [TerritorialController::class, 'map'])->name('map.guest.index');
-  Route::get('/{wilayah:slug}', [TerritorialController::class, 'showGuest'])->name('map.guest.show');
+  Route::get('/{territorial:slug}', [TerritorialController::class, 'showGuest'])->name('wilayah.guest.show');
 });
 
+Route::prefix('lingkungan')->group(function () {
+  Route::get('/{territorial:slug}', [TerritorialController::class, 'showGuest'])->name('lingkungan.guest.show');
+});
+
+Route::post('/admin/impersonate/stop', [ImpersonateController::class, 'stop'])->name('impersonate.stop');
 
 // ADMIN
 Route::prefix('admin')->middleware('auth')->group(function () {
+  Route::post('/impersonate/{user}', [ImpersonateController::class, 'loginAs'])
+    ->name('impersonate.login');
+
   Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
   })->name('dashboard');
@@ -73,9 +83,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
   Route::patch('/teritorial/{id}/revert', [TerritorialController::class, 'revert'])->name('teritorial.revert');
   Route::resource('/teritorial', TerritorialController::class)->except(['showGuest']);
 
+
   // User
   Route::get('/api/get-users', [UserController::class, 'getUsers'])->name('api.get-users');
   Route::resource('user', UserController::class);
+
+  // Bidang
+  Route::resource('/bidang', BidangController::class);
+
 
   // Profile
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

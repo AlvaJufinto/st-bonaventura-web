@@ -1,5 +1,5 @@
-import Footer from "@/Components/guest/shared/Footer/Footer";
-import Navbar from "@/Components/guest/shared/Navbar/Navbar";
+import Footer from "@/Components/guest/Footer/Footer";
+import Navbar from "@/Components/guest/Navbar/Navbar";
 import { Head } from "@inertiajs/react";
 
 import { usePageBlock } from "./usePageBlock";

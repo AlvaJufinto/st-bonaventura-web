@@ -27,20 +27,10 @@ class DatabaseSeeder extends Seeder
           'description' => 'for komsos and',
         ],
         [
-          'name' => 'dph',
-          'role_level' => 2,
-          'description' => 'dph',
-        ],
-        [
           'name' => 'contributor',
           'role_level' => 3,
           'description' => 'for sektretariat, ketua organisasi e.g. wilayah, lingkungan',
         ],
-        [
-          'name' => 'dpp',
-          'role_level' => 3,
-          'description' => 'dpp',
-        ]
       ]
     );
 
@@ -91,7 +81,7 @@ class DatabaseSeeder extends Seeder
       ],
       [
         'name' => 'Bidang',
-        'description' => 'Head dari Seksi',
+        'description' => 'Head dari Seksi dan Komunitas',
       ],
       [
         'name' => 'Seksi',
@@ -99,6 +89,14 @@ class DatabaseSeeder extends Seeder
       ],
       [
         'name' => 'Bagian',
+        'description' => 'Can be Head of Bagian ',
+      ],
+      [
+        'name' => 'Komunitas',
+        'description' => 'Can be Head of Bagian',
+      ],
+      [
+        'name' => 'Tim',
         'description' => 'Can be Head of Bagian',
       ],
     ]);

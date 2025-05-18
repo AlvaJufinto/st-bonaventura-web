@@ -1,4 +1,4 @@
-export default function Guest({ children }) {
+export default function Wrapper({ children }) {
   return (
     <div className="py-12">
       <div className="mx-auto sm:px-6">

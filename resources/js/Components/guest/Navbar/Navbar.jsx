@@ -14,7 +14,9 @@ function ScrollToTop() {
 }
 
 export default function Navbar() {
-  const { wilayahAll } = usePage().props;
+  const {
+    props: { wilayahAll, bidangAll },
+  } = usePage();
   const { url } = usePage();
 
   const LINKS = [
@@ -79,10 +81,16 @@ export default function Navbar() {
       ],
     },
     {
-      isMenu: false,
+      isMenu: true,
       name: "Bidang Pelayanan",
-      url: "/bidang-pelayanan",
-      urlName: "service.guest.index",
+      urlPrefix: "/bidang-pelayanan",
+      menu: [
+        ...bidangAll.map((item) => ({
+          name: item.name,
+          url: `/${item.slug}`,
+          urlName: "bidang.show",
+        })),
+      ],
     },
   ];
 
@@ -108,7 +116,7 @@ export default function Navbar() {
                 return (
                   <div key={index} className="flex items-center relative group">
                     <p className="cursor-pointer">{link.name}</p>
-                    <div className="absolute left-0 top-[100%] bg-white shadow-md w-max opacity-0 scale-y-0 origin-top transition-all duration-300 group-hover:opacity-100 group-hover:scale-y-100 z-1">
+                    <div className="absolute left-0 top-[100%] bg-white shadow-md w-max opacity-0 scale-y-0 origin-top transition-all duration-300 group-hover:opacity-100 group-hover:scale-y-100 z-1 max-w-40">
                       {link.menu.map((submenu, subIndex) => (
                         <Link
                           key={subIndex}

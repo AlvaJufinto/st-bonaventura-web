@@ -19,14 +19,17 @@ export default function Button({
   className = "",
   onClick,
   isLoading = false,
+  disabled = false,
 }) {
   return (
     <button
       onClick={onClick}
-      disabled={isLoading}
+      disabled={isLoading || disabled}
       className={`px-4 py-2 rounded-md font-secondary transition duration-300 text-sm uppercase tracking-wider font-semibold flex items-center justify-center gap-2 ${
         buttonStyles[type] || buttonStyles.default
-      } ${className} ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
+      } ${className} ${
+        isLoading || disabled ? "opacity-70 cursor-not-allowed" : ""
+      }`}
     >
       {isLoading && <Loading />}
       {children}

@@ -13,7 +13,7 @@ import SelectHead from "./SelectHead";
 export default function ChildrenTable({ expandedTerritories, territory }) {
   const { openDetailSidebar } = useDetailSidebar();
   const [editingChildId, setEditingChildId] = useState(null);
-  const { data, setData, patch } = useForm({
+  const { data, setData, patch, processing } = useForm({
     name: "",
     alternate_name: "",
     address: "",
@@ -33,9 +33,10 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
   const saveEdit = (id) => {
     patch(route("teritorial.update", id), {
       preserveScroll: true,
+      onSuccess: () => {
+        setEditingChildId(null);
+      },
     });
-
-    setEditingChildId(null);
   };
 
   const handleDetailClick = (territory) => {
@@ -74,7 +75,7 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
                     Ketua
                   </th>
                   <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[120px]">
-                    Statu
+                    Status
                   </th>
                   <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[300px]">
                     Actions
@@ -160,10 +161,16 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
                             type="success"
                             size="sm"
                             onClick={() => saveEdit(child.id)}
+                            isLoading={processing}
                           >
                             Save
                           </Button>
-                          <Button type="danger" size="sm" onClick={cancelEdit}>
+                          <Button
+                            type="danger"
+                            size="sm"
+                            onClick={cancelEdit}
+                            disabled={processing}
+                          >
                             Cancel
                           </Button>
                         </>
@@ -173,6 +180,7 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
                             type="default"
                             size="sm"
                             onClick={() => startEditing(child)}
+                            disabled={processing}
                           >
                             Edit
                           </Button>
@@ -180,12 +188,14 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
                             type="warning"
                             size="sm"
                             onClick={() => startEditing(child)}
+                            disabled={processing}
                           >
                             Revert
                           </Button>
                           <Button
                             type="primary"
                             onClick={() => handleDetailClick(child)}
+                            disabled={processing}
                           >
                             Detail
                           </Button>

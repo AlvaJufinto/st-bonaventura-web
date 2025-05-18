@@ -1,4 +1,4 @@
-import Button from "@/Components/guest/shared/Button/Button";
+import Button from "@/Components/guest/Button/Button";
 import { Link } from "@inertiajs/react";
 
 export default function SectorCard({ item }) {

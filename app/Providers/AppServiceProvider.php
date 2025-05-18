@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Organization;
-use Illuminate\Support\Facades\Schema;
+use App\Services\Permissions;
+use App\Services\SharedData;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 
@@ -22,14 +22,18 @@ class AppServiceProvider extends ServiceProvider
    */
   public function boot(): void
   {
-    $wilayahAll = collect(); // default empty collection
-
-    if (Schema::hasTable('organizations')) {
-      $wilayahAll = Organization::where('organization_type_id', 1)->get();
-    }
-
     Inertia::share([
-      'wilayahAll' => $wilayahAll
+      'wilayahAll' => SharedData::wilayah(),
+      'bidangAll' => SharedData::bidang(),
+      'auth' => function () {
+        return [
+          'user' => auth()->user(),
+        ];
+      },
+      'permissions' => function () {
+        return Permissions::permissions(auth()->user());
+      },
+      'impersonating' => fn() => session()->has('impersonate_original_id'),
     ]);
   }
 }

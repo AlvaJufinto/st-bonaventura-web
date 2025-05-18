@@ -22,7 +22,9 @@ createInertiaApp({
 
     root.render(
       <ErrorBoundary>
+        {/* <PageTransitionWrapper> */}
         <App {...props} />
+        {/* </PageTransitionWrapper> */}
       </ErrorBoundary>
     );
   },

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use GuzzleHttp\Psr7\Query;
+use GuzzleHttp\Psr7\Query; // This import seems unused in the provided code, can likely be removed
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -16,10 +16,8 @@ class UserController extends Controller
   {
     $query = User::query();
 
-    // --- Perbaikan: Filter status_id = 3 selalu diterapkan ---
     $query->where('status_id', 3);
-    $query->whereDoesntHave('organization');
-    // --- Akhir Perbaikan ---
+    // $query->whereDoesntHave('organization');
 
     // Filter berdasarkan search term jika ada
     if ($search = $request->input('search')) {
@@ -30,17 +28,31 @@ class UserController extends Controller
       });
     }
 
-    $users = $query->limit(10)->get(); // Contoh: ambil 10 hasil pertama
+    $users = $query->limit(10)->get();
 
-    // Kembalikan dalam format JSON
     return response()->json([
       'data' => $users,
     ]);
   }
 
-  public function index()
+  public function index(Request $request)
   {
-    $users = User::with(['role', 'organization', 'status'])->paginate(30);
+    $query = User::with(['role', 'organizations', 'status']);
+
+    // Add search functionality
+    if ($search = $request->input('search')) {
+      $query->where(function ($q) use ($search) {
+        $q->where('name', 'like', '%' . $search . '%')
+          ->orWhere('username', 'like', '%' . $search . '%')
+          ->orWhere('email', 'like', '%' . $search . '%');
+      });
+    }
+
+    $users = $query->paginate(30);
+
+    // Append the search query to pagination links
+    $users->appends(['search' => $request->input('search')]);
+
 
     return Inertia::render('User/Index', compact('users'));
   }

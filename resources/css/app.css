@@ -67,3 +67,39 @@
   user-drag: none;
   user-select: none;
 }
+
+/* resources/css/app.css */
+
+/* Gaya dasar untuk container transisi */
+.page-transition-container {
+  width: 100%; /* Pastikan menempati area yang benar */
+  /* Mungkin tambahkan position: absolute; jika Anda ingin animasi overlay/slide */
+}
+
+/* Contoh animasi fade sederhana */
+/* .page-transition-container.page-entering {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.page-transition-container.page-leaving {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+} */
+
+/* Contoh animasi slide sederhana (opsional, ganti atau kombinasikan dengan fade) */
+
+.page-transition-container.page-entering {
+  transform: translateX(0);
+  transition: transform 0.3s ease-out;
+}
+
+.page-transition-container {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+
+.page-transition-container.page-leaving {
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in;
+}

@@ -43,7 +43,6 @@ export default function ParentTable({
   };
 
   const saveEdit = (id) => {
-    console.log(data);
     patch(route("teritorial.update", id), {
       preserveScroll: true,
       onSuccess: () => {
@@ -90,7 +89,7 @@ export default function ParentTable({
             Alamat
           </th>
           <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[250px]">
-            Ketua
+            Koordinator
           </th>
           <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[100px]">
             Status
@@ -235,7 +234,12 @@ export default function ParentTable({
                     >
                       Save
                     </Button>
-                    <Button type="danger" size="sm" onClick={cancelEdit}>
+                    <Button
+                      type="danger"
+                      size="sm"
+                      onClick={cancelEdit}
+                      disabled={processing}
+                    >
                       Cancel
                     </Button>
                   </>
@@ -245,6 +249,7 @@ export default function ParentTable({
                       type="default"
                       size="sm"
                       onClick={() => startEditing(territory)}
+                      disabled={processing}
                     >
                       Edit
                     </Button>
@@ -253,6 +258,7 @@ export default function ParentTable({
                         type="success"
                         size="sm"
                         onClick={() => approveItem(territory.id)}
+                        disabled={processing}
                       >
                         Approve
                       </Button>
@@ -261,6 +267,7 @@ export default function ParentTable({
                       <Button
                         type="warning"
                         size="sm"
+                        disabled={processing}
                         onClick={() => revertItem(territory.id)}
                       >
                         Revert
@@ -268,6 +275,7 @@ export default function ParentTable({
                     )}
                     <Button
                       type="primary"
+                      disabled={processing}
                       onClick={() => handleDetailClick(territory)}
                     >
                       Detail

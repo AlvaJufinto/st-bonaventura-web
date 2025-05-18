@@ -1,33 +1,52 @@
 import { useState } from "react";
 
 import Logo from "@/assets/logo/logo-bona-nav.svg";
+import Button from "@/Components/admin/Button";
 import Dropdown from "@/Components/admin/Dropdown";
 import NavLink from "@/Components/admin/NavLink";
-import { Link } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
 
 import FlashMessage from "./FlashMessage";
 
-const LINKS = [
-  {
-    href: "dashboard",
-    name: "Dashboard",
-  },
-  {
-    href: "warta-minggu.index",
-    name: "Warta Minggu",
-  },
-  {
-    href: "teritorial.index",
-    name: "Wilayah & Lingkungan",
-  },
-
-  {
-    href: "user.index",
-    name: "Pengurus",
-  },
-];
-
 function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
+  const {
+    props: {
+      permissions: {
+        allowToSeeWartaMinggu,
+        allowToSeeAllTerritorial,
+        allowToSeeAllPengurus,
+        allowToSeeAllBidang,
+      },
+    },
+  } = usePage();
+
+  const LINKS = [
+    {
+      href: "dashboard",
+      name: "Dashboard",
+      isVisible: true,
+    },
+    {
+      href: "warta-minggu.index",
+      name: "Warta Minggu",
+      isVisible: allowToSeeWartaMinggu,
+    },
+    {
+      href: "teritorial.index",
+      name: "Wilayah & Lingkungan",
+      isVisible: allowToSeeAllTerritorial,
+    },
+    {
+      href: "bidang.index",
+      name: "Bidang",
+      isVisible: allowToSeeAllBidang,
+    },
+    {
+      href: "user.index",
+      name: "Pengurus",
+      isVisible: allowToSeeAllPengurus,
+    },
+  ];
   return (
     <aside
       className={`z-20 fixed top-0 left-0 h-full w-45 bg-white border-r border-gray-200 p-4 ${
@@ -47,21 +66,28 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
       </div>
 
       <nav className="mt-6 flex flex-col space-y-2">
-        {LINKS.map((link, i) => (
-          <NavLink
-            key={i}
-            href={route(link.href)}
-            active={route().current(link.href)}
-          >
-            {link.name}
-          </NavLink>
-        ))}
+        {LINKS.map(
+          (link, i) =>
+            link.isVisible && (
+              <NavLink
+                key={i}
+                href={route(link.href)}
+                active={route().current(link.href)}
+              >
+                {link.name}
+              </NavLink>
+            )
+        )}
       </nav>
     </aside>
   );
 }
 
 function Header({ header, user }) {
+  const {
+    props: { impersonating },
+  } = usePage();
+
   return (
     <header className="fixed w-full z-10 bg-white border-b pl-60 border-gray-200 p-4 flex justify-between items-center">
       {header}
@@ -72,7 +98,15 @@ function Header({ header, user }) {
         ☰
       </button>
 
-      <div className="ms-auto relative">
+      <div className="ms-auto relative flex">
+        {impersonating && (
+          <Button
+            onClick={() => router.post(route("impersonate.stop"))}
+            type="danger"
+          >
+            stop
+          </Button>
+        )}
         <Dropdown>
           <Dropdown.Trigger>
             <button className="font-secondary inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">

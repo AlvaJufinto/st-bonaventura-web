@@ -1,7 +1,7 @@
 import MapImg from "@/assets/img/territorial/map.png";
-import Footer from "@/Components/guest/shared/Footer/Footer";
-import LazyImage from "@/Components/guest/shared/LazyImage";
-import Navbar from "@/Components/guest/shared/Navbar/Navbar";
+import Footer from "@/Components/guest/Footer/Footer";
+import LazyImage from "@/Components/guest/LazyImage";
+import Navbar from "@/Components/guest/Navbar/Navbar";
 import SectorCard from "@/Pages/Territorial/SectorCard";
 import { Head } from "@inertiajs/react";
 

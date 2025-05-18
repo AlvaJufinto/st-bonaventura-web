@@ -6,12 +6,12 @@ import KaritatifIcon from "@/assets/icon/home/karitatif-icon.svg";
 import PrayIcon from "@/assets/icon/home/pray-icon.svg";
 import BonaImg from "@/assets/img/st-bonaventura-home.png";
 import BonaLogo from "@/assets/logo/logo-bonaventura.png";
-import ArticleCard from "@/Components/guest/shared/ArticleCard/ArticleCard";
-import Button from "@/Components/guest/shared/Button/Button";
-import Footer from "@/Components/guest/shared/Footer/Footer";
-import LazyImage from "@/Components/guest/shared/LazyImage";
-import Navbar from "@/Components/guest/shared/Navbar/Navbar";
-import NewsCard from "@/Components/guest/shared/NewsCard/NewsCard";
+import ArticleCard from "@/Components/guest/ArticleCard/ArticleCard";
+import Button from "@/Components/guest/Button/Button";
+import Footer from "@/Components/guest/Footer/Footer";
+import LazyImage from "@/Components/guest/LazyImage";
+import Navbar from "@/Components/guest/Navbar/Navbar";
+import NewsCard from "@/Components/guest/NewsCard/NewsCard";
 import { Head, router } from "@inertiajs/react";
 
 import ShortcutCard from "./ShortcutCard";
