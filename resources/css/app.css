@@ -1,5 +1,6 @@
 @import url("./color.css");
 @import url("./font.css");
+@import url("./markdown.css");
 
 @tailwind base;
 @tailwind components;
@@ -67,8 +68,6 @@
   user-drag: none;
   user-select: none;
 }
-
-/* resources/css/app.css */
 
 /* Gaya dasar untuk container transisi */
 .page-transition-container {

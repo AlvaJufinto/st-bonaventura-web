@@ -172,25 +172,46 @@ class WilayahSeeder extends Seeder
       ],
     ];
 
+    $wilayahHeadIdCounter = 56; // Start head_id for Wilayah from 56
+    $lingkunganHeadIdCounter = 67; // Start head_id for Lingkungan from 67
+
     foreach ($wilayahLingkunganData as $item) {
-      $wilayah = Organization::create([
+      $wilayahData = [
         'name' => $item['wilayah']['name'],
         'alternate_name' => $item['wilayah']['alternate_name'],
         'address' => $item['wilayah']['address'],
-        'organization_type_id' => 1,
+        'organization_type_id' => 1, // Assuming type 1 is 'Wilayah'
         'status_id' => 3,
-      ]);
+      ];
+
+      // Assign head_id for Wilayah if within the desired range (56 to 115)
+      if ($wilayahHeadIdCounter <= 115) {
+        $wilayahData['head_id'] = $wilayahHeadIdCounter++;
+      } else {
+        $wilayahData['head_id'] = null;
+      }
+
+      $wilayah = Organization::create($wilayahData);
 
       if (isset($item['lingkungan'])) {
         foreach ($item['lingkungan'] as [$name, $altName, $address]) {
-          Organization::create([
+          $lingkunganData = [
             'name' => $name,
             'alternate_name' => $altName,
             'address' => $address,
-            'organization_type_id' => 2,
+            'organization_type_id' => 2, // Assuming type 2 is 'Lingkungan'
             'status_id' => 3,
             'parent_id' => $wilayah->id,
-          ]);
+          ];
+
+          // Assign head_id for Lingkungan if within the desired range (67 to 115)
+          if ($lingkunganHeadIdCounter <= 115) {
+            $lingkunganData['head_id'] = $lingkunganHeadIdCounter++;
+          } else {
+            $lingkunganData['head_id'] = null;
+          }
+
+          Organization::create($lingkunganData);
         }
       }
     }

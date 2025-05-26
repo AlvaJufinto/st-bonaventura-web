@@ -58,6 +58,9 @@ Route::prefix('lingkungan')->group(function () {
   Route::get('/{territorial:slug}', [TerritorialController::class, 'showGuest'])->name('lingkungan.guest.show');
 });
 
+Route::get('/bidang-pelayanan/{bidang:slug}', [BidangController::class, 'showGuest'])->name('bidang.guest.show');
+
+
 Route::post('/admin/impersonate/stop', [ImpersonateController::class, 'stop'])->name('impersonate.stop');
 
 // ADMIN
@@ -71,7 +74,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 
   // artikel / berita
-  Route::resource('/articles', ArticleController::class);
+  Route::resource('/article', ArticleController::class);
 
   // warta minggu
   Route::patch('/warta-minggu/{id}/approve', [NewsController::class, 'approve'])->name('warta-minggu.approve');

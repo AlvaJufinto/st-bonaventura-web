@@ -27,6 +27,7 @@ class TerritorialController extends Controller
   {
     if (!in_array($territorial->organization_type_id, [1, 2])) {
       abort(404);
+      return;
     }
 
     $territory = $territorial->load([

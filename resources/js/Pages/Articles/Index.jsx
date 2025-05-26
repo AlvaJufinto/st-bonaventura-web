@@ -1,14 +1,17 @@
-import PrimaryButton from "@/Components/admin/PrimaryButton";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import Wrapper from "@/Layouts/Wrapper";
-import { Head, router } from "@inertiajs/react";
+import PrimaryButton from '@/Components/admin/PrimaryButton';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import Wrapper from '@/Layouts/Wrapper';
+import {
+  Head,
+  router,
+} from '@inertiajs/react';
 
 export default function Index({ auth }) {
   return (
     <AuthenticatedLayout
       user={auth.user}
       header={
-        <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 className="font-semibold text-xl text-gray-800 leading-tight font-secondary">
           Article
         </h2>
       }
@@ -17,8 +20,8 @@ export default function Index({ auth }) {
       <Wrapper>
         {/* <div className="p-6 text-gray-900">Article List</div> */}
         <div className="flex justify-between items-center">
-          <h1 className="text-xl">Article</h1>
-          <PrimaryButton onClick={() => router.visit(route("articles.create"))}>
+          <h1 className="text-xl font-secondary">Article</h1>
+          <PrimaryButton onClick={() => router.visit(route("article.create"))}>
             Add Article
           </PrimaryButton>
         </div>

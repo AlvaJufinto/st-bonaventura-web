@@ -19,6 +19,7 @@ class Organization extends Model
     'slug',
     'parent_id',
     'address',
+    'image_name'
   ];
 
   protected static function booted()

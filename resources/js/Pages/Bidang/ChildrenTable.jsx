@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import Button from "@/Components/admin/Button";
+import Profile from "@/Components/admin/Profile";
 import { statusColors } from "@/utils";
 import { useForm } from "@inertiajs/react";
 
@@ -12,7 +13,7 @@ export default function ChildrenTable({ children }) {
 
   return (
     <tr className="border-b border-gray-200">
-      <td colSpan={4} className="p-0 pb-10">
+      <td colSpan={5} className="p-0 pb-10">
         <div className="py-2 pl-10 bg-gray-50">
           <table className="w-full table-fixed">
             <thead>
@@ -21,7 +22,7 @@ export default function ChildrenTable({ children }) {
                 <th className="p-3 text-left font-secondary text-xs uppercase font-semibold">
                   Nama Seksi/Bidang/Komunitas/Tim
                 </th>
-                <th className="text-left font-secondary text-xs uppercase font-semibold w-[150px]">
+                <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[350px]">
                   Deskripsi
                 </th>
                 <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[150px]">
@@ -47,8 +48,8 @@ export default function ChildrenTable({ children }) {
                   <td className="py-1 px-3 text-sm font-secondary">
                     {child.name}
                   </td>
-                  <td className="font-secondary">
-                    {children.description || "-"}
+                  <td className="p-3 font-secondary text-sm">
+                    {child.description || "-"}
                   </td>
 
                   <td className="p-3 text-sm font-secondary">

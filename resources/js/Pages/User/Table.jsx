@@ -33,6 +33,7 @@ export default function Table({ users, searchTerm }) {
       permissions: { canImpersonate },
     },
   } = usePage();
+  console.log("🚀 ~ Table ~ canImpersonate:", canImpersonate);
 
   return (
     <table className="w-full border-collapse">

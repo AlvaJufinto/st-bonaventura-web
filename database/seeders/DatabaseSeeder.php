@@ -102,9 +102,9 @@ class DatabaseSeeder extends Seeder
     ]);
 
     $this->call([
+      UserSeeder::class,
       WilayahSeeder::class,
       OrganizationSeeder::class,
-      UserSeeder::class,
     ]);
   }
 }

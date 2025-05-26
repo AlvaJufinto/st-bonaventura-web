@@ -21,6 +21,20 @@ class BidangController extends Controller
     return Inertia::render('Bidang/Index', compact('bidang'));
   }
 
+  public function showGuest(Organization $bidang)
+  {
+    if ($bidang->organization_type_id !== 3 || $bidang->status_id !== 3) {
+      abort(404);
+    }
+
+
+    $bidang = $bidang->load(['type', 'head', 'children' => function ($query) {
+      $query->with(['head', 'type']);
+    }]);
+
+    return Inertia::render('Bidang/Show', compact('bidang'));
+  }
+
   /**
    * Show the form for creating a new resource.
    */

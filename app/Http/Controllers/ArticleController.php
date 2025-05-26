@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\ArticleStatus;
 use App\Models\Article;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -22,10 +23,10 @@ class ArticleController extends Controller
    */
   public function create()
   {
-    $articleStatus = ArticleStatus::getAll();
+    $statuses = Status::get();
 
     return Inertia::render('Articles/Create', [
-      'articleStatus' => $articleStatus,
+      'statuses' => $statuses,
     ]);
   }
 

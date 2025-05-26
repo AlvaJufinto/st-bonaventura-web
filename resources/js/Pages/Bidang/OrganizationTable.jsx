@@ -41,6 +41,9 @@ export default function OrganizationTable({ bidang }) {
           <th className="p-3 text-left font-secondary text-xs uppercase font-semibold">
             Nama Bidang
           </th>
+          <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[500px]">
+            Deskripsi
+          </th>
           <th className="p-3 text-left font-secondary text-xs uppercase font-semibold w-[150px]">
             Status
           </th>
@@ -76,6 +79,9 @@ export default function OrganizationTable({ bidang }) {
               </td>
               <td className="p-3 text-sm font-secondary font-medium">
                 {org.name}
+              </td>
+              <td className="p-3 text-sm font-secondary font-medium">
+                {org?.description || "-"}
               </td>
               <td
                 className={`p-3 ${

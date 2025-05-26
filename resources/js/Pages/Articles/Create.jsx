@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import InputError from "@/Components/admin/InputError";
 import InputLabel from "@/Components/admin/InputLabel";
 import PrimaryButton from "@/Components/admin/PrimaryButton";
@@ -7,7 +9,11 @@ import Wrapper from "@/Layouts/Wrapper";
 import { Transition } from "@headlessui/react";
 import { Head, useForm } from "@inertiajs/react";
 
-export default function Create({ auth, articleStatus }) {
+import MarkdownEditor from "./MarkdownEditor";
+
+export default function Create({ auth, statuses }) {
+  const [content, setContent] = useState("<p>Hello World!</p>");
+
   const { data, setData, errors, put, reset, processing, recentlySuccessful } =
     useForm({
       title: "",
@@ -40,7 +46,7 @@ export default function Create({ auth, articleStatus }) {
     <AuthenticatedLayout
       user={auth.user}
       header={
-        <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 className="font-secondary font-semibold text-xl text-gray-800 leading-tight">
           Create New Article
         </h2>
       }
@@ -49,7 +55,7 @@ export default function Create({ auth, articleStatus }) {
       <Wrapper>
         <form onSubmit={createArticle} className="mt-6 space-y-6">
           <div>
-            <InputLabel htmlFor="title" value="Title" />
+            <InputLabel htmlFor="title" value="Judul" />
 
             <TextInput
               id="title"
@@ -68,17 +74,50 @@ export default function Create({ auth, articleStatus }) {
               id="status"
               value={data.status}
               onChange={(e) => setData("status", e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none capitalize focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="font-secondary mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none capitalize focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             >
-              {articleStatus.map((status, idx) => (
-                <option value={status} key={idx} className="capitalize">
-                  {status}
+              {statuses.map((status, idx) => (
+                <option
+                  value={status.id}
+                  key={status.id}
+                  className="font-secondary capitalize"
+                >
+                  {status.name}
                 </option>
               ))}
             </select>
             <InputError message={errors.status} className="mt-2" />
           </div>
 
+          <div>
+            <InputLabel htmlFor="publishedDate" value="Tanggal Publikasi" />
+            <TextInput
+              id="publishedDate"
+              type="date"
+              value={data.publishedDate}
+              onChange={(e) => setData("publishedDate", e.target.value)}
+              className="mt-1 block w-full"
+            />
+            <InputError message={errors.publishedDate} className="mt-2" />
+          </div>
+
+          <div>
+            <InputLabel htmlFor="publisher" value="Publisher" />
+            <TextInput
+              id="publisher"
+              type="text"
+              value={data.publisher}
+              onChange={(e) => setData("publisher", e.target.value)}
+              className="mt-1 block w-full"
+            />
+            <InputError message={errors.publisher} className="mt-2" />
+          </div>
+
+          <div>
+            <InputLabel htmlFor="content" value="Konten Artikel" />
+            <MarkdownEditor content={content} onUpdate={setContent} />
+            <InputError message={errors.content} className="mt-2" />
+          </div>
           <div className="flex items-center gap-4">
             <PrimaryButton disabled={processing}>Save</PrimaryButton>
 

@@ -20,6 +20,7 @@ return new class extends Migration {
       $table->foreignId('parent_id')->nullable()->constrained('organizations')->onDelete('cascade');
 
       $table->text('address')->nullable();
+      $table->text('image_name')->nullable();
 
       $table->timestamps();
     });

@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import Logo from "@/assets/logo/logo-bona-nav.svg";
-import Button from "@/Components/admin/Button";
-import Dropdown from "@/Components/admin/Dropdown";
-import NavLink from "@/Components/admin/NavLink";
-import { Link, router, usePage } from "@inertiajs/react";
+import Logo from '@/assets/logo/logo-bona-nav.svg';
+import Button from '@/Components/admin/Button';
+import Dropdown from '@/Components/admin/Dropdown';
+import NavLink from '@/Components/admin/NavLink';
+import {
+  Link,
+  router,
+  usePage,
+} from '@inertiajs/react';
 
-import FlashMessage from "./FlashMessage";
+import FlashMessage from './FlashMessage';
 
 function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
   const {
@@ -40,6 +44,11 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
       href: "bidang.index",
       name: "Bidang",
       isVisible: allowToSeeAllBidang,
+    },
+    {
+      href: "article.index",
+      name: "Article",
+      isVisible: true,
     },
     {
       href: "user.index",
