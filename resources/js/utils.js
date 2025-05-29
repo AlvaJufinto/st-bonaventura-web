@@ -32,3 +32,31 @@ export const debounce = (fn, delay) => {
     timeoutId = setTimeout(() => fn(...args), delay);
   };
 };
+
+export const articleDateFormatter = (dateString) => {
+  const date = new Date(dateString);
+
+  const day = date.getUTCDate(); // tanggal
+  const monthNames = [
+    "JAN",
+    "FEB",
+    "MAR",
+    "APR",
+    "MAY",
+    "JUN",
+    "JUL",
+    "AUG",
+    "SEP",
+    "OKT",
+    "NOV",
+    "DEC",
+  ];
+  const month = monthNames[date.getUTCMonth()];
+  const year = date.getUTCFullYear();
+
+  return {
+    day,
+    month,
+    year,
+  };
+};

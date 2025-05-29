@@ -1,32 +1,41 @@
+import PlaceholderImg from "@/assets/img/placeholder.png";
+import { articleDateFormatter } from "@/utils";
 import { Link } from "@inertiajs/react";
 
 import Button from "../Button/Button";
+import LazyImage from "../LazyImage";
 
-export default function ArticleCard({ type = "primary" }) {
+export default function ArticleCard({ type = "primary", data }) {
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+
+  const { day, month, year } = articleDateFormatter(data.created_at);
+
   if (type === "primary") {
     return (
       <div className="flex bg-b100">
-        <img
-          src="https://res.cloudinary.com/di0dpswey/image/upload/v1742568986/st-bonaventura/khdo1jf6ygrmtbouldsu.png"
-          className="w-[720px] object-cover object-center"
-          alt=""
+        <LazyImage
+          src={
+            data.main_image_name
+              ? `${ASSET_URL}/uploads/${data.main_image_name}`
+              : PlaceholderImg
+          }
+          alt={data.title + " img"}
+          className="!w-[720px] !h-[500px] object-cover object-center"
         />
         <div className="p-8 flex flex-col gap-4">
           <p className="text-b200 font-secondary font-semibold text-sm">
-            20 Okt 2024
+            {day} {month} {year}
           </p>
-          <h1 className="text-b300 text-3xl">
-            RAKA Paroki Pulomas: Sinergi Seksi dan Subseksi untuk Anggaran 2025
-            RAKA (Rapat Karya)
-          </h1>
-          <p className="font-secondary font-bold">BERITA - PAROKI</p>
+          <h1 className="text-b300 text-3xl">{data.title}</h1>
+          <p className="font-secondary font-bold uppercase">
+            BERITA — {data.publisher.name}
+          </p>
           <div className="flex flex-col gap-4 h-full justify-end">
-            <p className="font-secondary">
-              Hai Bonavers! Minggu, 20 Oktober 2024 kemarin, Paroki Pulomas
-              mengadakan RAKA yang dihadiri Hai Bonavers! Minggu, 20 Oktober
-              2024 kemarin, Paroki Pulomas mengadakan RAKA yang dihadiri...
-            </p>
-            <Link className="w-full" href="/">
+            <p className="font-secondary">{data.preview}</p>
+            <Link
+              className="w-full"
+              href={route("article.guest.show", { slug: data.slug })}
+            >
               <Button className="w-full">Baca</Button>
             </Link>
           </div>
@@ -37,27 +46,29 @@ export default function ArticleCard({ type = "primary" }) {
   if (type === "secondary") {
     return (
       <div className="flex flex-col bg-b100">
-        <img
-          src="https://res.cloudinary.com/di0dpswey/image/upload/v1742568986/st-bonaventura/khdo1jf6ygrmtbouldsu.png"
-          className="w-full"
-          alt=""
+        <LazyImage
+          src={
+            data.main_image_name
+              ? `${ASSET_URL}/uploads/${data.main_image_name}`
+              : PlaceholderImg
+          }
+          alt={data.title + " img"}
+          className="w-full h-[250px] object-cover object-center"
         />
         <div className="p-5 flex flex-col gap-5">
           <p className="text-b200 font-secondary font-semibold text-sm">
-            20 Okt 2024
+            {day} {month} {year}
           </p>
-          <h1 className="text-b300 text-3xl">
-            RAKA Paroki Pulomas: Sinergi Seksi dan Subseksi untuk Anggaran 2025
-            RAKA (Rapat Karya)
-          </h1>
-          <p className="font-secondary font-bold">BERITA - PAROKI</p>
+          <h1 className="text-b300 text-3xl">{data.title}</h1>
+          <p className="font-secondary font-bold uppercase">
+            BERITA — {data.publisher.name}
+          </p>
           <div className="flex flex-col gap-4 h-full justify-end">
-            <p className="font-secondary">
-              Hai Bonavers! Minggu, 20 Oktober 2024 kemarin, Paroki Pulomas
-              mengadakan RAKA yang dihadiri Hai Bonavers! Minggu, 20 Oktober
-              2024 kemarin, Paroki Pulomas mengadakan RAKA yang dihadiri...
-            </p>
-            <Link className="w-full" href="/">
+            <p className="font-secondary">{data.preview}</p>
+            <Link
+              className="w-full"
+              href={route("article.guest.show", { slug: data.slug })}
+            >
               <Button className="w-full">Baca</Button>
             </Link>
           </div>

@@ -50,7 +50,6 @@ class UserController extends Controller
 
     $users = $query->paginate(30);
 
-    // Append the search query to pagination links
     $users->appends(['search' => $request->input('search')]);
 
 

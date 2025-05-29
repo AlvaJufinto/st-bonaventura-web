@@ -7,10 +7,7 @@ import { debounce } from "@/utils";
 import EditorContent from "./EditorContent";
 import ToolbarItems from "./ToolbarItems";
 
-export default function MarkdownEditor() {
-  const initialHTML = ``;
-
-  const [content, setContent] = useState(initialHTML);
+export default function MarkdownEditor({ content, setContent }) {
   const [isPreviewFullscreen, setIsPreviewFullscreen] = useState(false);
   const [isEditorFullscreen, setIsEditorFullscreen] = useState(false);
   const [activeFormats, setActiveFormats] = useState(new Set());
@@ -20,15 +17,9 @@ export default function MarkdownEditor() {
   const debouncedSetContent = useCallback(
     debounce((html) => {
       setContent(html);
-    }, 300),
-    []
+    }, 10),
+    [editorRef.current]
   );
-
-  useEffect(() => {
-    if (editorRef.current) {
-      editorRef.current.innerHTML = initialHTML;
-    }
-  }, []);
 
   const updateActiveFormats = () => {
     const formats = new Set();
@@ -36,6 +27,7 @@ export default function MarkdownEditor() {
     try {
       if (document.queryCommandState("bold")) formats.add("bold");
       if (document.queryCommandState("italic")) formats.add("italic");
+      if (document.queryCommandState("underline")) formats.add("underline"); // Added underline check
       if (document.queryCommandState("insertUnorderedList"))
         formats.add("bulletList");
       if (document.queryCommandState("insertOrderedList"))
@@ -59,12 +51,11 @@ export default function MarkdownEditor() {
           if (tagName === "h2") formats.add("heading2");
           if (tagName === "blockquote") formats.add("blockquote");
           if (tagName === "p") formats.add("paragraph");
+          if (tagName === "a") formats.add("link"); // Added link check
           current = current.parentElement;
         }
       }
-    } catch (error) {
-      console.log("Error updating active formats:", error);
-    }
+    } catch (error) {}
 
     setActiveFormats(formats);
   };
@@ -92,11 +83,6 @@ export default function MarkdownEditor() {
 
       if (!e.ctrlKey && !e.metaKey) return;
 
-      // Don't prevent default for copy/paste operations
-      // if (!["c", "v", "x"].includes(e.key.toLowerCase())) {
-      //   e.preventDefault();
-      // }
-
       switch (e.key.toLowerCase()) {
         case "a":
           e.preventDefault();
@@ -114,6 +100,14 @@ export default function MarkdownEditor() {
           e.preventDefault();
           executeCommand("italic");
           break;
+        case "u":
+          e.preventDefault();
+          executeCommand("underline"); // Added underline shortcut
+          break;
+        case "k":
+          e.preventDefault();
+          createLink(); // Added link shortcut
+          break;
         case "1":
           e.preventDefault();
           executeCommand("formatBlock", "h1");
@@ -127,8 +121,13 @@ export default function MarkdownEditor() {
           executeCommand("formatBlock", "blockquote");
           break;
         case "u":
-          e.preventDefault();
-          executeCommand("insertUnorderedList");
+          if (e.shiftKey) {
+            e.preventDefault();
+            executeCommand("insertUnorderedList");
+          } else {
+            e.preventDefault();
+            executeCommand("underline");
+          }
           break;
         case "o":
           e.preventDefault();
@@ -170,6 +169,96 @@ export default function MarkdownEditor() {
     }
   };
 
+  // Function to create links
+  const createLink = () => {
+    const selection = window.getSelection();
+    if (selection.rangeCount === 0) return;
+
+    const selectedText = selection.toString();
+    const url = prompt(
+      "Enter URL:",
+      selectedText.startsWith("http") ? selectedText : ""
+    );
+
+    if (url) {
+      const linkHtml = `<a href="${url}" target="_blank" rel="noopener noreferrer">${
+        selectedText || url
+      }</a>`;
+      document.execCommand("insertHTML", false, linkHtml);
+      setTimeout(() => {
+        debouncedSetContent(editorRef.current.innerHTML);
+      }, 0);
+    }
+  };
+
+  // Alternative paste handler - plain text only dengan line breaks yang bersih
+  useEffect(() => {
+    const handlePaste = (e) => {
+      e.preventDefault();
+
+      // Get clipboard data
+      const clipboardData = e.clipboardData || window.clipboardData;
+
+      // Prioritas: ambil plain text dulu
+      let pastedData = clipboardData.getData("text/plain");
+
+      if (!pastedData) {
+        // Fallback ke HTML jika tidak ada plain text
+        pastedData = clipboardData.getData("text/html");
+
+        if (pastedData) {
+          // Strip semua HTML tags, tinggalkan text saja
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = pastedData;
+          pastedData = tempDiv.textContent || tempDiv.innerText || "";
+        }
+      }
+
+      if (!pastedData) return;
+
+      // Clean up whitespace
+      pastedData = pastedData
+        .replace(/\r\n/g, "\n") // Normalize line endings
+        .replace(/\r/g, "\n") // Convert remaining \r to \n
+        .replace(/\n{3,}/g, "\n\n") // Max 2 consecutive line breaks
+        .replace(/[ \t]+/g, " ") // Replace multiple spaces/tabs with single space
+        .replace(/[ \t]*\n[ \t]*/g, "\n") // Clean spaces around line breaks
+        .trim(); // Remove leading/trailing whitespace
+
+      // Convert line breaks to <br> tags untuk HTML editor
+      const htmlContent = pastedData.replace(/\n/g, "<br>");
+
+      // Insert cleaned content
+      if (htmlContent) {
+        document.execCommand("insertHTML", false, htmlContent);
+        setTimeout(() => {
+          debouncedSetContent(editorRef.current.innerHTML);
+        }, 0);
+      }
+    };
+
+    const editor = editorRef.current;
+    if (editor) {
+      editor.addEventListener("paste", handlePaste);
+      return () => editor.removeEventListener("paste", handlePaste);
+    }
+  }, [debouncedSetContent]);
+
+  useEffect(() => {
+    const editor = editorRef.current;
+
+    const handleInput = () => {
+      if (editor.innerHTML === "") {
+        document.execCommand("formatBlock", false, "p");
+      }
+    };
+
+    if (editor) {
+      editor.addEventListener("input", handleInput);
+      return () => editor.removeEventListener("input", handleInput);
+    }
+  }, []);
+
   const togglePreviewFullscreen = () => {
     setIsPreviewFullscreen((v) => !v);
     if (isEditorFullscreen) setIsEditorFullscreen(false);
@@ -181,7 +270,7 @@ export default function MarkdownEditor() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-auto">
       <div className="max-w-full mx-auto">
         <div className="bg-white rounded-t-lg shadow border-b">
           <div className="border-b bg-gray-50 p-3 flex justify-between items-center">
@@ -190,6 +279,8 @@ export default function MarkdownEditor() {
                 onContentChange={debouncedSetContent}
                 editorRef={editorRef}
                 activeFormats={activeFormats}
+                executeCommand={executeCommand}
+                createLink={createLink} // Pass createLink function
               />
             </div>
             <div className="flex gap-2">

@@ -38,6 +38,9 @@ Route::prefix('tentang')->group(function () {
 
 Route::prefix('informasi')->group(function () {
   Route::get('/warta-minggu', [InformationController::class, 'news'])->name('news.guest.index');
+
+  Route::get('/berita-kegiatan', [ArticleController::class, 'indexGuest'])->name('article.guest.index');
+  Route::get('/berita-kegiatan/{article:slug}', [ArticleController::class, 'show'])->name('article.guest.show');
 });
 
 Route::prefix('sakramen')->group(function () {
@@ -60,8 +63,9 @@ Route::prefix('lingkungan')->group(function () {
 
 Route::get('/bidang-pelayanan/{bidang:slug}', [BidangController::class, 'showGuest'])->name('bidang.guest.show');
 
-
 Route::post('/admin/impersonate/stop', [ImpersonateController::class, 'stop'])->name('impersonate.stop');
+
+
 
 // ADMIN
 Route::prefix('admin')->middleware('auth')->group(function () {

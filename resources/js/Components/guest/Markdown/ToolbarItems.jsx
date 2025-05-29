@@ -1,20 +1,27 @@
-import { useCallback } from "react";
+import { useCallback } from 'react';
 
 import {
   Bold,
   Italic,
+  Link,
   List,
   ListOrdered,
   Play,
   Quote,
   Redo,
   Type,
+  Underline,
   Undo,
-} from "lucide-react";
+} from 'lucide-react';
 
-import ToolbarButton from "./ToolbarButton";
+import ToolbarButton from './ToolbarButton';
 
-const ToolbarItems = ({ onContentChange, editorRef, activeFormats }) => {
+const ToolbarItems = ({
+  onContentChange,
+  editorRef,
+  activeFormats,
+  executeCommand,
+}) => {
   const addYouTubeEmbed = useCallback(() => {
     const url = prompt(
       "Enter YouTube URL (e.g., https://www.youtube.com/watch?v=VIDEO_ID):"
@@ -38,7 +45,7 @@ const ToolbarItems = ({ onContentChange, editorRef, activeFormats }) => {
     }
 
     if (videoId) {
-      const embedHtml = `<div data-youtube-video style="margin: 2rem 0; position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 0.75rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);"><iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>`;
+      const embedHtml = `<div data-youtube-video style="margin: 2rem 0; position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 0.75rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);"><iframe src="https://www.youtube.com/embed/${videoId}?feature=oembed" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen referrerpolicy="strict-origin-when-cross-origin" ></iframe></div>`;
       const editor = editorRef.current;
       if (editor) {
         editor.focus();
@@ -53,6 +60,48 @@ const ToolbarItems = ({ onContentChange, editorRef, activeFormats }) => {
       );
     }
   }, [onContentChange]);
+
+  const addEmbedLink = () => {
+    const editor = editorRef.current;
+
+    if (editor) {
+      editor.focus();
+
+      const url = prompt("Masukkan URL tujuan:");
+      if (!url) return;
+
+      const linkText = prompt("Masukkan teks untuk tautan:");
+      if (!linkText) return;
+
+      const selection = window.getSelection();
+      if (!selection || selection.rangeCount === 0) return;
+
+      const range = selection.getRangeAt(0);
+      const a = document.createElement("a");
+      a.href = url;
+      a.target = "_blank";
+      a.textContent = linkText;
+
+      a.onclick = (e) => {
+        e.preventDefault();
+        window.open(a.href, "_blank");
+      };
+
+      a.style.color = "blue";
+      a.style.textDecoration = "underline";
+      a.style.cursor = "pointer";
+
+      range.deleteContents();
+      range.insertNode(a);
+
+      range.setStartAfter(a);
+      range.setEndAfter(a);
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      onContentChange(editor.innerHTML);
+    }
+  };
 
   const toolbarItems = [
     {
@@ -86,6 +135,12 @@ const ToolbarItems = ({ onContentChange, editorRef, activeFormats }) => {
       formatKey: "italic",
     },
     {
+      icon: <Underline className="h-4 w-4" />,
+      action: () => executeCommand("underline"),
+      tooltip: "Underline",
+      formatKey: "underline",
+    },
+    {
       icon: <Quote className="h-4 w-4" />,
       action: () => executeCommand("formatBlock", "blockquote"),
       tooltip: "Quote",
@@ -117,6 +172,11 @@ const ToolbarItems = ({ onContentChange, editorRef, activeFormats }) => {
       icon: <Play className="h-4 w-4" />,
       action: addYouTubeEmbed,
       tooltip: "Embed YouTube Video",
+    },
+    {
+      icon: <Link className="h-4 w-4" />,
+      action: addEmbedLink,
+      tooltip: "Embed External Link",
     },
   ];
 

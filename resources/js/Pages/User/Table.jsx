@@ -33,7 +33,6 @@ export default function Table({ users, searchTerm }) {
       permissions: { canImpersonate },
     },
   } = usePage();
-  console.log("🚀 ~ Table ~ canImpersonate:", canImpersonate);
 
   return (
     <table className="w-full border-collapse">
@@ -78,9 +77,11 @@ export default function Table({ users, searchTerm }) {
             <td className="p-3 text-sm font-secondary">
               {user?.organizations.length === 0 && "Tidak ada"}
               {user?.organizations.length > 1 ? (
-                <ul className="font-secondary list-decimal">
+                <ul className="p-3 font-secondary list-decimal">
                   {user.organizations.map((org, i) => (
-                    <li key={i}>{highlight(org.name, searchTerm)}</li>
+                    <li key={i} className="font-secondary">
+                      {highlight(org.name, searchTerm)}
+                    </li>
                   ))}
                 </ul>
               ) : (

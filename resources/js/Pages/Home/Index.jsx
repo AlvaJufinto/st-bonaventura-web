@@ -127,7 +127,7 @@ const Shortcuts = [
     name: "Berita dan Kegiatan",
     description:
       "Jangan ketinggalan! Tetap update dengan informasi kegiatan dan berita terbaru seputar Paroki Pulomas. Klik link di bawah ini:",
-    // urlName: "article.guest.index",
+    urlName: "article.guest.index",
   },
   {
     type: "informasi",
@@ -235,7 +235,7 @@ function IntroductionRight() {
   );
 }
 
-export default function Index({ news }) {
+export default function Index({ news, articles }) {
   return (
     <div>
       <Head title="Beranda" />
@@ -324,21 +324,29 @@ export default function Index({ news }) {
       </div> */}
       <div className="outer-wrapper mb-32 gap-10">
         <h1 className="text-center section-title">Berita & Kegiatan</h1>
-        <div className="inner-wrapper !items-start">
-          <ArticleCard />
-        </div>
-        <div className="inner-wrapper !items-start !grid !grid-cols-3 gap-5">
-          <ArticleCard type="secondary" />
-          <ArticleCard type="secondary" />
-          <ArticleCard type="secondary" />
-          <div className="mt-5 flex flex-start">
-            <Button
-              className="h-20 px-10"
-              onClick={() => router.visit(route("articles.guest.index"))}
-            >
-              Baca Artikel Lain
-            </Button>
-          </div>
+        <div className="inner-wrapper gap-5 min-h-[600px]">
+          {articles.length > 0 ? (
+            <>
+              <ArticleCard data={articles[0]} />
+              <div className="w-full grid grid-cols-3 gap-5">
+                {articles.slice(1).map((article, index) => (
+                  <ArticleCard key={index} type="secondary" data={article} />
+                ))}
+              </div>
+              <div className="mt-5 flex flex-start">
+                <Button
+                  className="h-20 px-10"
+                  onClick={() => router.visit(route("article.guest.index"))}
+                >
+                  Baca Artikel Lain
+                </Button>
+              </div>
+            </>
+          ) : (
+            <div className="w-full min-h-80 flex justify-center items-center text-2xl font-secondary font-semibold text-gray-800 leading-tight">
+              Tidak Ada Berita & Kegiatan
+            </div>
+          )}
         </div>
       </div>
       <div className="outer-wrapper mb-32">

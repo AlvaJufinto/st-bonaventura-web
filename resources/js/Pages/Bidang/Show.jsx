@@ -1,11 +1,10 @@
-import Placeholder from '@/assets/img/placeholder.png';
-import Footer from '@/Components/guest/Footer/Footer';
-import LazyImage from '@/Components/guest/LazyImage';
-import Navbar from '@/Components/guest/Navbar/Navbar';
-import { Head } from '@inertiajs/react';
+import Placeholder from "@/assets/img/placeholder.png";
+import Footer from "@/Components/guest/Footer/Footer";
+import LazyImage from "@/Components/guest/LazyImage";
+import Navbar from "@/Components/guest/Navbar/Navbar";
+import { Head } from "@inertiajs/react";
 
 export default function Show({ bidang }) {
-  console.log("🚀 ~ Show ~ bidang:", bidang);
   return (
     <div>
       <Head title={bidang.name} />

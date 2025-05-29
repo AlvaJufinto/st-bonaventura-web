@@ -11,21 +11,39 @@ class Article extends Model
   use HasFactory;
 
   protected $fillable = [
+    'main_image_name',
     'title',
-    'main_image',
+    'slug',
+
     'preview',
+    'published_date',
     'content',
-    'publisher',
+
+    'publisher_id',
+    'user_id',
     'status_id',
   ];
 
+  protected static function booted()
+  {
+    static::creating(function ($model) {
+      $model->slug = \Illuminate\Support\Str::slug($model->title);
+    });
+  }
+
   public function user(): BelongsTo
   {
+    // User::class -> '\App\Models\User'
     return $this->belongsTo(User::class);
   }
 
   public function status(): BelongsTo
   {
     return $this->belongsTo(Status::class);
+  }
+
+  public function publisher(): BelongsTo
+  {
+    return $this->belongsTo(Organization::class);
   }
 }

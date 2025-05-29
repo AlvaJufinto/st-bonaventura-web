@@ -4,6 +4,7 @@ import Logo from '@/assets/logo/logo-bona-nav.svg';
 import Button from '@/Components/admin/Button';
 import Dropdown from '@/Components/admin/Dropdown';
 import NavLink from '@/Components/admin/NavLink';
+import Profile from '@/Components/admin/Profile';
 import {
   Link,
   router,
@@ -47,7 +48,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
     },
     {
       href: "article.index",
-      name: "Article",
+      name: "Berita dan Kegiatan",
       isVisible: true,
     },
     {
@@ -119,7 +120,7 @@ function Header({ header, user }) {
         <Dropdown>
           <Dropdown.Trigger>
             <button className="font-secondary inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-              {user.name}
+              <Profile user={user} />
               <svg
                 className="ms-2 -me-0.5 h-4 w-4"
                 xmlns="http://www.w3.org/2000/svg"

@@ -2,6 +2,7 @@ const ToolbarButton = ({ icon, action, tooltip, formatKey, activeFormats }) => {
   const isActive = formatKey && activeFormats.has(formatKey);
   return (
     <button
+      type="button"
       onClick={action}
       title={tooltip}
       aria-label={tooltip}

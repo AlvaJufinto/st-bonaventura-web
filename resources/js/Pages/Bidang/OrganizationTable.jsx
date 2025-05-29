@@ -17,21 +17,13 @@ export default function OrganizationTable({ bidang }) {
     }));
   };
 
-  const handleEdit = (id) => {
-    console.log(`Edit organization with ID: ${id}`);
-  };
+  const handleEdit = (id) => {};
 
-  const handleApprove = (id) => {
-    console.log(`Approve organization with ID: ${id}`);
-  };
+  const handleApprove = (id) => {};
 
-  const handleRevert = (id) => {
-    console.log(`Revert organization with ID: ${id}`);
-  };
+  const handleRevert = (id) => {};
 
-  const handleDetail = (org) => {
-    console.log(`View details for organization:`, org);
-  };
+  const handleDetail = (org) => {};
 
   return (
     <table className="w-full border-collapse">

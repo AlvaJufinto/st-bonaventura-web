@@ -95,3 +95,9 @@
   height: 100% !important;
   border: 0 !important;
 }
+
+.markdown a {
+  color: #4f46e5;
+  text-decoration: underline;
+  cursor: pointer;
+}

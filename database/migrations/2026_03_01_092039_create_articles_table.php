@@ -13,12 +13,16 @@ return new class extends Migration
   {
     Schema::create('articles', function (Blueprint $table) {
       $table->id();
-      $table->string('main_image');
+      $table->string(column: 'main_image_name')->nullable();
+
       $table->string('title');
       $table->string('preview');
-      $table->string('publisher');
-      $table->longText('content');
+      $table->string('slug');
+
       $table->date('published_date');
+      $table->longText('content');
+
+      $table->foreignId('publisher_id')->nullable()->constrained('organizations', 'id')->onDelete('cascade');
       $table->foreignId('user_id')->constrained()->onDelete('cascade');
       $table->foreignId('status_id')->constrained()->onDelete('cascade');
       $table->timestamps();

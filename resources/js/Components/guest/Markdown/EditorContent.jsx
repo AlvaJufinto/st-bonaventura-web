@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const EditorContent = React.forwardRef(({ onContentChange }, ref) => {
   const sanitizeHtml = (html) => {

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Organization;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -99,6 +101,18 @@ class DatabaseSeeder extends Seeder
         'name' => 'Tim',
         'description' => 'Can be Head of Bagian',
       ],
+      [
+        'name' => 'Paroki',
+        'description' => 'Paroki Aja',
+      ],
+    ]);
+
+    Organization::create([
+      'name' => "Paroki",
+      'organization_type_id' => 8,
+      'description' => "Bydefault punya paroki",
+      'status_id' => 3,
+      'head_id' => 1,
     ]);
 
     $this->call([

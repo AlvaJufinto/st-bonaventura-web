@@ -75,9 +75,9 @@ class NewsController extends Controller
       $response = $client->post("{$PUBLIC_ASSET_URL}/upload", [
         'multipart' => [
           [
-            'name'     => 'file',
-            'contents' => fopen($file->getPathname(), 'r'),
-            'filename' => $file->getClientOriginalName(),
+            'name'      => 'file',
+            'contents'  => fopen($file->getPathname(), 'r'),
+            'filename'  => $file->getClientOriginalName(),
           ],
         ],
       ]);
@@ -94,6 +94,7 @@ class NewsController extends Controller
 
       return to_route('warta-minggu.create')->with('success', 'Warta Minggu berhasil diunggah.');
     } catch (\Exception $e) {
+      to_route('warta-minggu.create')->with('error', 'Warta Minggu gagal diunggah.' . $e->getMessage());
       return back()->withErrors(['file' => 'Error uploading file: ' . $e->getMessage()]);
     }
   }

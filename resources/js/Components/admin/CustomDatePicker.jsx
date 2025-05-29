@@ -1,4 +1,4 @@
-const formatDate = (date) => {
+export const calendarDateFormat = (date) => {
   if (!date) return "";
   const d = new Date(date);
   const year = d.getFullYear();
@@ -10,13 +10,14 @@ const formatDate = (date) => {
 export default function CustomDatePicker({ selectedDate, onDateChange }) {
   const handleChange = (e) => {
     const newDate = e.target.value;
+
     onDateChange(newDate);
   };
 
   return (
     <input
       type="date"
-      value={selectedDate ? formatDate(selectedDate) : ""}
+      value={selectedDate ? calendarDateFormat(selectedDate) : ""}
       onChange={handleChange}
       className="w-full border rounded-md p-2 font-secondary"
     />

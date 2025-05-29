@@ -53,4 +53,9 @@ class Organization extends Model
   {
     return $this->hasMany(Organization::class, 'parent_id');
   }
+
+  public function articles()
+  {
+    return $this->hasMany(Article::class, 'publisher_id');
+  }
 }
