@@ -282,46 +282,6 @@ export default function Index({ news, articles }) {
           </div>
         </div>
       </div>
-      {/* <div className="outer-wrapper mb-32">
-        <div className="inner-wrapper !py-10">
-          <h1 className="section-title mb-10">Kegiatan Akan Datang</h1>
-        </div>
-        <div className="outer-wrapper bg-b100 w-auto">
-          <div className="inner-wrapper !flex-row !items-stretch">
-            <div className="h-auto relative">
-              <img
-                className="h-auto object-cover object-center"
-                src="https://res.cloudinary.com/di0dpswey/image/upload/v1742568986/st-bonaventura/khdo1jf6ygrmtbouldsu.png"
-                alt="Foto Kegiatan"
-              />
-              <div className="absolute w-full left-0 top-1/2 flex justify-between px-5">
-                <div className="LEFT text-2xl size-10 rounded-full grid place-items-center bg-n100 font-extrabold cursor-pointer">
-                  <img src={ChevronLeft} alt="icon" />
-                </div>
-                <div className="RIGHT text-2xl size-10 rounded-full grid place-items-center bg-n100 font-extrabold cursor-pointer">
-                  <img src={ChevronRight} alt="icon" />
-                </div>
-              </div>
-            </div>
-            <div className="p-5 flex flex-col gap-5 w-[500px]">
-              <p className="text-b200 font-secondary font-semibold text-sm">
-                20 Okt 2024
-              </p>
-              <h1 className="text-b200 text-3xl">
-                RAKA Paroki Pulomas: Sinergi Seksi dan Subseksi untuk Anggaran
-                2025 RAKA (Rapat Karya)
-              </h1>
-              <div className="flex flex-col gap-4 h-full justify-start">
-                <p className="font-secondary">
-                  Hai Bonavers! Minggu, 20 Oktober 2024 kemarin, Paroki Pulomas
-                  mengadakan RAKA yang dihadiri Hai Bonavers! Minggu, 20 Oktober
-                  2024 kemarin, Paroki Pulomas mengadakan RAKA yang dihadiri...
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
       <div className="outer-wrapper mb-32 gap-10">
         <h1 className="text-center section-title">Berita & Kegiatan</h1>
         <div className="inner-wrapper gap-5 min-h-[600px]">

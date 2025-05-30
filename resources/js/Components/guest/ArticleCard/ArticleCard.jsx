@@ -53,9 +53,9 @@ export default function ArticleCard({ type = "primary", data }) {
               : PlaceholderImg
           }
           alt={data.title + " img"}
-          className="w-full h-[250px] object-cover object-center"
+          className="w-full !h-[250px] object-cover object-center"
         />
-        <div className="p-5 flex flex-col gap-5">
+        <div className="p-5 flex flex-col gap-5 h-full">
           <p className="text-b200 font-secondary font-semibold text-sm">
             {day} {month} {year}
           </p>

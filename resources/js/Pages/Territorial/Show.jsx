@@ -1,4 +1,3 @@
-import ArticleCard from "@/Components/guest/ArticleCard/ArticleCard";
 import Button from "@/Components/guest/Button/Button";
 import Footer from "@/Components/guest/Footer/Footer";
 import Navbar from "@/Components/guest/Navbar/Navbar";
@@ -84,9 +83,9 @@ export default function Map({ territory }) {
             Kegiatan {type}
           </h1>
           <div className="grid grid-cols-3 gap-10 mt-10">
+            {/* <ArticleCard type="secondary" />
             <ArticleCard type="secondary" />
-            <ArticleCard type="secondary" />
-            <ArticleCard type="secondary" />
+            <ArticleCard type="secondary" /> */}
           </div>
         </div>
       </div>

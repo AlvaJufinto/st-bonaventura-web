@@ -1,11 +1,10 @@
 import { useState } from "react";
 
 import Button from "@/Components/admin/Button";
-import Dropdown from "@/Components/admin/Dropdown";
 import InputError from "@/Components/admin/InputError";
-import LazyImage from "@/Components/guest/LazyImage";
-import { statusColors } from "@/utils";
-import { useForm } from "@inertiajs/react";
+import ImagePreviewer from "@/Components/guest/ImagePreviewer";
+import { dateFormatter, statusColors } from "@/utils";
+import { router, useForm } from "@inertiajs/react";
 
 export default function Table({ articles, statuses }) {
   const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
@@ -18,24 +17,6 @@ export default function Table({ articles, statuses }) {
     patch,
     errors: editErrors,
   } = useForm({});
-
-  const startEditing = (item) => {
-    setEditingId(item.id);
-    setEditableData(item);
-  };
-
-  const saveEdit = (id) => {
-    patch(route("articles.update", id), {
-      data: editableData,
-      preserveScroll: true,
-      onSuccess: () => setEditingId(null),
-    });
-  };
-
-  const cancelEdit = () => {
-    setEditableData(articles.data?.find((item) => item.id === editingId) || {});
-    setEditingId(null);
-  };
 
   const previewItem = (item) => {
     const url = route("article.guest.show", { slug: item.slug });
@@ -61,6 +42,9 @@ export default function Table({ articles, statuses }) {
               Image
             </th>
             <th className="p-3 text-left font-secondary text-sm uppercase font-semibold">
+              Tanggal
+            </th>
+            <th className="p-3 text-left font-secondary text-sm uppercase font-semibold">
               Publisher
             </th>
             <th className="p-3 text-left font-secondary text-sm uppercase font-semibold">
@@ -83,48 +67,20 @@ export default function Table({ articles, statuses }) {
               } hover:bg-gray-200 transition duration-300 ease-in-out`}
             >
               <td className="p-3 text-sm">
-                {editingId === item.id ? (
-                  <input
-                    type="text"
-                    value={editableData.title || ""}
-                    onChange={(e) =>
-                      setEditableData({
-                        ...editableData,
-                        title: e.target.value,
-                      })
-                    }
-                    className="w-full border rounded-md p-2 font-secondary text-sm"
-                  />
-                ) : (
-                  <span className="font-secondary text-sm">{item.title}</span>
-                )}
+                <span className="font-secondary text-sm">{item.title}</span>
               </td>
               <td className="p-3 text-sm max-w-xs">
-                {editingId === item.id ? (
-                  <textarea
-                    value={editableData.preview || ""}
-                    onChange={(e) =>
-                      setEditableData({
-                        ...editableData,
-                        preview: e.target.value,
-                      })
-                    }
-                    className="w-full border rounded-md p-2 font-secondary text-sm resize-none"
-                    rows="2"
-                  />
-                ) : (
-                  <span className="font-secondary text-sm line-clamp-2">
-                    {item.preview || "Tidak ada preview"}
-                  </span>
-                )}
+                <span className="font-secondary text-sm line-clamp-2">
+                  {item.preview || "Tidak ada preview"}
+                </span>
               </td>
               <td className="p-3 text-sm">
                 {item.main_image_name ? (
-                  <div className="w-16 h-12 overflow-hidden rounded-md">
-                    <LazyImage
+                  <div className="w-24 h-18 overflow-hidden rounded-md">
+                    <ImagePreviewer
                       src={`${ASSET_URL}/uploads/${item.main_image_name}`}
-                      alt="Preview"
-                      className="w-full h-full object-cover"
+                      alt="Contoh Preview"
+                      className="w-full h-full"
                     />
                   </div>
                 ) : (
@@ -132,6 +88,9 @@ export default function Table({ articles, statuses }) {
                     Tidak ada gambar
                   </span>
                 )}
+              </td>
+              <td className="p-3 text-sm font-secondary ">
+                {dateFormatter(item.created_at)}
               </td>
               <td className="p-3 text-sm">
                 <span className="font-secondary text-sm">
@@ -144,40 +103,9 @@ export default function Table({ articles, statuses }) {
                 </span>
               </td>
               <td className={`p-3 ${statusColors[item.status_id]} text-sm`}>
-                {editingId === item.id ? (
-                  <Dropdown>
-                    <Dropdown.Trigger>
-                      <button className="uppercase tracking-wider font-semibold w-full border bg-white rounded-md p-2 font-secondary text-sm">
-                        {editableData.status_id
-                          ? statuses.find(
-                              (status) => status.id === editableData.status_id
-                            )?.name
-                          : "Select Status"}
-                      </button>
-                    </Dropdown.Trigger>
-                    <Dropdown.Content>
-                      {statuses.map((status) => (
-                        <Dropdown.Link
-                          key={status.id}
-                          className="capitalize font-secondary text-sm"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setEditableData({
-                              ...editableData,
-                              status_id: status.id,
-                            });
-                          }}
-                        >
-                          {status.name}
-                        </Dropdown.Link>
-                      ))}
-                    </Dropdown.Content>
-                  </Dropdown>
-                ) : (
-                  <span className="font-secondary text-sm uppercase tracking-wider font-semibold">
-                    {item.status?.name || "Tidak ada"}
-                  </span>
-                )}
+                <span className="font-secondary text-sm uppercase tracking-wider font-semibold">
+                  {item.status?.name || "Tidak ada"}
+                </span>
               </td>
               <td className="p-3 text-sm flex flex-wrap gap-2">
                 {editingId === item.id ? (
@@ -191,7 +119,14 @@ export default function Table({ articles, statuses }) {
                   </>
                 ) : (
                   <>
-                    <Button type="default" onClick={() => startEditing(item)}>
+                    <Button
+                      type="default"
+                      onClick={() =>
+                        router.visit(
+                          route("article.edit", { article: item.id })
+                        )
+                      }
+                    >
                       Edit
                     </Button>
                     <Button type="info" onClick={() => previewItem(item)}>

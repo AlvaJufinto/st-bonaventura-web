@@ -11,14 +11,23 @@ export default function MarkdownEditor({ content, setContent }) {
   const [isPreviewFullscreen, setIsPreviewFullscreen] = useState(false);
   const [isEditorFullscreen, setIsEditorFullscreen] = useState(false);
   const [activeFormats, setActiveFormats] = useState(new Set());
+  const [editorContent, setEditorContent] = useState(content || "");
 
   const editorRef = useRef(null);
+
+  // Update editor content when prop content changes
+  useEffect(() => {
+    if (content !== editorContent) {
+      setEditorContent(content || "");
+    }
+  }, [content]);
 
   const debouncedSetContent = useCallback(
     debounce((html) => {
       setContent(html);
+      setEditorContent(html);
     }, 10),
-    [editorRef.current]
+    [setContent]
   );
 
   const updateActiveFormats = () => {
@@ -27,7 +36,7 @@ export default function MarkdownEditor({ content, setContent }) {
     try {
       if (document.queryCommandState("bold")) formats.add("bold");
       if (document.queryCommandState("italic")) formats.add("italic");
-      if (document.queryCommandState("underline")) formats.add("underline"); // Added underline check
+      if (document.queryCommandState("underline")) formats.add("underline");
       if (document.queryCommandState("insertUnorderedList"))
         formats.add("bulletList");
       if (document.queryCommandState("insertOrderedList"))
@@ -51,11 +60,13 @@ export default function MarkdownEditor({ content, setContent }) {
           if (tagName === "h2") formats.add("heading2");
           if (tagName === "blockquote") formats.add("blockquote");
           if (tagName === "p") formats.add("paragraph");
-          if (tagName === "a") formats.add("link"); // Added link check
+          if (tagName === "a") formats.add("link");
           current = current.parentElement;
         }
       }
-    } catch (error) {}
+    } catch (error) {
+      // Silently handle errors
+    }
 
     setActiveFormats(formats);
   };
@@ -101,12 +112,17 @@ export default function MarkdownEditor({ content, setContent }) {
           executeCommand("italic");
           break;
         case "u":
-          e.preventDefault();
-          executeCommand("underline"); // Added underline shortcut
+          if (e.shiftKey) {
+            e.preventDefault();
+            executeCommand("insertUnorderedList");
+          } else {
+            e.preventDefault();
+            executeCommand("underline");
+          }
           break;
         case "k":
           e.preventDefault();
-          createLink(); // Added link shortcut
+          createLink();
           break;
         case "1":
           e.preventDefault();
@@ -119,15 +135,6 @@ export default function MarkdownEditor({ content, setContent }) {
         case "q":
           e.preventDefault();
           executeCommand("formatBlock", "blockquote");
-          break;
-        case "u":
-          if (e.shiftKey) {
-            e.preventDefault();
-            executeCommand("insertUnorderedList");
-          } else {
-            e.preventDefault();
-            executeCommand("underline");
-          }
           break;
         case "o":
           e.preventDefault();
@@ -248,7 +255,7 @@ export default function MarkdownEditor({ content, setContent }) {
     const editor = editorRef.current;
 
     const handleInput = () => {
-      if (editor.innerHTML === "") {
+      if (editor && editor.innerHTML === "") {
         document.execCommand("formatBlock", false, "p");
       }
     };
@@ -272,21 +279,22 @@ export default function MarkdownEditor({ content, setContent }) {
   return (
     <div className="min-h-auto">
       <div className="max-w-full mx-auto">
-        <div className="bg-white rounded-t-lg shadow border-b">
+        <div className="bg-white rounded-t-lg shadow border-b sticky top-24 z-10">
           <div className="border-b bg-gray-50 p-3 flex justify-between items-center">
-            <div className="flex gap-1">
+            <div className="flex gap-1 sticky top-0">
               <ToolbarItems
                 onContentChange={debouncedSetContent}
                 editorRef={editorRef}
                 activeFormats={activeFormats}
                 executeCommand={executeCommand}
-                createLink={createLink} // Pass createLink function
+                createLink={createLink}
               />
             </div>
             <div className="flex gap-2">
               <button
                 onClick={toggleEditorFullscreen}
                 title="Toggle Editor Fullscreen"
+                type="button"
                 className="p-2 rounded text-gray-600 hover:bg-gray-100 flex items-center gap-1"
               >
                 <Edit3 className="h-4 w-4" />
@@ -298,6 +306,7 @@ export default function MarkdownEditor({ content, setContent }) {
               </button>
               <button
                 onClick={togglePreviewFullscreen}
+                type="button"
                 title="Toggle Preview Fullscreen"
                 className="p-2 rounded text-gray-600 hover:bg-gray-100 flex items-center gap-1"
               >
@@ -336,6 +345,7 @@ export default function MarkdownEditor({ content, setContent }) {
             <div className="flex-1">
               <EditorContent
                 ref={editorRef}
+                initialContent={editorContent}
                 onContentChange={debouncedSetContent}
               />
             </div>
@@ -358,7 +368,7 @@ export default function MarkdownEditor({ content, setContent }) {
             <div className="flex-1 p-6 overflow-y-auto">
               <div
                 className="markdown"
-                dangerouslySetInnerHTML={{ __html: content }}
+                dangerouslySetInnerHTML={{ __html: editorContent }}
               />
             </div>
           </div>
