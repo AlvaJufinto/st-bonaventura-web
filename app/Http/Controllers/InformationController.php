@@ -16,7 +16,7 @@ class InformationController extends Controller
     $news = News::query()
       ->orderBy('created_at', 'desc')
       ->where('status_id', 3)
-      ->paginate(10);
+      ->paginate(4);
 
 
     return Inertia::render("Information/News", compact('news'));

@@ -1,22 +1,25 @@
-import AsakIcon from "@/assets/icon/home/asak-icon.svg";
-import CategorialIcon from "@/assets/icon/home/categorial-icon.svg";
-import EucharistIcon from "@/assets/icon/home/eucharist-icon.svg";
-import HealthIcon from "@/assets/icon/home/health-icon.svg";
-import KaritatifIcon from "@/assets/icon/home/karitatif-icon.svg";
-import PrayIcon from "@/assets/icon/home/pray-icon.svg";
-import BonaImg from "@/assets/img/st-bonaventura-home.png";
-import BonaLogo from "@/assets/logo/logo-bonaventura.png";
-import ArticleCard from "@/Components/guest/ArticleCard/ArticleCard";
-import Button from "@/Components/guest/Button/Button";
-import Footer from "@/Components/guest/Footer/Footer";
-import LazyImage from "@/Components/guest/LazyImage";
-import Navbar from "@/Components/guest/Navbar/Navbar";
-import NewsCard from "@/Components/guest/NewsCard/NewsCard";
-import { Head, router } from "@inertiajs/react";
+import AsakIcon from '@/assets/icon/home/asak-icon.svg';
+import CategorialIcon from '@/assets/icon/home/categorial-icon.svg';
+import EucharistIcon from '@/assets/icon/home/eucharist-icon.svg';
+import HealthIcon from '@/assets/icon/home/health-icon.svg';
+import KaritatifIcon from '@/assets/icon/home/karitatif-icon.svg';
+import PrayIcon from '@/assets/icon/home/pray-icon.svg';
+import BonaImg from '@/assets/img/st-bonaventura-home.png';
+import BonaLogo from '@/assets/logo/logo-bonaventura.png';
+import ArticleCard from '@/Components/guest/ArticleCard/ArticleCard';
+import Button from '@/Components/guest/Button/Button';
+import Footer from '@/Components/guest/Footer/Footer';
+import LazyImage from '@/Components/guest/LazyImage';
+import Navbar from '@/Components/guest/Navbar/Navbar';
+import NewsCard from '@/Components/guest/NewsCard/NewsCard';
+import {
+  Head,
+  router,
+} from '@inertiajs/react';
 
-import ShortcutCard from "./ShortcutCard";
-import Slider from "./Slider";
-import Statistics from "./Statistics";
+import ShortcutCard from './ShortcutCard';
+import Slider from './Slider';
+import Statistics from './Statistics';
 
 const WeeklyMass = [
   {
@@ -285,7 +288,7 @@ export default function Index({ news, articles }) {
       <div className="outer-wrapper mb-32 gap-10">
         <h1 className="text-center section-title">Berita & Kegiatan</h1>
         <div className="inner-wrapper gap-5 min-h-[600px]">
-          {articles.length > 0 ? (
+          {articles?.length > 0 ? (
             <>
               <ArticleCard data={articles[0]} />
               <div className="w-full grid grid-cols-3 gap-5">
@@ -313,7 +316,7 @@ export default function Index({ news, articles }) {
         <div className="inner-wrapper !items-start">
           <h1 className="text-center w-full section-title">Warta Minggu</h1>
           <div className="py-10 w-full flex flex-col gap-5">
-            {news.length > 0 ? (
+            {news?.length > 0 ? (
               news.map((news, index) => <NewsCard key={index} data={news} />)
             ) : (
               <div className="w-full min-h-80 flex justify-center items-center text-2xl font-secondary font-semibold text-gray-800 leading-tight">

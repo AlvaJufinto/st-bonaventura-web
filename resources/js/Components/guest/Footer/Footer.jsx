@@ -44,7 +44,7 @@ export default function Footer() {
             </p>
             <p className="flex gap-6 items-center font-secondary">
               <img src={PhoneIcon} alt="Icon" />
-              (021) 87704825850
+              (021) 4897347
             </p>
           </div>
 
@@ -60,7 +60,7 @@ export default function Footer() {
             </p>
             <p className="flex gap-4 items-center font-secondary">
               <img src={PhoneIcon} alt="Icon" />
-              +6287704825850
+              +6287704825850 (Chat Only)
             </p>
           </div>
 
