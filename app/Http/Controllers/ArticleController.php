@@ -65,7 +65,7 @@ class ArticleController extends Controller
     // Handle image upload to external service
     $file = $request->file('image');
     $client = new \GuzzleHttp\Client();
-    $PUBLIC_ASSET_URL = env('PUBLIC_ASSET_URL');
+    $PUBLIC_ASSET_URL = config('app.PUBLIC_ASSET_URL');
 
     try {
       // Upload image to external service

@@ -69,7 +69,7 @@ class NewsController extends Controller
 
     $client = new \GuzzleHttp\Client();
 
-    $PUBLIC_ASSET_URL = env('PUBLIC_ASSET_URL');
+    $PUBLIC_ASSET_URL = config('app.PUBLIC_ASSET_URL');
 
     try {
       $response = $client->post("{$PUBLIC_ASSET_URL}/upload", [
