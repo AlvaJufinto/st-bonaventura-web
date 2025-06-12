@@ -80,34 +80,47 @@ class DatabaseSeeder extends Seeder
     ]);
 
     \App\Models\OrganizationType::insert([
+      // 1
       [
         'name' => 'Wilayah',
         'description' => 'Head dari Lingkungan',
       ],
+      // 2
       [
         'name' => 'Lingkungan',
         'description' => 'Lingkungan',
       ],
+      // 3
       [
         'name' => 'Bidang',
         'description' => 'Head dari Seksi dan Komunitas',
       ],
+      // 4
       [
         'name' => 'Seksi',
         'description' => 'Seksi',
       ],
+      // 5
       [
         'name' => 'Bagian',
         'description' => 'Can be Head of Bagian ',
       ],
+      // 6
       [
         'name' => 'Komunitas',
         'description' => 'Can be Head of Bagian',
       ],
+      // 7
       [
         'name' => 'Tim',
         'description' => 'Can be Head of Bagian',
       ],
+      // 8
+      [
+        'name' => 'BagianAnak',
+        'description' => 'Can be Head of Bagian ',
+      ],
+      // 9
       [
         'name' => 'Paroki',
         'description' => 'Paroki Aja',
@@ -116,7 +129,7 @@ class DatabaseSeeder extends Seeder
 
     Organization::create([
       'name' => "Paroki",
-      'organization_type_id' => 8,
+      'organization_type_id' => 9,
       'description' => "Bydefault punya paroki",
       'status_id' => 3,
       'head_id' => 1,

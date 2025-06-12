@@ -1,4 +1,5 @@
 import DownloadIcon from "@/assets/icon/download.svg";
+import WhatsappIcon from "@/assets/icon/whatsapp.svg";
 import Baptism from "@/assets/img/sacrament/baptism.png";
 import Communion from "@/assets/img/sacrament/communion.png";
 import Confirmation from "@/assets/img/sacrament/confirmation.png";
@@ -163,6 +164,14 @@ export default function Header({ children, type = "Baptis" }) {
                   ))}
                 </div>
               )}
+              <a
+                href="https://api.whatsapp.com/send?phone=6287704825850"
+                target="_blank"
+                className="flex gap-4 items-center text-sm font-secondary bg-b300 py-2 px-4 w-fit text-n100 uppercase font-bold"
+              >
+                <img src={WhatsappIcon} className="size-8 " alt="Icon" />
+                Hubungi Sekretariat +6287704825850
+              </a>
             </div>
           </div>
           <div>{children}</div>

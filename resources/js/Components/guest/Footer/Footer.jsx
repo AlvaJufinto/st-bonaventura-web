@@ -1,10 +1,10 @@
-import IGLogo from '@/assets/icon/socials/ig-icon.svg';
-import MailIcon from '@/assets/icon/socials/mail-icon.svg';
-import PhoneIcon from '@/assets/icon/socials/phone-icon.svg';
-import TikTokLogo from '@/assets/icon/socials/tiktok-icon.svg';
-import YTLogo from '@/assets/icon/socials/yt-icon.svg';
-import WhatsappIcon from '@/assets/icon/whatsapp.svg';
-import LogoBona from '@/assets/logo/logo-bona.svg';
+import IGLogo from "@/assets/icon/socials/ig-icon.svg";
+import MailIcon from "@/assets/icon/socials/mail-icon.svg";
+import PhoneIcon from "@/assets/icon/socials/phone-icon.svg";
+import TikTokLogo from "@/assets/icon/socials/tiktok-icon.svg";
+import YTLogo from "@/assets/icon/socials/yt-icon.svg";
+import WhatsappIcon from "@/assets/icon/whatsapp.svg";
+import LogoBona from "@/assets/logo/logo-bona.svg";
 
 const socials = [
   {
@@ -59,10 +59,14 @@ export default function Footer() {
             <p className="mb-5 text-sm text-y900 font-secondary font-semibold">
               Tanggal Merah Nasional LIBUR
             </p>
-            <p className="flex gap-4 items-center font-secondary">
+            <a
+              href="https://api.whatsapp.com/send?phone=6287704825850"
+              target="_blank"
+              className="flex gap-4 items-center font-secondary"
+            >
               <img src={WhatsappIcon} className="size-8 " alt="Icon" />
               +6287704825850 (Chat Only)
-            </p>
+            </a>
           </div>
 
           {/* Address Section */}

@@ -2,59 +2,12 @@ import PlaceHolderImg from "@/assets/img/placeholder.png";
 import Footer from "@/Components/guest/Footer/Footer";
 import LazyImage from "@/Components/guest/LazyImage";
 import Navbar from "@/Components/guest/Navbar/Navbar";
+import { titleName } from "@/utils";
 import { Head } from "@inertiajs/react";
 
 import { usePageBlock } from "./usePageBlock";
 
-//   { title: "Ketua Umum DP / PGDP", name: "Romo Stephanus Royke Djakarya Pr" },
-//   { title: "Ketua I DP / PGDP", name: "Antonius Arfin Samosir, Pr." },
-//   { title: "Wakil Ketua I DP / PGDP", name: "Hubertus Hartono Sondakh" },
-//   { title: "Wakil Ketua II DP / PGDP", name: "Thomas Lim Kian Heng" },
-//   { title: "Sekretaris I DP / PGDP", name: "Ivon Sri Darmayanti" },
-//   {
-//     title: "Sekretaris II DP / PGDP",
-//     name: "Andreas Henry Mixson Lumban Batu",
-//   },
-//   { title: "Sekretaris III DP / PGDP", name: "Maria Odilia Damayanti" },
-//   { title: "Bendahara I DP / PGDP", name: "Caecilia Supojo Niniek Dhamayanti" },
-//   { title: "Bendahara II DP / PGDP", name: "Marcelina Felicia Linda Wiryadi" },
-//   { title: "Bendahara III DP / PGDP", name: "Carolus Boromeus Dedi" },
-//   { title: "Bidang Peribadatan", name: "Stephanus Pudji Ludianto" },
-//   { title: "Bidang Pewartaan", name: "Fransiskus Xaverius Yanuar Ekaputra" },
-//   { title: "Bidang Pewartaan", name: "Maria Mili Fonge" },
-//   {
-//     title: "Bidang Persekutuan & Pendampingan Teritorial dan Kategorial",
-//     name: "Martinus Robert Polana",
-//   },
-//   {
-//     title: "Bidang Persekutuan & Pendampingan Teritorial dan Kategorial",
-//     name: "Ferry Olin Binsar",
-//   },
-//   { title: "Bidang Pelayanan & Team Khusus", name: "Theresia Ferrania" },
-//   { title: "Bidang Pelayanan & Team Khusus", name: "Agnes Amelia Yowanda" },
-//   { title: "Bidang Kesaksian", name: "Fransiskus Xaverius Adviadi Nugroho" },
-//   {
-//     title: "Bidang Pelatihan dan Pengembangan Paroki",
-//     name: "Marianus Ari Winarto",
-//   },
-//   {
-//     title: "Bidang Perencanaan & Evaluasi",
-//     name: "Yohanes Bambang Kristianto",
-//   },
-//   { title: "Bidang Perencanaan & Evaluasi", name: "Bernadus Wibisanto" },
-//   { title: "Pendampingan Bagian", name: "Fredericus Sugiarso Budihardjo" },
-// ];
-
 function CouncilCard({ type = "primary", data }) {
-  console.log("🚀 ~ CouncilCard ~ data:", data);
-  const titleName = {
-    1: "Koordinator",
-    2: "Ketua",
-    4: "Penanggung Jawab",
-    5: "Penanggung Jawab",
-    6: "Penanggung Jawab",
-  };
-
   const title =
     type == "primary"
       ? data?.title
@@ -74,7 +27,7 @@ function CouncilCard({ type = "primary", data }) {
         className={`disabled !h-60 object-cover !w-60 ${
           profilePicture ? "" : "border"
         }`}
-        alt=""
+        alt="name"
       />
       <h1 className="text-center text-xl font-secondary font-semibold text-b300">
         {title}
@@ -85,7 +38,6 @@ function CouncilCard({ type = "primary", data }) {
 }
 
 export default function Council({ councils, councilsSecond }) {
-  console.log("🚀 ~ Council ~ councils:", councils);
   const isBlocked = usePageBlock();
 
   return (

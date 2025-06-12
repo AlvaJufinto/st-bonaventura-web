@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -23,7 +24,7 @@ class BidangController extends Controller
 
   public function showGuest(Organization $bidang)
   {
-    if (in_array($bidang->organization_type_id != 3, [3, 5]) || $bidang->status_id != 3) {
+    if (!in_array($bidang->organization_type_id, [3, 5]) || $bidang->status_id != 3) {
       abort(404);
     }
 
@@ -32,6 +33,37 @@ class BidangController extends Controller
     }]);
 
     return Inertia::render('Bidang/Show', compact('bidang'));
+  }
+
+  public function showDetailGuest(Organization $bidang, string $bidangDetailSlug)
+  {
+    $bidangDetail = Organization::where('slug', $bidangDetailSlug)
+      ->where('parent_id', $bidang->id)->firstOrFail();
+
+    if (!in_array($bidangDetail->organization_type_id, [4, 5, 6, 9])) {
+      abort(404);
+      return;
+    }
+
+
+    $bidangDetail = $bidangDetail->load([
+      'type',
+      'head',
+      'children' => function ($query) {
+        $query->where('organization_type_id', 2)->with(['type', 'head']);
+      },
+    ]);
+
+    $articles = Article::query()
+      ->where('publisher_id', $bidangDetail->id)
+      ->where('status_id', 3)
+      ->whereIn('article_type_id', [1, 2])
+      ->with(['publisher', 'user', 'articleType'])
+      ->orderBy('created_at', 'desc')
+      ->paginate(7);
+
+
+    return Inertia::render('Territorial/Show', ['data' => $bidangDetail, 'articles' => $articles]);
   }
 
   public function approve($id)

@@ -22,6 +22,6 @@ class SharedData
       return collect();
     }
 
-    return Organization::where('organization_type_id', 3)->where('status_id', 3)->get();
+    return Organization::whereIn('organization_type_id', [3, 5])->where('status_id', 3)->get();
   }
 }

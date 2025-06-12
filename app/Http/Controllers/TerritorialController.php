@@ -48,7 +48,7 @@ class TerritorialController extends Controller
       ->paginate(7);
 
 
-    return inertia('Territorial/Show', compact('territory', 'articles'));
+    return Inertia::render('Territorial/Show', ['data' => $territory, 'articles' => $articles]);
   }
 
 

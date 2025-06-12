@@ -60,3 +60,13 @@ export const articleDateFormatter = (dateString) => {
     year,
   };
 };
+
+export const titleName = {
+  1: "Koordinator",
+  2: "Ketua",
+  4: "Ketua",
+  5: "Ketua",
+  6: "Ketua",
+  7: "Ketua",
+  9: "Ketua",
+};

@@ -65,6 +65,8 @@ Route::prefix('lingkungan')->group(function () {
   Route::get('/{territorial:slug}', [TerritorialController::class, 'showGuest'])->name('lingkungan.guest.show');
 });
 
+Route::get('/bidang-pelayanan/{bidang:slug}/{bidangDetailSlug}', [BidangController::class, 'showDetailGuest'])->name('bidang.guest.detail');
+
 Route::get('/bidang-pelayanan/{bidang:slug}', [BidangController::class, 'showGuest'])->name('bidang.guest.show');
 
 Route::post('/admin/impersonate/stop', [ImpersonateController::class, 'stop'])->name('impersonate.stop');
@@ -89,7 +91,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     return Inertia::render('Dashboard');
   })->name('dashboard');
-
 
   // artikel / berita
   Route::resource('/article', ArticleController::class);

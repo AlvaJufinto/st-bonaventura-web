@@ -80,9 +80,9 @@ class OrganizationSeeder extends Seeder
       'Bagian' => [
         'description' => 'Unit-unit yang bertanggung jawab atas dukungan operasional, pemeliharaan fasilitas, dan keamanan di lingkungan paroki untuk mendukung semua kegiatan.',
         'children' => [
-          'Bagian Pemeliharaan Komplek Gereja' => ['head_id' => null, 'description' => 'Bertanggung jawab atas perawatan, kebersihan, dan perbaikan fasilitas serta aset-aset di komplek gereja.'],
-          'Bagian Rumah Tangga Pastoran' => ['head_id' => null, 'description' => 'Mengelola kebutuhan rumah tangga pastoran, including logistik dan kenyamanan para pastor.'],
-          'Bagian Keamanan' => ['head_id' => null, 'description' => 'Menjaga keamanan dan ketertiban di lingkungan gereja dan pastoran selama kegiatan berlangsung.']
+          'Bagian Pemeliharaan Komplek Gereja' => ['head_id' => null, 'description' => 'Bertanggung jawab atas perawatan, kebersihan, dan perbaikan fasilitas serta aset-aset di komplek gereja.', 'organization_type_id' => 9],
+          'Bagian Rumah Tangga Pastoran' => ['head_id' => null, 'description' => 'Mengelola kebutuhan rumah tangga pastoran, including logistik dan kenyamanan para pastor.', 'organization_type_id' => 9],
+          'Bagian Keamanan' => ['head_id' => null, 'description' => 'Menjaga keamanan dan ketertiban di lingkungan gereja dan pastoran selama kegiatan berlangsung.', 'organization_type_id' => 9]
         ]
       ],
     ];
@@ -107,26 +107,34 @@ class OrganizationSeeder extends Seeder
         throw new \Exception("OrganizationType '{$typeName}' tidak ditemukan.");
       }
 
-      // Parent organizations will not have a head_id assigned from this sequence
+      // Determine the organization_type_id for the parent
+      // If it's explicitly set in $parentData, use that. Otherwise, use the mapped type ID.
+      $parentOrganizationTypeId = $parentData['organization_type_id'] ?? $parentType->id;
+
       $parent = Organization::create([
         'name' => $parentName,
-        'organization_type_id' => $parentType->id,
+        'organization_type_id' => $parentOrganizationTypeId,
         'description' => $parentData['description'],
         'status_id' => 3,
         'head_id' => null, // Parents don't get an auto-incremented head_id from this sequence
       ]);
 
       foreach ($parentData['children'] as $childName => $childInfo) {
-        $firstWord = strtok($childName, ' ');
-        $childTypeName = $typeMapping[$firstWord] ?? 'Seksi';
+        // Prioritize organization_type_id if it's already provided in $childInfo
+        $childOrganizationTypeId = $childInfo['organization_type_id'] ?? null;
 
-        if ($parentName === 'Bagian') {
-          $childTypeName = 'Bagian';
-        }
+        if ($childOrganizationTypeId === null) {
+          $firstWord = strtok($childName, ' ');
+          $childTypeName = $typeMapping[$firstWord] ?? 'Seksi';
 
-        $childType = $organizationTypes[$childTypeName] ?? null;
-        if (!$childType) {
-          throw new \Exception("OrganizationType '{$childTypeName}' tidak ditemukan.");
+          if ($parentName === 'Bagian') {
+            $childTypeName = 'Bagian';
+          }
+          $childType = $organizationTypes[$childTypeName] ?? null;
+          if (!$childType) {
+            throw new \Exception("OrganizationType '{$childTypeName}' tidak ditemukan.");
+          }
+          $childOrganizationTypeId = $childType->id;
         }
 
         // Assign head_id sequentially if it's null and within the desired range (25-55)
@@ -137,7 +145,7 @@ class OrganizationSeeder extends Seeder
 
         Organization::create([
           'name' => $childName,
-          'organization_type_id' => $childType->id,
+          'organization_type_id' => $childOrganizationTypeId,
           'parent_id' => $parent->id,
           'description' => $childInfo['description'],
           'status_id' => 3,

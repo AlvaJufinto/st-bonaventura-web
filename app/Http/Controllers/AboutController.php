@@ -19,7 +19,7 @@ class AboutController extends Controller
 
     $councilsSecond = Organization::query()
       ->with('head')
-      ->whereIn('organization_type_id', [1, 2, 4, 5])
+      ->whereIn('organization_type_id', [1, 2, 4, 6, 7, 8])
       ->get();
 
 
