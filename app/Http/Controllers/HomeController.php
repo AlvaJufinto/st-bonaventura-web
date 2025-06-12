@@ -15,7 +15,8 @@ class HomeController extends Controller
   public function __invoke(Request $request)
   {
     $articles = Article::where('status_id', 3)
-      ->with(['publisher', 'user'])
+      ->whereIn('article_type_id', [1, 2])
+      ->with(['publisher', 'user', 'articleType'])
       ->orderBy('created_at', 'desc')->limit(4)->get();
 
     $news = News::query()

@@ -8,7 +8,7 @@ import Table from "./Table";
 
 export default function Index({ auth, articles, statuses }) {
   const goToPage = (page) => {
-    if (page >= 1 && page <= news.last_page) {
+    if (page >= 1 && page <= articles.last_page) {
       router.visit(route("article.index", { page }));
     }
   };

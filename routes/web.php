@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\ImpersonateController;
 use App\Http\Controllers\BidangController;
+use App\Http\Controllers\CouncilController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\NewsController;
@@ -12,7 +13,10 @@ use App\Http\Controllers\SacramentController;
 use App\Http\Controllers\TerritorialController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WilayahController;
+use App\Models\Article;
+use Carbon\Carbon;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -73,6 +77,16 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     ->name('impersonate.login');
 
   Route::get('/dashboard', function () {
+    $lastRun = Cache::get('articles_expire_last_run');
+
+    if (!$lastRun || Carbon::parse($lastRun)->lt(now()->subDay())) {
+      Article::whereDate('expired_date', '<=', now())
+        ->where('status_id', '!=', 1)
+        ->update(['status_id' => 1]);
+
+      Cache::put('articles_expire_last_run', now());
+    }
+
     return Inertia::render('Dashboard');
   })->name('dashboard');
 
@@ -90,12 +104,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
   Route::patch('/teritorial/{id}/revert', [TerritorialController::class, 'revert'])->name('teritorial.revert');
   Route::resource('/teritorial', TerritorialController::class)->except(['showGuest']);
 
-
   // User
   Route::get('/api/get-users', [UserController::class, 'getUsers'])->name('api.get-users');
   Route::resource('user', UserController::class);
 
   // Bidang
+  Route::patch('/bidang/{id}/approve', [TerritorialController::class, 'approve'])->name('bidang.approve');
+  Route::patch('/bidang/{id}/revert', [TerritorialController::class, 'revert'])->name('bidang.revert');
   Route::resource('/bidang', BidangController::class);
 
 
@@ -104,7 +119,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
+  // DPH
+  Route::post('/dph/reorder', [CouncilController::class, 'reorder'])->name('dph.reorder');
+  Route::resource('/dph', CouncilController::class);
 });
 
 

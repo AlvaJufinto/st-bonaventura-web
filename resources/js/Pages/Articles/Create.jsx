@@ -10,20 +10,32 @@ import TextInput from "@/Components/admin/TextInput";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Wrapper from "@/Layouts/Wrapper";
 import { Transition } from "@headlessui/react";
-import { Head, useForm } from "@inertiajs/react";
+import { Head, router, useForm } from "@inertiajs/react";
 
 import MarkdownEditor from "../../Components/guest/Markdown/MarkdownEditor";
 
-export default function Create({ auth, organizations, statuses }) {
+export default function Create({
+  auth,
+  organizations,
+  statuses,
+  permissions,
+  articleTypes,
+}) {
+  const { allowToPublish } = permissions;
+
   const { data, setData, errors, post, reset, processing, recentlySuccessful } =
     useForm({
       title: "",
       content: "",
-      status_id: 3,
+      status_id: 2,
+      article_type_id: 1,
       published_date: calendarDateFormat(new Date()),
       publisher_id: organizations[0]?.id,
       image: null,
+      expired_date: calendarDateFormat(new Date()),
     });
+
+  console.log("awikwok", data.article_type_id);
 
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -70,6 +82,19 @@ export default function Create({ auth, organizations, statuses }) {
     [statuses]
   );
 
+  const articleTypeOptions = useMemo(
+    () =>
+      articleTypes.map((articleType) => (
+        <option
+          value={articleType.id}
+          key={articleType.id}
+          className="font-secondary capitalize"
+        >
+          {articleType.name}
+        </option>
+      )),
+    [articleTypes]
+  );
   const organizationOptions = useMemo(
     () =>
       organizations.map((organization) => (
@@ -95,6 +120,12 @@ export default function Create({ auth, organizations, statuses }) {
     >
       <Head title="Create new Article" />
       <Wrapper>
+        <PrimaryButton
+          onClick={() => router.visit(route("article.index"))}
+          disabled={processing}
+        >
+          Kembali
+        </PrimaryButton>
         <form className="mt-6 space-y-6" onSubmit={onCreateArticle}>
           {/* Upload Image */}
           <div>
@@ -128,21 +159,23 @@ export default function Create({ auth, organizations, statuses }) {
             <InputError message={errors.title} className="mt-2" />
           </div>
 
-          <div>
-            <InputLabel htmlFor="status" value="Status" />
-            <select
-              id="status"
-              value={data.status_id}
-              onChange={(e) => setData("status_id", e.target.value)}
-              className="font-secondary mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none capitalize focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              <option value="" className="font-secondary">
-                -- Pilih Status --
-              </option>
-              {statusOptions}
-            </select>
-            <InputError message={errors.status_id} className="mt-2" />
-          </div>
+          {allowToPublish && (
+            <div>
+              <InputLabel htmlFor="status" value="Status" />
+              <select
+                id="status"
+                value={data.status_id}
+                onChange={(e) => setData("status_id", e.target.value)}
+                className="font-secondary mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none capitalize focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              >
+                <option value="" className="font-secondary">
+                  -- Pilih Status --
+                </option>
+                {statusOptions}
+              </select>
+              <InputError message={errors.status_id} className="mt-2" />
+            </div>
+          )}
 
           <div>
             <InputLabel htmlFor="published_date" value="Tanggal Publikasi" />
@@ -152,6 +185,36 @@ export default function Create({ auth, organizations, statuses }) {
             />
             <InputError message={errors.published_date} className="mt-2" />
           </div>
+
+          <div>
+            <InputLabel htmlFor="status" value="Tipe Artikel" />
+            <select
+              id="status"
+              value={data.article_type_id}
+              onChange={(e) => setData("article_type_id", e.target.value)}
+              className="font-secondary mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none capitalize focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            >
+              <option value="" className="font-secondary">
+                -- Pilih Type --
+              </option>
+              {articleTypeOptions}
+            </select>
+            <InputError message={errors.article_type_id} className="mt-2" />
+          </div>
+
+          {data.article_type_id == 3 && (
+            <div>
+              <InputLabel
+                htmlFor="expired_date"
+                value="Tanggal Pengumuman Expired"
+              />
+              <CustomDatePicker
+                selectedDate={data.expired_date}
+                onDateChange={(date) => setData("expired_date", date)}
+              />
+              <InputError message={errors.expired_date} className="mt-2" />
+            </div>
+          )}
 
           <div>
             <InputLabel htmlFor="publisher" value="Publikasi sebagai :" />

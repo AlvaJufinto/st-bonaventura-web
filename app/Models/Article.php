@@ -18,10 +18,12 @@ class Article extends Model
     'preview',
     'published_date',
     'content',
+    'expired_date',
 
     'publisher_id',
     'user_id',
     'status_id',
+    'article_type_id'
   ];
 
   protected static function booted()
@@ -45,5 +47,10 @@ class Article extends Model
   public function publisher(): BelongsTo
   {
     return $this->belongsTo(Organization::class);
+  }
+
+  public function articleType(): BelongsTo
+  {
+    return $this->belongsTo(ArticleType::class);
   }
 }

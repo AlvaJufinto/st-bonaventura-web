@@ -13,7 +13,7 @@ class BidangController extends Controller
    */
   public function index()
   {
-    $bidang = Organization::where('organization_type_id', 3)->with(['head', 'parent', 'status', 'children' => function ($query) {
+    $bidang = Organization::orWhere('organization_type_id', 3)->with(['head', 'parent', 'status', 'children' => function ($query) {
       $query->with(['head', 'status']);
     }])->get();
 
@@ -23,7 +23,7 @@ class BidangController extends Controller
 
   public function showGuest(Organization $bidang)
   {
-    if ($bidang->organization_type_id != 3 || $bidang->status_id != 3) {
+    if (in_array($bidang->organization_type_id != 3, [3, 5]) || $bidang->status_id != 3) {
       abort(404);
     }
 
@@ -33,6 +33,24 @@ class BidangController extends Controller
 
     return Inertia::render('Bidang/Show', compact('bidang'));
   }
+
+  public function approve($id)
+  {
+    $news = Organization::findOrFail($id);
+    $news->status_id = 3;
+    $news->save();
+
+    return back()->with('success', 'Bidang/Seksi/Kategorial/Seksi/Tim berhasil disetujui.');
+  }
+  public function revert($id)
+  {
+    $news = Organization::findOrFail($id);
+    $news->status_id = 2;
+    $news->save();
+
+    return back()->with('success', 'Bidang/Seksi/Kategorial/Seksi/Tim berhasil dikembalikan menjadi review.');
+  }
+
 
   /**
    * Show the form for creating a new resource.

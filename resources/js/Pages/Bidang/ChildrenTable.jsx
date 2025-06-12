@@ -11,6 +11,18 @@ export default function ChildrenTable({ children }) {
 
   // const { openDetailSidebar } = useDetailSidebar();
 
+  const approveItem = (id) => {
+    patch(route("bidang.approve", id), {
+      preserveScroll: true,
+    });
+  };
+
+  const revertItem = (id) => {
+    patch(route("bidang.revert", id), {
+      preserveScroll: true,
+    });
+  };
+
   return (
     <tr className="border-b border-gray-200">
       <td colSpan={5} className="p-0 pb-10">
@@ -82,6 +94,7 @@ export default function ChildrenTable({ children }) {
 
                   <td className="flex space-x-2 py-2 px-3 text-sm font-secondary">
                     <Button
+                      disabled={processing}
                       type="default"
                       size="sm"
                       // onClick={() => handleEdit(child.id)}
@@ -91,9 +104,10 @@ export default function ChildrenTable({ children }) {
 
                     {child.status_id === 2 && (
                       <Button
+                        disabled={processing}
                         type="success"
                         size="sm"
-                        // onClick={() => handleApprove(child.id)}
+                        onClick={() => approveItem(child.id)}
                       >
                         Approve
                       </Button>
@@ -101,15 +115,17 @@ export default function ChildrenTable({ children }) {
 
                     {child.status_id === 3 && (
                       <Button
+                        disabled={processing}
                         type="warning"
                         size="sm"
-                        onClick={() => handleRevert(child.id)}
+                        onClick={() => revertItem(child.id)}
                       >
                         Revert
                       </Button>
                     )}
 
                     <Button
+                      disabled={processing}
                       type="primary"
                       size="sm"
                       // onClick={() => handleDetail(child)}

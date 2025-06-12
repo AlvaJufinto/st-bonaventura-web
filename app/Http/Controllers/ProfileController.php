@@ -60,4 +60,11 @@ class ProfileController extends Controller
 
     return Redirect::to('/');
   }
+
+  public function organizationIndex(Request $request)
+  {
+
+
+    // return Inertia::render()
+  }
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { usePage } from "@inertiajs/react";
 
-export default function FlashMessage() {
+export default function FlashMessage({ externalFlash = null }) {
   const { flash } = usePage().props;
   const [visible, setVisible] = useState(false);
   const [showing, setShowing] = useState(false);
@@ -11,18 +11,20 @@ export default function FlashMessage() {
   const [progress, setProgress] = useState(100);
 
   useEffect(() => {
-    if (flash.success) {
+    const realFlash = externalFlash || flash;
+
+    if (realFlash.success) {
       setType("success");
-      setMessage(flash.success);
+      setMessage(realFlash.success);
       setVisible(true);
       setProgress(100);
-    } else if (flash.error) {
+    } else if (realFlash.error) {
       setType("error");
-      setMessage(flash.error);
+      setMessage(realFlash.error);
       setVisible(true);
       setProgress(100);
     }
-  }, [flash]);
+  }, [flash, externalFlash]);
 
   useEffect(() => {
     if (visible) {

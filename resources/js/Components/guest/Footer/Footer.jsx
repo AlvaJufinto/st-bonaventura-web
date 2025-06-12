@@ -1,9 +1,10 @@
-import IGLogo from "@/assets/icon/socials/ig-icon.svg";
-import MailIcon from "@/assets/icon/socials/mail-icon.svg";
-import PhoneIcon from "@/assets/icon/socials/phone-icon.svg";
-import TikTokLogo from "@/assets/icon/socials/tiktok-icon.svg";
-import YTLogo from "@/assets/icon/socials/yt-icon.svg";
-import LogoBona from "@/assets/logo/logo-bona.svg";
+import IGLogo from '@/assets/icon/socials/ig-icon.svg';
+import MailIcon from '@/assets/icon/socials/mail-icon.svg';
+import PhoneIcon from '@/assets/icon/socials/phone-icon.svg';
+import TikTokLogo from '@/assets/icon/socials/tiktok-icon.svg';
+import YTLogo from '@/assets/icon/socials/yt-icon.svg';
+import WhatsappIcon from '@/assets/icon/whatsapp.svg';
+import LogoBona from '@/assets/logo/logo-bona.svg';
 
 const socials = [
   {
@@ -59,7 +60,7 @@ export default function Footer() {
               Tanggal Merah Nasional LIBUR
             </p>
             <p className="flex gap-4 items-center font-secondary">
-              <img src={PhoneIcon} alt="Icon" />
+              <img src={WhatsappIcon} className="size-8 " alt="Icon" />
               +6287704825850 (Chat Only)
             </p>
           </div>
@@ -92,13 +93,13 @@ export default function Footer() {
             <p className="font-bold font-secondary">
               Copyright © 2024 All rights reserved
             </p>
-            <a
+            {/* <a
               className="font-watermark text-sm"
               href="https://alvajufinto.vercel.app/"
               target="_blank"
             >
               Designed & Developed by Stanislaus Alva
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

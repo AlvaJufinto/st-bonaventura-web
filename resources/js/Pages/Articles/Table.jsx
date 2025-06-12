@@ -1,22 +1,14 @@
-import { useState } from "react";
+import Button from '@/Components/admin/Button';
+import ImagePreviewer from '@/Components/guest/ImagePreviewer';
+import {
+  dateFormatter,
+  statusColors,
+} from '@/utils';
+import { router } from '@inertiajs/react';
 
-import Button from "@/Components/admin/Button";
-import InputError from "@/Components/admin/InputError";
-import ImagePreviewer from "@/Components/guest/ImagePreviewer";
-import { dateFormatter, statusColors } from "@/utils";
-import { router, useForm } from "@inertiajs/react";
-
-export default function Table({ articles, statuses }) {
+export default function Table({ articles }) {
+  console.log("🚀 ~ Table ~ articles:", articles);
   const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
-
-  const [editingId, setEditingId] = useState(null);
-
-  const {
-    data: editableData,
-    setData: setEditableData,
-    patch,
-    errors: editErrors,
-  } = useForm({});
 
   const previewItem = (item) => {
     const url = route("article.guest.show", { slug: item.slug });
@@ -25,10 +17,6 @@ export default function Table({ articles, statuses }) {
 
   return (
     <>
-      <InputError
-        message={editErrors.title || editErrors.preview || editErrors.status_id}
-        className="mt-2 font-semibold text-xl"
-      />
       <table className="w-full border-collapse">
         <thead>
           <tr className="bg-gray-800 text-white">
@@ -49,6 +37,12 @@ export default function Table({ articles, statuses }) {
             </th>
             <th className="p-3 text-left font-secondary text-sm uppercase font-semibold">
               User
+            </th>
+            <th className="p-3 text-left font-secondary text-sm uppercase font-semibold">
+              Tipe Artikel
+            </th>
+            <th className="p-3 text-left font-secondary text-sm uppercase font-semibold">
+              Expired Date
             </th>
             <th className="p-3 text-left font-secondary text-sm uppercase font-semibold">
               Status
@@ -102,38 +96,33 @@ export default function Table({ articles, statuses }) {
                   {item.user?.name || "Tidak ada"}
                 </span>
               </td>
+              <td className="p-3 text-sm">
+                <span className="font-secondary text-sm">
+                  {item.article_type?.name || "Tidak ada"}
+                </span>
+              </td>
+              <td className="p-3 text-sm">
+                <span className="font-secondary text-sm">
+                  {item?.expired_date ? dateFormatter(item?.expired_date) : "-"}
+                </span>
+              </td>
               <td className={`p-3 ${statusColors[item.status_id]} text-sm`}>
                 <span className="font-secondary text-sm uppercase tracking-wider font-semibold">
                   {item.status?.name || "Tidak ada"}
                 </span>
               </td>
               <td className="p-3 text-sm flex flex-wrap gap-2">
-                {editingId === item.id ? (
-                  <>
-                    <Button type="primary" onClick={() => saveEdit(item.id)}>
-                      Save
-                    </Button>
-                    <Button type="danger" className="ml-2" onClick={cancelEdit}>
-                      Cancel
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    <Button
-                      type="default"
-                      onClick={() =>
-                        router.visit(
-                          route("article.edit", { article: item.id })
-                        )
-                      }
-                    >
-                      Edit
-                    </Button>
-                    <Button type="info" onClick={() => previewItem(item)}>
-                      Preview
-                    </Button>
-                  </>
-                )}
+                <Button
+                  type="default"
+                  onClick={() =>
+                    router.visit(route("article.edit", { article: item.id }))
+                  }
+                >
+                  Edit
+                </Button>
+                <Button type="info" onClick={() => previewItem(item)}>
+                  Preview
+                </Button>
               </td>
             </tr>
           ))}

@@ -36,6 +36,10 @@ class OrganizationSeeder extends Seeder
           'Komunitas Kategorial Persekutuan Doa Pembaharuan Karismatik Katolik' => ['head_id' => null, 'description' => 'Menghidupkan iman melalui doa bersama, pujian, penyembahan, dan karunia-karunia Roh Kudus.'],
           'Komunitas Kategorial Kerabat Kerja Ibu Teresa / KKIT' => ['head_id' => null, 'description' => 'Terinspirasi oleh karya St. Teresa dari Kalkuta, komunitas ini berfokus pada pelayanan kasih kepada mereka yang paling miskin dan membutuhkan.'],
           'Komunitas Kategorial Meditasi Kitab Suci' => ['head_id' => null, 'description' => 'Menyediakan wadah bagi umat untuk mendalami dan merefleksikan Kitab Suci melalui metode meditasi kontemplatif.'],
+          'Komunitas Kategorial Marriage Encounter' => [
+            'head_id' => null,
+            'description' => 'Komunitas yang bertujuan memperkuat dan memperdalam hubungan suami-istri melalui komunikasi yang lebih terbuka, jujur, dan penuh kasih.'
+          ],
           'Komunitas Kategorial PWK St. Monika' => ['head_id' => null, 'description' => 'Kelompok doa bagi para ibu yang mendoakan anak-anak dan keluarga, meneladani keteladanan St. Monika.'],
           'Komunitas Kategorial Paguyuban Simeon Hanna' => ['head_id' => null, 'description' => 'Wadah bagi para lansia untuk saling mendukung, berbagi iman, dan terus berkarya di usia senja.'],
           'Komunitas Kategorial Wanita Katolik Republik Indonesia' => ['head_id' => null, 'description' => 'Organisasi wanita Katolik yang bergerak di bidang sosial, pendidikan, dan kesejahteraan keluarga.']

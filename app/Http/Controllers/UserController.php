@@ -21,11 +21,10 @@ class UserController extends Controller
 
     // Filter berdasarkan search term jika ada
     if ($search = $request->input('search')) {
-      $query->where(function ($q) use ($search) {
-        $q->where('name', 'like', '%' . $search . '%')
-          ->orWhere('username', 'like', '%' . $search . '%')
-          ->orWhere('email', 'like', '%' . $search . '%');
-      });
+      $query->whereRaw(
+        "MATCH(name, username, email) AGAINST (? IN BOOLEAN MODE)",
+        [$search]
+      );
     }
 
     $users = $query->limit(10)->get();

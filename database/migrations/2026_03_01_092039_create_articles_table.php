@@ -25,6 +25,9 @@ return new class extends Migration
       $table->foreignId('publisher_id')->nullable()->constrained('organizations', 'id')->onDelete('cascade');
       $table->foreignId('user_id')->constrained()->onDelete('cascade');
       $table->foreignId('status_id')->constrained()->onDelete('cascade');
+      $table->foreignId('article_type_id')->constrained()->onDelete('cascade');
+
+      $table->date('expired_date')->nullable();
       $table->timestamps();
     });
   }

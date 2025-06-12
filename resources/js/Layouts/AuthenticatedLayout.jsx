@@ -21,6 +21,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
         allowToSeeAllTerritorial,
         allowToSeeAllPengurus,
         allowToSeeAllBidang,
+        allowToSeeDPH,
       },
     },
   } = usePage();
@@ -55,6 +56,11 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
       href: "user.index",
       name: "Pengurus",
       isVisible: allowToSeeAllPengurus,
+    },
+    {
+      href: "dph.index",
+      name: "DPH",
+      isVisible: allowToSeeDPH,
     },
   ];
   return (

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Button from "@/Components/admin/Button";
 import { statusColors } from "@/utils";
+import { useForm } from "@inertiajs/react";
 
 import ChildrenTable from "./ChildrenTable";
 
@@ -9,6 +10,8 @@ export default function OrganizationTable({ bidang }) {
   const [expandedItems, setExpandedItems] = useState({});
 
   const organizations = bidang || [];
+
+  const { data, setData, patch, reset, processing } = useForm({});
 
   const toggleExpansion = (orgId) => {
     setExpandedItems((prev) => ({
@@ -18,10 +21,17 @@ export default function OrganizationTable({ bidang }) {
   };
 
   const handleEdit = (id) => {};
+  const approveItem = (id) => {
+    patch(route("bidang.approve", id), {
+      preserveScroll: true,
+    });
+  };
 
-  const handleApprove = (id) => {};
-
-  const handleRevert = (id) => {};
+  const revertItem = (id) => {
+    patch(route("bidang.revert", id), {
+      preserveScroll: true,
+    });
+  };
 
   const handleDetail = (org) => {};
 
@@ -85,21 +95,38 @@ export default function OrganizationTable({ bidang }) {
                 </span>
               </td>
               <td className="p-3 text-sm flex flex-wrap gap-2">
-                <Button onClick={() => handleEdit(org.id)}>Edit</Button>
+                <Button
+                  disabled={processing}
+                  onClick={() => handleEdit(org.id)}
+                >
+                  Edit
+                </Button>
 
                 {org.status_id === 2 && (
-                  <Button type="success" onClick={() => handleApprove(org.id)}>
+                  <Button
+                    disabled={processing}
+                    type="success"
+                    onClick={() => approveItem(org.id)}
+                  >
                     Approve
                   </Button>
                 )}
 
                 {org.status_id === 3 && (
-                  <Button type="warning" onClick={() => handleRevert(org.id)}>
+                  <Button
+                    disabled={processing}
+                    type="warning"
+                    onClick={() => revertItem(org.id)}
+                  >
                     Revert
                   </Button>
                 )}
 
-                <Button type="primary" onClick={() => handleDetail(org)}>
+                <Button
+                  disabled={processing}
+                  type="primary"
+                  onClick={() => handleDetail(org)}
+                >
                   Detail
                 </Button>
               </td>

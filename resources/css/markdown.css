@@ -74,6 +74,8 @@
   color: #6b7280;
   background: #f9fafb;
   border-radius: 0 0.5rem 0.5rem 0;
+  line-height: 1.75rem;
+  font-family: "Frank Ruhl Libre" !important;
 }
 
 .markdown div[data-youtube-video] {

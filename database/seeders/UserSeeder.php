@@ -293,7 +293,7 @@ class UserSeeder extends Seeder
       ],
       [
         'username' => 'christina.ambarwati',
-        'name' => 'Ibu Christina Ambarwati & Bp. Ishidorus Reza Primahendra',
+        'name' => 'Ibu Christina Ambarwati',
         'email' => 'christina.ambarwati@stbonaventura.org',
         'password' => $hashedPassword,
         'email_verified_at' => $now,

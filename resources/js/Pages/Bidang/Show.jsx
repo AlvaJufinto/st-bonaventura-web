@@ -1,8 +1,8 @@
-import Placeholder from "@/assets/img/placeholder.png";
-import Footer from "@/Components/guest/Footer/Footer";
-import LazyImage from "@/Components/guest/LazyImage";
-import Navbar from "@/Components/guest/Navbar/Navbar";
-import { Head } from "@inertiajs/react";
+import Placeholder from '@/assets/img/placeholder.png';
+import Footer from '@/Components/guest/Footer/Footer';
+import LazyImage from '@/Components/guest/LazyImage';
+import Navbar from '@/Components/guest/Navbar/Navbar';
+import { Head } from '@inertiajs/react';
 
 export default function Show({ bidang }) {
   return (
@@ -20,7 +20,7 @@ export default function Show({ bidang }) {
       <div className="outer-wrapper min-h-[500px]">
         <div className="inner-wrapper !py-36 !grid !grid-cols-4 !items-start gap-11 gap-y-32">
           {bidang.children.map((child) => (
-            <div className="h-full w-[250px] flex flex-col justify-start hover:bg-b100 hover:bg-slate-100 transition-all">
+            <div className="h-full w-[250px] flex flex-col justify-start hover:bg-b100 hover:bg-slate-100 transition-all cursor-pointer">
               <LazyImage src={Placeholder} className="w-full !h-[250px]" />
               <div className="space-y-4 h-full flex-1 flex flex-col grow p-4">
                 <h1 className="text-2xl">{child.name}</h1>

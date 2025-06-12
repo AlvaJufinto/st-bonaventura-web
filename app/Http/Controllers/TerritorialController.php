@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\News;
 use App\Models\Organization;
 use App\Models\Status;
@@ -38,10 +39,17 @@ class TerritorialController extends Controller
       },
     ]);
 
+    $articles = Article::query()
+      ->where('publisher_id', $territorial->id)
+      ->where('status_id', 3)
+      ->whereIn('article_type_id', [1, 2])
+      ->with(['publisher', 'user', 'articleType'])
+      ->orderBy('created_at', 'desc')
+      ->paginate(7);
 
-    return inertia('Territorial/Show', compact('territory'));
+
+    return inertia('Territorial/Show', compact('territory', 'articles'));
   }
-
 
 
   public function approve($id)

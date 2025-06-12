@@ -16,6 +16,7 @@ class Organization extends Model
     'organization_type_id',
     'status_id',
     'head_id',
+    'article_type',
     'slug',
     'parent_id',
     'address',

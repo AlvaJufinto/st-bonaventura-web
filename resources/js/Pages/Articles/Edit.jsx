@@ -14,7 +14,13 @@ import { Head, router, useForm } from "@inertiajs/react";
 
 import MarkdownEditor from "../../Components/guest/Markdown/MarkdownEditor";
 
-export default function Edit({ auth, organizations, statuses, article }) {
+export default function Edit({
+  auth,
+  organizations,
+  statuses,
+  article,
+  articleTypes,
+}) {
   const PUBLIC_ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
 
   const { data, setData, errors, patch, processing, recentlySuccessful } =
@@ -22,11 +28,15 @@ export default function Edit({ auth, organizations, statuses, article }) {
       title: article?.title,
       content: article?.content,
       status_id: article?.status_id || 3,
+      article_type_id: article?.article_type_id || 1,
       published_date: article?.published_date
         ? calendarDateFormat(new Date(article.published_date))
         : calendarDateFormat(new Date()),
       publisher_id: article?.publisher_id || organizations[0]?.id,
       image: null,
+      expired_date: article?.expired_date
+        ? calendarDateFormat(new Date(article.expired_date))
+        : calendarDateFormat(new Date()),
     });
 
   const [imagePreview, setImagePreview] = useState(null);
@@ -36,28 +46,37 @@ export default function Edit({ auth, organizations, statuses, article }) {
     if (article.main_image_name) {
       setCurrentImage(`${PUBLIC_ASSET_URL}/uploads/${article.main_image_name}`);
     }
-  }, [article]);
+  }, [article.main_image_name, PUBLIC_ASSET_URL]); // Tambahkan PUBLIC_ASSET_URL ke dependency array
 
   const onUpdateArticle = (e) => {
     e.preventDefault();
 
-    const formData = {
-      _method: "patch",
-      title: data.title || "",
-      content: data.content || "",
-      status_id: data.status_id || "",
-      published_date: data.published_date || "",
-      publisher_id: data.publisher_id || "",
-    };
+    const formData = new FormData();
 
-    if (data.image) {
-      formData.image = data.image;
+    // Add all form fields to FormData
+    formData.append("title", data.title || "");
+    formData.append("content", data.content || "");
+    formData.append("status_id", data.status_id || "");
+    formData.append("article_type_id", data.article_type_id || "");
+    formData.append("published_date", data.published_date || "");
+    formData.append("publisher_id", data.publisher_id || "");
+
+    if (data.article_type_id == 3 && data.expired_date) {
+      formData.append("expired_date", data.expired_date);
     }
 
+    if (data.image) {
+      formData.append("image", data.image);
+    }
+
+    formData.append("_method", "PATCH");
+
     router.post(route("article.update", article.id), formData, {
-      preserveScroll: true,
       onSuccess: () => {
         setImagePreview(null);
+      },
+      onError: (errors) => {
+        console.error("Update errors:", errors);
       },
     });
   };
@@ -92,6 +111,25 @@ export default function Edit({ auth, organizations, statuses, article }) {
     [statuses]
   );
 
+  // Pastikan articleTypes tersedia di props atau dari sumber lain jika tidak ada di 'article'
+  const articleTypeOptions = useMemo(
+    () =>
+      articleTypes.map(
+        (
+          articleType // Gunakan articleTypes dari props
+        ) => (
+          <option
+            value={articleType.id}
+            key={articleType.id}
+            className="font-secondary capitalize"
+          >
+            {articleType.name}
+          </option>
+        )
+      ),
+    [articleTypes] // Dependensi ke prop articleTypes
+  );
+
   const organizationOptions = useMemo(
     () =>
       organizations.map((organization) => (
@@ -117,6 +155,12 @@ export default function Edit({ auth, organizations, statuses, article }) {
     >
       <Head title={`Edit Article: ${article?.title}`} />
       <Wrapper>
+        <PrimaryButton
+          onClick={() => router.visit(route("article.index"))}
+          disabled={processing}
+        >
+          Kembali
+        </PrimaryButton>
         <form className="mt-6 space-y-6" onSubmit={onUpdateArticle}>
           {/* Upload Image */}
           <div>
@@ -198,6 +242,38 @@ export default function Edit({ auth, organizations, statuses, article }) {
             <InputError message={errors.published_date} className="mt-2" />
           </div>
 
+          {/* Added Article Type selection, similar to Create.jsx */}
+          <div>
+            <InputLabel htmlFor="article_type" value="Tipe Artikel" />
+            <select
+              id="article_type"
+              value={data.article_type_id}
+              onChange={(e) => setData("article_type_id", e.target.value)}
+              className="font-secondary mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none capitalize focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            >
+              <option value="" className="font-secondary">
+                -- Pilih Type --
+              </option>
+              {articleTypeOptions}
+            </select>
+            <InputError message={errors.article_type_id} className="mt-2" />
+          </div>
+
+          {/* Conditional Expired Date, similar to Create.jsx */}
+          {data.article_type_id == 3 && (
+            <div>
+              <InputLabel
+                htmlFor="expired_date"
+                value="Tanggal Pengumuman Expired"
+              />
+              <CustomDatePicker
+                selectedDate={data.expired_date}
+                onDateChange={(date) => setData("expired_date", date)}
+              />
+              <InputError message={errors.expired_date} className="mt-2" />
+            </div>
+          )}
+
           <div>
             <InputLabel htmlFor="publisher" value="Publikasi sebagai :" />
             <select
@@ -207,7 +283,7 @@ export default function Edit({ auth, organizations, statuses, article }) {
               className="font-secondary mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none capitalize focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             >
               <option value="" className="font-secondary">
-                -- Pilih Publisher --
+                -- Pilih Type --
               </option>
               {organizationOptions}
             </select>

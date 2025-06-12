@@ -13,7 +13,7 @@ class SharedData
       return collect();
     }
 
-    return Organization::where('organization_type_id', 1)->get();
+    return Organization::where('organization_type_id', 1)->where('status_id', 3)->get();
   }
 
   public static function bidang()
@@ -22,6 +22,6 @@ class SharedData
       return collect();
     }
 
-    return Organization::where('organization_type_id', 3)->get();
+    return Organization::where('organization_type_id', 3)->where('status_id', 3)->get();
   }
 }

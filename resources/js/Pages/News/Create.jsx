@@ -7,7 +7,9 @@ import Wrapper from "@/Layouts/Wrapper";
 import { Transition } from "@headlessui/react";
 import { Head, useForm } from "@inertiajs/react";
 
-export default function Create({ auth, statuses }) {
+export default function Create({ auth, statuses, permissions }) {
+  const { allowToPublish } = permissions;
+  console.log("🚀 ~ Create ~ permissions:", permissions);
   const { data, setData, errors, post, reset, processing, recentlySuccessful } =
     useForm({
       title: "Warta Minggu Paroki Pulomas",
@@ -68,28 +70,30 @@ export default function Create({ auth, statuses }) {
             <InputError message={errors.alternate_title} className="mt-2" />
           </div>
 
-          <div>
-            <InputLabel htmlFor="status" value="Status" />
-            <select
-              id="status"
-              value={data.status_id}
-              onChange={(e) =>
-                setData("status_id", parseInt(e.target.value, 10))
-              }
-              className="font-secondary mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none capitalize focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              {statuses.map((status) => (
-                <option
-                  value={status.id}
-                  key={status.id}
-                  className="capitalize font-secondary"
-                >
-                  {status.name}
-                </option>
-              ))}
-            </select>
-            <InputError message={errors.status} className="mt-2" />
-          </div>
+          {allowToPublish && (
+            <div>
+              <InputLabel htmlFor="status" value="Status" />
+              <select
+                id="status"
+                value={data.status_id}
+                onChange={(e) =>
+                  setData("status_id", parseInt(e.target.value, 10))
+                }
+                className="font-secondary mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none capitalize focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              >
+                {statuses.map((status) => (
+                  <option
+                    value={status.id}
+                    key={status.id}
+                    className="capitalize font-secondary"
+                  >
+                    {status.name}
+                  </option>
+                ))}
+              </select>
+              <InputError message={errors.status} className="mt-2" />
+            </div>
+          )}
 
           <div>
             <InputLabel htmlFor="file" value="Upload PDF" />

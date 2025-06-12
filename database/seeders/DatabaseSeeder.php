@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\ArticleType;
 use App\Models\Organization;
 use Illuminate\Database\Seeder;
 
@@ -26,13 +27,19 @@ class DatabaseSeeder extends Seeder
         [
           'name' => 'moderator',
           'role_level' => 2,
-          'description' => 'for komsos and',
+          'description' => 'for komsos',
         ],
         [
           'name' => 'contributor',
           'role_level' => 3,
           'description' => 'for sektretariat, ketua organisasi e.g. wilayah, lingkungan',
         ],
+        [
+          'name' => 'sekretariat',
+          'role_level' => 3,
+          'description' => 'for sektretariat, ketua organisasi e.g. wilayah, lingkungan',
+
+        ]
       ]
     );
 
@@ -115,10 +122,24 @@ class DatabaseSeeder extends Seeder
       'head_id' => 1,
     ]);
 
+    ArticleType::insert([
+      [
+        "name" => "berita",
+      ],
+      [
+        "name" => "kegiatan",
+      ],
+      [
+        "name" => "pengumuman",
+      ]
+    ]);
+
     $this->call([
       UserSeeder::class,
       WilayahSeeder::class,
       OrganizationSeeder::class,
+      // ArticleSeeder::class,
+      CouncilSeeder::class
     ]);
   }
 }

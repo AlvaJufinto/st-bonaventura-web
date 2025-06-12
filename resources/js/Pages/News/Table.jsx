@@ -4,7 +4,7 @@ import Button from "@/Components/admin/Button";
 import Dropdown from "@/Components/admin/Dropdown";
 import InputError from "@/Components/admin/InputError";
 import { dateFormatter, statusColors } from "@/utils";
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 
 export default function Table({ news }) {
   const [editingId, setEditingId] = useState(null);
@@ -13,7 +13,11 @@ export default function Table({ news }) {
     setData: setEditableData,
     patch,
     errors: editErrors,
+    processing,
   } = useForm({});
+  const {
+    props: { statuses },
+  } = usePage();
 
   const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
 
@@ -174,16 +178,29 @@ export default function Table({ news }) {
               <td className="p-3 text-sm flex flex-wrap gap-2">
                 {editingId === item.id ? (
                   <>
-                    <Button type="primary" onClick={() => saveEdit(item.id)}>
+                    <Button
+                      disabled={processing}
+                      type="primary"
+                      onClick={() => saveEdit(item.id)}
+                    >
                       Save
                     </Button>
-                    <Button type="danger" className="ml-2" onClick={cancelEdit}>
+                    <Button
+                      disabled={processing}
+                      type="danger"
+                      className="ml-2"
+                      onClick={cancelEdit}
+                    >
                       Cancel
                     </Button>
                   </>
                 ) : (
                   <>
-                    <Button type="default" onClick={() => startEditing(item)}>
+                    <Button
+                      disabled={processing}
+                      type="default"
+                      onClick={() => startEditing(item)}
+                    >
                       Edit
                     </Button>
 
