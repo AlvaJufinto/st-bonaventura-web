@@ -40,7 +40,7 @@ class BidangController extends Controller
     $bidangDetail = Organization::where('slug', $bidangDetailSlug)
       ->where('parent_id', $bidang->id)->firstOrFail();
 
-    if (!in_array($bidangDetail->organization_type_id, [4, 5, 6, 9])) {
+    if (!in_array($bidangDetail->organization_type_id, [4, 5, 6, 7, 9])) {
       abort(404);
       return;
     }

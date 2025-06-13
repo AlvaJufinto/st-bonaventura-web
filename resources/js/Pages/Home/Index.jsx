@@ -12,7 +12,7 @@ import Footer from "@/Components/guest/Footer/Footer";
 import LazyImage from "@/Components/guest/LazyImage";
 import Navbar from "@/Components/guest/Navbar/Navbar";
 import NewsCard from "@/Components/guest/NewsCard/NewsCard";
-import { Head, router } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 
 import ShortcutCard from "./ShortcutCard";
 import Slider from "./Slider";
@@ -82,42 +82,72 @@ const FirstFridayMass = [
   },
 ];
 
-const Services = [
+const SERVICES = [
   {
     logo: EucharistIcon,
     name: "Ekaristi",
     description:
       "Perayaan Ekaristi, Devosi dan Doa menjadi dasar kehiudpan umat beriman untuk menjadi semakin serupa dengan Kristus di dunia",
+    url: { name: "communion.guest.index" },
   },
   {
     logo: PrayIcon,
     name: "Komunitas Doa",
     description:
       "Sebab di mana dua atau tiga orang berkumpul dalam nama-Ku, di situ Tuhan hadir di tengah-tengah mereka dan membawa Sukacita",
+    url: {
+      name: "bidang.guest.show",
+      slugs: { bidang: "persekutuan-pendampingan-territorial-dan-kategorial" },
+    },
   },
   {
     logo: CategorialIcon,
     name: "Karya Kategorial",
     description:
       "Karya Kategorial menjadi sarana untuk mewujud-nyatakan Kasih Allah yang semakin konkret dalam kehidupan masyarakat",
+    url: {
+      name: "bidang.guest.show",
+      slugs: { bidang: "persekutuan-pendampingan-territorial-dan-kategorial" },
+    },
   },
   {
     logo: HealthIcon,
     name: "Pelayanan Kesehatan",
     description:
       "Memiliki Tubuh dan Jiwa yang sehat menjadi kebutuhan dasar manusia yang menjadi perhatian khusus bagi Gereja St. Bonaventura",
+    url: {
+      name: "bidang.guest.detail",
+      slugs: {
+        bidang: "pelayanan-tim-khusus",
+        bidangDetailSlug: "seksi-kesehatan",
+      },
+    },
   },
   {
     logo: AsakIcon,
     name: "Pelayanan ASAK",
     description:
       "Pendidikan menjadi dasar bagi setiap pribadi manusia untuk menjadi manusia yang mandiri dan fondasi bagi pribadi untuk menjadi manusia yang sejahtera",
+    url: {
+      name: "bidang.guest.detail",
+      slugs: {
+        bidang: "pelayanan-tim-khusus",
+        bidangDetailSlug: "tim-khusus-asak",
+      },
+    },
   },
   {
     logo: KaritatifIcon,
     name: "Pelayanan Karitatif",
     description:
       "Pelayanan Karitatif menjadi bukti nyata dari pelaksanaan Kasih Kristus kepada sesama, terutama mereka yang miskin, difabel dan tersingkir",
+    url: {
+      name: "bidang.guest.detail",
+      slugs: {
+        bidang: "persekutuan-pendampingan-territorial-dan-kategorial",
+        bidangDetailSlug: "komunitas-kategorial-kerabat-kerja-ibu-teresa-kkit",
+      },
+    },
   },
 ];
 
@@ -257,9 +287,11 @@ export default function Index({ news, articles }) {
             Karya Pelayanan Santo Bonaventura Pulo Mas
           </h1>
           <div className="grid grid-cols-3 gap-20">
-            {Services.map((service, index) => (
-              <div
+            {SERVICES.map((service, index) => (
+              <Link
                 key={index}
+                target="_blank"
+                href={route(service.url.name, service.url.slugs ?? {})}
                 className="p-10 flex flex-col gap-6 items-start bg-b100"
               >
                 <img src={service.logo} alt={service.name} className="h-16" />
@@ -267,7 +299,7 @@ export default function Index({ news, articles }) {
                   <h1 className="text-2xl">{service.name}</h1>
                   <p className="font-secondary">{service.description}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

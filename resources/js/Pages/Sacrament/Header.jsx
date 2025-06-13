@@ -167,7 +167,7 @@ export default function Header({ children, type = "Baptis" }) {
               <a
                 href="https://api.whatsapp.com/send?phone=6287704825850"
                 target="_blank"
-                className="flex gap-4 items-center text-sm font-secondary bg-b300 py-2 px-4 w-fit text-n100 uppercase font-bold"
+                className="flex gap-4 items-center text-sm font-secondary bg-b300 py-2 px-4 w-3/4 text-n100 uppercase font-bold"
               >
                 <img src={WhatsappIcon} className="size-8 " alt="Icon" />
                 Hubungi Sekretariat +6287704825850
