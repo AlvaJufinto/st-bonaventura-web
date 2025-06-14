@@ -36,17 +36,21 @@ export default function Saint() {
       <Head title="Santo Pelindung"></Head>
       <Navbar />
       <div className="img-background outer-wrapper">
-        <div className="inner-wrapper !items-start !pt-40 !pb-20">
-          <p className="small-title">SANTO PELINDUNG</p>
-          <h1 className="text-b300 section-title">Tentang Santo Bonaventura</h1>
+        <div className="inner-wrapper !items-start !pt-40 sm:!pt-32 !pb-12 sm:!pb-16 md:!pb-20 px-4 sm:px-6 lg:px-8">
+          <p className="small-title w-full text-center lg:text-left">
+            SANTO PELINDUNG
+          </p>
+          <h1 className="text-b300 section-title text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">
+            Tentang Santo Bonaventura
+          </h1>
 
-          <div className="flex gap-5 w-3/4">
+          <div className="flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-8 w-full lg:w-3/4">
             <LazyImage
               src={Hero}
-              className="!w-auto object-cover object-center"
+              className="!w-full md:!w-auto object-cover object-center max-w-sm mx-auto md:mx-0"
               alt="hero-img"
             />
-            <p className="font-secondary text-2xl">
+            <p className="font-secondary text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
               Santo Bonaventura, yang dikenal juga sebagai "Doktor Seraphik,"
               adalah seorang teolog, filsuf, dan biarawan Fransiskan yang hidup
               pada abad ke-13. Nama aslinya adalah Giovanni di Fidanza, dan dia
@@ -59,40 +63,53 @@ export default function Saint() {
         </div>
       </div>
       <div
-        className="outer-wrapper bg-cover bg-center bg-no-repeat h-[400px] gap-5 mb-20"
+        className="outer-wrapper bg-cover bg-center bg-no-repeat h-48 sm:h-64 md:h-80 lg:h-96 xl:h-[400px] gap-3 sm:gap-4 md:gap-5 mb-12 sm:mb-16 md:mb-20 px-4 sm:px-6 lg:px-8"
         style={{
           backgroundImage: `url(${Wide})`,
         }}
       >
-        <h1 className="text-n100 text-6xl">"O Buona ventura!”</h1>
-        <p className="text-n100 text-3xl">“Oh good fortune!”</p>
+        <h1 className="text-n100 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center">
+          "O Buona ventura!"
+        </h1>
+        <p className="text-n100 text-lg sm:text-xl md:text-2xl lg:text-3xl text-center">
+          "Oh good fortune!"
+        </p>
       </div>
       <div className="outer-wrapper">
-        <div className="inner-wrapper gap-24 !items-start">
-          <div className="grid grid-cols-3 gap-14">
+        <div className="inner-wrapper gap-12 sm:gap-16 md:gap-20 lg:gap-24 !items-start px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 sm:gap-10 md:gap-12 lg:gap-14">
             {BIOGRAPHY.map((bio, index) => (
-              <div className="flex flex-col gap-5 justify-between">
-                <div className="flex flex-col gap-5">
-                  <h1 className="text-2xl text-b300">{bio.title}</h1>
-                  <p className="font-secondary text-justify">
+              <div
+                key={index}
+                className="flex flex-col gap-4 sm:gap-5 justify-between"
+              >
+                <div className="flex flex-col gap-4 sm:gap-5">
+                  <h1 className="text-lg sm:text-xl md:text-2xl text-b300">
+                    {bio.title}
+                  </h1>
+                  <p className="font-secondary text-sm sm:text-base text-justify">
                     {bio.description}
                   </p>
                 </div>
                 <LazyImage
                   src={bio.img}
-                  className="mt-10 !h-96 !w-full object-cover"
+                  className="mt-6 sm:mt-8 md:mt-10 !h-48 sm:!h-64 md:!h-80 lg:!h-96 !w-full object-cover"
                   alt={bio.title}
                 />
               </div>
             ))}
           </div>
-          <div className="mb-80">
-            <h1 className="text-3xl text-b300 mb-8">
+          <div className="mb-40 sm:mb-60 md:mb-80 w-full">
+            <h1 className="text-xl sm:text-2xl md:text-3xl text-b300 mb-4 sm:mb-6 md:mb-8">
               Pengakuan Sebagai Santo dan Pengaruhnya
             </h1>
-            <div className="flex gap-10 w-3/4">
-              <LazyImage className="!w-auto" src={biography4} alt="Biography" />
-              <p className="font-secondary text-xl">
+            <div className="flex flex-col md:flex-row gap-6 sm:gap-8 md:gap-10 w-full lg:w-3/4">
+              <LazyImage
+                className="!w-full md:!w-auto max-w-sm mx-auto md:mx-0"
+                src={biography4}
+                alt="Biography"
+              />
+              <p className="font-secondary text-sm sm:text-base md:text-lg lg:text-xl">
                 Bonaventura diangkat menjadi Kardinal oleh Paus Gregorius X pada
                 1273 dan menghadiri Konsili Lyon II pada tahun 1274. Namun,
                 tidak lama setelah itu, ia meninggal pada usia 53 tahun.

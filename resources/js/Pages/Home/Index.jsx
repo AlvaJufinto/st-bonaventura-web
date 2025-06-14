@@ -179,7 +179,7 @@ function MassInformationSection({ title, data }) {
   return (
     <div>
       <div className="py-3 border border-black border-x-0">
-        <h1 className="border-top uppercase tracking-widest text-xl">
+        <h1 className="border-top uppercase tracking-widest text-lg md:text-xl">
           {title}
         </h1>
       </div>
@@ -187,7 +187,7 @@ function MassInformationSection({ title, data }) {
         {data.map((mass, index) => (
           <div key={index}>
             {mass.day && (
-              <h1 className="font-secondary text-xl font-bold mb-3">
+              <h1 className="font-secondary text-lg md:text-xl font-bold mb-3">
                 {mass.day}
               </h1>
             )}
@@ -197,9 +197,11 @@ function MassInformationSection({ title, data }) {
                   key={dataIndex}
                   className="font-secondary flex justify-between"
                 >
-                  <p className="font-secondary text-lg">{data.time}</p>
+                  <p className="font-secondary text-base md:text-lg">
+                    {data.time}
+                  </p>
                   <p
-                    className={`font-secondary text-lg uppercase ${
+                    className={`font-secondary text-base md:text-lg uppercase ${
                       data.type.includes("online") ? "text-b200 font-bold" : ""
                     }`}
                   >
@@ -217,20 +219,20 @@ function MassInformationSection({ title, data }) {
 
 function IntroductionLeft() {
   return (
-    <div className="bg-white h-full flex-1 shadow-basic flex  items-stretch gap-10">
+    <div className="bg-white h-full flex-1 shadow-basic flex flex-col lg:flex-row items-stretch gap-4 lg:gap-10 p-6 lg:p-0">
       <LazyImage
         src={BonaImg}
-        className="!h-auto !w-[310px] object-cover"
+        className="!h-3/4 lg:!h-auto !w-full lg:!w-[310px] object-cover rounded lg:rounded-none"
         alt="Bonaventura Image"
       />
-      <div className="py-12">
-        <p className="font-secondary text-sm font-bold">
+      <div className="py-4 lg:py-12 flex-1">
+        <p className="font-secondary text-sm font-bold mb-2">
           Tentang Paroki Pulomas
         </p>
-        <h1 className="mt-[6px] text-b200 text-3xl">
+        <h1 className="text-b200 text-xl md:text-2xl lg:text-3xl leading-tight mb-4">
           Selamat Datang di Gereja Santo Bonaventura Paroki Pulo Mas
         </h1>
-        <p className="pt-[20px] text-lg font-secondary">
+        <p className="text-sm md:text-base lg:text-lg font-secondary leading-relaxed">
           Gereja Santo Bonaventura adalah Gereja Katolik yang terletak di Pulo
           Mas, Jakarta Timur. Gereja St. Bonaventura berdiri sejak tahun 1977
           dan saat ini dilayani oleh imam Diosesan Jakarta (KAJ). Gereja St.
@@ -239,23 +241,23 @@ function IntroductionLeft() {
           di mana saja.
         </p>
       </div>
-      <img
-        className="pt-[8px] pr-[8px] w-[80px] h-[80px]"
-        src={BonaLogo}
-        alt="Logo Bonaventura"
-      />
+      <div className="flex justify-center lg:justify-start lg:items-start lg:pt-2">
+        <img className="w-16" src={BonaLogo} alt="Logo Bonaventura" />
+      </div>
     </div>
   );
 }
 
 function IntroductionRight() {
   return (
-    <div className="bg-white !h-auto w-[380px] grow-0 shadow-basic flex gap-[40px]">
-      <div className="p-[40px] flex flex-col justify-between">
-        <h1 className="mt-3 text-b200 text-3xl">Jadwal Perayaan Ekaristi</h1>
+    <div className="bg-white !h-auto w-full lg:w-[380px] lg:grow-0 shadow-basic">
+      <div className="p-6 lg:p-[40px] flex flex-col justify-between w-full">
+        <h1 className="text-b200 text-xl md:text-2xl lg:text-3xl mb-6">
+          Jadwal Perayaan Ekaristi
+        </h1>
         <MassInformationSection title="Misa Mingguan" data={WeeklyMass} />
         <Button
-          className="w-full mt-10"
+          className="w-full mt-8 lg:mt-10"
           onClick={() => router.replace("#jadwal-misa")}
         >
           Selengkapnya
@@ -270,34 +272,48 @@ export default function Index({ news, articles }) {
     <div>
       <Head title="Beranda" />
       <Navbar />
-      <Slider />
-      <div className="w-full relative outer-wrapper">
-        <div className="inner-wrapper !items-stretch !flex-row absolute top-[-80px] flex gap-[20px] min-h-[580px]">
-          {/* LEFT */}
+      {/* Hero Section with full height */}
+      <div className="h-screen flex items-center justify-center">
+        <Slider />
+      </div>
+
+      {/* Introduction Section - Responsive */}
+      <div className="w-full outer-wrapper relative mb-20 lg:mb-0">
+        {/* Mobile: Normal flow, Desktop: Absolute positioning */}
+        <div className="inner-wrapper !items-stretch flex-col lg:!flex-row gap-5 lg:absolute lg:top-[-120px]">
           <IntroductionLeft />
-          {/* RIGHT */}
           <IntroductionRight />
         </div>
       </div>
-      <div className="section-absolute"></div>
+
+      {/* Only add spacing on desktop */}
+      <div className="hidden md:block section-absolute"></div>
       <Statistics />
-      <div className="outer-wrapper !mb-32">
+
+      {/* Services Section - Responsive Grid */}
+      <div className="outer-wrapper !mb-16 lg:!mb-32">
         <div className="inner-wrapper">
-          <h1 className="text-center section-title mb-20">
+          <h1 className="text-center section-title mb-10 lg:mb-20 text-2xl lg:text-4xl">
             Karya Pelayanan Santo Bonaventura Pulo Mas
           </h1>
-          <div className="grid grid-cols-3 gap-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-20">
             {SERVICES.map((service, index) => (
               <Link
                 key={index}
                 target="_blank"
                 href={route(service.url.name, service.url.slugs ?? {})}
-                className="p-10 flex flex-col gap-6 items-start bg-b100"
+                className="p-6 lg:p-10 flex flex-col gap-4 lg:gap-6 items-start bg-b100 hover:shadow-lg transition-shadow"
               >
-                <img src={service.logo} alt={service.name} className="h-16" />
+                <img
+                  src={service.logo}
+                  alt={service.name}
+                  className="h-12 lg:h-16"
+                />
                 <div className="flex flex-col gap-2">
-                  <h1 className="text-2xl">{service.name}</h1>
-                  <p className="font-secondary">{service.description}</p>
+                  <h1 className="text-xl lg:text-2xl">{service.name}</h1>
+                  <p className="font-secondary text-sm lg:text-base">
+                    {service.description}
+                  </p>
                 </div>
               </Link>
             ))}
@@ -305,30 +321,39 @@ export default function Index({ news, articles }) {
         </div>
       </div>
 
-      <div className="outer-wrapper  bg-b100 mb-32">
-        <div className="inner-wrapper !items-start">
-          <div className="py-10 flex gap-20">
+      {/* Shortcuts Section - Responsive */}
+      <div className="outer-wrapper bg-b100 mb-16 lg:mb-32">
+        <div className="inner-wrapper !items-center !lg:items-start">
+          <div className="py-6 lg:py-10 flex flex-col items-center lg:items-start  lg:flex-row gap-8 lg:gap-20 w-full">
             {Shortcuts.map((shortcut, index) => (
-              <ShortcutCard key={index} data={shortcut} />
+              <div key={index} className="flex-1">
+                <ShortcutCard data={shortcut} />
+              </div>
             ))}
           </div>
         </div>
       </div>
-      <div className="outer-wrapper mb-32">
+
+      {/* News Section - Responsive */}
+      <div className="outer-wrapper mb-16 lg:mb-32">
         <div className="inner-wrapper !items-start">
-          <h1 className="text-center w-full section-title">Warta Minggu</h1>
-          <div className="py-10 w-full flex flex-col gap-5">
+          <h1 className="text-center w-full section-title text-2xl lg:text-4xl">
+            Warta Minggu
+          </h1>
+          <div className="py-6 lg:py-10 w-full flex flex-col gap-5">
             {news?.length > 0 ? (
-              news.map((news, index) => <NewsCard key={index} data={news} />)
+              news.map((newsItem, index) => (
+                <NewsCard key={index} data={newsItem} />
+              ))
             ) : (
-              <div className="w-full min-h-80 flex justify-center items-center text-2xl font-secondary font-semibold text-gray-800 leading-tight">
+              <div className="w-full min-h-60 lg:min-h-80 flex justify-center items-center text-xl lg:text-2xl font-secondary font-semibold text-gray-800 leading-tight text-center px-4">
                 Tidak Ada Warta Minggu
               </div>
             )}
           </div>
           {news.length > 0 && (
             <Button
-              className="h-20 px-10"
+              className="h-16 lg:h-20 px-6 lg:px-10"
               onClick={() => router.visit(route("news.guest.index"))}
             >
               Baca Warta Minggu Lain
@@ -336,20 +361,24 @@ export default function Index({ news, articles }) {
           )}
         </div>
       </div>
-      <div className="outer-wrapper mb-32 gap-10">
-        <h1 className="text-center section-title">Berita & Kegiatan</h1>
-        <div className="inner-wrapper gap-5 min-h-[600px] !items-start">
+
+      {/* Articles Section - Responsive */}
+      <div className="outer-wrapper mb-16 lg:mb-32 gap-6 lg:gap-10">
+        <h1 className="text-center section-title text-2xl lg:text-4xl">
+          Berita & Kegiatan
+        </h1>
+        <div className="inner-wrapper gap-5 min-h-[400px] lg:min-h-[600px] !items-start">
           {articles?.length > 0 ? (
             <>
               <ArticleCard data={articles[0]} />
-              <div className="w-full grid grid-cols-3 gap-5">
+              <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
                 {articles.slice(1).map((article, index) => (
                   <ArticleCard key={index} type="secondary" data={article} />
                 ))}
               </div>
               <div className="mt-5 flex">
                 <Button
-                  className="h-20 px-10"
+                  className="h-16 lg:h-20 px-6 lg:px-10"
                   onClick={() => router.visit(route("article.guest.index"))}
                 >
                   Baca Artikel Lain
@@ -357,35 +386,40 @@ export default function Index({ news, articles }) {
               </div>
             </>
           ) : (
-            <div className="w-full min-h-80 flex justify-center items-center text-2xl font-secondary font-semibold text-gray-800 leading-tight">
+            <div className="w-full min-h-60 lg:min-h-80 flex justify-center items-center text-xl lg:text-2xl font-secondary font-semibold text-gray-800 leading-tight text-center px-4">
               Tidak Ada Berita & Kegiatan
             </div>
           )}
         </div>
       </div>
 
-      <div className="h-32" id="jadwal-misa"></div>
-      <div className="outer-wrapper mb-32 bg-b100">
-        <div className="inner-wrapper !py-10">
-          <h1 className="section-title mb-10">Jadwal Perayaan Ekaristi</h1>
-          <div className="grid grid-cols-3 gap-10">
-            <div>
-              <ol className="list-decimal">
-                <li>
+      {/* Mass Schedule Section - Responsive */}
+      <div className="h-16 lg:h-32" id="jadwal-misa"></div>
+      <div className="outer-wrapper mb-16 lg:mb-32 bg-b100">
+        <div className="inner-wrapper !py-6 lg:!py-10">
+          <h1 className="section-title mb-6 lg:mb-10 text-2xl lg:text-4xl">
+            Jadwal Perayaan Ekaristi
+          </h1>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10">
+            <div className="order-2 lg:order-1">
+              <ol className="list-decimal pl-4 space-y-2">
+                <li className="text-sm lg:text-base">
                   Datang lebih awal, sekitar 10-15 menit sebelum misa dimulai.
                 </li>
-                <li>Berpakaian sopan dan rapi.</li>
-                <li>
+                <li className="text-sm lg:text-base">
+                  Berpakaian sopan dan rapi.
+                </li>
+                <li className="text-sm lg:text-base">
                   Disediakan area khusus bagi pengguna kursi roda di dekat
                   tempat duduk lansia.
                 </li>
-                <li>
+                <li className="text-sm lg:text-base">
                   Untuk misa online bisa mengunjungi Channel Youtube Komsos
                   Santo Bonaventura Pulo Mas.
                 </li>
               </ol>
               <Button
-                className="w-full mt-5 py-10"
+                className="w-full mt-5 py-6 lg:py-10 text-sm lg:text-base"
                 onClick={() =>
                   window.open(
                     "https://www.youtube.com/@KomsosBonaventura/streams",
@@ -396,8 +430,10 @@ export default function Index({ news, articles }) {
                 Tonton Misa Live Streaming
               </Button>
             </div>
-            <MassInformationSection title="Misa mingguan" data={WeeklyMass} />
-            <div className="flex flex-col gap-10">
+            <div className="order-1 lg:order-2">
+              <MassInformationSection title="Misa mingguan" data={WeeklyMass} />
+            </div>
+            <div className="flex flex-col gap-6 lg:gap-10 order-3">
               <MassInformationSection title="Misa harian" data={DailyMass} />
               <MassInformationSection
                 title="Jumat Pertama"

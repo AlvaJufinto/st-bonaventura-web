@@ -9,6 +9,7 @@ import Reconciliation from "@/assets/img/sacrament/reconciliation.png";
 import Sick from "@/assets/img/sacrament/sick.png";
 import Button from "@/Components/guest/Button/Button";
 import Footer from "@/Components/guest/Footer/Footer";
+import LazyImage from "@/Components/guest/LazyImage";
 import Navbar from "@/Components/guest/Navbar/Navbar";
 import { Head, Link, usePage } from "@inertiajs/react";
 
@@ -105,14 +106,14 @@ export default function Header({ children, type = "Baptis" }) {
       <Head title={`Sakramen ${type}`}></Head>
       <Navbar />
       <div
-        className="relative outer-wrapper bg-cover bg-center bg-no-repeat h-[75vh] gap-5 mb-20"
+        className="relative outer-wrapper bg-cover bg-center bg-no-repeat h-[60vh] md:h-[75vh] gap-5 mb-12 md:mb-20"
         style={{
           backgroundImage: `url(${HeaderImg})`,
         }}
       >
-        <div className="inner-wrapper !items-start gap-5">
-          <h1 className="text-n100 text-6xl">Sakramen</h1>
-          <p className="text-n100 text-xl font-light w-1/2">
+        <div className="inner-wrapper !items-start gap-3 md:gap-5 px-4 md:px-0">
+          <h1 className="text-n100 text-3xl md:text-6xl">Sakramen</h1>
+          <p className="text-n100 text-base md:text-xl font-light w-full md:w-1/2">
             Sakramen adalah tanda kasih dan rahmat Tuhan yang menguatkan iman
             kita. Melalui sakramen, kita dipanggil untuk semakin dekat dengan
             Tuhan dan hidup dalam kasih-Nya. Di Gereja St. Bonaventura, kami
@@ -120,10 +121,10 @@ export default function Header({ children, type = "Baptis" }) {
             perubahan dalam hidup rohani Anda.
           </p>
         </div>
-        <div className="!py-6 !px-14 !pr-4 inner-wrapper absolute -bottom-12 bg-n100 w-full shadow-basic !grid grid-cols-6 gap-20">
+        <div className="!py-3 md:!py-6 !px-4 md:!px-14 md:!pr-4 inner-wrapper absolute -bottom-6 md:-bottom-12 bg-n100 w-full shadow-basic !grid grid-cols-2 md:grid-cols-6 gap-2 md:gap-20">
           {DATA.map((route, i) => (
             <Link
-              className={`w-1/2 ${
+              className={`text-xs md:text-base ${
                 url === route.url ? "text-b300 font-semibold" : ""
               }`}
               key={i}
@@ -135,30 +136,40 @@ export default function Header({ children, type = "Baptis" }) {
           ))}
         </div>
       </div>
-      <div className="outer-wrapper py-10 pb-40">
-        <div className="inner-wrapper !items-start !justify-start gap-20">
-          <div className="grid grid-cols-2 gap-10">
-            <img src={PAGE_DATA.content.img} alt={PAGE_DATA.name + "Image"} />
-            <div className="flex flex-col gap-8">
-              <h1 className="text-4xl">{PAGE_DATA.content.title}</h1>
+      <div className="outer-wrapper py-6 md:py-10 pb-20 md:pb-40">
+        <div className="inner-wrapper !items-start !justify-start gap-10 md:gap-20 px-4 md:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10">
+            <LazyImage
+              src={PAGE_DATA.content.img}
+              alt={PAGE_DATA.name + "Image"}
+              className="w-full"
+            />
+            <div className="flex flex-col gap-4 md:gap-8">
+              <h1 className="text-2xl md:text-4xl">
+                {PAGE_DATA.content.title}
+              </h1>
               <div className="flex flex-col gap-2">
                 {PAGE_DATA.content.description
                   .split("\n")
                   .map((line, index) => (
-                    <p key={index} className="text-md">
+                    <p key={index} className="text-sm md:text-base">
                       {line}
                     </p>
                   ))}
               </div>
               {PAGE_DATA.content.files && (
-                <div className="flex flex-col gap-5 w-3/4 mt-5">
+                <div className="flex flex-col gap-3 md:gap-5 w-full md:w-3/4 mt-3 md:mt-5">
                   {PAGE_DATA.content.files.map((file, i) => (
                     <Button
                       key={i}
-                      className="gap-5 !justify-start !px-8 !text-left"
+                      className="gap-3 md:gap-5 !justify-start !px-4 md:!px-8 !text-left text-xs md:text-base"
                       onClick={() => window.open(file.url, "_blank")}
                     >
-                      <img src={DownloadIcon} alt="download-icon" />
+                      <img
+                        src={DownloadIcon}
+                        alt="download-icon"
+                        className="w-4 h-4 md:w-6 md:h-6"
+                      />
                       {file.name}
                     </Button>
                   ))}
@@ -167,9 +178,13 @@ export default function Header({ children, type = "Baptis" }) {
               <a
                 href="https://api.whatsapp.com/send?phone=6287704825850"
                 target="_blank"
-                className="flex gap-4 items-center text-sm font-secondary bg-b300 py-2 px-4 w-3/4 text-n100 uppercase font-bold"
+                className="flex gap-2 md:gap-4 items-center text-xs md:text-sm font-secondary bg-b300 py-2 px-3 md:px-4 w-full md:w-3/4 text-n100 uppercase font-bold"
               >
-                <img src={WhatsappIcon} className="size-8 " alt="Icon" />
+                <img
+                  src={WhatsappIcon}
+                  className="w-6 h-6 md:w-8 md:h-8"
+                  alt="Icon"
+                />
                 Hubungi Sekretariat +6287704825850
               </a>
             </div>

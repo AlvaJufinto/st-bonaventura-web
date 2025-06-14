@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import ChevronLeft from "@/assets/icon/chevron-left.svg";
 import ChevronRight from "@/assets/icon/chevron-right.svg";
@@ -13,76 +13,86 @@ const images = [Hero1, Hero2, Hero3, Hero4];
 export default function GallerySlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  }, []);
+
+  const goToSlide = useCallback((index) => {
+    setCurrentIndex(index);
+  }, []);
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 3000); // Slide changes every 3 seconds
-
+    const interval = setInterval(nextSlide, 4000);
     return () => clearInterval(interval);
-  }, [currentIndex]); // Re-run when currentIndex changes
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+  }, [nextSlide]);
 
   return (
-    <div className="outer-wrapper overflow-hidden pb-40">
-      <div className="inner-wrapper">
-        <h1 className="my-10 text-b300 font-semibold flex items-center gap-2 font-secondary tracking-wider uppercase text-2xl">
+    <section className="outer-wrapper overflow-hidden mt-10 pb-20 sm:pb-32 lg:pb-40">
+      <div className="inner-wrapper px-4 sm:px-6 lg:px-8">
+        <h2 className="mb-8 sm:mb-12 text-b300 font-semibold font-secondary tracking-wider uppercase text-xl sm:text-2xl">
           Gallery
-        </h1>
+        </h2>
 
-        {/* Slider Container */}
-        <div className="relative w-full h-[600px] overflow-hidden">
-          <div
-            className="flex w-full h-full transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-          >
-            {images.map((image, index) => (
-              <LazyImage
-                key={index}
-                src={image}
-                alt={`Gallery Image ${index + 1}`}
-                className="w-full h-full object-cover flex-shrink-0"
+        <div className="relative group">
+          {/* Main slider container */}
+          <div className="relative w-full h-64 sm:h-96 lg:h-[500px] xl:h-[600px] overflow-hidden rounded-xl bg-gray-100">
+            <div
+              className="flex h-full transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {images.map((image, index) => (
+                <LazyImage
+                  key={index}
+                  src={image}
+                  alt={`Gallery ${index + 1}`}
+                  className="w-full h-full object-cover flex-shrink-0"
+                />
+              ))}
+            </div>
+
+            {/* Navigation arrows - always visible */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg text-gray-700 p-2 sm:p-3 rounded-full transition-all duration-200"
+              aria-label="Previous image"
+            >
+              <img src={ChevronLeft} alt="" className="w-4 h-4 sm:w-5 sm:h-5" />
+            </button>
+
+            <button
+              onClick={nextSlide}
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg text-gray-700 p-2 sm:p-3 rounded-full transition-all duration-200"
+              aria-label="Next image"
+            >
+              <img
+                src={ChevronRight}
+                alt=""
+                className="w-4 h-4 sm:w-5 sm:h-5"
               />
-            ))}
+            </button>
           </div>
 
-          <button
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full"
-            onClick={prevSlide}
-          >
-            <img className="cursor-pointer" src={ChevronLeft} alt="" />
-          </button>
-
-          <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full"
-            onClick={nextSlide}
-          >
-            <img className="cursor-pointer" src={ChevronRight} alt="" />
-          </button>
-
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+          {/* Dots indicator */}
+          <div className="flex justify-center mt-4 sm:mt-6 gap-2">
             {images.map((_, index) => (
-              <span
+              <button
                 key={index}
-                className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${
-                  index === currentIndex ? "bg-white" : "bg-gray-400"
+                onClick={() => goToSlide(index)}
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? "bg-b300 scale-110"
+                    : "bg-gray-300 hover:bg-gray-400"
                 }`}
-                onClick={() => setCurrentIndex(index)}
-              ></span>
+                aria-label={`Go to slide ${index + 1}`}
+              />
             ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

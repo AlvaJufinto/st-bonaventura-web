@@ -10,7 +10,7 @@ export default function Map({ wilayah }) {
     <div>
       <Head title="Warta Minggu" />
       <Navbar />
-      <div className="outer-wrapper !py-40 !justify-start min-h-svh">
+      <div className="outer-wrapper !py-20 md:!py-40 !justify-start min-h-svh">
         <div className="inner-wrapper !items-start !justify-start relative">
           <div className="mb-5">
             <p className="small-title">teritorial</p>
@@ -18,7 +18,7 @@ export default function Map({ wilayah }) {
           </div>
           <LazyImage src={MapImg} />
         </div>
-        <div className="inner-wrapper !grid grid-cols-4 gap-10 gap-y-24 my-32 !items-stretch">
+        <div className="inner-wrapper !grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-10 gap-y-12 md:gap-y-24 my-16 md:my-32 !items-stretch">
           {wilayah.map((item, index) => (
             <SectorCard key={index} item={item} />
           ))}

@@ -21,7 +21,7 @@ export default function Slider() {
   }, []);
 
   return (
-    <div className="relative w-full h-[85vh] overflow-hidden bg-slate-200">
+    <div className="relative w-full h-screen overflow-hidden bg-slate-200">
       <div
         className="flex w-full h-full transition-transform duration-700 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -33,17 +33,19 @@ export default function Slider() {
 
       <div className="bg-black h-full w-full absolute z-2 top-0 opacity-40"></div>
 
-      <div className="absolute left-0 -translate-y-1/2 top-1/2 outer-wrapper">
-        <div className="inner-wrapper !flex-row !justify-between">
-          <div className="flex flex-col gap-1">
-            <h1 className="text-6xl text-n100">Santo Bonaventura Pulo Mas</h1>
-            <p className="text-n100 text-xl font-secondary tracking-wider">
+      <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 outer-wrapper">
+        <div className="inner-wrapper !flex-col lg:!flex-row !justify-center lg:!justify-between !items-center gap-6 lg:gap-0">
+          <div className="flex flex-col gap-1 text-center lg:text-left">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-n100">
+              Santo Bonaventura Pulo Mas
+            </h1>
+            <p className="text-n100 text-lg sm:text-xl font-secondary tracking-wider">
               PERJALANAN JIWA MENUJU TUHAN
             </p>
           </div>
-          <p className="w-1/6 font-secondary text-n100">
-            “To work up to loving God, start by loving the very humblest and
-            simplest things, and then move up from there.”
+          <p className="w-full lg:w-1/6 italic font-secondary text-n100 text-center lg:text-left text-sm sm:text-base">
+            "To work up to loving God, start by loving the very humblest and
+            simplest things, and then move up from there."
           </p>
         </div>
       </div>

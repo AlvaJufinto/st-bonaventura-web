@@ -45,21 +45,37 @@ export default function Statistics() {
   }, []);
 
   return (
-    <div className="outer-wrapper mb-32" ref={ref}>
-      <div className="inner-wrapper !flex-row">
-        {ChurchStatistic.map((stat, index) => (
-          <div
-            key={index}
-            className={`grow flex flex-col items-center gap-2 ${
-              index !== ChurchStatistic.length - 1
-                ? "border-r border-gray-300"
-                : ""
-            }`}
-          >
-            <p className="text-8xl">{counts[index]}</p>
-            <p className="font-secondary text-b200">{stat.name}</p>
-          </div>
-        ))}
+    <div className="outer-wrapper mb-16 md:mb-32" ref={ref}>
+      <div className="inner-wrapper">
+        {/* Mobile: 2x2 grid, Desktop: horizontal row */}
+        <div className="grid grid-cols-2 md:flex md:flex-row gap-4 md:gap-0 w-full">
+          {ChurchStatistic.map((stat, index) => (
+            <div
+              key={index}
+              className={`flex flex-col items-center gap-2 p-4 md:p-2 ${
+                // Desktop borders (right border except last item)
+                index !== ChurchStatistic.length - 1
+                  ? "md:border-r md:border-gray-300"
+                  : ""
+              } ${
+                // Mobile borders (bottom border for top row items)
+                index < 2 ? "border-b border-gray-300 md:border-b-0" : ""
+              } ${
+                // Mobile borders (right border for left column items)
+                index % 2 === 0 && index !== ChurchStatistic.length - 1
+                  ? "border-r border-gray-300 md:border-r-0"
+                  : ""
+              } md:flex-1`}
+            >
+              <p className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-center">
+                {counts[index]}
+              </p>
+              <p className="font-secondary text-sm sm:text-base md:text-lg text-center px-2">
+                {stat.name}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

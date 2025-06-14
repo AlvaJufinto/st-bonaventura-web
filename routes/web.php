@@ -79,16 +79,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     ->name('impersonate.login');
 
   Route::get('/dashboard', function () {
-    $lastRun = Cache::get('articles_expire_last_run');
-
-    if (!$lastRun || Carbon::parse($lastRun)->lt(now()->subDay())) {
-      Article::whereDate('expired_date', '<=', now())
-        ->where('status_id', '!=', 1)
-        ->update(['status_id' => 1]);
-
-      Cache::put('articles_expire_last_run', now());
-    }
-
     return Inertia::render('Dashboard');
   })->name('dashboard');
 

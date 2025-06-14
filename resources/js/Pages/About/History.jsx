@@ -59,17 +59,19 @@ export default function History() {
       <Head title="Sejarah" />
       <Navbar />
       <div className="img-background outer-wrapper">
-        <div className="inner-wrapper !pt-40 !pb-20">
-          <h1 className="text-b300 section-title w-3/4">
+        <div className="inner-wrapper !pt-24 sm:!pt-32 md:!pt-40 !pb-12 sm:!pb-16 md:!pb-20 px-4 sm:px-6 lg:px-8">
+          <h1 className="text-b300 section-title w-full sm:w-5/6 md:w-3/4 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">
             Perjalanan Panjang Gereja Santo Bonaventura Pulo Mas
           </h1>
-          <LazyImage src={MainHero} alt="main-hero" />
+          <LazyImage src={MainHero} alt="main-hero" className="w-full h-auto" />
         </div>
       </div>
       <div className="outer-wrapper bg-b100">
-        <div className="inner-wrapper !py-20 !items-start gap-7">
-          <h1 className="text-4xl ">Lini Masa Paroki Pulomas</h1>
-          <p className="font-secondary text-md w-3/4">
+        <div className="inner-wrapper !py-12 sm:!py-16 md:!py-20 !items-start gap-4 sm:gap-6 md:gap-7 px-4 sm:px-6 lg:px-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl">
+            Lini Masa Paroki Pulomas
+          </h1>
+          <p className="font-secondary text-sm sm:text-base md:text-lg w-full sm:w-5/6 md:w-3/4">
             Gereja Santo Bonaventura Pulomas, yang dilindungi oleh St.
             Bonaventura, menyimpan sejarah panjang yang sarat dengan dinamika
             dan perkembangan seiring perjalanan waktu. Paroki ini resmi
@@ -82,22 +84,32 @@ export default function History() {
             Pulomas.
           </p>
           <VideoContainer />
-          <div className="my-40">
-            <h1 className="mb-20 text-b300 font-semibold flex items-center gap-2 font-secondary tracking-wider uppercase text-2xl">
+          <div className="my-20 sm:my-32 md:my-40 w-full">
+            <h1 className="mb-12 sm:mb-16 md:mb-20 text-b300 font-semibold flex items-center gap-2 font-secondary tracking-wider uppercase text-lg sm:text-xl md:text-2xl">
               Sejarah Singkat
             </h1>
-            <div className="grid grid-cols-3 gap-10 gap-y-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 md:gap-10 gap-y-12 sm:gap-y-16 md:gap-y-20">
               {TIMELINE.map((data, i) => (
                 <div
                   key={i}
-                  className="flex flex-col gap-5 px-8 py-4 border border-l-blue-800 border-y-0 border-r-0"
+                  className="flex flex-col gap-3 sm:gap-4 md:gap-5 px-4 sm:px-6 md:px-8 py-3 sm:py-4 border border-l-blue-800 border-y-0 border-r-0"
                 >
-                  <h1 className="text-7xl font-semibold">{data.year}</h1>
-                  <p className="font-secondary text-xl font-bold text-b200">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold">
+                    {data.year}
+                  </h1>
+                  <p className="font-secondary text-base sm:text-lg md:text-xl font-bold text-b200">
                     {data.title}
                   </p>
-                  <p className="font-secondary">{data.description}</p>
-                  {data.img && <img src={data.img} alt={data.title} />}
+                  <p className="font-secondary text-sm sm:text-base">
+                    {data.description}
+                  </p>
+                  {data.img && (
+                    <img
+                      src={data.img}
+                      alt={data.title}
+                      className="w-full h-auto"
+                    />
+                  )}
                 </div>
               ))}
             </div>
