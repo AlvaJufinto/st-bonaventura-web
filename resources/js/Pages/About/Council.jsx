@@ -8,6 +8,8 @@ import { Head } from "@inertiajs/react";
 import { usePageBlock } from "./usePageBlock";
 
 function CouncilCard({ type = "primary", data }) {
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+
   const title =
     type == "primary"
       ? data?.title
@@ -23,7 +25,11 @@ function CouncilCard({ type = "primary", data }) {
   return (
     <div className="w-full flex flex-col gap-2 items-center">
       <LazyImage
-        src={profilePicture || PlaceHolderImg}
+        src={
+          profilePicture
+            ? `${ASSET_URL}/uploads/${profilePicture}`
+            : PlaceHolderImg
+        }
         className={`disabled !h-36 md:!h-60 object-cover !w-48 sm:!w-52 md:!w-60 ${
           profilePicture ? "" : "border"
         }`}

@@ -38,12 +38,14 @@ export default function News({ news }) {
           {news.links.map((link, index) => (
             <Link
               key={index}
-              href={`${link.url}#data` || "#"}
-              className={`px-2 md:px-4 text-xl font-secondary py-1 md:py-2 text-b300 rounded mb-2 ${
-                link.active ? "underline" : ""
-              } ${!link.url ? "pointer-events-none" : ""}`}
-              dangerouslySetInnerHTML={{ __html: link.url ? link.label : "" }}
-            />
+              href={`${link.url}#data`}
+              className={` ${link.active ? "underline" : ""}`}
+            >
+              <span
+                className="px-2 md:px-4 text-xl font-secondary py-1 md:py-2 text-b300 rounded mb-2"
+                dangerouslySetInnerHTML={{ __html: link.label }}
+              />
+            </Link>
           ))}
         </div>
       </div>

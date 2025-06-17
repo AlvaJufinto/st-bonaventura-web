@@ -55,14 +55,14 @@ export default function ArticleCard({ type = "primary", data }) {
               : PlaceholderImg
           }
           alt={data.title + " img"}
-          className="w-full h-[150px] lg:!h-[250px] object-cover object-center border border-b-0"
+          className="w-full !h-[150px] lg:!h-[250px] object-cover object-center border border-b-0"
         />
         <div className="p-2 md:p-5 flex flex-col gap-4 md:gap-5 h-full">
           <p className="text-b200 font-secondary font-semibold text-sm">
             {day} {month} {year}
           </p>
           <h1 className="text-b300 text-xl lg:text-3xl">{data.title}</h1>
-          <p className="font-secondary text-xs lg:text-xl font-bold uppercase">
+          <p className="font-secondary text-xs lg:text-base font-bold uppercase">
             {data.article_type.name} — {data.publisher.name}
           </p>
           <div className="flex flex-col gap-4 h-full justify-end">

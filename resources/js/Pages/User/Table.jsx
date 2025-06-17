@@ -28,6 +28,7 @@ const loginAs = (user) => {
 };
 
 export default function Table({ users, searchTerm }) {
+  console.log("🚀 ~ Table ~ users:", users);
   const {
     props: {
       permissions: { canImpersonate },
@@ -96,7 +97,12 @@ export default function Table({ users, searchTerm }) {
               {user.status.name}
             </td>
             <td className="p-3 text-sm flex gap-2">
-              <Button type="default">Detail</Button>
+              <Button
+                type="default"
+                onClick={() => router.visit(route("user.edit", user.id))}
+              >
+                Detail
+              </Button>
               {canImpersonate && (
                 <Button type="primary" onClick={() => loginAs(user)}>
                   Log in as User

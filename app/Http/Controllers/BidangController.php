@@ -14,9 +14,10 @@ class BidangController extends Controller
    */
   public function index()
   {
-    $bidang = Organization::orWhere('organization_type_id', 3)->with(['head', 'parent', 'status', 'children' => function ($query) {
-      $query->with(['head', 'status']);
-    }])->get();
+    $bidang = Organization::whereIn('organization_type_id', [3, 5])
+      ->with(['head', 'parent', 'status', 'children' => function ($query) {
+        $query->with(['head', 'status']);
+      }])->get();
 
 
     return Inertia::render('Bidang/Index', compact('bidang'));

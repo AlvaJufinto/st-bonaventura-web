@@ -72,47 +72,62 @@ Route::get('/bidang-pelayanan/{bidang:slug}', [BidangController::class, 'showGue
 Route::post('/admin/impersonate/stop', [ImpersonateController::class, 'stop'])->name('impersonate.stop');
 
 
-
 // ADMIN
 Route::prefix('admin')->middleware('auth')->group(function () {
   Route::post('/impersonate/{user}', [ImpersonateController::class, 'loginAs'])
-    ->name('impersonate.login');
+    ->name('impersonate.login')
+    ->middleware('check.permission:canImpersonate');
 
   Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
   })->name('dashboard');
 
-  // artikel / berita
   Route::resource('/article', ArticleController::class);
 
   // warta minggu
-  Route::patch('/warta-minggu/{id}/approve', [NewsController::class, 'approve'])->name('warta-minggu.approve');
-  Route::patch('/warta-minggu/{id}/revert', [NewsController::class, 'revert'])->name('warta-minggu.revert');
-  Route::resource('/warta-minggu', NewsController::class);
+  Route::middleware('check.permission:allowToSeeWartaMinggu')->group(function () {
+    Route::patch('/warta-minggu/{id}/approve', [NewsController::class, 'approve'])->name('warta-minggu.approve')->middleware('check.permission:allowToPublish');
+    Route::patch('/warta-minggu/{id}/revert', [NewsController::class, 'revert'])->name('warta-minggu.revert')->middleware('check.permission:allowToPublish');
+    Route::resource('/warta-minggu', NewsController::class);
+  });
 
   // teritorial
-  Route::patch('/teritorial/{id}/approve', [TerritorialController::class, 'approve'])->name('teritorial.approve');
-  Route::patch('/teritorial/{id}/revert', [TerritorialController::class, 'revert'])->name('teritorial.revert');
-  Route::resource('/teritorial', TerritorialController::class)->except(['showGuest']);
+  Route::middleware('check.permission:allowToSeeAllTerritorial')->group(function () {
+    Route::patch('/teritorial/{id}/approve', [TerritorialController::class, 'approve'])->name('teritorial.approve')->middleware('check.permission:allowToPublish');
+    Route::patch('/teritorial/{id}/revert', [TerritorialController::class, 'revert'])->name('teritorial.revert')->middleware('check.permission:allowToPublish');
+    Route::resource('/teritorial', TerritorialController::class)->except(['showGuest']);
+  });
+
 
   // User
-  Route::get('/api/get-users', [UserController::class, 'getUsers'])->name('api.get-users');
-  Route::resource('user', UserController::class);
+  Route::middleware('check.permission:allowToSeeAllPengurus')->group(function () {
+    Route::get('/api/get-users', [UserController::class, 'getUsers'])->name('api.get-users');
+    Route::resource('user', UserController::class);
+    Route::post('/user/{id}/upload-profile-picture', [UserController::class, 'uploadProfilePicture'])
+      ->name('user.upload-profile-picture');
+    Route::post('/user/{id}/remove-profile-picture', [UserController::class, 'removeProfilePicture'])
+      ->name('user.remove-profile-picture');
+  });
+
 
   // Bidang
-  Route::patch('/bidang/{id}/approve', [TerritorialController::class, 'approve'])->name('bidang.approve');
-  Route::patch('/bidang/{id}/revert', [TerritorialController::class, 'revert'])->name('bidang.revert');
-  Route::resource('/bidang', BidangController::class);
+  Route::middleware('check.permission:allowToSeeAllBidang')->group(function () {
+    Route::patch('/bidang/{id}/approve', [BidangController::class, 'approve'])->name('bidang.approve')->middleware('check.permission:allowToPublish');
+    Route::patch('/bidang/{id}/revert', [BidangController::class, 'revert'])->name('bidang.revert')->middleware('check.permission:allowToPublish');
+    Route::resource('/bidang', BidangController::class);
+  });
 
 
   // Profile
+  // Routes
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-  // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+  Route::post('/profile', [ProfileController::class, 'updateWithFile'])->name('profile.update.file');
 
   // DPH
   Route::post('/dph/reorder', [CouncilController::class, 'reorder'])->name('dph.reorder');
-  Route::resource('/dph', CouncilController::class);
+  Route::resource('/dph', CouncilController::class)
+    ->middleware('check.permission:allowToSeeDPH');
 });
 
 

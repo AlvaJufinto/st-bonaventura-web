@@ -110,23 +110,66 @@ class NewsController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, string $id)
+  public function update(Request $request)
   {
-    $request->validate([
-      'title' => 'nullable|string|max:255',
-      'alternate_title' => 'required|string|max:255',
-      'status_id' => 'required|integer|exists:statuses,id',
+    $user = $request->user();
+
+    $validatedData = $request->validate([
+      'name' => 'required|string|max:255',
+      'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+      'profile_picture' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048',
     ]);
 
-    $news = News::findOrFail($id);
+    // Handle profile picture upload
+    if ($request->hasFile('profile_picture')) {
+      $file = $request->file('profile_picture');
 
-    $news->update([
-      'title' => $request->input('title'),
-      'alternate_title' => $request->input('alternate_title'),
-      'status_id' => $request->input('status_id'),
-    ]);
+      $client = new \GuzzleHttp\Client();
+      $PUBLIC_ASSET_URL = config('app.PUBLIC_ASSET_URL');
 
-    return redirect()->route('warta-minggu.index')->with('success', 'Warta Minggu berhasil diupdate');
+      try {
+        $response = $client->post("{$PUBLIC_ASSET_URL}/upload", [
+          'multipart' => [
+            [
+              'name'      => 'file',
+              'contents'  => fopen($file->getPathname(), 'r'),
+              'filename'  => $file->getClientOriginalName(),
+            ],
+          ],
+        ]);
+
+        $responseData = json_decode($response->getBody()->getContents(), true);
+
+        if (!isset($responseData['file']['fileName'])) {
+          return back()->withErrors(['profile_picture' => 'Profile picture upload failed.']);
+        }
+
+        // Delete old profile picture if exists
+        if ($user->profile_picture) {
+          // Optionally delete old file from external service
+          // You might want to implement a delete endpoint
+        }
+
+        $validatedData['profile_picture'] = $responseData['file']['fileName'];
+      } catch (\Exception $e) {
+        return back()->withErrors(['profile_picture' => 'Error uploading profile picture: ' . $e->getMessage()]);
+      }
+    }
+
+    // Remove profile_picture from validated data if no file was uploaded
+    if (!$request->hasFile('profile_picture')) {
+      unset($validatedData['profile_picture']);
+    }
+
+    $user->fill($validatedData);
+
+    if ($user->isDirty('email')) {
+      $user->email_verified_at = null;
+    }
+
+    $user->save();
+
+    return redirect()->route('profile.edit')->with('success', 'Profile updated successfully.');
   }
   /**
    * Remove the specified resource from storage.

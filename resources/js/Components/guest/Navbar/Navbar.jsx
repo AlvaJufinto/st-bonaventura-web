@@ -4,6 +4,8 @@ import Arrow from "@/assets/icon/chevron-left.svg";
 import LogoNavImg from "@/assets/logo/logo-bona-nav.svg";
 import { Link, usePage } from "@inertiajs/react";
 
+import Button from "../Button/Button";
+
 function ScrollToTop() {
   return (
     <div
@@ -131,13 +133,18 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex gap-6">
+          <div className="hidden h-full lg:flex gap-6">
             {LINKS.map((link, index) => {
               if (link.isMenu) {
                 return (
                   <div key={index} className="flex items-center relative group">
-                    <p className="cursor-pointer py-2">{link.name}</p>
-                    <div className="absolute left-0 top-[100%] bg-white shadow-md w-max opacity-0 scale-y-0 origin-top transition-all duration-300 group-hover:opacity-100 group-hover:scale-y-100 z-10 max-w-40">
+                    <p className="cursor-pointer h-full flex items-center justify-center">
+                      {link.name}
+                    </p>
+                    <div
+                      className="absolute left-0 top-[80px] bg-white shadow-md w-max 
+                    opacity-0 scale-y-0 origin-top transition-all duration-300 group-hover:opacity-100 group-hover:scale-y-100 z-10 max-w-40"
+                    >
                       {link.menu.map((submenu, subIndex) => (
                         <Link
                           key={subIndex}
@@ -168,6 +175,13 @@ export default function Navbar() {
                 </Link>
               );
             })}
+            <a
+              href="https://yubileum2025.parokipulomas.org/"
+              className="h-full items-center justify-center flex"
+              target="_blank"
+            >
+              <Button className="h-fit py-4 px-6">Yubelium 2025</Button>
+            </a>
           </div>
 
           {/* Mobile Hamburger Menu Button */}
@@ -204,11 +218,11 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         <div
-          className={`lg:hidden fixed top-20 left-0 w-full bg-white shadow-lg z-40 transition-all duration-300 ${
+          className={`lg:hidden fixed top-20 left-0 w-full px-4 bg-white shadow-lg z-40 transition-all duration-300 ${
             isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <div className="px-4 py-4 max-h-[calc(100vh-5rem)] overflow-y-auto">
+          <div className="py-4 max-h-[calc(100vh-5rem)] overflow-y-auto">
             {LINKS.map((link, index) => {
               if (link.isMenu) {
                 return (
@@ -266,6 +280,13 @@ export default function Navbar() {
               );
             })}
           </div>
+          <a
+            href="https://yubileum2025.parokipulomas.org/"
+            className="pt-4 px-4"
+            target="_blank"
+          >
+            <Button className="h-fit w-full py-4 px-6">Yubelium 2025</Button>
+          </a>
         </div>
       </nav>
       <ScrollToTop />

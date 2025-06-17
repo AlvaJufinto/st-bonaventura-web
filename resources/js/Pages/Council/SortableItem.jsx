@@ -6,8 +6,9 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
 export default function SortableItem({ item }) {
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+
   const { id, title, user } = item;
-  console.log("🚀 ~ SortableItem ~ user:", user);
 
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
@@ -27,7 +28,11 @@ export default function SortableItem({ item }) {
     >
       <GripVertical />
       <LazyImage
-        src={user.profile_picture || PlaceHolderImg}
+        src={
+          user.profile_picture
+            ? `${ASSET_URL}/uploads/${user.profile_picture}`
+            : PlaceHolderImg
+        }
         className="!w-48 aspect-square"
       />
       <div className="space-y-4">

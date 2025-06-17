@@ -9,7 +9,7 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
     <AuthenticatedLayout
       user={auth.user}
       header={
-        <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 className="font-semibold font-secondary text-xl text-gray-800 leading-tight">
           Profile
         </h2>
       }
