@@ -91,7 +91,7 @@ export default function Footer() {
       </div>
 
       <div className="outer-wrapper bg-b100 text-b300 text-center py-4 lg:py-5">
-        <div className="inner-wrapper flex flex-col items-center gap-6 lg:gap-14 py-4 lg:py-5 px-4 md:px-10 lg:px-20">
+        <div className="inner-wrapper flex flex-col items-center gap-6 lg:gap-14 py-4 lg:py-5">
           <div className="flex flex-col items-center lg:items-start gap-3 lg:gap-4 w-full">
             <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 items-center text-center sm:text-left">
               <img
