@@ -8,6 +8,7 @@ export const statusColors = {
   1: "bg-gray-300",
   2: "bg-yellow-300",
   3: "bg-green-300",
+  4: "bg-red-300",
 };
 
 export const getProperty = (type) =>

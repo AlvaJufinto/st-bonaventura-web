@@ -52,6 +52,9 @@ class DatabaseSeeder extends Seeder
       ],
       [
         'name' => 'published',
+      ],
+      [
+        'name' => 'rejected',
       ]
     ]);
 
@@ -59,13 +62,13 @@ class DatabaseSeeder extends Seeder
     \App\Models\User::insert([
       [
         'username' => 'admin',
-        'name' => 'fufufafa',
+        'name' => 'alva',
         'email' => 'alva@stbonaventura.org',
         'password' => bcrypt('AlvaJufinto2005'),
         'email_verified_at' => now(),
         'role_id' => 1,
         'status_id' => 3,
-        'profile_picture' => '2025-05-02-11x51x34-KUI.png',
+        'profile_picture' => '2025-06-17-15x26x38-VAJ.jpg',
       ],
       [
         'username' => 'komsos',
