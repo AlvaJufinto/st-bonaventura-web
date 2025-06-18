@@ -6,7 +6,7 @@ import { Head, router } from "@inertiajs/react";
 
 import Table from "./Table";
 
-export default function Index({ auth, news, statuses }) {
+export default function Index({ auth, news }) {
   const goToPage = (page) => {
     if (page >= 1 && page <= news.last_page) {
       router.visit(route("warta-minggu.index", { page }));

@@ -102,7 +102,7 @@ export default function SelectHead({ data, setData, currentHead }) {
             onClick={() => handleUserSelect(user)}
           >
             <img
-              className="size-10 rounded-full mr-2 flex-shrink-0"
+              className="size-10 rounded-full mr-2 flex-shrink-0 object-cover"
               src={
                 user?.profile_picture
                   ? `${ASSET_URL}/uploads/${user?.profile_picture}`
