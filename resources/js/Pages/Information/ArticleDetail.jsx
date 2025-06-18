@@ -16,7 +16,7 @@ export default function Article({ article }) {
     if (window.history.length > 1) {
       window.history.back();
     } else {
-      router.visit(route("article.guest.index")); // Ganti dengan route default
+      router.visit(route("article.guest.index"));
     }
   };
   return (

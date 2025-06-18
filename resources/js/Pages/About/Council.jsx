@@ -50,13 +50,7 @@ export default function Council({ councils, councilsSecond }) {
 
   return (
     <div className={`relative ${isBlocked ? "blackout" : ""}`}>
-      <Head title="Dewan Paroki">
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, user-scalable=no"
-        />
-        <meta name="mobile-web-app-capable" content="yes" />
-      </Head>
+      <Head title="Dewan Paroki" />
       {isBlocked ? (
         <div className="fixed inset-0 bg-black z-50"></div>
       ) : (

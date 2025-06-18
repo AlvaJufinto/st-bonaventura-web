@@ -324,11 +324,9 @@ export default function Index({ news, articles }) {
       {/* Shortcuts Section - Responsive */}
       <div className="outer-wrapper bg-b100 mb-16 lg:mb-32">
         <div className="inner-wrapper !items-center !lg:items-start">
-          <div className="py-6 lg:py-10 flex flex-col items-center lg:items-start  lg:flex-row gap-8 lg:gap-20 w-full">
+          <div className="py-6 lg:py-10 flex flex-col h-full gap-8 lg:flex-row lg:gap-20 w-full">
             {Shortcuts.map((shortcut, index) => (
-              <div key={index} className="flex-1">
-                <ShortcutCard data={shortcut} />
-              </div>
+              <ShortcutCard key={index} data={shortcut} />
             ))}
           </div>
         </div>

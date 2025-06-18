@@ -24,7 +24,7 @@ const socials = [
 export default function Footer() {
   return (
     <footer className="bg-b300 text-n100 w-full">
-      <div className="outer-wrapper px-4 md:px-10 lg:px-20 py-8 md:py-10 lg:py-14">
+      <div className="outer-wrapper py-8 md:py-10 lg:py-14">
         <div className="inner-wrapper !grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-16 items-start">
           <div className="w-full">
             <h3 className="mb-4 lg:mb-5 text-xl lg:text-2xl">Kontak Kami</h3>
