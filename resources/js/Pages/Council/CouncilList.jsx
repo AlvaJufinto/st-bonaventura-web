@@ -42,7 +42,6 @@ export default function CouncilList({ items }) {
       }
 
       const result = await response.json();
-      console.log("Berhasil update:", result);
     } catch (error) {
       console.error("Gagal update urutan:", error);
     }

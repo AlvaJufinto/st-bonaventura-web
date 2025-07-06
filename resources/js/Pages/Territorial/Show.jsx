@@ -8,7 +8,6 @@ import { titleName } from "@/utils";
 import { Head, Link } from "@inertiajs/react";
 
 export default function Show({ data, articles }) {
-  console.log("🚀 ~ Show ~ data:", data);
   const type = data?.name;
   const title = `${titleName[data?.organization_type_id]} ${type}`;
   const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;

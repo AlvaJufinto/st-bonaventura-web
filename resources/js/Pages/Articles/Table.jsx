@@ -1,13 +1,9 @@
-import Button from '@/Components/admin/Button';
-import ImagePreviewer from '@/Components/guest/ImagePreviewer';
-import {
-  dateFormatter,
-  statusColors,
-} from '@/utils';
-import { router } from '@inertiajs/react';
+import Button from "@/Components/admin/Button";
+import ImagePreviewer from "@/Components/guest/ImagePreviewer";
+import { dateFormatter, statusColors } from "@/utils";
+import { router } from "@inertiajs/react";
 
 export default function Table({ articles }) {
-  console.log("🚀 ~ Table ~ articles:", articles);
   const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
 
   const previewItem = (item) => {

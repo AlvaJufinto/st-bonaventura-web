@@ -15,8 +15,6 @@ export default function UserDetail({ user, roles, statuses, organizations }) {
     organizations: user.organizations?.map((org) => org.id) || [],
   });
 
-  console.log("🚀 ~ Edit ~ organizations:", organizations);
-
   const [selectedOrganizations, setSelectedOrganizations] = useState(
     user.organizations?.map((org) => org.id) || []
   );

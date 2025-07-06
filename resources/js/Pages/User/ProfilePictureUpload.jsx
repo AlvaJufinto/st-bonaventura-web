@@ -8,7 +8,7 @@ export default function ProfilePictureUpload({ user, onUploadSuccess }) {
   const [preview, setPreview] = useState(
     user.profile_picture ? `${ASSET_URL}/uploads/${user.profile_picture}` : null
   );
-  console.log("🚀 ~ ProfilePictureUpload ~ preview:", preview);
+
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef(null);
 

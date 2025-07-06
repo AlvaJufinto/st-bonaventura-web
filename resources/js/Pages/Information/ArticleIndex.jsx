@@ -4,7 +4,6 @@ import Navbar from "@/Components/guest/Navbar/Navbar";
 import { Head, Link } from "@inertiajs/react";
 
 export default function ArticleIndex({ articles }) {
-  console.log("🚀 ~ ArticleIndex ~ articles:", articles);
   return (
     <div>
       <Head title="Berita & Kegiatan" />
