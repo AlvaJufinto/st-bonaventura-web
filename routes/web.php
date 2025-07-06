@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AuditLogController;
 use App\Http\Controllers\Auth\ImpersonateController;
 use App\Http\Controllers\BidangController;
 use App\Http\Controllers\CouncilController;
@@ -148,14 +149,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
       ->name('user.remove-profile-picture');
   });
 
-
   // Bidang
   Route::middleware('check.permission:allowToSeeAllBidang')->group(function () {
     Route::patch('/bidang/{id}/approve', [BidangController::class, 'approve'])->name('bidang.approve')->middleware('check.permission:allowToPublish');
     Route::patch('/bidang/{id}/revert', [BidangController::class, 'revert'])->name('bidang.revert')->middleware('check.permission:allowToPublish');
     Route::resource('/bidang', BidangController::class);
   });
-
 
   // Profile
   // Routes
@@ -167,6 +166,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
   Route::post('/dph/reorder', [CouncilController::class, 'reorder'])->name('dph.reorder');
   Route::resource('/dph', CouncilController::class)
     ->middleware('check.permission:allowToSeeDPH');
+
+  // AuditLog
+  Route::resource('/audit', AuditLogController::class)->middleware('check.permission:allowToSeeAuditLog');
 });
 
 

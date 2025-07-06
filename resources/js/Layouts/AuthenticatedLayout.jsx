@@ -1,17 +1,13 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Logo from '@/assets/logo/logo-bona-nav.svg';
-import Button from '@/Components/admin/Button';
-import Dropdown from '@/Components/admin/Dropdown';
-import NavLink from '@/Components/admin/NavLink';
-import Profile from '@/Components/admin/Profile';
-import {
-  Link,
-  router,
-  usePage,
-} from '@inertiajs/react';
+import Logo from "@/assets/logo/logo-bona-nav.svg";
+import Button from "@/Components/admin/Button";
+import Dropdown from "@/Components/admin/Dropdown";
+import NavLink from "@/Components/admin/NavLink";
+import Profile from "@/Components/admin/Profile";
+import { Link, router, usePage } from "@inertiajs/react";
 
-import FlashMessage from './FlashMessage';
+import FlashMessage from "./FlashMessage";
 
 function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
   const {
@@ -22,6 +18,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
         allowToSeeAllPengurus,
         allowToSeeAllBidang,
         allowToSeeDPH,
+        allowToSeeAuditLog,
       },
     },
   } = usePage();
@@ -61,6 +58,11 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
       href: "dph.index",
       name: "DPH",
       isVisible: allowToSeeDPH,
+    },
+    {
+      href: "audit.index",
+      name: "Audit Log",
+      isVisible: allowToSeeAuditLog,
     },
   ];
   return (

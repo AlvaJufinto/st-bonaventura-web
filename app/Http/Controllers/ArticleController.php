@@ -31,7 +31,7 @@ class ArticleController extends Controller
 
     $relations = ['status', 'user', 'publisher', 'articleType'];
 
-    $articles =  $permissions['allowToseeAllBeritaKegiatan'] ? Article::with($relations)->paginate(10) : Article::with($relations)->where('user_id', $user->id)->paginate(10);
+    $articles =  $permissions['allowToSeeAllBeritaKegiatan'] ? Article::with($relations)->paginate(10) : Article::with($relations)->where('user_id', $user->id)->paginate(10);
 
     return Inertia::render('Articles/Index', compact('articles', 'statuses'));
   }

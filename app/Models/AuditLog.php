@@ -2,26 +2,21 @@
 
 namespace App\Models;
 
-use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Council extends Model
+class AuditLog extends Model
 {
-  use HasFactory;
-  use Auditable;
+  protected $fillable = ['user_id', 'action', 'data'];
 
-  protected $fillable = [
-    'title',
-    'user_id',
-    'order',
+  protected $casts = [
+    'data' => 'array',
   ];
 
-  public function getAuditLabel()
+  public function auditable()
   {
-    return $this->title;
+    return $this->morphTo();
   }
-
 
   public function user()
   {

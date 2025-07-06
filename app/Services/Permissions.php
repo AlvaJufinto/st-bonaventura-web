@@ -14,12 +14,13 @@ class Permissions
       'allowToSeeAllBidang' => $user?->role?->id <= 2,
       'allowToSeeAllTerritorial' => $user?->role?->id <= 2,
       'allowToSeeAllPengurus' => $user?->role?->id <= 2,
-      'allowToseeAllBeritaKegiatan' =>  $user?->role?->id <= 2,
+      'allowToSeeAllBeritaKegiatan' =>  $user?->role?->id <= 2,
 
       'allowToSeeDPH' => $user?->role?->id <= 2,
 
       'allowToPublish' => $user?->role?->id <= 2,
 
+      'allowToSeeAuditLog' =>  $user?->role?->id == 1,
       'canImpersonate' => $user?->role?->id == 1
     ];
   }

@@ -92,22 +92,15 @@ export default function UpdateProfileInformation({
           // Reset local state setelah berhasil
           // setPreviewUrl(null);
           // setShouldRemoveExisting(false);
-          console.log("Profile updated successfully with file changes");
         },
-        onError: (errors) => {
-          console.log("Validation errors:", errors);
-        },
+        onError: (errors) => {},
       });
     } else {
       // Jika tidak ada perubahan file, gunakan PATCH route biasa
       patch(route("profile.update"), {
         preserveScroll: true,
-        onSuccess: () => {
-          console.log("Profile updated successfully");
-        },
-        onError: (errors) => {
-          console.log("Validation errors:", errors);
-        },
+        onSuccess: () => {},
+        onError: (errors) => {},
       });
     }
   };
