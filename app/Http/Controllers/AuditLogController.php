@@ -24,6 +24,8 @@ class AuditLogController extends Controller
           'id' => $log->id,
           'user' => $log->user?->name,
           'action' => AuditAction::from($log->action)->name,
+          'user_agent' => $log?->user_agent,
+          'ip_address' => $log?->ip_address,
           'auditable_type' => class_basename($log->auditable_type),
           'auditable' => [
             'id' => $log->auditable?->id,

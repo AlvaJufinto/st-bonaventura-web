@@ -10,6 +10,8 @@ export default function Table({ logs }) {
           <th className="p-3 text-left font-secondary">Object Type</th>
           <th className="p-3 text-left font-secondary">Object Label</th>
           <th className="p-3 text-left font-secondary">Changes</th>
+          <th className="p-3 text-left font-secondary">IP Address</th>
+          <th className="p-3 text-left font-secondary">User Agent</th>
           <th className="p-3 text-left font-secondary">Timestamp</th>
         </tr>
       </thead>
@@ -40,6 +42,12 @@ export default function Table({ logs }) {
                     </div>
                   ))
                 : "-"}
+            </td>
+            <td className="p-3 text-sm font-secondary">
+              {log.ip_address || "-"}
+            </td>
+            <td className="p-3 text-sm font-secondary">
+              {log.user_agent || "-"}
             </td>
             <td className="p-3 text-sm font-secondary">
               {dateTimeFormatter(log.created_at)}
