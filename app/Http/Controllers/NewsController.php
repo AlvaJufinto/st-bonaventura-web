@@ -60,7 +60,7 @@ class NewsController extends Controller
     $validatedData = $request->validate([
       'title' => 'nullable|string|max:255',
       'alternate_title' => 'required|string|max:255',
-      "file" => 'required|file|mimes:pdf|max:2048',
+      "file" => 'required|file|mimes:pdf|max:12048',
       'user_id' => 'required|integer|exists:users,id',
       'status_id' => 'required|integer|exists:statuses,id',
     ]);
