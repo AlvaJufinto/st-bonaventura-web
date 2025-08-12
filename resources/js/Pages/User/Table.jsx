@@ -28,7 +28,6 @@ const loginAs = (user) => {
 };
 
 export default function Table({ users, searchTerm }) {
-  console.log("🚀 ~ Table ~ users:", users);
   const {
     props: {
       permissions: { canImpersonate },

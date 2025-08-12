@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AuditLogController;
 use App\Http\Controllers\Auth\ImpersonateController;
 use App\Http\Controllers\BidangController;
 use App\Http\Controllers\CouncilController;
@@ -19,6 +20,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Spatie\Crawler\Url as CrawlerUrl;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +34,42 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/sitemap.xml', function () {
+  return Sitemap::create()
+    ->add(Url::create('/')
+      ->setPriority(1.0)
+      ->setChangeFrequency(Url::CHANGE_FREQUENCY_ALWAYS))
+
+    ->add(Url::create('/tentang/dewan-paroki')
+      ->setPriority(1.0)
+      ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY))
+    ->add(Url::create('/tentang/sejarah')
+      ->setPriority(1.0)
+      ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY))
+    ->add(Url::create('/tentang/santo-pelindung')
+      ->setPriority(1.0)
+      ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY))
+
+    ->add(Url::create('/informasi/berita-kegiatan')
+      ->setPriority(1.0)
+      ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
+    ->add(Url::create('/informasi/warta-minggu')
+      ->setPriority(1.0)
+      ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
+
+    ->add(Url::create('/sakramen/baptis'))
+    ->add(Url::create('/sakramen/komuni-pertama'))
+    ->add(Url::create('/sakramen/krisma'))
+    ->add(Url::create('/sakramen/rekonsiliasi'))
+    ->add(Url::create('/sakramen/perminyakan'))
+    ->add(Url::create('/sakramen/perkawinan'))
+
+    ->add(Url::create('/wilayah/peta')
+      ->setPriority(0.9))
+    ->toResponse(request());
+});
+
 
 // PUBLIC
 Route::get('/', HomeController::class)->name('home.guest.index');
@@ -109,14 +149,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
       ->name('user.remove-profile-picture');
   });
 
-
   // Bidang
   Route::middleware('check.permission:allowToSeeAllBidang')->group(function () {
     Route::patch('/bidang/{id}/approve', [BidangController::class, 'approve'])->name('bidang.approve')->middleware('check.permission:allowToPublish');
     Route::patch('/bidang/{id}/revert', [BidangController::class, 'revert'])->name('bidang.revert')->middleware('check.permission:allowToPublish');
     Route::resource('/bidang', BidangController::class);
   });
-
 
   // Profile
   // Routes
@@ -128,6 +166,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
   Route::post('/dph/reorder', [CouncilController::class, 'reorder'])->name('dph.reorder');
   Route::resource('/dph', CouncilController::class)
     ->middleware('check.permission:allowToSeeDPH');
+
+  // AuditLog
+  Route::resource('/audit', AuditLogController::class)->middleware('check.permission:allowToSeeAuditLog');
 });
 
 

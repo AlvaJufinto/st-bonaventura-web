@@ -4,6 +4,20 @@ export function dateFormatter(date) {
   return formattedDate.toLocaleDateString("en-GB", options);
 }
 
+export function dateTimeFormatter(date) {
+  const formattedDate = new Date(date);
+  const options = {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false, // pakai 24 jam
+  };
+  return formattedDate.toLocaleString("en-GB", options);
+}
+
 export const statusColors = {
   1: "bg-gray-300",
   2: "bg-yellow-300",

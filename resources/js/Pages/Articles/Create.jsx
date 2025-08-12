@@ -35,8 +35,6 @@ export default function Create({
       expired_date: calendarDateFormat(new Date()),
     });
 
-  console.log("awikwok", data.article_type_id);
-
   const [imagePreview, setImagePreview] = useState(null);
 
   const onCreateArticle = (e) => {

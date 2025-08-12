@@ -38,6 +38,18 @@
     content="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Tampak_Luar_Gereja_Santo_Bonaventura_2024.png/1920px-Tampak_Luar_Gereja_Santo_Bonaventura_2024.png" />
 
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LP8TLNVZM1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-LP8TLNVZM1');
+  </script>
+
   <!-- Scripts -->
   @routes
   @viteReactRefresh

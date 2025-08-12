@@ -9,7 +9,7 @@ import { Head, useForm } from "@inertiajs/react";
 
 export default function Create({ auth, statuses, permissions }) {
   const { allowToPublish } = permissions;
-  console.log("🚀 ~ Create ~ permissions:", permissions);
+
   const { data, setData, errors, post, reset, processing, recentlySuccessful } =
     useForm({
       title: "Warta Minggu Paroki Pulomas",
