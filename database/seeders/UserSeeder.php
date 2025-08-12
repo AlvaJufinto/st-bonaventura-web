@@ -9,988 +9,945 @@ use App\Models\Role; // Import the Role model if needed to fetch role_id dynamic
 
 class UserSeeder extends Seeder
 {
-  /**
-   * Run the database seeds.
-   */
-  public function run(): void
-  {
-    $hashedPassword = bcrypt('Password123');
-    $now = now(); // Ambil timestamp sekali
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+		$hashedPassword = bcrypt('Password123');
+		$now = now(); // Ambil timestamp sekali
 
 
-    $users = [
-      // ANGGOTA DPH 2023 – 2026
-      // role_id untuk DPH sesuai komen adalah 3 (contributor)
-      [
-        'username' => 'stephanus.royke',
-        'name' => 'Stephanus Royke Djakarya, Pr.',
-        'email' => 'stephanus.royke@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki: role_id untuk DPH sesuai daftar baru
-      ],
-      [
-        'username' => 'antonius.arfin',
-        'name' => 'Antonius Arfin Samosir, Pr.',
-        'email' => 'antonius.arfin@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'hubertus.hartono',
-        'name' => 'Hubertus Hartono Sondakh',
-        'email' => 'hubertus.hartono@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'thomas.lim',
-        'name' => 'Thomas Lim Kian Heng',
-        'email' => 'thomas.lim@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'ivon.sri',
-        'name' => 'Ivon Sri Darmayanti',
-        'email' => 'ivon.sri@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'andreas.henry',
-        'name' => 'Andreas Henry Mixson Lumban Batu',
-        'email' => 'andreas.henry@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'maria.odilia',
-        'name' => 'Maria Odilia Damayanti',
-        'email' => 'maria.odilia@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'caecilia.supojo',
-        'name' => 'Caecilia Supojo Niniek Dhamayanti',
-        'email' => 'caecilia.supojo@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'marcelina.felicia',
-        'name' => 'Marcelina Felicia Linda Wiryadi',
-        'email' => 'marcelina.felicia@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'carolus.boromeus',
-        'name' => 'Carolus Boromeus Dedi',
-        'email' => 'carolus.boromeus@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'stephanus.pudji',
-        'name' => 'Stephanus Pudji Ludianto',
-        'email' => 'stephanus.pudji@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'fx.yanuar',
-        'name' => 'Fransiskus Xaverius Yanuar Ekaputra',
-        'email' => 'fx.yanuar@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'maria.mili',
-        'name' => 'Maria Mili Fonge',
-        'email' => 'maria.mili@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'martinus.robert',
-        'name' => 'Martinus Robert Polana',
-        'email' => 'martinus.robert@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'ferry.olin',
-        'name' => 'Ferry Olin Binsar',
-        'email' => 'ferry.olin@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'theresia.ferrania',
-        'name' => 'Theresia Ferrania',
-        'email' => 'theresia.ferrania@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'agnes.amelia',
-        'name' => 'Agnes Amelia Yowanda',
-        'email' => 'agnes.amelia@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'fx.adviadi',
-        'name' => 'Fransiskus Xaverius Adviadi Nugroho',
-        'email' => 'fx.adviadi@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'marianus.ari',
-        'name' => 'Marianus Ari Winarto',
-        'email' => 'marianus.ari@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'yohanes.bambang',
-        'name' => 'Yohanes Bambang Kristianto',
-        'email' => 'yohanes.bambang@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'bernadus.wibisanto',
-        'name' => 'Bernadus Wibisanto',
-        'email' => 'bernadus.wibisanto@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
-      [
-        'username' => 'fredericus.sugiarso',
-        'name' => 'Fredericus Sugiarso Budihardjo',
-        'email' => 'fredericus.sugiarso@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 2, // Diperbaiki
-      ],
+		$users = [
+			// ANGGOTA DPH 2023 - 2026
+			[
+				'username' => 'stephanus.royke',
+				'name' => 'Stephanus Royke Djakarya, Pr.',
+				'email' => 'stephanus.royke@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'benediktus.ari',
+				'name' => 'Benediktus Ari Darmawan, Pr.',
+				'email' => 'benediktus.ari@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'hubertus.hartono',
+				'name' => 'Hubertus Hartono Sondakh',
+				'email' => 'hubertus.hartono@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'thomas.lim',
+				'name' => 'Thomas Lim Kian Heng',
+				'email' => 'thomas.lim@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'ivon.sri',
+				'name' => 'Ivon Sri Darmayanti',
+				'email' => 'ivon.sri@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'andreas.henry',
+				'name' => 'Andreas Henry Mixson Lumban Batu',
+				'email' => 'andreas.henry@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'maria.odilia',
+				'name' => 'Maria Odilia Damayanti',
+				'email' => 'maria.odilia@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'caecilia.supojo',
+				'name' => 'Caecilia Supojo Niniek Dhamayanti',
+				'email' => 'caecilia.supojo@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'marcelina.felicia',
+				'name' => 'Marcelina Felicia Linda Wiryadi',
+				'email' => 'marcelina.felicia@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'carolus.boromeus',
+				'name' => 'Carolus Boromeus Dedi',
+				'email' => 'carolus.boromeus@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'stephanus.pudji',
+				'name' => 'Stephanus Pudji Ludianto',
+				'email' => 'stephanus.pudji@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'fransiskus.yanuar',
+				'name' => 'Fransiskus Xaverius Yanuar Ekaputra',
+				'email' => 'fransiskus.yanuar@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'maria.mili',
+				'name' => 'Maria Mili Fonge',
+				'email' => 'maria.mili@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'martinus.robert',
+				'name' => 'Martinus Robert Polana',
+				'email' => 'martinus.robert@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'ferry.olin',
+				'name' => 'Ferry Olin Binsar',
+				'email' => 'ferry.olin@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'theresia.ferrania',
+				'name' => 'Theresia Ferrania',
+				'email' => 'theresia.ferrania@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'agnes.amelia',
+				'name' => 'Agnes Amelia Yowanda',
+				'email' => 'agnes.amelia@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'fransiskus.adviadi',
+				'name' => 'Fransiskus Xaverius Adviadi Nugroho',
+				'email' => 'fransiskus.adviadi@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'marianus.ari',
+				'name' => 'Marianus Ari Winarto',
+				'email' => 'marianus.ari@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'yohanes.bambang',
+				'name' => 'Yohanes Bambang Kristianto',
+				'email' => 'yohanes.bambang@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'bernardus.wibisanto',
+				'name' => 'Bernadus Wibisanto',
+				'email' => 'bernardus.wibisanto@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			[
+				'username' => 'fredericus.sugiarso',
+				'name' => 'Fredericus Sugiarso Budihardjo',
+				'email' => 'fredericus.sugiarso@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 2,
+			],
+			// ANGGOTA DPP 2023 - 2026
+			// BIDANG PERIBADATAN
+			[
+				'username' => 'seksi.liturgi',
+				'name' => 'Bp. Fransiskus Michael Setuso',
+				'email' => 'seksi.liturgi@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// BIDANG PEWARTAAN
+			[
+				'username' => 'seksi.katekese',
+				'name' => 'Bp. Ign. Setyanto Joko Maryuwono',
+				'email' => 'seksi.katekese@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'seksi.kerasulan.kitab.suci',
+				'name' => 'Bp. Philipus Vembrey',
+				'email' => 'seksi.kerasulan.kitab.suci@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'seksi.komunikasi.sosial',
+				'name' => 'Bp. Benedict Toar Pratasis',
+				'email' => 'seksi.komunikasi.sosial@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// BIDANG PERSEKUTUAN DAN PENDAMPINGAN KATEGORIAL
+			[
+				'username' => 'seksi.kerasulan.keluarga',
+				'name' => 'Bp. Vincentius Anggoro Cahyo Legowo',
+				'email' => 'seksi.kerasulan.keluarga@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'seksi.kepemudaan',
+				'name' => 'Sdri. Stephanie Widjaja',
+				'email' => 'seksi.kepemudaan@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'seksi.panggilan',
+				'name' => 'Bp. Renius Simamora',
+				'email' => 'seksi.panggilan@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'komunitas.kategorial.legio.mariae',
+				'name' => 'Bp. Alexander Teme',
+				'email' => 'komunitas.kategorial.legio.mariae@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'komunitas.kategorial.gerakan.imam.maria',
+				'name' => 'Ibu Fransisca Mimie Sumiyati',
+				'email' => 'komunitas.kategorial.gerakan.imam.maria@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'komunitas.kategorial.persekutuan.doa',
+				'name' => 'Bp. Ernest Abraham Surjadipradja',
+				'email' => 'komunitas.kategorial.persekutuan.doa@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'komunitas.kategorial.kkit',
+				'name' => 'Ibu Caecilia Sri Minsuriany',
+				'email' => 'komunitas.kategorial.kkit@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'komunitas.kategorial.meditasi.kitab.suci',
+				'name' => 'Ibu Christina Ambarwati',
+				'email' => 'komunitas.kategorial.meditasi.kitab.suci@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'komunitas.kategorial.marriage.encounter',
+				'name' => 'Ibu Bernadeth Renita Mulyaningtyas',
+				'email' => 'komunitas.kategorial.marriage.encounter@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'komunitas.kategorial.pwk.st.monika',
+				'name' => 'Ibu Florentina Patricia Kustyorini',
+				'email' => 'komunitas.kategorial.pwk.st.monika@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'komunitas.kategorial.paguyuban.simeon.hanna',
+				'name' => 'Ibu Elizabeth Poedyasmara',
+				'email' => 'komunitas.kategorial.paguyuban.simeon.hanna@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'wanita.katolik.ri',
+				'name' => 'Ibu Fransiska Rema Sakeng',
+				'email' => 'wanita.katolik.ri@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// BIDANG PELAYANAN DAN TIM KHUSUS
+			[
+				'username' => 'seksi.pengembangan.sosial.ekonomi',
+				'name' => 'Ibu Maria Regina Hartoyo',
+				'email' => 'seksi.pengembangan.sosial.ekonomi@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'seksi.pendidikan',
+				'name' => 'Bp. Yehezkiel Vega Adjibusono',
+				'email' => 'seksi.pendidikan@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'seksi.kesehatan',
+				'name' => 'Ibu Helena Fanidah Tanuhendrata',
+				'email' => 'seksi.kesehatan@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'tim.khusus.program.asak',
+				'name' => 'Bp. Albertus Dominic Surya Dharma',
+				'email' => 'tim.khusus.program.asak@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'tim.khusus.usaha.sejahtera.bonaventura',
+				'name' => 'Bp. Antonius Setyo Mulyanto',
+				'email' => 'tim.khusus.usaha.sejahtera.bonaventura@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'tim.khusus.panitia.app',
+				'name' => 'Ibu Maria Demseria Silalahi',
+				'email' => 'tim.khusus.panitia.app@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// BIDANG KESAKSIAN
+			[
+				'username' => 'seksi.keadilan.perdamaian',
+				'name' => 'Bp. Ronlybert Togatorop',
+				'email' => 'seksi.keadilan.perdamaian@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'seksi.hubungan.antar.agama.dan.kemasyarakatan',
+				'name' => 'Bp. George Robert Gunawan',
+				'email' => 'seksi.hubungan.antar.agama.dan.kemasyarakatan@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'seksi.lingkungan.hidup',
+				'name' => 'Bp. Stefanus Prasito Adi',
+				'email' => 'seksi.lingkungan.hidup@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// BIDANG PENELITIAN DAN PENGEMBANGAN PAROKI
+			[
+				'username' => 'seksi.penelitian.dan.pengembangan',
+				'name' => 'Bp. Christopher Haris Pratama',
+				'email' => 'seksi.penelitian.dan.pengembangan@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'seksi.pelatihan.dan.kaderisasi',
+				'name' => 'Ibu Christina Irma Wirawaty',
+				'email' => 'seksi.pelatihan.dan.kaderisasi@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// BIDANG PERENCANAAN DAN EVALUASI
+			[
+				'username' => 'seksi.perencanaan.dan.evaluasi',
+				'name' => 'Bp. Yoseph Liantoro',
+				'email' => 'seksi.perencanaan.dan.evaluasi@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// PENDAMPING BAGIAN
+			[
+				'username' => 'bagian.pemeliharaan.komplek',
+				'name' => 'Bp. Bonaventura Eddy',
+				'email' => 'bagian.pemeliharaan.komplek@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'bagian.rumah.tangga.pastoran',
+				'name' => 'Ibu Yustina Sri Andarini',
+				'email' => 'bagian.rumah.tangga.pastoran@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'bagian.keamanan',
+				'name' => 'Bp. Antonius Anang Budi Arso',
+				'email' => 'bagian.keamanan@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// KOORDINATOR WILAYAH
+			[
+				'username' => 'koordinator.wilayah1',
+				'name' => 'Bp. Felix Yosafat',
+				'email' => 'wilayah1@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'koordinator.wilayah2',
+				'name' => 'Ibu Tanty Syahlina Tarigan',
+				'email' => 'wilayah2@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'koordinator.wilayah3',
+				'name' => 'Ibu Fransiska Mardiana',
+				'email' => 'wilayah3@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'koordinator.wilayah4',
+				'name' => 'Bp. Yoakim Nugroho Ekomursanto',
+				'email' => 'wilayah4@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'koordinator.wilayah5',
+				'name' => 'Bp. Yohanes Edy Susanto',
+				'email' => 'wilayah5@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'koordinator.wilayah6',
+				'name' => 'Ibu Veronika Tanner',
+				'email' => 'wilayah6@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'koordinator.wilayah7',
+				'name' => 'Ibu Gratiana Crecentia Ramahwati Karyadi',
+				'email' => 'wilayah7@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'koordinator.wilayah8',
+				'name' => 'Ibu Yohana Ari Warigalit',
+				'email' => 'wilayah8@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'koordinator.wilayah9',
+				'name' => 'Ibu Bernadette Melissa Budiman',
+				'email' => 'wilayah9@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'koordinator.wilayah10',
+				'name' => 'Bp. Agustinus Indarto',
+				'email' => 'wilayah10@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'koordinator.wilayah11',
+				'name' => 'Bp. Marcellus Kisyanto Halim',
+				'email' => 'wilayah11@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// KETUA LINGKUNGAN
+			// WILAYAH I
+			[
+				'username' => 'lingkungan.anna',
+				'name' => 'Bp. Christopher Sutanto Adi Yongky',
+				'email' => 'lingkungan.anna@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.antonius.dari.padua',
+				'name' => 'Bp. Peter Lino',
+				'email' => 'lingkungan.antonius.dari.padua@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.joakim',
+				'name' => 'Ibu Veronica Katarina Erlin Octavia',
+				'email' => 'lingkungan.joakim@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.carolus.boromeus',
+				'name' => 'Bp. Adrianus Lioe',
+				'email' => 'lingkungan.carolus.boromeus@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// WILAYAH II
+			[
+				'username' => 'lingkungan.agnes',
+				'name' => 'Bp. Christopher Erwin Budianto',
+				'email' => 'lingkungan.agnes@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.angela',
+				'name' => 'Ibu Agnes Venny Wunas',
+				'email' => 'lingkungan.angela@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.sisilia',
+				'name' => 'Ibu Fransiska Evi Lusiana',
+				'email' => 'lingkungan.sisilia@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.andreas',
+				'name' => 'Ibu Agnes Febrita Kusumawati',
+				'email' => 'lingkungan.andreas@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.mikael',
+				'name' => 'Bp. Yohanes Violison Martheo',
+				'email' => 'lingkungan.mikael@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// WILAYAH III
+			[
+				'username' => 'lingkungan.stefanus',
+				'name' => 'Ibu Margaretha Dwi Astuti',
+				'email' => 'lingkungan.stefanus@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.tarsisius',
+				'name' => 'Ibu Pensi Kristiana Siahaan',
+				'email' => 'lingkungan.tarsisius@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.monika',
+				'name' => 'Ibu Rosalia Prasetyaningsih',
+				'email' => 'lingkungan.monika@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.elizabeth',
+				'name' => 'Bp. Nicolaus Suparno',
+				'email' => 'lingkungan.elizabeth@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// WILAYAH IV
+			[
+				'username' => 'lingkungan.lukas.penginjil',
+				'name' => 'Ibu Christina Endah Purnomo Wulandari',
+				'email' => 'lingkungan.lukas.penginjil@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.mateus.penginjil',
+				'name' => 'Ibu Maria Goreti Rian Garyati',
+				'email' => 'lingkungan.mateus.penginjil@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.thomas.aquinas',
+				'name' => 'Bp. Vincentius Taufik Manfaluti',
+				'email' => 'lingkungan.thomas.aquinas@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.blasius',
+				'name' => 'Bp. Gervasius Dri Istiya Yudana',
+				'email' => 'lingkungan.blasius@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.benediktus',
+				'name' => 'Bp. Agustinus Yudho Wirajati',
+				'email' => 'lingkungan.benediktus@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// WILAYAH V
+			[
+				'username' => 'lingkungan.maria',
+				'name' => 'Bp. Ferdinandus Mustar Hasibuan',
+				'email' => 'lingkungan.maria@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.yusuf',
+				'name' => 'Ibu Alfernia Uli Aritonang',
+				'email' => 'lingkungan.yusuf@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.maria.magdalena',
+				'name' => 'Ibu Theresia Rini Supriati',
+				'email' => 'lingkungan.maria.magdalena@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// WILAYAH VI
+			[
+				'username' => 'lingkungan.markus',
+				'name' => 'Bp. Yohanes Adios Falentino Ririhena',
+				'email' => 'lingkungan.markus@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.valentinus',
+				'name' => 'Bp. Leonardus Teddy Bramantya',
+				'email' => 'lingkungan.valentinus@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.katarina.labore',
+				'name' => 'Ibu Theresia Mustika Dewi',
+				'email' => 'lingkungan.katarina.labore@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.klara.dari.asisi',
+				'name' => 'Bp. Dionisius Bambang Hermawan',
+				'email' => 'lingkungan.klara.dari.asisi@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.petrus',
+				'name' => 'Bp. Yohanes Widjaja Gomulya',
+				'email' => 'lingkungan.petrus@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// WILAYAH VII
+			[
+				'username' => 'lingkungan.paulus.rasul',
+				'name' => 'Ibu Grace Indriani',
+				'email' => 'lingkungan.paulus.rasul@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.margaretha',
+				'name' => 'Ibu Maria Immaculata Sri Marsanti',
+				'email' => 'lingkungan.margaretha@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.lidwina',
+				'name' => 'Ibu Jane Agnes Tampatty',
+				'email' => 'lingkungan.lidwina@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.kristina',
+				'name' => 'Ibu Imelda Meiske',
+				'email' => 'lingkungan.kristina@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.bernadette.soubirous',
+				'name' => 'Ibu Helene Kam Len Nio',
+				'email' => 'lingkungan.bernadette.soubirous@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.teresa.dari.kalkuta',
+				'name' => 'Ibu Marcella Erlin Biantini',
+				'email' => 'lingkungan.teresa.dari.kalkuta@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// WILAYAH VIII
+			[
+				'username' => 'lingkungan.theresia.kanak.kanak.yesus',
+				'name' => 'Ibu Natalie Rini Kustini Amelia',
+				'email' => 'lingkungan.theresia.kanak.kanak.yesus@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.damianus',
+				'name' => 'Ibu Maria Clara Kaefitri Taman',
+				'email' => 'lingkungan.damianus@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.fransiskus.asisi',
+				'name' => 'Ibu Anna Maria Baby Agustine Sutiono',
+				'email' => 'lingkungan.fransiskus.asisi@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.eduardus',
+				'name' => 'Ibu Anna Natalia',
+				'email' => 'lingkungan.eduardus@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// WILAYAH IX
+			[
+				'username' => 'lingkungan.yohanes.pemandi',
+				'name' => 'Bp. Pius Chandra Widjayanto',
+				'email' => 'lingkungan.yohanes.pemandi@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.anastasia',
+				'name' => 'Ibu Pauline Tri Juliarti Mili Timu',
+				'email' => 'lingkungan.anastasia@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.theofilus',
+				'name' => 'Bp. James Madison Sitanggang',
+				'email' => 'lingkungan.theofilus@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.yustinus',
+				'name' => 'Ibu Maria MawarniSimamora',
+				'email' => 'lingkungan.yustinus@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.albertus.agung',
+				'name' => 'Ibu Maxima Henie Kun Widisusanti',
+				'email' => 'lingkungan.albertus.agung@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// WILAYAH X
+			[
+				'username' => 'lingkungan.ursula',
+				'name' => 'Bp. Laurentius Molo',
+				'email' => 'lingkungan.ursula@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.ignatius.loyola',
+				'name' => 'Ibu Anastasia Martini',
+				'email' => 'lingkungan.ignatius.loyola@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.agustinus',
+				'name' => 'Bp. Yohanes Ricky Iriawan',
+				'email' => 'lingkungan.agustinus@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.yulius',
+				'name' => 'Ibu Irene Lydia N. Welan',
+				'email' => 'lingkungan.yulius@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			// WILAYAH XI
+			[
+				'username' => 'lingkungan.laurensius',
+				'name' => 'Ibu Theresia Dewi Anggraini',
+				'email' => 'lingkungan.laurensius@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.yustina',
+				'name' => 'Bp. Nicholas Arief Subroto',
+				'email' => 'lingkungan.yustina@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.agatha',
+				'name' => 'Ibu Bernadet Tri Astuti Nur Endah',
+				'email' => 'lingkungan.agatha@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+			[
+				'username' => 'lingkungan.lusia',
+				'name' => 'Ibu Pricilla Jane Halim',
+				'email' => 'lingkungan.lusia@stbonaventura.org',
+				'password' => $hashedPassword,
+				'email_verified_at' => $now,
+				'role_id' => 3,
+			],
+		];
 
-      // ANGGOTA DPP 2023 - 2026 (Including all subsequent categories)
-      // role_id untuk DPP tetap 5 (sesuai komen, asumsikan ini role lain selain admin/moderator/contributor)
-      // BIDANG PERIBADATAN
-      [
-        'username' => 'fransiskus.michael',
-        'name' => 'Bp. Fransiskus Michael Setuso',
-        'email' => 'fransiskus.michael@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // BIDANG PEWARTAAN
-      [
-        'username' => 'ign.setyanto',
-        'name' => 'Bp. Ign. Setyanto Joko Maryuwono',
-        'email' => 'ign.setyanto@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'philipus.vembrey',
-        'name' => 'Bp. Philipus Vembrey',
-        'email' => 'philipus.vembrey@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'benedict.toar',
-        'name' => 'Bp. Benedict Toar Pratasis',
-        'email' => 'benedict.toar@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // BIDANG PERSEKUTUAN DAN PENDAMPINGAN KATEGORIAL
-      [
-        'username' => 'vincentius.anggoro',
-        'name' => 'Bp. Vincentius Anggoro Cahyo Legowo',
-        'email' => 'vincentius.anggoro@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'stephanie.widjaja',
-        'name' => 'Sdri. Stephanie Widjaja',
-        'email' => 'stephanie.widjaja@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'renius.simamora',
-        'name' => 'Bp. Renius Simamora',
-        'email' => 'renius.simamora@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'alexander.teme',
-        'name' => 'Bp. Alexander Teme',
-        'email' => 'alexander.teme@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'fransisca.mimie',
-        'name' => 'Ibu Fransisca Mimie Sumiyati',
-        'email' => 'fransisca.mimie@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'ernest.abraham',
-        'name' => 'Bp. Ernest Abraham Surjadipradja',
-        'email' => 'ernest.abraham@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'caecilia.sri',
-        'name' => 'Ibu Caecilia Sri Minsuriany',
-        'email' => 'caecilia.sri@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'christina.ambarwati',
-        'name' => 'Ibu Christina Ambarwati',
-        'email' => 'christina.ambarwati@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'bernadeth.renita',
-        'name' => 'Ibu Bernadeth Renita Mulyaningtyas',
-        'email' => 'bernadeth.renita@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'florentina.patricia',
-        'name' => 'Ibu Florentina Patricia Kustyorini',
-        'email' => 'florentina.patricia@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'elizabeth.poedyasmara',
-        'name' => 'Ibu Elizabeth Poedyasmara',
-        'email' => 'elizabeth.poedyasmara@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'fransiska.rema',
-        'name' => 'Ibu Fransiska Rema Sakeng',
-        'email' => 'fransiska.rema@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // BIDANG PELAYANAN DAN TIM KHUSUS
-      [
-        'username' => 'maria.regina',
-        'name' => 'Ibu Maria Regina Hartoyo',
-        'email' => 'maria.regina@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'yehezkiel.vega',
-        'name' => 'Bp. Yehezkiel Vega Adjibusono',
-        'email' => 'yehezkiel.vega@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'helena.fanidah',
-        'name' => 'Ibu Helena Fanidah Tanuhendrata',
-        'email' => 'helena.fanidah@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'albertus.dominic',
-        'name' => 'Bp. Albertus Dominic Surya Dharma',
-        'email' => 'albertus.dominic@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'antonius.setyo',
-        'name' => 'Bp. Antonius Setyo Mulyanto',
-        'email' => 'antonius.setyo@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'maria.demseria',
-        'name' => 'Ibu Maria Demseria Silalahi',
-        'email' => 'maria.demseria@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // BIDANG KESAKSIAN
-      [
-        'username' => 'ronlybert.togatorop',
-        'name' => 'Bp. Ronlybert Togatorop',
-        'email' => 'ronlybert.togatorop@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'george.robert',
-        'name' => 'Bp. George Robert Gunawan',
-        'email' => 'george.robert@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'stefanus.prasito',
-        'name' => 'Bp. Stefanus Prasito Adi',
-        'email' => 'stefanus.prasito@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // BIDANG PENELITIAN DAN PENGEMBANGAN PAROKI
-      [
-        'username' => 'christopher.haris',
-        'name' => 'Bp. Christopher Haris Pratama',
-        'email' => 'christopher.haris@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'christina.irma',
-        'name' => 'Ibu Christina Irma Wirawaty',
-        'email' => 'christina.irma@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // BIDANG PERENCANAAN DAN EVALUASI
-      [
-        'username' => 'yoseph.liantoro',
-        'name' => 'Bp. Yoseph Liantoro',
-        'email' => 'yoseph.liantoro@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // PENDAMPING BAGIAN
-      [
-        'username' => 'bonaventura.eddy',
-        'name' => 'Bp. Bonaventura Eddy',
-        'email' => 'bonaventura.eddy@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'yustina.sri',
-        'name' => 'Ibu Yustina Sri Andarini',
-        'email' => 'yustina.sri@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'antonius.anang',
-        'name' => 'Bp. Antonius Anang Budi Arso',
-        'email' => 'antonius.anang@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-
-      // KOORDINATOR WILAYAH
-      [
-        'username' => 'felix.yosafat',
-        'name' => 'Bp. Felix Yosafat',
-        'email' => 'felix.yosafat@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'tanty.syahlina',
-        'name' => 'Ibu Tanty Syahlina Tarigan',
-        'email' => 'tanty.syahlina@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'fransiska.mardiana',
-        'name' => 'Ibu Fransiska Mardiana',
-        'email' => 'fransiska.mardiana@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'yoakim.nugroho',
-        'name' => 'Bp. Yoakim Nugroho Ekomursanto',
-        'email' => 'yoakim.nugroho@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'yohanes.edy',
-        'name' => 'Bp. Yohanes Edy Susanto',
-        'email' => 'yohanes.edy@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'veronika.tanner',
-        'name' => 'Ibu Veronika Tanner',
-        'email' => 'veronika.tanner@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'gratiana.crecentia',
-        'name' => 'Ibu Gratiana Crecentia Ramahwati Karyadi',
-        'email' => 'gratiana.crecentia@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'yohana.ari',
-        'name' => 'Ibu Yohana Ari Warigalit',
-        'email' => 'yohana.ari@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'bernadette.melissa',
-        'name' => 'Ibu Bernadette Melissa Budiman',
-        'email' => 'bernadette.melissa@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'agustinus.indarto',
-        'name' => 'Bp. Agustinus Indarto',
-        'email' => 'agustinus.indarto@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'marcellus.kisyanto',
-        'name' => 'Bp. Marcellus Kisyanto Halim',
-        'email' => 'marcellus.kisyanto@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-
-      // KETUA LINGKUNGAN
-      // WILAYAH I
-      [
-        'username' => 'christopher.sutanto',
-        'name' => 'Bp. Christopher Sutanto Adi Yongky',
-        'email' => 'christopher.sutanto@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'peter.lino',
-        'name' => 'Bp. Peter Lino',
-        'email' => 'peter.lino@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'veronica.katarina',
-        'name' => 'Ibu Veronica Katarina Erlin Octavia',
-        'email' => 'veronica.katarina@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'adrianus.lioe',
-        'name' => 'Bp. Adrianus Lioe',
-        'email' => 'adrianus.lioe@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // WILAYAH II
-      [
-        'username' => 'christopher.erwin',
-        'name' => 'Bp. Christopher Erwin Budianto',
-        'email' => 'christopher.erwin@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'agnes.venny',
-        'name' => 'Ibu Agnes Venny Wunas',
-        'email' => 'agnes.venny@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'fransiska.evi',
-        'name' => 'Ibu Fransiska Evi Lusiana',
-        'email' => 'fransiska.evi@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'agnes.febrita',
-        'name' => 'Ibu Agnes Febrita Kusumawati',
-        'email' => 'agnes.febrita@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'yohanes.violison',
-        'name' => 'Bp. Yohanes Violison Martheo',
-        'email' => 'yohanes.violison@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // WILAYAH III
-      [
-        'username' => 'margaretha.dwi',
-        'name' => 'Ibu Margaretha Dwi Astuti',
-        'email' => 'margaretha.dwi@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'pensi.kristiana',
-        'name' => 'Ibu Pensi Kristiana Siahaan',
-        'email' => 'pensi.kristiana@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'rosalia.prasetyaningsih',
-        'name' => 'Ibu Rosalia Prasetyaningsih',
-        'email' => 'rosalia.prasetyaningsih@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'nicolaus.suparno',
-        'name' => 'Bp. Nicolaus Suparno',
-        'email' => 'nicolaus.suparno@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // WILAYAH IV
-      [
-        'username' => 'christina.endah',
-        'name' => 'Ibu Christina Endah Purnomo Wulandari',
-        'email' => 'christina.endah@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'maria.goreti',
-        'name' => 'Ibu Maria Goreti Rian Garyati',
-        'email' => 'maria.goreti@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'vincentius.taufik',
-        'name' => 'Bp. Vincentius Taufik Manfaluti',
-        'email' => 'vincentius.taufik@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'gervasius.dri',
-        'name' => 'Bp. Gervasius Dri Istiya Yudana',
-        'email' => 'gervasius.dri@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'agustinus.yudho',
-        'name' => 'Bp. Agustinus Yudho Wirajati',
-        'email' => 'agustinus.yudho@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // WILAYAH V
-      [
-        'username' => 'ferdinandus.mustar',
-        'name' => 'Bp. Ferdinandus Mustar Hasibuan',
-        'email' => 'ferdinandus.mustar@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'alfernia.uli',
-        'name' => 'Ibu Alfernia Uli Aritonang',
-        'email' => 'alfernia.uli@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'theresia.rini',
-        'name' => 'Ibu Theresia Rini Supriati',
-        'email' => 'theresia.rini@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // WILAYAH VI
-      [
-        'username' => 'yohanes.adios',
-        'name' => 'Bp. Yohanes Adios Falentino Ririhena',
-        'email' => 'yohanes.adios@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'leonardus.teddy',
-        'name' => 'Bp. Leonardus Teddy Bramantya',
-        'email' => 'leonardus.teddy@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'theresia.mustika',
-        'name' => 'Ibu Theresia Mustika Dewi',
-        'email' => 'theresia.mustika@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'dionisius.bambang',
-        'name' => 'Bp. Dionisius Bambang Hermawan',
-        'email' => 'dionisius.bambang@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'yohanes.widjaja',
-        'name' => 'Bp. Yohanes Widjaja Gomulya',
-        'email' => 'yohanes.widjaja@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // WILAYAH VII
-      [
-        'username' => 'grace.indriani',
-        'name' => 'Ibu Grace Indriani',
-        'email' => 'grace.indriani@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'maria.immaculata',
-        'name' => 'Ibu Maria Immaculata Sri Marsanti',
-        'email' => 'maria.immaculata@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'jane.agnes',
-        'name' => 'Ibu Jane Agnes Tampatty',
-        'email' => 'jane.agnes@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'imelda.meiske',
-        'name' => 'Ibu Imelda Meiske',
-        'email' => 'imelda.meiske@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'helene.kam',
-        'name' => 'Ibu Helene Kam Len Nio',
-        'email' => 'helene.kam@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'marcella.erlin',
-        'name' => 'Ibu Marcella Erlin Biantini',
-        'email' => 'marcella.erlin@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // WILAYAH VIII
-      [
-        'username' => 'natalie.rini',
-        'name' => 'Ibu Natalie Rini Kustini Amelia',
-        'email' => 'natalie.rini@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'maria.clara',
-        'name' => 'Ibu Maria Clara Kaefitri Taman',
-        'email' => 'maria.clara@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'maria.sutiono',
-        'name' => 'Ibu Anna Maria Baby Agustine Sutiono',
-        'email' => 'maria.sutiono@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'anna.natalia',
-        'name' => 'Ibu Anna Natalia',
-        'email' => 'anna.natalia@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // WILAYAH IX
-      [
-        'username' => 'pius.chandra',
-        'name' => 'Bp. Pius Chandra Widjayanto',
-        'email' => 'pius.chandra@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'pauline.tri',
-        'name' => 'Ibu Pauline Tri Juliarti Mili Timu',
-        'email' => 'pauline.tri@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'james.madison',
-        'name' => 'Bp. James Madison Sitanggang',
-        'email' => 'james.madison@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'maria.mawarni',
-        'name' => 'Ibu Maria Mawarni Simamora',
-        'email' => 'maria.mawarni@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'maxima.henie',
-        'name' => 'Ibu Maxima Henie Kun Widisusanti',
-        'email' => 'maxima.henie@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // WILAYAH X
-      [
-        'username' => 'laurentius.molo',
-        'name' => 'Bp. Laurentius Molo',
-        'email' => 'laurentius.molo@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'anastasia.martini',
-        'name' => 'Ibu Anastasia Martini',
-        'email' => 'anastasia.martini@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'yohanes.ricky',
-        'name' => 'Bp. Yohanes Ricky Iriawan',
-        'email' => 'yohanes.ricky@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'irene.lydia',
-        'name' => 'Ibu Irene Lydia N. Welan',
-        'email' => 'irene.lydia@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // WILAYAH XI
-      [
-        'username' => 'theresia.dewi',
-        'name' => 'Ibu Theresia Dewi Anggraini',
-        'email' => 'theresia.dewi@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'nicholas.arief',
-        'name' => 'Bp. Nicholas Arief Subroto',
-        'email' => 'nicholas.arief@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'bernadet.tri',
-        'name' => 'Ibu Bernadet Tri Astuti Nur Endah',
-        'email' => 'bernadet.tri@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'pricilla.jane',
-        'name' => 'Ibu Pricilla Jane Halim',
-        'email' => 'pricilla.jane@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-
-      // PERWAKILAN SEKOLAH KATOLIK
-      // Sr. Hedwigis, FSGM (Skipped - Tidak memiliki nama kedua yang jelas sesuai format)
-      [
-        'username' => 'yohanes.rachmat',
-        'name' => 'Br. Yohanes Rachmat Simamora, OFM',
-        'email' => 'yohanes.rachmat@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      [
-        'username' => 'maria.djokosetio',
-        'name' => 'Ibu Anna Maria Djokosetio',
-        'email' => 'maria.djokosetio@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-
-      // PERWAKILAN BIARA DAN KOMUNITAS
-      [
-        'username' => 'm.julita',
-        'name' => 'Sr. M. Julita, FSGM',
-        'email' => 'm.julita@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-      // Br. Yohanes Rachmat Simamora, OFM (Duplikat - Sudah ada di bagian Sekolah Katolik)
-      [
-        'username' => 'guido.chrisna',
-        'name' => 'Pastor Guido Chrisna Hidayat, SJ',
-        'email' => 'guido.chrisna@stbonaventura.org',
-        'password' => $hashedPassword,
-        'email_verified_at' => $now,
-        'role_id' => 3, // Tetap 5
-      ],
-    ];
-
-    User::insert($users);
-  }
+		User::insert($users);
+	}
 }
