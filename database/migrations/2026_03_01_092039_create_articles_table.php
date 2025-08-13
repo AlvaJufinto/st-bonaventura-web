@@ -28,7 +28,7 @@ return new class extends Migration
 			$table->foreignId('article_type_id')->constrained()->onDelete('cascade');
 
 			$table->date('expired_date')->nullable();
-			$table->date('note')->nullable();
+			$table->string('note')->nullable();
 
 			$table->timestamps();
 		});

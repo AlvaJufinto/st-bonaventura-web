@@ -9,6 +9,7 @@ import { dateFormatter, statusColors } from "@/utils";
 import { Head, router } from "@inertiajs/react";
 
 export default function Index({ auth, articles, statuses }) {
+  console.log("🚀 ~ Index ~ articles:", articles);
   const goToPage = (page) => {
     if (page >= 1 && page <= articles.last_page) {
       router.visit(route("article.index", { page }));
@@ -63,6 +64,11 @@ export default function Index({ auth, articles, statuses }) {
     {
       label: "Tipe Artikel",
       render: (item) => item.article_type?.name || "Tidak ada",
+    },
+    ,
+    {
+      label: "Catatan",
+      render: (item) => item?.note || "-",
     },
     {
       label: "Expired Date",

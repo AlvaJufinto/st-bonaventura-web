@@ -21,13 +21,14 @@ export default function Edit({
   article,
   articleTypes,
 }) {
+  console.log("🚀 ~ Edit ~ auth:", auth);
   const PUBLIC_ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
 
   const { data, setData, errors, patch, processing, recentlySuccessful } =
     useForm({
       title: article?.title,
       content: article?.content,
-      status_id: article?.status_id || 3,
+      status_id: article?.status_id || 2,
       article_type_id: article?.article_type_id || 1,
       published_date: article?.published_date
         ? calendarDateFormat(new Date(article.published_date))
@@ -37,6 +38,7 @@ export default function Edit({
       expired_date: article?.expired_date
         ? calendarDateFormat(new Date(article.expired_date))
         : calendarDateFormat(new Date()),
+      note: article?.note || "",
     });
 
   const [imagePreview, setImagePreview] = useState(null);
@@ -60,6 +62,7 @@ export default function Edit({
     formData.append("article_type_id", data.article_type_id || "");
     formData.append("published_date", data.published_date || "");
     formData.append("publisher_id", data.publisher_id || "");
+    formData.append("note", data.note || "");
 
     if (data.article_type_id == 3 && data.expired_date) {
       formData.append("expired_date", data.expired_date);
@@ -121,6 +124,7 @@ export default function Edit({
           <option
             value={articleType.id}
             key={articleType.id}
+            disabled={articleType.id === 3}
             className="font-secondary capitalize"
           >
             {articleType.name}
@@ -220,6 +224,7 @@ export default function Edit({
           <div>
             <InputLabel htmlFor="status" value="Status" />
             <select
+              disabled={auth.user.role_id > 2}
               id="status"
               value={data.status_id}
               onChange={(e) => setData("status_id", e.target.value)}
@@ -274,20 +279,35 @@ export default function Edit({
             </div>
           )}
 
+          {auth.user.id === article.user_id && (
+            <div>
+              <InputLabel htmlFor="publisher" value="Publikasi sebagai :" />
+              <select
+                id="publisher"
+                value={data.publisher_id}
+                onChange={(e) => setData("publisher_id", e.target.value)}
+                className="font-secondary mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none capitalize focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              >
+                <option value="" className="font-secondary">
+                  -- Pilih wilayah/seksi/tim --
+                </option>
+                {organizationOptions}
+              </select>
+              <InputError message={errors.publisher_id} className="mt-2" />
+            </div>
+          )}
+
           <div>
-            <InputLabel htmlFor="publisher" value="Publikasi sebagai :" />
-            <select
-              id="publisher"
-              value={data.publisher_id}
-              onChange={(e) => setData("publisher_id", e.target.value)}
-              className="font-secondary mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none capitalize focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              <option value="" className="font-secondary">
-                -- Pilih Type --
-              </option>
-              {organizationOptions}
-            </select>
-            <InputError message={errors.publisher_id} className="mt-2" />
+            <InputLabel htmlFor="note" value="Catatan (opsional)" />
+            <textarea
+              disabled={auth.user.role_id > 2}
+              id="note"
+              value={data.note}
+              className="font-secondary mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              onChange={(e) => setData("note", e.target.value)}
+              type="text"
+            />
+            <InputError message={errors.note} className="mt-2" />
           </div>
 
           <div>
