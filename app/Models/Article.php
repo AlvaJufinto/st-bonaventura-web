@@ -9,55 +9,56 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Article extends Model
 {
-  use HasFactory;
-  use Auditable;
+	use HasFactory;
+	use Auditable;
 
-  protected $fillable = [
-    'main_image_name',
-    'title',
-    'slug',
+	protected $fillable = [
+		'main_image_name',
+		'title',
+		'slug',
 
-    'preview',
-    'published_date',
-    'content',
-    'expired_date',
+		'preview',
+		'published_date',
+		'content',
+		'note',
+		'expired_date',
 
-    'publisher_id',
-    'user_id',
-    'status_id',
-    'article_type_id'
-  ];
+		'publisher_id',
+		'user_id',
+		'status_id',
+		'article_type_id'
+	];
 
-  protected static function booted()
-  {
-    static::creating(function ($model) {
-      $model->slug = \Illuminate\Support\Str::slug($model->title);
-    });
-  }
+	protected static function booted()
+	{
+		static::creating(function ($model) {
+			$model->slug = \Illuminate\Support\Str::slug($model->title);
+		});
+	}
 
-  public function getAuditLabel()
-  {
-    return $this->title;
-  }
+	public function getAuditLabel()
+	{
+		return $this->title;
+	}
 
-  public function user(): BelongsTo
-  {
-    // User::class -> '\App\Models\User'
-    return $this->belongsTo(User::class);
-  }
+	public function user(): BelongsTo
+	{
+		// User::class -> '\App\Models\User'
+		return $this->belongsTo(User::class);
+	}
 
-  public function status(): BelongsTo
-  {
-    return $this->belongsTo(Status::class);
-  }
+	public function status(): BelongsTo
+	{
+		return $this->belongsTo(Status::class);
+	}
 
-  public function publisher(): BelongsTo
-  {
-    return $this->belongsTo(Organization::class);
-  }
+	public function publisher(): BelongsTo
+	{
+		return $this->belongsTo(Organization::class);
+	}
 
-  public function articleType(): BelongsTo
-  {
-    return $this->belongsTo(ArticleType::class);
-  }
+	public function articleType(): BelongsTo
+	{
+		return $this->belongsTo(ArticleType::class);
+	}
 }

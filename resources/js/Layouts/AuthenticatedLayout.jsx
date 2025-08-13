@@ -19,6 +19,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
         allowToSeeAllBidang,
         allowToSeeDPH,
         allowToSeeAuditLog,
+        isHead,
       },
     },
   } = usePage();
@@ -28,6 +29,11 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
       href: "dashboard",
       name: "Dashboard",
       isVisible: true,
+    },
+    {
+      href: "organization.manage",
+      name: "Kelola Organisasi",
+      isVisible: isHead,
     },
     {
       href: "warta-minggu.index",

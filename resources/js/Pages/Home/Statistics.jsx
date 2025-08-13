@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const ChurchStatistic = [
-  { name: "Daya Tampung Umat", data: 500 },
-  { name: "Jumlah Lingkungan", data: 49 },
-  { name: "Usia Paroki Pulomas", data: 46 },
-  { name: "Komunitas & Kategorial", data: 21 },
-];
-
 export default function Statistics() {
+  const getAge = (year, month, day) =>
+    Math.floor((new Date() - new Date(year, month - 1, day)) / 3.15576e10);
+
+  const ChurchStatistic = [
+    { name: "Daya Tampung Umat", data: 500 },
+    { name: "Jumlah Lingkungan", data: 49 },
+    { name: "Usia Paroki Pulomas", data: getAge(1977, 7, 15) },
+    { name: "Komunitas & Kategorial", data: 21 },
+  ];
+
   const [counts, setCounts] = useState(ChurchStatistic.map(() => 0));
   const ref = useRef(null);
 
