@@ -10,7 +10,7 @@ const buttonStyles = {
   success:
     "bg-green-500 text-white hover:brightness-110 focus:ring-2 focus:ring-green-300 shadow-sm",
   default:
-    "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 focus:ring-2 focus:ring-gray-200 shadow-sm",
+    "bg-black text-gray-100 border border-gray-300 hover:brightness-50 focus:ring-2 focus:ring-gray-200 shadow-sm",
 };
 
 export default function Button({

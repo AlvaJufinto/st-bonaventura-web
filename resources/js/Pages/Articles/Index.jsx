@@ -9,7 +9,7 @@ import { dateFormatter, statusColors } from "@/utils";
 import { Head, router } from "@inertiajs/react";
 
 export default function Index({ auth, articles, statuses }) {
-  console.log("🚀 ~ Index ~ articles:", articles);
+  console.log("🚀 ~ Index ~ auth:", auth);
   const goToPage = (page) => {
     if (page >= 1 && page <= articles.last_page) {
       router.visit(route("article.index", { page }));
@@ -53,19 +53,26 @@ export default function Index({ auth, articles, statuses }) {
       label: "Tanggal",
       render: (item) => dateFormatter(item.created_at),
     },
-    {
-      label: "Publisher",
-      render: (item) => item.publisher?.name || "Tidak ada",
-    },
-    {
-      label: "User",
-      render: (item) => item.user?.name || "Tidak ada",
-    },
+    ...(auth?.user?.role?.id <= 2
+      ? [
+          {
+            label: "Publisher",
+            render: (item) => item.publisher?.name || "Tidak ada",
+          },
+        ]
+      : []),
+    ...(auth?.user?.role?.id <= 2
+      ? [
+          {
+            label: "User",
+            render: (item) => item.user?.name || "Tidak ada",
+          },
+        ]
+      : []),
     {
       label: "Tipe Artikel",
       render: (item) => item.article_type?.name || "Tidak ada",
     },
-    ,
     {
       label: "Catatan",
       render: (item) => item?.note || "-",
@@ -96,21 +103,25 @@ export default function Index({ auth, articles, statuses }) {
           >
             Edit
           </Button>
-          <Button
-            type="info"
-            onClick={() =>
-              window.open(
-                route("article.guest.show", { slug: item.slug }),
-                "_blank"
-              )
-            }
-          >
-            Preview
-          </Button>
+          {item.status.id == 3 && (
+            <Button
+              type="primary"
+              onClick={() =>
+                window.open(
+                  route("article.guest.show", { slug: item.slug }),
+                  "_blank"
+                )
+              }
+            >
+              Preview
+            </Button>
+          )}
         </div>
       ),
     },
   ];
+
+  console.log("🚀 ~ Index ~ columns:", columns);
 
   return (
     <AuthenticatedLayout

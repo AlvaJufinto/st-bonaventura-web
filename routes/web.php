@@ -123,9 +123,17 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 		return Inertia::render('Dashboard');
 	})->name('dashboard');
 
+	//cuma buat org head
 	Route::middleware('check.permission:isHead')->group(function () {
 		Route::get('/organization/manage', [OrganizationController::class, 'manage'])
 			->name('organization.manage');
+
+		Route::get('/organization/edit', [OrganizationController::class, 'edit'])
+			->name('organization.edit');
+
+		Route::put('/organization/update', [OrganizationController::class, 'update'])
+			->name('organization.update');
+
 		Route::post('/organization/{organization}/members', [OrganizationController::class, 'addMember'])
 			->name('organization.addMember');
 	});

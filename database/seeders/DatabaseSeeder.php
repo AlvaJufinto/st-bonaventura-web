@@ -37,8 +37,7 @@ class DatabaseSeeder extends Seeder
 				[
 					'name' => 'sekretariat',
 					'role_level' => 3,
-					'description' => 'for sektretariat, ketua organisasi e.g. wilayah, lingkungan',
-
+					'description' => 'for sektretariat',
 				]
 			]
 		);
