@@ -6,6 +6,7 @@ import Button from "@/Components/admin/Button";
 import LazyImage from "@/Components/guest/LazyImage";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Wrapper from "@/Layouts/Wrapper";
+import { titleName } from "@/utils";
 import { Head, Link } from "@inertiajs/react";
 
 export default function Manage({ auth, organization }) {
@@ -44,12 +45,12 @@ export default function Manage({ auth, organization }) {
       header={
         <div className="flex justify-between items-center">
           <h2 className="font-secondary font-semibold text-xl text-gray-800">
-            Kelola Organisasi Saya
+            Kelola {organization.name}
           </h2>
         </div>
       }
     >
-      <Head title="Kelola Organisasi Saya" />
+      <Head title={`Kelola ${organization.name}`} />
       <Wrapper>
         <div className="bg-white shadow-sm sm:rounded-lg">
           <div className="p-6 text-gray-900 font-secondary space-y-8">
@@ -105,12 +106,22 @@ export default function Manage({ auth, organization }) {
                 <h4 className="text-lg font-medium mb-4 font-secondary">
                   Informasi Dasar
                 </h4>
-                <InfoItem label="Koordinator/Ketua" value={head?.name} />
+                <InfoItem
+                  label={titleName[organization.organization_type_id]}
+                  value={head?.name}
+                />
                 {parent && (
-                  <InfoItem label="Wilayah/Bagian Induk" value={parent.name} />
+                  <InfoItem
+                    label={
+                      organization.organization_type_id == 2
+                        ? "Wilayah"
+                        : "Bidang Pelayanan"
+                    }
+                    value={parent.name}
+                  />
                 )}
                 <InfoItem label="Tipe" value={type?.name} />
-                <InfoItem label="Alamat" value={address} />
+                {address && <InfoItem label="Alamat" value={address} />}
               </div>
             </section>
 

@@ -20,9 +20,12 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
         allowToSeeDPH,
         allowToSeeAuditLog,
         isHead,
+        currentOrganization,
       },
     },
   } = usePage();
+
+  console.log("🚀 ~ Sidebar ~ currentOrganization:", currentOrganization);
 
   const LINKS = [
     {
@@ -32,7 +35,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
     },
     {
       href: "organization.manage",
-      name: "Kelola Organisasi",
+      name: `Kelola ${currentOrganization?.name || ""}`,
       isVisible: isHead,
     },
     {
@@ -71,14 +74,15 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
       isVisible: allowToSeeAuditLog,
     },
   ];
+
   return (
     <aside
-      className={`z-20 fixed top-0 left-0 h-full w-45 bg-white border-r border-gray-200 p-4 ${
-        isSidebarOpen ? "block" : "hidden"
-      } sm:block`}
+      className={`z-20 fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 p-4 transition-transform duration-300 ${
+        isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+      } sm:translate-x-0`}
     >
-      <div className="flex items-center justify-between">
-        <Link href="/">
+      <div className="flex items-center justify-between mb-6">
+        <Link href="/" className="flex-shrink-0">
           <img className="h-12" src={Logo} alt="logo" />
         </Link>
         <button
@@ -89,7 +93,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
         </button>
       </div>
 
-      <nav className="mt-6 flex flex-col space-y-2">
+      <nav className="flex flex-col space-y-2">
         {LINKS.map(
           (link, i) =>
             link.isVisible && (
@@ -107,26 +111,32 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
   );
 }
 
-function Header({ header, user }) {
+function Header({ header, user, setIsSidebarOpen }) {
   const {
-    props: { impersonating },
+    props: {
+      impersonating,
+      permissions: { currentOrganization },
+    },
   } = usePage();
 
   return (
-    <header className="fixed w-full z-10 bg-white border-b pl-60 border-gray-200 p-4 flex justify-between items-center">
-      {header}
-      <button
-        className="sm:hidden p-2 rounded-md text-gray-500 hover:text-gray-700"
-        onClick={() => setIsSidebarOpen(true)}
-      >
-        ☰
-      </button>
+    <header className="fixed w-full z-10 bg-white border-b border-gray-200 p-4 flex justify-between items-center sm:pl-64">
+      <div className="flex items-center ml-10">
+        <button
+          className="sm:hidden p-2 rounded-md text-gray-500 hover:text-gray-700 mr-2"
+          onClick={() => setIsSidebarOpen(true)}
+        >
+          ☰
+        </button>
+        {header}
+      </div>
 
-      <div className="ms-auto relative flex">
+      <div className="relative flex">
         {impersonating && (
           <Button
             onClick={() => router.post(route("impersonate.stop"))}
             type="danger"
+            className="mr-2"
           >
             stop
           </Button>
@@ -152,6 +162,9 @@ function Header({ header, user }) {
           <Dropdown.Content>
             <Dropdown.Link href={route("profile.edit")} as="button">
               Profile
+            </Dropdown.Link>
+            <Dropdown.Link href={route("organization.manage")} as="button">
+              Kelola {currentOrganization?.name}
             </Dropdown.Link>
             <Dropdown.Link
               href={route("logout")}
@@ -179,12 +192,22 @@ export default function Authenticated({ user, children, header }) {
         setIsSidebarOpen={setIsSidebarOpen}
       />
 
-      <Header header={header} user={user} />
+      {/* Header */}
+      <Header header={header} user={user} setIsSidebarOpen={setIsSidebarOpen} />
 
-      <div className="flex-1 flex flex-col py-12 pl-52">
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col pt-16 sm:pl-64">
         <FlashMessage />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 p-4">{children}</main>
       </div>
+
+      {/* Overlay for mobile */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-10 sm:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
     </div>
   );
 }

@@ -28,6 +28,7 @@ class Permissions
 
 			// klo yg ini buat ngeliat dia punya org apa tdk
 			'isHead' => $user?->organizations?->count() > 0,
+			'currentOrganization' => $user?->organizations()->with(['type', 'parent'])?->first() ?? null,
 		];
 	}
 }
