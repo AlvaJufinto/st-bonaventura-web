@@ -10,130 +10,130 @@ use Inertia\Inertia;
 
 class NewsController extends Controller
 {
-  public function approve($id)
-  {
-    $news = News::findOrFail($id);
-    $news->status_id = 3;
-    $news->save();
+	public function approve($id)
+	{
+		$news = News::findOrFail($id);
+		$news->status_id = 3;
+		$news->save();
 
-    return back()->with('success', 'Warta Minggu berhasil disetujui.');
-  }
+		return back()->with('success', 'Warta Minggu berhasil disetujui.');
+	}
 
 
-  public function revert($id)
-  {
-    $news = News::findOrFail($id);
-    $news->status_id = 2;
-    $news->save();
+	public function revert($id)
+	{
+		$news = News::findOrFail($id);
+		$news->status_id = 2;
+		$news->save();
 
-    return back()->with('success', 'Warta Minggu berhasil dikembalikan menjadi review.');
-  }
+		return back()->with('success', 'Warta Minggu berhasil dikembalikan menjadi review.');
+	}
 
-  /**
-   * Display a listing of the resource.
-   */
-  public function index()
-  {
-    $news = News::with(['status', 'user'])->paginate(20);
-    $statuses = Status::get();
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function index()
+	{
+		$news = News::with(['status', 'user'])->paginate(20);
+		$statuses = Status::get();
 
-    return Inertia::render("News/Index", compact('news', 'statuses'));
-  }
+		return Inertia::render("News/Index", compact('news', 'statuses'));
+	}
 
-  /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
-  {
-    $statuses = Status::all();
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+		$statuses = Status::all();
 
-    return Inertia::render('News/Create', [
-      'statuses' => $statuses,
-    ]);
-  }
+		return Inertia::render('News/Create', [
+			'statuses' => $statuses,
+		]);
+	}
 
-  /**
-   * Store a newly created resource in storage.
-   */
-  public function store(Request $request)
-  {
-    $validatedData = $request->validate([
-      'title' => 'nullable|string|max:255',
-      'alternate_title' => 'required|string|max:255',
-      "file" => 'required|file|mimes:pdf|max:12048',
-      'user_id' => 'required|integer|exists:users,id',
-      'status_id' => 'required|integer|exists:statuses,id',
-    ]);
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(Request $request)
+	{
+		$validatedData = $request->validate([
+			'title' => 'nullable|string|max:255',
+			'alternate_title' => 'required|string|max:255',
+			"file" => 'required|file|mimes:pdf|max:12480',
+			'user_id' => 'required|integer|exists:users,id',
+			'status_id' => 'required|integer|exists:statuses,id',
+		]);
 
-    $file = $request->file('file');
+		$file = $request->file('file');
 
-    $client = new \GuzzleHttp\Client();
+		$client = new \GuzzleHttp\Client();
 
-    $PUBLIC_ASSET_URL = config('app.PUBLIC_ASSET_URL');
+		$PUBLIC_ASSET_URL = config('app.PUBLIC_ASSET_URL');
 
-    try {
-      $response = $client->post("{$PUBLIC_ASSET_URL}/upload", [
-        'multipart' => [
-          [
-            'name'      => 'file',
-            'contents'  => fopen($file->getPathname(), 'r'),
-            'filename'  => $file->getClientOriginalName(),
-          ],
-        ],
-      ]);
+		try {
+			$response = $client->post("{$PUBLIC_ASSET_URL}/upload", [
+				'multipart' => [
+					[
+						'name'      => 'file',
+						'contents'  => fopen($file->getPathname(), 'r'),
+						'filename'  => $file->getClientOriginalName(),
+					],
+				],
+			]);
 
-      $responseData = json_decode($response->getBody()->getContents(), true);
+			$responseData = json_decode($response->getBody()->getContents(), true);
 
-      if (!isset($responseData['file']['fileName'])) {
-        return back()->withErrors(['file' => 'File upload failed.']);
-      }
+			if (!isset($responseData['file']['fileName'])) {
+				return back()->withErrors(['file' => 'File upload failed.']);
+			}
 
-      $validatedData['document_name'] = $responseData['file']['fileName'];
+			$validatedData['document_name'] = $responseData['file']['fileName'];
 
-      News::create($validatedData);
+			News::create($validatedData);
 
-      return to_route('warta-minggu.create')->with('success', 'Warta Minggu berhasil diunggah.');
-    } catch (\Exception $e) {
-      to_route('warta-minggu.create')->with('error', 'Warta Minggu gagal diunggah.' . $e->getMessage());
-      return back()->withErrors(['file' => 'Error uploading file: ' . $e->getMessage()]);
-    }
-  }
+			return to_route('warta-minggu.create')->with('success', 'Warta Minggu berhasil diunggah.');
+		} catch (\Exception $e) {
+			to_route('warta-minggu.create')->with('error', 'Warta Minggu gagal diunggah.' . $e->getMessage());
+			return back()->withErrors(['file' => 'Error uploading file: ' . $e->getMessage()]);
+		}
+	}
 
-  /**
-   * Show the form for editing the specified resource.
-   */
-  public function edit(string $id)
-  {
-    //
-  }
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function edit(string $id)
+	{
+		//
+	}
 
-  /**
-   * Update the specified resource in storage.
-   */
-  public function update(Request $request, string $id)
-  {
-    $request->validate(
-      [
-        'title' => 'nullable|string|max:255',
-        'alternate_title' => 'required|string|max:255',
-        'status_id' => 'required|integer|exists:statuses,id',
-      ]
-    );
-    $news = News::findOrFail($id);
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(Request $request, string $id)
+	{
+		$request->validate(
+			[
+				'title' => 'nullable|string|max:255',
+				'alternate_title' => 'required|string|max:255',
+				'status_id' => 'required|integer|exists:statuses,id',
+			]
+		);
+		$news = News::findOrFail($id);
 
-    $news->update([
-      'title' => $request->input('title'),
-      'alternate_title' => $request->input('alternate_title'),
-      'status_id' => $request->input('status_id'),
-    ]);
+		$news->update([
+			'title' => $request->input('title'),
+			'alternate_title' => $request->input('alternate_title'),
+			'status_id' => $request->input('status_id'),
+		]);
 
-    return redirect()->route('warta-minggu.index')->with('success', 'Warta Minggu berhasil diupdate');
-  }
-  /**
-   * Remove the specified resource from storage.
-   */
-  public function destroy(string $id)
-  {
-    //
-  }
+		return redirect()->route('warta-minggu.index')->with('success', 'Warta Minggu berhasil diupdate');
+	}
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(string $id)
+	{
+		//
+	}
 }

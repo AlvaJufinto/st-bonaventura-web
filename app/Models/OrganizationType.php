@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrganizationType extends Model
 {
-  use HasFactory;
-  protected $fillable = [
-    'name',
-    'description',
-  ];
+	use HasFactory;
+	protected $fillable = [
+		'name',
+		'description',
+	];
 
 
-  public function organizations()
-  {
-    return $this->hasMany(Organization::class);
-  }
+	public function organizations()
+	{
+		return $this->hasMany(Organization::class);
+	}
 }

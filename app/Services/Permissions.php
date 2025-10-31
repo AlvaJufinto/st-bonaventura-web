@@ -14,10 +14,10 @@ class Permissions
 			'allowToSeeWartaMinggu' => $user?->role?->role_level <= 2 || $user?->role?->id == 4,
 			'allowToSeeAllBidang' => $user?->role?->role_level <= 2,
 			'allowToSeeAllTerritorial' => $user?->role?->role_level <= 2,
-			'allowToSeeAllPengurus' => $user?->role?->role_level <= 2,
+			'allowToSeeAllPengurus' => $user?->role?->role_level <= 1,
 			'allowToSeeAllBeritaKegiatan' =>  $user?->role?->role_level <= 2,
 
-			'allowToSeeDPH' => $user?->role?->role_level <= 2,
+			'allowToSeeDPH' => $user?->role?->role_level <= 1,
 
 			// ni jg buat si verfikikator kyk admin dan komsos
 			'allowToPublish' => $user?->role?->role_level <= 2,

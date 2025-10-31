@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import PlaceholderImg from "@/assets/img/placeholder.png";
-import Badge from "@/Components/admin/Badge";
-import Button from "@/Components/admin/Button";
-import LazyImage from "@/Components/guest/LazyImage";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import Wrapper from "@/Layouts/Wrapper";
-import { titleName } from "@/utils";
-import { Head, Link } from "@inertiajs/react";
+import PlaceholderImg from '@/assets/img/placeholder.png';
+import Badge from '@/Components/admin/Badge';
+import Button from '@/Components/admin/Button';
+import LazyImage from '@/Components/guest/LazyImage';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import Wrapper from '@/Layouts/Wrapper';
+import {
+	organizationType,
+	titleName,
+} from '@/utils';
+import {
+	Head,
+	Link,
+} from '@inertiajs/react';
+
+import Member from './Member';
 
 export default function Manage({ auth, organization }) {
   const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
@@ -55,10 +63,10 @@ export default function Manage({ auth, organization }) {
         <div className="bg-white shadow-sm sm:rounded-lg">
           <div className="p-6 text-gray-900 font-secondary space-y-8">
             {/* Header Organisasi */}
-            <LazyImage
+            <img
               src={formattedBanner}
               alt="Banner "
-              className="w-full h-[400px] object-cover rounded-md border border-gray-300"
+              className="w-full !h-[400px] object-cover rounded-md border border-gray-300"
             />
 
             <section className="border-b border-gray-200 pb-6 flex items-start justify-between ">
@@ -113,7 +121,8 @@ export default function Manage({ auth, organization }) {
                 {parent && (
                   <InfoItem
                     label={
-                      organization.organization_type_id == 2
+                      organization.organization_type_id ==
+                      organizationType.Wilayah
                         ? "Wilayah"
                         : "Bidang Pelayanan"
                     }
@@ -126,53 +135,7 @@ export default function Manage({ auth, organization }) {
             </section>
 
             {/* Daftar Anggota */}
-            <section>
-              <div className="flex justify-between items-center mb-4">
-                <h4 className="text-lg font-medium font-secondary">
-                  Daftar Anggota ({members.length})
-                </h4>
-                <Button variant="outline">Tambah Anggota</Button>
-              </div>
-              <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
-                <table className="min-w-full divide-y divide-gray-300">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <Th>Nama</Th>
-                      <Th>Jabatan</Th>
-                      <th className="px-6 py-3">
-                        <span className="sr-only">Actions</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {members.length === 0 ? (
-                      <tr>
-                        <td
-                          colSpan={3}
-                          className="px-6 py-8 text-center text-sm text-gray-500 font-secondary"
-                        >
-                          Belum ada anggota dalam organisasi ini
-                        </td>
-                      </tr>
-                    ) : (
-                      members.map((m) => (
-                        <tr
-                          key={m.id}
-                          className="hover:bg-gray-50 transition-colors duration-150"
-                        >
-                          <Td>{m.name}</Td>
-                          <Td>{m.role?.name || "Belum ada jabatan"}</Td>
-                          <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2 font-secondary">
-                            <ActionButton>Edit</ActionButton>
-                            <ActionButton danger>Hapus</ActionButton>
-                          </td>
-                        </tr>
-                      ))
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </section>
+            <Member members={members} organization={organization} />
           </div>
         </div>
       </Wrapper>
@@ -188,35 +151,5 @@ function InfoItem({ label, value }) {
       </div>
       <div className="text-sm text-gray-900 font-secondary">{value || "-"}</div>
     </div>
-  );
-}
-
-function Th({ children }) {
-  return (
-    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wide font-secondary">
-      {children}
-    </th>
-  );
-}
-
-function Td({ children }) {
-  return (
-    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-secondary">
-      {children}
-    </td>
-  );
-}
-
-function ActionButton({ children, danger }) {
-  return (
-    <button
-      className={`font-secondary transition-colors duration-150 ${
-        danger
-          ? "text-red-600 hover:text-red-900"
-          : "text-indigo-600 hover:text-indigo-900"
-      }`}
-    >
-      {children}
-    </button>
   );
 }

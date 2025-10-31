@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import PlaceholderImg from "@/assets/img/placeholder.png";
-import Button from "@/Components/admin/Button";
-import InputLabel from "@/Components/admin/InputLabel";
-import TextInput from "@/Components/admin/TextInput";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link, useForm } from "@inertiajs/react";
+import PlaceholderImg from '@/assets/img/placeholder.png';
+import Button from '@/Components/admin/Button';
+import InputError from '@/Components/admin/InputError';
+import InputLabel from '@/Components/admin/InputLabel';
+import TextInput from '@/Components/admin/TextInput';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import { organizationType } from '@/utils';
+import {
+	Head,
+	Link,
+	useForm,
+} from '@inertiajs/react';
 
 export default function Edit({ auth, organization }) {
   const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
@@ -67,7 +73,6 @@ export default function Edit({ auth, organization }) {
           <div className="bg-white shadow-sm sm:rounded-lg p-6">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Banner */}
-
               <Link href={route("organization.manage")}>
                 <Button type="primary">Kembali</Button>
               </Link>
@@ -86,9 +91,7 @@ export default function Edit({ auth, organization }) {
                   }
                   className="block w-full text-sm text-gray-600"
                 />
-                {errors.banner && (
-                  <p className="text-red-500 text-sm mt-1">{errors.banner}</p>
-                )}
+                <InputError message={errors.banner} className="mt-1" />
               </div>
 
               {/* Logo */}
@@ -105,9 +108,7 @@ export default function Edit({ auth, organization }) {
                   onChange={(e) => handleImageChange(e, "logo", setLogoPreview)}
                   className="block w-full text-sm text-gray-600"
                 />
-                {errors.logo && (
-                  <p className="text-red-500 text-sm mt-1">{errors.logo}</p>
-                )}
+                <InputError message={errors.logo} className="mt-1" />
               </div>
 
               {/* Nama */}
@@ -119,9 +120,7 @@ export default function Edit({ auth, organization }) {
                   className="w-full"
                   disabled
                 />
-                {errors.name && (
-                  <p className="text-red-500 text-sm">{errors.name}</p>
-                )}
+                <InputError message={errors.name} className="mt-1" />
               </div>
 
               {/* Nama kedua */}
@@ -132,17 +131,23 @@ export default function Edit({ auth, organization }) {
                   onChange={(e) => setData("alternate_name", e.target.value)}
                   className="w-full"
                 />
+                <InputError message={errors.alternate_name} className="mt-1" />
               </div>
 
               {/* Address */}
-              <div>
-                <InputLabel value="Address" />
-                <textarea
-                  value={data.address}
-                  onChange={(e) => setData("address", e.target.value)}
-                  className="w-full border-gray-300 rounded-md font-secondary"
-                />
-              </div>
+              {organization.organization_type_id !== organizationType.Wilayah ||
+                (organization.organization_type_id !==
+                  organizationType.Lingkungan && (
+                  <div>
+                    <InputLabel value="Address" />
+                    <textarea
+                      value={data.address}
+                      onChange={(e) => setData("address", e.target.value)}
+                      className="w-full border-gray-300 rounded-md font-secondary"
+                    />
+                    <InputError message={errors.address} className="mt-1" />
+                  </div>
+                ))}
 
               {/* Description */}
               <div>
@@ -152,6 +157,7 @@ export default function Edit({ auth, organization }) {
                   onChange={(e) => setData("description", e.target.value)}
                   className="w-full border-gray-300 rounded-md font-secondary"
                 />
+                <InputError message={errors.description} className="mt-1" />
               </div>
 
               <div className="flex gap-2 pt-4">

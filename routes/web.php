@@ -134,9 +134,19 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 		Route::put('/organization/update', [OrganizationController::class, 'update'])
 			->name('organization.update');
 
+		// Tambah anggota
 		Route::post('/organization/{organization}/members', [OrganizationController::class, 'addMember'])
 			->name('organization.addMember');
+
+		// Update member
+		Route::put('/organization/{organization}/members/{user}', [OrganizationController::class, 'updateMember'])
+			->name('organization.updateMember');
+
+		// Hapus member
+		Route::delete('/organization/{organization}/members/{user}', [OrganizationController::class, 'deleteMember'])
+			->name('organization.deleteMember');
 	});
+
 
 	Route::resource('/article', ArticleController::class);
 

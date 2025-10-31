@@ -74,4 +74,11 @@ class Organization extends Model
 	{
 		return $this->hasMany(Article::class, 'publisher_id');
 	}
+
+	public function members()
+	{
+		return $this->belongsToMany(User::class, 'organization_user') // pivot table
+			->withPivot('role')
+			->withTimestamps();
+	}
 }

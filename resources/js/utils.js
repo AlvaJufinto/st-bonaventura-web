@@ -83,5 +83,15 @@ export const titleName = {
   5: "Ketua",
   6: "Ketua",
   7: "Ketua",
-  9: "Ketua",
+  9: "Kepala",
+};
+
+export const organizationType = {
+  Wilayah: "1",
+  Lingkungan: "2",
+  Bidang: "4",
+  Seksi: "5",
+  Bagian: "6",
+  Komunitas: "7",
+  Tim: "9",
 };

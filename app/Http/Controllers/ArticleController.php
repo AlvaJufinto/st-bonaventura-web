@@ -162,7 +162,7 @@ class ArticleController extends Controller
 			'publisher_id' => 'required|integer|exists:organizations,id',
 			'status_id' => 'required|integer|exists:statuses,id',
 			'article_type_id' => 'required|integer|exists:article_types,id',
-			"image" => 'nullable|file|mimes:png,jpg,jpeg,webp|max:10240',
+			"image" => 'nullable|file|mimes:png,jpg,jpeg,webp|max:5120',
 			'note' => 'nullable|string|max:5000',
 		]);
 

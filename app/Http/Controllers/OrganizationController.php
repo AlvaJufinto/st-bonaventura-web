@@ -44,7 +44,7 @@ class OrganizationController extends Controller
 
 		$validated = $request->validate([
 			'banner' => 'nullable|file|mimes:png,jpg,jpeg,webp|max:5120',
-			'logo' => 'nullable|file|mimes:png,jpg,jpeg,webp|max:5120',
+			'logo' => 'nullable|file|mimes:png,jpg,jpeg,webp|max:2048',
 			'alternate_name' => 'nullable|string|max:255',
 			'address' => 'nullable|string',
 			'description' => 'nullable|string',
