@@ -21,13 +21,13 @@ const TIMELINE = [
     year: "1970",
     title: "Perkembangan Pendidikan dan Ibadat",
     description:
-      "Pastor J. Wahyosudibyo OFM, pimpinan Ordo Fransiskan, berinisiatif membangun sarana pendidikan di Kampung Ambon, didukung oleh Mgr. A. Djajaseputra SJ. Sekolah TK dan SD awalnya dikelola oleh Ibu Srigiati Baroto dan Ibu Anton Setu, kemudian menjadi TK dan SD Fransiskus. Ibadat Minggu yang semula diadakan di rumah Bapak Mukidjo di Rawasari berpindah ke ruang kelas seiring bertambahnya umat.",
+      "Pada awal dekade 1970-an, di kawasan Kampung Ambon mulai muncul kesadaran kolektif bahwa penguatan komunitas Katolik tidak cukup hanya dengan ibadat di rumah-rumah umat. Atas dorongan Mgr. A. Djajaseputra SJ dan didukung oleh pimpinan Ordo Fransiskan, Pastor J. Wahyosudibyo OFM mengambil inisiatif untuk mendirikan fasilitas pendidikan di wilayah tersebut. Sekolah tingkat TK dan SD kemudian didirikan — awalnya dikelola oleh Ibu Srigiati Baroto dan Ibu Anton Setu — dan akhirnya berkembang menjadi TK dan SD Fransiskus yang dikelola oleh para suster Fransiskanes. Dengan berdirinya pendidikan formal ini, ruang ibadat Minggu yang sebelumnya digelar di rumah umat di Rawasari mulai dipindahkan ke ruang kelas sekolah, menandai pergeseran penting dari ruang informal ke fasilitas kelembagaan.",
   },
   {
     year: "1976",
     title: "Rencana Pembangunan Gereja",
     description:
-      "Pastor J. Wahyosudibyo OFM, pimpinan Ordo Fransiskan, berinisiatif membangun sarana pendidikan di Kampung Ambon, didukung oleh Mgr. A. Djajaseputra SJ. Sekolah TK dan SD awalnya dikelola oleh Ibu Srigiati Baroto dan Ibu Anton Setu, kemudian menjadi TK dan SD Fransiskus. Ibadat Minggu yang semula diadakan di rumah Bapak Mukidjo di Rawasari berpindah ke ruang kelas seiring bertambahnya umat.",
+      "Pada tahun 1976 muncul keputusan strategis oleh pimpinan wilayah—termasuk Ketua Wilayah X, Bapak Hadi Sutrisno—bahwa umat Katolik di kawasan Kampung Ambon dan sekitarnya memerlukan satu tempat ibadat permanen yang representatif, karena pada saat itu jumlah umat telah melampaui 500 orang. Usulan ini kemudian mengarah pada pembentukan Panitia Pembangunan Gereja pada 19 Juni 1977 dan akhirnya menjadi dasar administratif bagi pendirian resmi Paroki Pulomas pada 20 Agustus 1977.",
     img: Img1976,
   },
 

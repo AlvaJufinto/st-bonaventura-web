@@ -56,7 +56,7 @@ const DailyMass = [
     day: "Senin - Sabtu",
     data: [
       {
-        time: "06.30",
+        time: "06.00",
         type: "offline & online",
       },
     ],
@@ -219,10 +219,10 @@ function MassInformationSection({ title, data }) {
 
 function IntroductionLeft() {
   return (
-    <div className="bg-white h-full flex-1 shadow-basic flex flex-col lg:flex-row items-stretch gap-4 lg:gap-10 p-6 lg:p-0">
+    <div className="bg-white h-[824px] flex-1 shadow-basic flex flex-col lg:flex-row items-stretch gap-4 lg:gap-10 p-6 lg:p-0">
       <LazyImage
         src={BonaImg}
-        className="!h-3/4 lg:!h-auto !w-full lg:!w-[310px] object-cover rounded lg:rounded-none"
+        className="!h-full 4 lg:!h-auto !w-full lg:!w-[310px] object-cover rounded lg:rounded-none"
         alt="Bonaventura Image"
       />
       <div className="py-4 lg:py-12 flex-1">
@@ -256,6 +256,8 @@ function IntroductionRight() {
           Jadwal Perayaan Ekaristi
         </h1>
         <MassInformationSection title="Misa Mingguan" data={WeeklyMass} />
+        <div className="h-10"></div>
+        <MassInformationSection title="Misa Harian" data={DailyMass} />
         <Button
           className="w-full mt-8 lg:mt-10"
           onClick={() => router.replace("#jadwal-misa")}
@@ -421,7 +423,7 @@ export default function Index({ news, articles }) {
                 onClick={() =>
                   window.open(
                     "https://www.youtube.com/@KomsosBonaventura/streams",
-                    "_blank"
+                    "_blank",
                   )
                 }
               >
