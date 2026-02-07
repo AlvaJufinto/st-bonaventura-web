@@ -15,6 +15,8 @@ import { Head, Link, usePage } from "@inertiajs/react";
 
 const PREFIX = "/sakramen";
 
+const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+
 const DATA = [
   {
     name: "Sakramen Baptis",
@@ -26,8 +28,14 @@ const DATA = [
         `"Jika seseorang tidak dilahirkan dari air dan Roh, ia tidak dapat masuk ke dalam Kerajaan Allah." (Yoh 3:5)\n\n` +
         `Baptis adalah sakramen pertama yang membawa kita ke dalam kehidupan Kristen. Melalui Baptis, kita diterima menjadi anak-anak Allah dan anggota keluarga besar Gereja. Kami di Gereja St. Bonaventura dengan senang hati menyambut setiap individu yang ingin menerima rahmat sakramen ini.`,
       files: [
-        { name: "DOWNLOAD FORMULIR BAPTIS BAYI / ANAK", url: "" },
-        { name: "DOWNLOAD FORMULIR BAPTIS DEWASA", url: "" },
+        {
+          name: "DOWNLOAD FORMULIR BAPTIS BAYI / ANAK",
+          url: "formulir-baptis-bayi-anak.pdf",
+        },
+        {
+          name: "DOWNLOAD FORMULIR BAPTIS DEWASA",
+          url: "formulir-baptis-remaja-atau-dewasa.pdf",
+        },
       ],
     },
   },
@@ -40,7 +48,12 @@ const DATA = [
       description:
         `"Akulah roti hidup yang telah turun dari surga; barangsiapa makan roti ini, ia akan hidup selama-lamanya." (Yoh 6:51)\n\n` +
         `Komuni Pertama adalah momen istimewa ketika seseorang untuk pertama kalinya menerima Tubuh dan Darah Kristus dalam Ekaristi. Sakramen ini memperkuat persatuan kita dengan Tuhan dan Gereja-Nya.`,
-      files: [{ name: "DOWNLOAD FORMULIR KOMUNI PERTAMA", url: "" }],
+      files: [
+        {
+          name: "DOWNLOAD FORMULIR KOMUNI PERTAMA",
+          url: "formulir-komuni-pertama.pdf",
+        },
+      ],
     },
   },
   {
@@ -52,7 +65,7 @@ const DATA = [
       description:
         `"Tetapi kamu akan menerima kuasa, kalau Roh Kudus turun ke atas kamu, dan kamu akan menjadi saksi-Ku." (Kis 1:8)\n\n` +
         `Sakramen Krisma meneguhkan dan menguatkan umat dalam iman melalui pencurahan Roh Kudus. Dengan Krisma, kita dipanggil untuk menjadi saksi Kristus dalam kehidupan sehari-hari.`,
-      files: [{ name: "DOWNLOAD FORMULIR KRISMA", url: "" }],
+      files: [{ name: "DOWNLOAD FORMULIR KRISMA", url: "formulir-krisma.pdf" }],
     },
   },
   {
@@ -88,9 +101,15 @@ const DATA = [
         `"Demikianlah mereka bukan lagi dua, melainkan satu. Karena itu, apa yang telah dipersatukan Allah, tidak boleh diceraikan manusia." (Mat 19:6)\n\n` +
         `Perkawinan adalah sakramen yang menyatukan pasangan pria dan wanita dalam ikatan suci yang diberkati oleh Tuhan. Dalam pernikahan Katolik, pasangan dipanggil untuk hidup dalam kasih, kesetiaan, dan komitmen.`,
       files: [
-        { name: "SURAT PENGANTAR & PENDAFTARAN PERKAWINAN", url: "" },
-        { name: "SURAT PENGANTAR & PERSIAPAN PERKAWINAN", url: "" },
-        { name: "FORMULIR BOOKING GEREJA (PERKAWINAN)", url: "" },
+        {
+          name: "SURAT PENGANTAR & PENDAFTARAN PERKAWINAN",
+          url: "formulir-surat-pengantar-lingkungan-dan-pendaftaran-perkawinan.pdf",
+        },
+        {
+          name: "SURAT PENGANTAR & PERSIAPAN PERKAWINAN",
+          url: "surat-pengantar-lingkungan-dan-persiapan-perkawinan.pdf",
+        },
+        //{ name: "FORMULIR BOOKING GEREJA (PERKAWINAN)", url: "" },
       ],
     },
   },
@@ -163,7 +182,12 @@ export default function Header({ children, type = "Baptis" }) {
                     <Button
                       key={i}
                       className="gap-3 md:gap-5 !justify-start !px-4 md:!px-8 !text-left text-xs md:text-base"
-                      onClick={() => window.open(file.url, "_blank")}
+                      onClick={() =>
+                        window.open(
+                          `${ASSET_URL}/uploads/${file.url}`,
+                          "_blank",
+                        )
+                      }
                     >
                       <img
                         src={DownloadIcon}

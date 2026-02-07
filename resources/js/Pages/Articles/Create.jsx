@@ -30,7 +30,7 @@ export default function Create({
       status_id: 2,
       article_type_id: 1,
       published_date: calendarDateFormat(new Date()),
-      publisher_id: organizations[0]?.id,
+      publisher_id: auth.organizations[0]?.id,
       image: null,
       expired_date: calendarDateFormat(new Date()),
     });
