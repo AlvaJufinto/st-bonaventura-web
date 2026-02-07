@@ -6,7 +6,7 @@ export default function Statistics() {
 
   const ChurchStatistic = [
     { name: "Daya Tampung Umat", data: 500 },
-    { name: "Jumlah Lingkungan", data: 49 },
+    { name: "Jumlah Lingkungan", data: 48 },
     { name: "Usia Paroki Pulomas", data: getAge(1977, 7, 15) },
     { name: "Komunitas & Kategorial", data: 21 },
   ];
@@ -18,11 +18,10 @@ export default function Statistics() {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          // Start counting animation when the element is in view
           ChurchStatistic.forEach((stat, index) => {
             let start = 0;
             const end = stat.data;
-            const duration = 1500; // Duration of the animation in ms
+            const duration = 1500;
             const stepTime = Math.abs(Math.floor(duration / end));
 
             const timer = setInterval(() => {
@@ -39,7 +38,7 @@ export default function Statistics() {
           observer.disconnect();
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     if (ref.current) observer.observe(ref.current);
@@ -56,15 +55,10 @@ export default function Statistics() {
             <div
               key={index}
               className={`flex flex-col items-center gap-2 p-4 md:p-2 ${
-                // Desktop borders (right border except last item)
                 index !== ChurchStatistic.length - 1
                   ? "md:border-r md:border-gray-300"
                   : ""
-              } ${
-                // Mobile borders (bottom border for top row items)
-                index < 2 ? "border-b border-gray-300 md:border-b-0" : ""
-              } ${
-                // Mobile borders (right border for left column items)
+              } ${index < 2 ? "border-b border-gray-300 md:border-b-0" : ""} ${
                 index % 2 === 0 && index !== ChurchStatistic.length - 1
                   ? "border-r border-gray-300 md:border-r-0"
                   : ""

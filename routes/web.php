@@ -83,6 +83,7 @@ Route::prefix('tentang')->group(function () {
 
 Route::prefix('informasi')->group(function () {
 	Route::get('/warta-minggu', [InformationController::class, 'news'])->name('news.guest.index');
+	Route::get('/formulir', [InformationController::class, 'formulir'])->name('formulir.guest.index');
 
 	Route::get('/berita-kegiatan', [ArticleController::class, 'indexGuest'])->name('article.guest.index');
 	Route::get('/berita-kegiatan/{article:slug}', [ArticleController::class, 'show'])->name('article.guest.show');

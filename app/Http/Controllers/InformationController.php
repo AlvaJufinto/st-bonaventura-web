@@ -8,17 +8,22 @@ use Inertia\Inertia;
 
 class InformationController extends Controller
 {
-  /**
-   * Handle the incoming request.
-   */
-  public function news(Request $request)
-  {
-    $news = News::query()
-      ->orderBy('created_at', 'desc')
-      ->where('status_id', 3)
-      ->paginate(4);
+	/**
+	 * Handle the incoming request.
+	 */
+	public function news(Request $request)
+	{
+		$news = News::query()
+			->orderBy('created_at', 'desc')
+			->where('status_id', 3)
+			->paginate(4);
 
 
-    return Inertia::render("Information/News", compact('news'));
-  }
+		return Inertia::render("Information/News", compact('news'));
+	}
+
+	public function formulir()
+	{
+		return Inertia::render("Information/Formulir");
+	}
 }

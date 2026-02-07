@@ -66,6 +66,11 @@ export default function Navbar() {
           url: "/warta-minggu",
           urlName: "news.guest.index",
         },
+        {
+          name: "Formulir",
+          url: "/formulir",
+          urlName: "/formulir.guest.index",
+        },
       ],
     },
     {
