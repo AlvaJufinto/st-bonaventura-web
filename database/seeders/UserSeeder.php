@@ -22,19 +22,21 @@ class UserSeeder extends Seeder
 			// ANGGOTA DPH 2023 - 2026
 			[
 				'username' => 'stephanus.royke',
-				'name' => 'Stephanus Royke Djakarya, Pr.',
+				'name' => 'Romo Stephanus Royke Djakarya, Pr.',
 				'email' => 'stephanus.royke@stbonaventura.org',
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/RmStephanusRoykeDjakaryaPr.webp',
 			],
 			[
 				'username' => 'benediktus.ari',
-				'name' => 'Benediktus Ari Darmawan, Pr.',
+				'name' => 'Romo Benediktus Ari Darmawan, Pr.',
 				'email' => 'benediktus.ari@stbonaventura.org',
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/RmBenediktusAriDarmawanPr.webp',
 			],
 			[
 				'username' => 'hubertus.hartono',
@@ -43,6 +45,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/HubertusHartonoSondakh.webp',
 			],
 			[
 				'username' => 'thomas.lim',
@@ -51,6 +54,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/ThomasLimKianHeng.webp',
 			],
 			[
 				'username' => 'ivon.sri',
@@ -59,6 +63,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/IvonSriDarmayanti.webp',
 			],
 			[
 				'username' => 'andreas.henry',
@@ -67,6 +72,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/AndreasHenryMixsonLumbanBatu.webp',
 			],
 			[
 				'username' => 'maria.odilia',
@@ -75,6 +81,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/MariaOdiliaDamayanti.webp',
 			],
 			[
 				'username' => 'caecilia.supojo',
@@ -83,6 +90,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/CaeciliaSupojoNiniekDhamayanti.webp',
 			],
 			[
 				'username' => 'marcelina.felicia',
@@ -91,6 +99,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/MarcelinaFeliciaLindaWiryadi.webp',
 			],
 			[
 				'username' => 'carolus.boromeus',
@@ -99,6 +108,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/CarolusBoromeusDedi.webp',
 			],
 			[
 				'username' => 'stephanus.pudji',
@@ -107,6 +117,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/StephanusPudjiLudianto.webp',
 			],
 			[
 				'username' => 'fransiskus.yanuar',
@@ -115,6 +126,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/FransiskusXaveriusYanuarEkaputra.webp',
 			],
 			[
 				'username' => 'maria.mili',
@@ -123,6 +135,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/MariaMiliFonge.webp',
 			],
 			[
 				'username' => 'martinus.robert',
@@ -131,6 +144,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/MartinusRobertPolana.webp',
 			],
 			[
 				'username' => 'ferry.olin',
@@ -139,6 +153,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/FerryOlinBinsar.webp',
 			],
 			[
 				'username' => 'theresia.ferrania',
@@ -147,6 +162,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/TheresiaFerrania.webp',
 			],
 			[
 				'username' => 'agnes.amelia',
@@ -155,6 +171,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/AgnesAmeliaYowanda.webp',
 			],
 			[
 				'username' => 'fransiskus.adviadi',
@@ -163,6 +180,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/FXAdviadiNugroho.webp',
 			],
 			[
 				'username' => 'marianus.ari',
@@ -171,6 +189,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/MarianusAriWinarto.webp',
 			],
 			[
 				'username' => 'yohanes.bambang',
@@ -179,14 +198,16 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/YohanesBambangKristianto.webp',
 			],
 			[
 				'username' => 'bernardus.wibisanto',
-				'name' => 'Bernadus Wibisanto',
+				'name' => 'Bernardus Wibisanto',
 				'email' => 'bernardus.wibisanto@stbonaventura.org',
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/BernardusWibisanto.webp',
 			],
 			[
 				'username' => 'fredericus.sugiarso',
@@ -195,6 +216,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 2,
+				'profile_picture' => 'users/2026/dph/FredericusSugiarsoBudihardjo.webp',
 			],
 			// ANGGOTA DPP 2023 - 2026
 			// BIDANG PERIBADATAN
@@ -205,6 +227,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/FransiskusMichaelSetuso.webp',
 			],
 			// BIDANG PEWARTAAN
 			[
@@ -214,6 +237,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/IgnSetyantoJokoMaryuwono.webp',
 			],
 			[
 				'username' => 'seksi.kerasulan.kitab.suci',
@@ -222,6 +246,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/PhilipusVembrey.webp',
 			],
 			[
 				'username' => 'seksi.komunikasi.sosial',
@@ -230,6 +255,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/BenedictToarPratasis.webp',
 			],
 			// BIDANG PERSEKUTUAN DAN PENDAMPINGAN KATEGORIAL
 			[
@@ -239,6 +265,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/VincentiusAnggoroCahyoLegowo.webp',
 			],
 			[
 				'username' => 'seksi.kepemudaan',
@@ -247,6 +274,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/StephanieWidjaja.webp',
 			],
 			[
 				'username' => 'seksi.panggilan',
@@ -255,6 +283,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/ReniusSimamora.webp',
 			],
 			[
 				'username' => 'komunitas.kategorial.legio.mariae',
@@ -263,6 +292,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/AlexanderTeme.webp',
 			],
 			[
 				'username' => 'komunitas.kategorial.gerakan.imam.maria',
@@ -271,6 +301,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/FransiscaMimieSumiyati.webp',
 			],
 			[
 				'username' => 'komunitas.kategorial.persekutuan.doa',
@@ -279,6 +310,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/ErnestAbrahamSurjadipradja.webp',
 			],
 			[
 				'username' => 'komunitas.kategorial.kkit',
@@ -287,6 +319,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/CaeciliaSriMinsuriany.webp',
 			],
 			[
 				'username' => 'komunitas.kategorial.meditasi.kitab.suci',
@@ -295,14 +328,16 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/ChristinaAmbarwati.webp',
 			],
 			[
 				'username' => 'komunitas.kategorial.marriage.encounter',
-				'name' => 'Ibu Bernadeth Renita Mulyaningtyas',
+				'name' => 'Bp. Ishidorus Reza Primahendra & Ibu Bernadeth Renita Mulyaningtyas',
 				'email' => 'komunitas.kategorial.marriage.encounter@stbonaventura.org',
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/IshidorusRezaPrimahendra&BernadethRenitaMulyaningtyas.webp',
 			],
 			[
 				'username' => 'komunitas.kategorial.pwk.st.monika',
@@ -311,6 +346,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/FlorentinaPatriciaKustyorini.webp',
 			],
 			[
 				'username' => 'komunitas.kategorial.paguyuban.simeon.hanna',
@@ -319,6 +355,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/ElizabethPoedyasmara.webp',
 			],
 			[
 				'username' => 'wanita.katolik.ri',
@@ -327,6 +364,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/FransiskaRemaSakeng.webp',
 			],
 			// BIDANG PELAYANAN DAN TIM KHUSUS
 			[
@@ -336,6 +374,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/MariaReginaHartoyo.webp',
 			],
 			[
 				'username' => 'seksi.pendidikan',
@@ -344,6 +383,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/YehezkielVegaAdjibusono.webp',
 			],
 			[
 				'username' => 'seksi.kesehatan',
@@ -352,6 +392,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/HelenaFanidahTanuhendrata.webp',
 			],
 			[
 				'username' => 'tim.khusus.program.asak',
@@ -360,6 +401,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/AlbertusDominicSuryaDharma.webp',
 			],
 			[
 				'username' => 'tim.khusus.usaha.sejahtera.bonaventura',
@@ -368,6 +410,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/AntoniusSetyoMulyanto.webp',
 			],
 			[
 				'username' => 'tim.khusus.panitia.app',
@@ -376,6 +419,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/MariaDemseriaSilalahi.webp',
 			],
 			// BIDANG KESAKSIAN
 			[
@@ -385,6 +429,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/RonlybertTogatorop.webp',
 			],
 			[
 				'username' => 'seksi.hubungan.antar.agama.dan.kemasyarakatan',
@@ -393,6 +438,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/GeorgeRobertGunawan.webp',
 			],
 			[
 				'username' => 'seksi.lingkungan.hidup',
@@ -401,6 +447,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/StefanusPrasitoAdi.webp',
 			],
 			// BIDANG PENELITIAN DAN PENGEMBANGAN PAROKI
 			[
@@ -410,6 +457,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/ChristopherHarisPratama.webp',
 			],
 			[
 				'username' => 'seksi.pelatihan.dan.kaderisasi',
@@ -418,6 +466,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/ChristinaIrmaWirawaty.webp',
 			],
 			// BIDANG PERENCANAAN DAN EVALUASI
 			[
@@ -427,6 +476,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/YosephLiantoro.webp',
 			],
 			// PENDAMPING BAGIAN
 			[
@@ -436,6 +486,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/BonaventuraEddy.webp',
 			],
 			[
 				'username' => 'bagian.rumah.tangga.pastoran',
@@ -444,6 +495,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/YustinaSriAndarini.webp',
 			],
 			[
 				'username' => 'bagian.keamanan',
@@ -452,6 +504,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/AntoniusAnangBudiArso.webp',
 			],
 			// KOORDINATOR WILAYAH
 			[
@@ -461,6 +514,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/FelixYosafat.webp',
 			],
 			[
 				'username' => 'koordinator.wilayah2',
@@ -469,6 +523,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/TantySyahlinaTarigan.webp',
 			],
 			[
 				'username' => 'koordinator.wilayah3',
@@ -477,6 +532,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/FransiskaMardiana.webp',
 			],
 			[
 				'username' => 'koordinator.wilayah4',
@@ -485,6 +541,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/YoakimNugrohoEkomursanto.webp',
 			],
 			[
 				'username' => 'koordinator.wilayah5',
@@ -493,6 +550,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/YohanesEdySusanto.webp',
 			],
 			[
 				'username' => 'koordinator.wilayah6',
@@ -501,6 +559,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/VeronikaTanner.webp',
 			],
 			[
 				'username' => 'koordinator.wilayah7',
@@ -509,6 +568,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/GratianaCrecentiaRamahwatiKaryadi.webp',
 			],
 			[
 				'username' => 'koordinator.wilayah8',
@@ -517,6 +577,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/YohanaAriWarigalit.webp',
 			],
 			[
 				'username' => 'koordinator.wilayah9',
@@ -525,6 +586,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/BernadetteMelissaBudiman.webp',
 			],
 			[
 				'username' => 'koordinator.wilayah10',
@@ -533,6 +595,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/AgustinusIndarto.webp',
 			],
 			[
 				'username' => 'koordinator.wilayah11',
@@ -541,6 +604,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/MarcellusKisyantoHalim.webp',
 			],
 			// KETUA LINGKUNGAN
 			// WILAYAH I
@@ -551,6 +615,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/ChristopherSutantoAdiYongky.webp',
 			],
 			[
 				'username' => 'lingkungan.antonius.dari.padua',
@@ -559,6 +624,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/PeterLino.webp',
 			],
 			[
 				'username' => 'lingkungan.joakim',
@@ -567,6 +633,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/VeronicaKatarinaErlinOctavia.webp',
 			],
 			[
 				'username' => 'lingkungan.carolus.boromeus',
@@ -575,6 +642,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/AdrianusLioe.webp',
 			],
 			// WILAYAH II
 			[
@@ -584,6 +652,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/ChristopherErwinBudianto.webp',
 			],
 			[
 				'username' => 'lingkungan.angela',
@@ -592,6 +661,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/AgnesVennyWunas.webp',
 			],
 			[
 				'username' => 'lingkungan.sisilia',
@@ -600,6 +670,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/FransiskaEviLusiana.webp',
 			],
 			[
 				'username' => 'lingkungan.andreas',
@@ -608,6 +679,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/AgnesFebritaKusumawati.webp',
 			],
 			[
 				'username' => 'lingkungan.mikael',
@@ -616,6 +688,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/YohanesViolisonMartheo.webp',
 			],
 			// WILAYAH III
 			[
@@ -625,6 +698,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/MargarethaDwiAstuti.webp',
 			],
 			[
 				'username' => 'lingkungan.tarsisius',
@@ -633,6 +707,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/PensiKristianaSiahaan.webp',
 			],
 			[
 				'username' => 'lingkungan.monika',
@@ -641,6 +716,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/RosaliaPrasetyaningsih.webp',
 			],
 			[
 				'username' => 'lingkungan.elizabeth',
@@ -649,6 +725,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/NicolausSuparno.webp',
 			],
 			// WILAYAH IV
 			[
@@ -658,6 +735,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/ChristinaEndahPurnomoWulandari.webp',
 			],
 			[
 				'username' => 'lingkungan.mateus.penginjil',
@@ -666,6 +744,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/MariaGoretiRianGaryati.webp',
 			],
 			[
 				'username' => 'lingkungan.thomas.aquinas',
@@ -674,6 +753,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/VincentiusTaufikManfaluti.webp',
 			],
 			[
 				'username' => 'lingkungan.blasius',
@@ -682,6 +762,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/GervasiusDriIstiyaYudana.webp',
 			],
 			[
 				'username' => 'lingkungan.benediktus',
@@ -690,6 +771,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/AgustinusYudhoWirajati.webp',
 			],
 			// WILAYAH V
 			[
@@ -699,6 +781,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/FerdinandusMustarHasibuan.webp',
 			],
 			[
 				'username' => 'lingkungan.yusuf',
@@ -707,6 +790,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/AlferniaUliAritonang.webp',
 			],
 			[
 				'username' => 'lingkungan.maria.magdalena',
@@ -715,6 +799,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/TheresiaRiniSupriati.webp',
 			],
 			// WILAYAH VI
 			[
@@ -724,6 +809,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/YohanesAdiosFalentinoRirihena.webp',
 			],
 			[
 				'username' => 'lingkungan.valentinus',
@@ -732,6 +818,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/LeonardusTeddyBramantya.webp',
 			],
 			[
 				'username' => 'lingkungan.katarina.labore',
@@ -740,6 +827,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/TheresiaMustikaDewi.webp',
 			],
 			[
 				'username' => 'lingkungan.klara.dari.asisi',
@@ -748,6 +836,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/DionisiusBambangHermawan.webp',
 			],
 			[
 				'username' => 'lingkungan.petrus',
@@ -756,6 +845,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/YohanesWidjajaGomulya.webp',
 			],
 			// WILAYAH VII
 			[
@@ -765,6 +855,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/GraceIndriani.webp',
 			],
 			[
 				'username' => 'lingkungan.margaretha',
@@ -773,6 +864,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/MariaImmaculataSriMarsanti.webp',
 			],
 			[
 				'username' => 'lingkungan.lidwina',
@@ -781,6 +873,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/JaneAgnesTampatty.webp',
 			],
 			[
 				'username' => 'lingkungan.kristina',
@@ -789,6 +882,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/ImeldaMeiske.webp',
 			],
 			[
 				'username' => 'lingkungan.bernadette.soubirous',
@@ -797,6 +891,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/HeleneKamLenNio.webp',
 			],
 			[
 				'username' => 'lingkungan.teresa.dari.kalkuta',
@@ -805,6 +900,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/MarcellaErlinBiantini.webp',
 			],
 			// WILAYAH VIII
 			[
@@ -814,6 +910,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/NatalieRiniKustiniAmelia.webp',
 			],
 			[
 				'username' => 'lingkungan.damianus',
@@ -822,6 +919,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/MariaClaraKaefitriTaman.webp',
 			],
 			[
 				'username' => 'lingkungan.fransiskus.asisi',
@@ -830,6 +928,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/AnnaMariaBabyAgustineSutiono.webp',
 			],
 			[
 				'username' => 'lingkungan.eduardus',
@@ -838,6 +937,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/AnnaNatalia.webp',
 			],
 			// WILAYAH IX
 			[
@@ -847,6 +947,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/PiusChandraWidjayanto.webp',
 			],
 			[
 				'username' => 'lingkungan.anastasia',
@@ -855,6 +956,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/PaulineTriJuliartiMiliTimu.webp',
 			],
 			[
 				'username' => 'lingkungan.theofilus',
@@ -863,6 +965,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/JamesMadisonSitanggang.webp',
 			],
 			[
 				'username' => 'lingkungan.yustinus',
@@ -871,6 +974,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/MariaMawarniSimamora.webp',
 			],
 			[
 				'username' => 'lingkungan.albertus.agung',
@@ -879,6 +983,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/MaximaHenieKunWidisusanti.webp',
 			],
 			// WILAYAH X
 			[
@@ -888,6 +993,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/LaurentiusMolo.webp',
 			],
 			[
 				'username' => 'lingkungan.ignatius.loyola',
@@ -896,6 +1002,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/AnastasiaMartini.webp',
 			],
 			[
 				'username' => 'lingkungan.agustinus',
@@ -904,6 +1011,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/YohanesRickyIriawan.webp',
 			],
 			[
 				'username' => 'lingkungan.yulius',
@@ -912,6 +1020,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/IreneLydiaNWelan.webp',
 			],
 			// WILAYAH XI
 			[
@@ -921,6 +1030,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/TheresiaDewiAnggraini.webp',
 			],
 			[
 				'username' => 'lingkungan.yustina',
@@ -929,6 +1039,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/NicholasAriefSubroto.webp',
 			],
 			[
 				'username' => 'lingkungan.agatha',
@@ -937,6 +1048,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/BernadetTriAstutiNurEndah.webp',
 			],
 			[
 				'username' => 'lingkungan.lusia',
@@ -945,6 +1057,7 @@ class UserSeeder extends Seeder
 				'password' => $hashedPassword,
 				'email_verified_at' => $now,
 				'role_id' => 3,
+				'profile_picture' => 'users/2026/dpp/PricillaJaneHalim.webp',
 			],
 		];
 

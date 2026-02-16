@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 
+import PlaceHolderImg from "@/assets/img/placeholder.png";
+
 async function downscaleImage(src, width, height) {
   return new Promise((resolve) => {
     const img = new Image();
     img.src = src;
-    img.crossOrigin = "Anonymous";
+    //img.crossOrigin = "Anonymous";
     img.onload = () => {
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
@@ -39,6 +41,9 @@ export default function LazyImage({ src, alt, className }) {
         isLoaded ? "opacity-100 blur-0" : "opacity-10 blur-lg"
       }`}
       onLoad={() => setIsLoaded(true)}
+      onError={(e) => {
+        e.currentTarget.src = PlaceHolderImg;
+      }}
     />
   );
 }
