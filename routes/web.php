@@ -6,6 +6,7 @@ use App\Http\Controllers\AuditLogController;
 use App\Http\Controllers\Auth\ImpersonateController;
 use App\Http\Controllers\BidangController;
 use App\Http\Controllers\CouncilController;
+use App\Http\Controllers\ConstructionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\NewsController;
@@ -109,6 +110,8 @@ Route::prefix('lingkungan')->group(function () {
 Route::get('/bidang-pelayanan/{bidang:slug}/{bidangDetailSlug}', [BidangController::class, 'showDetailGuest'])->name('bidang.guest.detail');
 
 Route::get('/bidang-pelayanan/{bidang:slug}', [BidangController::class, 'showGuest'])->name('bidang.guest.show');
+
+Route::get('/pembangunan-gereja', [ConstructionController::class, 'pembangunanGereja'])->name('construction.guest.index');
 
 Route::post('/admin/impersonate/stop', [ImpersonateController::class, 'stop'])->name('impersonate.stop');
 
