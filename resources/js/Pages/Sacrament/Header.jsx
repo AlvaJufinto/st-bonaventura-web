@@ -1,21 +1,25 @@
-import DownloadIcon from "@/assets/icon/download.svg";
-import WhatsappIcon from "@/assets/icon/whatsapp.svg";
-import Baptism from "@/assets/img/sacrament/baptism.png";
-import Communion from "@/assets/img/sacrament/communion.png";
-import Confirmation from "@/assets/img/sacrament/confirmation.png";
-import HeaderImg from "@/assets/img/sacrament/header.png";
-import Marriage from "@/assets/img/sacrament/marriage.png";
-import Reconciliation from "@/assets/img/sacrament/reconciliation.png";
-import Sick from "@/assets/img/sacrament/sick.png";
-import Button from "@/Components/guest/Button/Button";
-import Footer from "@/Components/guest/Footer/Footer";
-import LazyImage from "@/Components/guest/LazyImage";
-import Navbar from "@/Components/guest/Navbar/Navbar";
-import { Head, Link, usePage } from "@inertiajs/react";
+import DownloadIcon from '@/assets/icon/download.svg';
+import WhatsappIcon from '@/assets/icon/whatsapp.svg';
+import Baptism from '@/assets/img/sacrament/baptism.png';
+import Communion from '@/assets/img/sacrament/communion.png';
+import Confirmation from '@/assets/img/sacrament/confirmation.png';
+import HeaderImg from '@/assets/img/sacrament/header.png';
+import Marriage from '@/assets/img/sacrament/marriage.png';
+import Reconciliation from '@/assets/img/sacrament/reconciliation.png';
+import Sick from '@/assets/img/sacrament/sick.png';
+import Button from '@/Components/guest/Button/Button';
+import Footer from '@/Components/guest/Footer/Footer';
+import LazyImage from '@/Components/guest/LazyImage';
+import Navbar from '@/Components/guest/Navbar/Navbar';
+import {
+	Head,
+	Link,
+	usePage,
+} from '@inertiajs/react';
 
 const PREFIX = "/sakramen";
 
-const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL || "";
 
 const DATA = [
   {
@@ -156,7 +160,7 @@ export default function Header({ children, type = "Baptis" }) {
         </div>
       </div>
       <div className="outer-wrapper py-6 md:py-10 pb-20 md:pb-40">
-        <div className="inner-wrapper !items-start !justify-start gap-10 md:gap-20 px-4 md:px-0">
+        <div className="inner-wrapper !items-start !justify-start gap-10 md:gap-20 px-4 xl:px-0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10">
             <LazyImage
               src={PAGE_DATA.content.img}
@@ -177,24 +181,28 @@ export default function Header({ children, type = "Baptis" }) {
                   ))}
               </div>
               {PAGE_DATA.content.files && (
-                <div className="flex flex-col gap-3 md:gap-5 w-full md:w-3/4 mt-3 md:mt-5">
+                <div className="flex flex-col gap-3 md:gap-5 w-full lg:w-full mt-3 md:mt-5">
                   {PAGE_DATA.content.files.map((file, i) => (
                     <Button
                       key={i}
-                      className="gap-3 md:gap-5 !justify-start !px-4 md:!px-8 !text-left text-xs md:text-base"
+                      className="gap-3 md:gap-4 !justify-start !px-4 md:!px-6 !text-left text-xs md:text-sm !py-3 group"
                       onClick={() =>
-                        window.open(
-                          `${ASSET_URL}/uploads/${file.url}`,
-                          "_blank",
-                        )
+                        window.open(`${ASSET_URL}/docs/${file.url}`, "_blank")
                       }
                     >
                       <img
                         src={DownloadIcon}
                         alt="download-icon"
-                        className="w-4 h-4 md:w-6 md:h-6"
+                        className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0 group-hover:scale-110 transition-transform"
                       />
-                      {file.name}
+                      <div className="flex-1 min-w-0">
+                        <p className="font-secondary truncate group-hover:text-white transition-colors">
+                          {file.name}
+                        </p>
+                      </div>
+                      <span className="text-xs font-secondary opacity-75 group-hover:opacity-100 flex-shrink-0">
+                        PDF
+                      </span>
                     </Button>
                   ))}
                 </div>
@@ -202,7 +210,7 @@ export default function Header({ children, type = "Baptis" }) {
               <a
                 href="https://api.whatsapp.com/send?phone=6287704825850"
                 target="_blank"
-                className="flex gap-2 md:gap-4 items-center text-xs md:text-sm font-secondary bg-b300 py-2 px-3 md:px-4 w-full md:w-3/4 text-n100 uppercase font-bold"
+                className="flex gap-2 md:gap-4 items-center text-xs md:text-sm font-secondary bg-b300 py-2 px-3 md:px-4 w-full text-n100 uppercase font-bold"
               >
                 <img
                   src={WhatsappIcon}

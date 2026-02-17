@@ -1,16 +1,19 @@
-import PlaceholderImg from "@/assets/img/placeholder.png";
-import ArticleCard from "@/Components/guest/ArticleCard/ArticleCard";
-import Button from "@/Components/guest/Button/Button";
-import Footer from "@/Components/guest/Footer/Footer";
-import LazyImage from "@/Components/guest/LazyImage";
-import Navbar from "@/Components/guest/Navbar/Navbar";
-import { titleName } from "@/utils";
-import { Head, Link } from "@inertiajs/react";
+import PlaceholderImg from '@/assets/img/placeholder.png';
+import ArticleCard from '@/Components/guest/ArticleCard/ArticleCard';
+import Button from '@/Components/guest/Button/Button';
+import Footer from '@/Components/guest/Footer/Footer';
+import LazyImage from '@/Components/guest/LazyImage';
+import Navbar from '@/Components/guest/Navbar/Navbar';
+import { titleName } from '@/utils';
+import {
+	Head,
+	Link,
+} from '@inertiajs/react';
 
 export default function Show({ data, articles }) {
   const type = data?.name;
   const title = `${titleName[data?.organization_type_id]} ${type}`;
-  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
 
   return (
     <div>
@@ -65,10 +68,13 @@ export default function Show({ data, articles }) {
               <LazyImage
                 src={
                   data.head.profile_picture
-                    ? `${ASSET_URL}/uploads/${data.head.profile_picture}`
+                    ? `${ASSET_URL}/${data.head.profile_picture}`
                     : PlaceholderImg
                 }
                 alt={data.head + " img"}
+                onError={(e) => {
+                  e.currentTarget.src = PlaceholderImg;
+                }}
                 className="!w-full object-cover object-center border"
               />
               <h1 className="text-xl md:text-2xl text-center">

@@ -1,12 +1,15 @@
-import { useMemo, useState } from "react";
+import {
+	useMemo,
+	useState,
+} from 'react';
 
-import DownloadIcon from "@/assets/icon/download.svg";
-import Button from "@/Components/guest/Button/Button";
-import Footer from "@/Components/guest/Footer/Footer";
-import Navbar from "@/Components/guest/Navbar/Navbar";
-import { Head } from "@inertiajs/react";
+import DownloadIcon from '@/assets/icon/download.svg';
+import Button from '@/Components/guest/Button/Button';
+import Footer from '@/Components/guest/Footer/Footer';
+import Navbar from '@/Components/guest/Navbar/Navbar';
+import { Head } from '@inertiajs/react';
 
-const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL || "";
 
 const FORMULIR_DATA = [
   {
@@ -176,7 +179,7 @@ export default function Formulir() {
 
       {/* Main Content */}
       <div className="py-12 md:py-20 outer-wrapper !justify-start min-h-svh">
-        <div className="inner-wrapper !items-start !justify-start gap-8 md:gap-12 px-4 md:px-0 w-full">
+        <div className="inner-wrapper !items-start !justify-start gap-8 md:gap-12 px-4 xl:px-0 w-full">
           {filteredData.length > 0 ? (
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
               {filteredData.map((category, categoryIndex) => (
@@ -201,10 +204,7 @@ export default function Formulir() {
                         key={fileIndex}
                         className="gap-3 md:gap-4 !justify-start !px-4 md:!px-6 !text-left text-xs md:text-sm !py-3 group"
                         onClick={() =>
-                          window.open(
-                            `${ASSET_URL}/uploads/${file.url}`,
-                            "_blank",
-                          )
+                          window.open(`${ASSET_URL}/docs/${file.url}`, "_blank")
                         }
                       >
                         <img

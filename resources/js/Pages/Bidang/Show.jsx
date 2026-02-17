@@ -1,8 +1,13 @@
-import Placeholder from "@/assets/img/placeholder.png";
-import Footer from "@/Components/guest/Footer/Footer";
-import LazyImage from "@/Components/guest/LazyImage";
-import Navbar from "@/Components/guest/Navbar/Navbar";
-import { Head, Link } from "@inertiajs/react";
+import Placeholder from '@/assets/img/placeholder.png';
+import Footer from '@/Components/guest/Footer/Footer';
+import LazyImage from '@/Components/guest/LazyImage';
+import Navbar from '@/Components/guest/Navbar/Navbar';
+import {
+	Head,
+	Link,
+} from '@inertiajs/react';
+
+const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL || "";
 
 export default function Show({ bidang }) {
   return (
@@ -42,7 +47,14 @@ export default function Show({ bidang }) {
                 <h1 className="text-xl md:text-2xl">{child.name}</h1>
                 <div className="flex gap-2 items-center">
                   <LazyImage
-                    src="https://fisika.uad.ac.id/wp-content/uploads/blank-profile-picture-973460_1280.png"
+                    src={
+                      child.head.profile_picture
+                        ? `${ASSET_URL}/${child.head.profile_picture}`
+                        : Placeholder
+                    }
+                    onError={(e) => {
+                      e.currentTarget.src = Placeholder;
+                    }}
                     className="rounded-full !size-6 md:!size-8"
                   />
                   <p className="font-secondary text-xs md:text-sm">

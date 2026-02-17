@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-
-import PlaceHolderImg from "@/assets/img/placeholder.png";
+import {
+	useEffect,
+	useState,
+} from 'react';
 
 async function downscaleImage(src, width, height) {
   return new Promise((resolve) => {
@@ -20,7 +21,7 @@ async function downscaleImage(src, width, height) {
   });
 }
 
-export default function LazyImage({ src, alt, className }) {
+export default function LazyImage({ src, alt, className, ...props }) {
   const [lowResSrc, setLowResSrc] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -41,9 +42,7 @@ export default function LazyImage({ src, alt, className }) {
         isLoaded ? "opacity-100 blur-0" : "opacity-10 blur-lg"
       }`}
       onLoad={() => setIsLoaded(true)}
-      onError={(e) => {
-        e.currentTarget.src = PlaceHolderImg;
-      }}
+      {...props}
     />
   );
 }

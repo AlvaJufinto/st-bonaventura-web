@@ -1,15 +1,14 @@
-import PlaceHolderImg from "@/assets/img/placeholder.png";
-import Footer from "@/Components/guest/Footer/Footer";
-import LazyImage from "@/Components/guest/LazyImage";
-import Navbar from "@/Components/guest/Navbar/Navbar";
-import { titleName } from "@/utils";
-import { Head } from "@inertiajs/react";
+import PlaceHolderImg from '@/assets/img/placeholder.png';
+import Footer from '@/Components/guest/Footer/Footer';
+import LazyImage from '@/Components/guest/LazyImage';
+import Navbar from '@/Components/guest/Navbar/Navbar';
+import { titleName } from '@/utils';
+import { Head } from '@inertiajs/react';
 
-import { usePageBlock } from "./usePageBlock";
+import { usePageBlock } from './usePageBlock';
 
 function CouncilCard({ type = "primary", data }) {
   const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL || "";
-  console.log("🚀 ~ CouncilCard ~ ASSET_URL:", ASSET_URL);
 
   const title =
     type == "primary"
@@ -27,10 +26,13 @@ function CouncilCard({ type = "primary", data }) {
     <div className="w-full flex flex-col gap-2 items-center">
       <LazyImage
         src={profilePicture ? `${ASSET_URL}/${profilePicture}` : PlaceHolderImg}
-        className={`disabled !h-36 md:!h-60 object-cover !w-48 sm:!w-52 md:!w-60 ${
+        className={`disabled !h-60 md:!h-60 object-cover !w-48 sm:!w-52 md:!w-60 ${
           profilePicture ? "" : "border"
         }`}
-        alt="name"
+        alt="profile-picture"
+        onError={(e) => {
+          e.currentTarget.src = PlaceHolderImg;
+        }}
       />
       <h1 className="text-center text-sm sm:text-lg md:text-xl font-secondary font-semibold text-b300 px-2">
         {title}
@@ -79,7 +81,7 @@ export default function Council({ councils, councilsSecond }) {
                   </p>
                   <h1 className="section-title">Dewan Paroki Pleno</h1>
                 </div>
-                <div className="grid grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-12 md:gap-16 lg:gap-20 xl:gap-24 w-full">
+                <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-12 md:gap-16 lg:gap-20 xl:gap-24 w-full">
                   {councilsSecond.map((council, i) => (
                     <CouncilCard type="secondary" key={i} data={council} />
                   ))}
