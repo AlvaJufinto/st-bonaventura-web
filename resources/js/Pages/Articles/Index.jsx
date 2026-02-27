@@ -16,7 +16,7 @@ export default function Index({ auth, articles, statuses }) {
     }
   };
 
-  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
 
   const columns = [
     {
@@ -38,7 +38,7 @@ export default function Index({ auth, articles, statuses }) {
         item.main_image_name ? (
           <div className="w-24 h-18 overflow-hidden rounded-md">
             <ImagePreviewer
-              src={`${ASSET_URL}/uploads/${item.main_image_name}`}
+              src={`${ASSET_URL}/${item.main_image_name}`}
               alt="Contoh Preview"
               className="w-full h-full"
             />
@@ -109,7 +109,7 @@ export default function Index({ auth, articles, statuses }) {
               onClick={() =>
                 window.open(
                   route("article.guest.show", { slug: item.slug }),
-                  "_blank"
+                  "_blank",
                 )
               }
             >

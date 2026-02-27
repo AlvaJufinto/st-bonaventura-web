@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\Status;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 use Inertia\Inertia;
 
 class NewsController extends Controller
@@ -55,47 +58,51 @@ class NewsController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function store(Request $request)
+	public function store(Request $request,)
 	{
 		$validatedData = $request->validate([
 			'title' => 'nullable|string|max:255',
 			'alternate_title' => 'required|string|max:255',
-			"file" => 'required|file|mimes:pdf|max:12480',
+			'file' => 'required|file|mimes:pdf|max:12288',
 			'user_id' => 'required|integer|exists:users,id',
 			'status_id' => 'required|integer|exists:statuses,id',
 		]);
 
-		$file = $request->file('file');
-
-		$client = new \GuzzleHttp\Client();
-
-		$PUBLIC_ASSET_URL = config('app.PUBLIC_ASSET_URL');
-
 		try {
-			$response = $client->post("{$PUBLIC_ASSET_URL}/upload", [
-				'multipart' => [
-					[
-						'name'      => 'file',
-						'contents'  => fopen($file->getPathname(), 'r'),
-						'filename'  => $file->getClientOriginalName(),
-					],
-				],
-			]);
+			$file = $request->file('file');
 
-			$responseData = json_decode($response->getBody()->getContents(), true);
-
-			if (!isset($responseData['file']['fileName'])) {
-				return back()->withErrors(['file' => 'File upload failed.']);
+			if (!$file) {
+				throw new \Exception('File not provided.');
 			}
 
-			$validatedData['document_name'] = $responseData['file']['fileName'];
+			$fileUploadService = new FileUploadService();
+
+			$result = $fileUploadService->getFileNameAndDirectory(
+				$validatedData['alternate_title'],
+				$file->getClientOriginalExtension(),
+				'docs/warta-minggu'
+			);
+
+			$path = $fileUploadService->uploadFile(
+				$file,
+				$result['directory'],
+				$result['fileName'],
+			);
+
+			if (!$path) {
+				throw new \Exception('Upload failed.');
+			}
+
+			$validatedData['document_name'] = $path;
 
 			News::create($validatedData);
 
-			return to_route('warta-minggu.create')->with('success', 'Warta Minggu berhasil diunggah.');
+			return to_route('warta-minggu.create')
+				->with('success', 'Warta Minggu berhasil diunggah.');
 		} catch (\Exception $e) {
-			to_route('warta-minggu.create')->with('error', 'Warta Minggu gagal diunggah.' . $e->getMessage());
-			return back()->withErrors(['file' => 'Error uploading file: ' . $e->getMessage()]);
+			return back()->withErrors([
+				'file' => 'Error uploading file: ' . $e->getMessage()
+			]);
 		}
 	}
 

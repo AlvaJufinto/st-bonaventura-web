@@ -1,16 +1,13 @@
-import {
-	useRef,
-	useState,
-} from 'react';
+import { useRef, useState } from "react";
 
-import ProfilePlaceholder from '@/Components/admin/ProfilePlaceholder';
-import { useForm } from '@inertiajs/react';
+import ProfilePlaceholder from "@/Components/admin/ProfilePlaceholder";
+import { useForm } from "@inertiajs/react";
 
 export default function ProfilePictureUpload({ user, onUploadSuccess }) {
-  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
 
   const [preview, setPreview] = useState(
-    user.profile_picture ? `${ASSET_URL}/uploads/${user.profile_picture}` : null
+    user.profile_picture ? `${ASSET_URL}/${user.profile_picture}` : null,
   );
 
   const [isDragging, setIsDragging] = useState(false);

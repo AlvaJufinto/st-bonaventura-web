@@ -9,31 +9,29 @@ use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
-  /**
-   * Register any application services.
-   */
-  public function register(): void
-  {
-    //
-  }
+	/**
+	 * Register any application services.
+	 */
+	public function register(): void
+	{
+		//
+	}
 
-  /**
-   * Bootstrap any application services.
-   */
-  public function boot(): void
-  {
-    Inertia::share([
-      'wilayahAll' => SharedData::wilayah(),
-      'bidangAll' => SharedData::bidang(),
-      'auth' => function () {
-        return [
-          'user' => auth()->user(),
-        ];
-      },
-      'permissions' => function () {
-        return Permissions::permissions(auth()->user());
-      },
-      'impersonating' => fn() => session()->has('impersonate_original_id'),
-    ]);
-  }
+	/**
+	 * Bootstrap any application services.
+	 */
+	public function boot(): void
+	{
+		Inertia::share([
+			'wilayahAll' => fn() => SharedData::wilayah(),
+			'bidangAll' => fn() => SharedData::bidang(),
+			'auth' => fn() => [
+				'user' => auth()->user(),
+			],
+			'permissions' => fn() =>
+			Permissions::permissions(auth()->user()),
+			'impersonating' => fn() =>
+			session()->has('impersonate_original_id'),
+		]);
+	}
 }

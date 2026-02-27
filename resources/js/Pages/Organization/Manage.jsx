@@ -1,24 +1,18 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import PlaceholderImg from '@/assets/img/placeholder.png';
-import Badge from '@/Components/admin/Badge';
-import Button from '@/Components/admin/Button';
-import LazyImage from '@/Components/guest/LazyImage';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import Wrapper from '@/Layouts/Wrapper';
-import {
-	organizationType,
-	titleName,
-} from '@/utils';
-import {
-	Head,
-	Link,
-} from '@inertiajs/react';
+import PlaceholderImg from "@/assets/img/placeholder.png";
+import Badge from "@/Components/admin/Badge";
+import Button from "@/Components/admin/Button";
+import LazyImage from "@/Components/guest/LazyImage";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import Wrapper from "@/Layouts/Wrapper";
+import { organizationType, titleName } from "@/utils";
+import { Head, Link } from "@inertiajs/react";
 
-import Member from './Member';
+import Member from "./Member";
 
 export default function Manage({ auth, organization }) {
-  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
 
   const {
     logo,
@@ -41,11 +35,9 @@ export default function Manage({ auth, organization }) {
     { id: 5, name: "Mas David Chen", role: { name: "Koor" } },
   ]);
 
-  const formattedBanner = banner
-    ? `${ASSET_URL}/uploads/${banner}`
-    : PlaceholderImg;
+  const formattedBanner = banner ? `${ASSET_URL}/${banner}` : PlaceholderImg;
 
-  const formattedLogo = logo ? `${ASSET_URL}/uploads/${logo}` : PlaceholderImg;
+  const formattedLogo = logo ? `${ASSET_URL}/${logo}` : PlaceholderImg;
 
   return (
     <AuthenticatedLayout

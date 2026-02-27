@@ -22,7 +22,7 @@ export default function Edit({
   articleTypes,
 }) {
   console.log("🚀 ~ Edit ~ auth:", auth);
-  const PUBLIC_ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+  const PUBLIC_ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
 
   const { data, setData, errors, patch, processing, recentlySuccessful } =
     useForm({
@@ -46,7 +46,7 @@ export default function Edit({
 
   useEffect(() => {
     if (article.main_image_name) {
-      setCurrentImage(`${PUBLIC_ASSET_URL}/uploads/${article.main_image_name}`);
+      setCurrentImage(`${PUBLIC_ASSET_URL}/${article.main_image_name}`);
     }
   }, [article.main_image_name, PUBLIC_ASSET_URL]); // Tambahkan PUBLIC_ASSET_URL ke dependency array
 
@@ -111,7 +111,7 @@ export default function Edit({
           {status.name}
         </option>
       )),
-    [statuses]
+    [statuses],
   );
 
   // Pastikan articleTypes tersedia di props atau dari sumber lain jika tidak ada di 'article'
@@ -119,7 +119,7 @@ export default function Edit({
     () =>
       articleTypes.map(
         (
-          articleType // Gunakan articleTypes dari props
+          articleType, // Gunakan articleTypes dari props
         ) => (
           <option
             value={articleType.id}
@@ -129,9 +129,9 @@ export default function Edit({
           >
             {articleType.name}
           </option>
-        )
+        ),
       ),
-    [articleTypes] // Dependensi ke prop articleTypes
+    [articleTypes], // Dependensi ke prop articleTypes
   );
 
   const organizationOptions = useMemo(
@@ -145,7 +145,7 @@ export default function Edit({
           {organization.name}
         </option>
       )),
-    [organizations]
+    [organizations],
   );
 
   return (

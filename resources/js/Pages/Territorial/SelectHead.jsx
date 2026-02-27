@@ -13,7 +13,7 @@ export default function SelectHead({ data, setData, currentHead }) {
   const badgeRef = useRef(null);
   const popoverRef = useRef(null);
 
-  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
 
   useEffect(() => {
     if (data?.head) {
@@ -105,7 +105,7 @@ export default function SelectHead({ data, setData, currentHead }) {
               className="size-10 rounded-full mr-2 flex-shrink-0 object-cover"
               src={
                 user?.profile_picture
-                  ? `${ASSET_URL}/uploads/${user?.profile_picture}`
+                  ? `${ASSET_URL}/${user?.profile_picture}`
                   : "https://fisika.uad.ac.id/wp-content/uploads/blank-profile-picture-973460_1280.png"
               }
               alt=""
@@ -160,7 +160,7 @@ export default function SelectHead({ data, setData, currentHead }) {
           className="size-10 rounded-full mr-2 flex-shrink-0"
           src={
             displayedHead?.profile_picture
-              ? `${ASSET_URL}/uploads/${displayedHead?.profile_picture}`
+              ? `${ASSET_URL}/${displayedHead?.profile_picture}`
               : "https://fisika.uad.ac.id/wp-content/uploads/blank-profile-picture-973460_1280.png"
           }
           alt=""

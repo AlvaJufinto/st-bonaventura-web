@@ -8,6 +8,7 @@ use App\Models\ArticleType;
 use App\Models\Organization;
 use App\Models\Status;
 use App\Models\User;
+use App\Services\FileUploadService;
 use App\Services\Permissions;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -80,32 +81,32 @@ class ArticleController extends Controller
 			20
 		);
 
-		$file = $request->file('image');
-		$client = new \GuzzleHttp\Client();
-		$PUBLIC_ASSET_URL = config('app.PUBLIC_ASSET_URL');
-
 		try {
-			// Upload image to external service
-			$response = $client->post("{$PUBLIC_ASSET_URL}/upload", [
-				'multipart' => [
-					[
-						'name'      => 'file',
-						'contents'  => fopen($file->getPathname(), 'r'),
-						'filename'  => $file->getClientOriginalName(),
-					],
-				],
-			]);
-
-			$responseData = json_decode($response->getBody()->getContents(), true);
-
-			if (!isset($responseData['file']['fileName'])) {
-				return back()->withErrors(['image' => 'Image upload failed.']);
+			$file = $request->file('image');
+			if (!$file) {
+				throw new \Exception('File not provided.');
 			}
 
-			// Replace image file with uploaded filename
-			$validated['main_image_name'] = $responseData['file']['fileName'];
+			$fileUploadService = new FileUploadService();
 
-			// Create article with uploaded image filename
+			$result = $fileUploadService->getFileNameAndDirectory(
+				$validated['title'],
+				$file->getClientOriginalExtension(),
+				'docs/berita-kegiatan'
+			);
+
+			$path = $fileUploadService->uploadFile(
+				$file,
+				$result['directory'],
+				$result['fileName'],
+			);
+
+			if (!$path) {
+				throw new \Exception('Upload failed.');
+			}
+
+			$validated['main_image_name'] = $path;
+
 			Article::create($validated);
 
 			return to_route('article.index')->with('success', "Artikel berhasil dibuat");
