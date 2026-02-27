@@ -19,7 +19,7 @@ export default function Table({ news }) {
     props: { statuses },
   } = usePage();
 
-  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL || "";
 
   const startEditing = (item) => {
     setEditingId(item.id);
@@ -146,7 +146,7 @@ export default function Table({ news }) {
                       <button className="uppercase tracking-wider font-semibold w-full border bg-white rounded-md p-2 font-secondary text-sm">
                         {editableData.status_id
                           ? statuses.find(
-                              (status) => status.id === editableData.status_id
+                              (status) => status.id === editableData.status_id,
                             )?.name
                           : "Select Status"}
                       </button>
@@ -226,7 +226,7 @@ export default function Table({ news }) {
               </td>
               <td className="p-3 text-sm">
                 <a
-                  href={`${ASSET_URL}/uploads/${item.document_name}`}
+                  href={`${ASSET_URL}/${item.document_name}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-blue-800 text-white px-4 py-2 rounded-md font-secondary transition duration-300 hover:bg-blue-700 text-sm uppercase tracking-wider font-semibold"

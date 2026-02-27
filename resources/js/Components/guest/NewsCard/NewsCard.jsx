@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 export default function NewsCard({ data }) {
   const formattedDate = dateFormatter(data.created_at);
 
-  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
 
   return (
     <div className="border border-neutral-300 border-x-0 w-full flex flex-col md:flex-row justify-between items-start md:items-center h-auto md:h-20 py-4 md:py-0">
@@ -22,7 +22,7 @@ export default function NewsCard({ data }) {
       <Button
         className="w-full md:w-60"
         onClick={() =>
-          window.open(`${ASSET_URL}/uploads/${data.document_name}`, "_blank")
+          window.open(`${ASSET_URL}/${data.document_name}`, "_blank")
         }
       >
         Baca

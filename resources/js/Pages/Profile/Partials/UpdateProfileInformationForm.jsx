@@ -12,7 +12,7 @@ export default function UpdateProfileInformation({
   status,
   className = "",
 }) {
-  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
   const user = usePage().props.auth.user;
   const fileInputRef = useRef(null);
 
@@ -119,7 +119,7 @@ export default function UpdateProfileInformation({
 
     // Jika ada existing profile picture dan tidak ada perubahan
     if (user.profile_picture && !data.profile_picture) {
-      return `${ASSET_URL}/uploads/${user.profile_picture}`;
+      return `${ASSET_URL}/${user.profile_picture}`;
     }
 
     return null;

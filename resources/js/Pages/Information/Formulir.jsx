@@ -1,13 +1,10 @@
-import {
-	useMemo,
-	useState,
-} from 'react';
+import { useMemo, useState } from "react";
 
-import DownloadIcon from '@/assets/icon/download.svg';
-import Button from '@/Components/guest/Button/Button';
-import Footer from '@/Components/guest/Footer/Footer';
-import Navbar from '@/Components/guest/Navbar/Navbar';
-import { Head } from '@inertiajs/react';
+import DownloadIcon from "@/assets/icon/download.svg";
+import Button from "@/Components/guest/Button/Button";
+import Footer from "@/Components/guest/Footer/Footer";
+import Navbar from "@/Components/guest/Navbar/Navbar";
+import { Head } from "@inertiajs/react";
 
 const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL || "";
 
@@ -204,7 +201,10 @@ export default function Formulir() {
                         key={fileIndex}
                         className="gap-3 md:gap-4 !justify-start !px-4 md:!px-6 !text-left text-xs md:text-sm !py-3 group"
                         onClick={() =>
-                          window.open(`${ASSET_URL}/docs/${file.url}`, "_blank")
+                          window.open(
+                            `${ASSET_URL}/docs/forms/${file.url}`,
+                            "_blank",
+                          )
                         }
                       >
                         <img

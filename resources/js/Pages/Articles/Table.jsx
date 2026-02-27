@@ -4,7 +4,7 @@ import { dateFormatter, statusColors } from "@/utils";
 import { router } from "@inertiajs/react";
 
 export default function Table({ articles }) {
-  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
 
   const previewItem = (item) => {
     const url = route("article.guest.show", { slug: item.slug });
@@ -68,7 +68,7 @@ export default function Table({ articles }) {
                 {item.main_image_name ? (
                   <div className="w-24 h-18 overflow-hidden rounded-md">
                     <ImagePreviewer
-                      src={`${ASSET_URL}/uploads/${item.main_image_name}`}
+                      src={`${ASSET_URL}/${item.main_image_name}`}
                       alt="Contoh Preview"
                       className="w-full h-full"
                     />

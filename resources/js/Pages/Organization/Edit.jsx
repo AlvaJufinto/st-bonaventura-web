@@ -1,30 +1,24 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import PlaceholderImg from '@/assets/img/placeholder.png';
-import Button from '@/Components/admin/Button';
-import InputError from '@/Components/admin/InputError';
-import InputLabel from '@/Components/admin/InputLabel';
-import TextInput from '@/Components/admin/TextInput';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { organizationType } from '@/utils';
-import {
-	Head,
-	Link,
-	useForm,
-} from '@inertiajs/react';
+import PlaceholderImg from "@/assets/img/placeholder.png";
+import Button from "@/Components/admin/Button";
+import InputError from "@/Components/admin/InputError";
+import InputLabel from "@/Components/admin/InputLabel";
+import TextInput from "@/Components/admin/TextInput";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { organizationType } from "@/utils";
+import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Edit({ auth, organization }) {
-  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
 
   const [bannerPreview, setBannerPreview] = useState(
     organization.banner
-      ? `${ASSET_URL}/uploads/${organization.banner}`
-      : PlaceholderImg
+      ? `${ASSET_URL}/${organization.banner}`
+      : PlaceholderImg,
   );
   const [logoPreview, setLogoPreview] = useState(
-    organization.logo
-      ? `${ASSET_URL}/uploads/${organization.logo}`
-      : PlaceholderImg
+    organization.logo ? `${ASSET_URL}/${organization.logo}` : PlaceholderImg,
   );
 
   const { data, setData, post, processing, errors } = useForm({

@@ -8,7 +8,7 @@ import { articleDateFormatter } from "@/utils";
 import { Head, router } from "@inertiajs/react";
 
 export default function Article({ article }) {
-  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
 
   const { day, month, year } = articleDateFormatter(article.created_at);
 
@@ -36,7 +36,7 @@ export default function Article({ article }) {
             <LazyImage
               src={
                 article.main_image_name
-                  ? `${ASSET_URL}/uploads/${article.main_image_name}`
+                  ? `${ASSET_URL}/${article.main_image_name}`
                   : PlaceholderImg
               }
               className="w-full !max-h-[800px]"

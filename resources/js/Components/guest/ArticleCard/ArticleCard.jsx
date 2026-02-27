@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 import LazyImage from "../LazyImage";
 
 export default function ArticleCard({ type = "primary", data }) {
-  const ASSET_URL = import.meta.env.VITE_PUBLIC_ASSET_URL;
+  const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
 
   const { day, month, year } = articleDateFormatter(data.created_at);
 
@@ -16,11 +16,14 @@ export default function ArticleCard({ type = "primary", data }) {
         <LazyImage
           src={
             data.main_image_name
-              ? `${ASSET_URL}/uploads/${data.main_image_name}`
+              ? `${ASSET_URL}/${data.main_image_name}`
               : PlaceholderImg
           }
           alt={data.title + " img"}
           className="w-full md:!w-[720px] !h-[250px] md:!h-[500px] object-cover object-center border-r-0"
+          onError={(e) => {
+            e.currentTarget.src = PlaceholderImg;
+          }}
         />
         <div className="p-4 md:p-8 flex flex-col gap-4 w-full">
           <p className="text-b200 font-secondary font-semibold text-sm">
@@ -51,11 +54,14 @@ export default function ArticleCard({ type = "primary", data }) {
         <LazyImage
           src={
             data.main_image_name
-              ? `${ASSET_URL}/uploads/${data.main_image_name}`
+              ? `${ASSET_URL}/${data.main_image_name}`
               : PlaceholderImg
           }
           alt={data.title + " img"}
           className="w-full !h-[150px] lg:!h-[250px] object-cover object-center border border-b-0"
+          onError={(e) => {
+            e.currentTarget.src = PlaceholderImg;
+          }}
         />
         <div className="p-2 md:p-5 flex flex-col gap-4 md:gap-5 h-full">
           <p className="text-b200 font-secondary font-semibold text-sm">
