@@ -1,13 +1,10 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Arrow from '@/assets/icon/chevron-left.svg';
-import LogoNavImg from '@/assets/logo/logo-bona-nav.svg';
-import {
-	Link,
-	usePage,
-} from '@inertiajs/react';
+import Arrow from "@/assets/icon/chevron-left.svg";
+import LogoNavImg from "@/assets/logo/logo-bona-nav.svg";
+import { Link, usePage } from "@inertiajs/react";
 
-import Button from '../Button/Button';
+import Button from "../Button/Button";
 
 function ScrollToTop() {
   return (
@@ -183,13 +180,13 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <a
+            {/*<a
               href="https://yubileum2025.parokipulomas.org/"
               className="h-full items-center justify-center flex"
               target="_blank"
             >
               <Button className="h-fit py-4 px-6">Yubelium 2025</Button>
-            </a>
+            </a>*/}
           </div>
 
           {/* Mobile Hamburger Menu Button */}
