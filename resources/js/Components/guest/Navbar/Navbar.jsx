@@ -60,6 +60,7 @@ export default function Navbar() {
           name: "Berita & Kegiatan",
           url: "/berita-kegiatan",
           urlName: "article.guest.index",
+          isHide: true,
         },
         {
           name: "Warta Minggu",
@@ -150,19 +151,22 @@ export default function Navbar() {
                       className="absolute left-0 top-[80px] bg-white shadow-md w-max 
                     opacity-0 scale-y-0 origin-top transition-all duration-300 group-hover:opacity-100 group-hover:scale-y-100 z-10 max-w-40"
                     >
-                      {link.menu.map((submenu, subIndex) => (
-                        <Link
-                          key={subIndex}
-                          href={link.urlPrefix + submenu.url}
-                          className={`block font-secondary text-xs px-4 py-2 hover:bg-gray-200 ${
-                            isActive(link.urlPrefix + submenu.url)
-                              ? "text-b300 font-semibold"
-                              : ""
-                          }`}
-                        >
-                          {submenu.name}
-                        </Link>
-                      ))}
+                      {link.menu.map(
+                        (submenu, subIndex) =>
+                          !submenu.isHide && (
+                            <Link
+                              key={subIndex}
+                              href={link.urlPrefix + submenu.url}
+                              className={`block font-secondary text-xs px-4 py-2 hover:bg-gray-200 ${
+                                isActive(link.urlPrefix + submenu.url)
+                                  ? "text-b300 font-semibold"
+                                  : ""
+                              }`}
+                            >
+                              {submenu.name}
+                            </Link>
+                          ),
+                      )}
                     </div>
                   </div>
                 );

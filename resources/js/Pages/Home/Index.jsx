@@ -6,7 +6,6 @@ import KaritatifIcon from "@/assets/icon/home/karitatif-icon.svg";
 import PrayIcon from "@/assets/icon/home/pray-icon.svg";
 import BonaImg from "@/assets/img/st-bonaventura-home.png";
 import BonaLogo from "@/assets/logo/logo-bonaventura.png";
-import ArticleCard from "@/Components/guest/ArticleCard/ArticleCard";
 import Button from "@/Components/guest/Button/Button";
 import Footer from "@/Components/guest/Footer/Footer";
 import LazyImage from "@/Components/guest/LazyImage";
@@ -67,7 +66,7 @@ const FirstFridayMass = [
   {
     data: [
       {
-        time: "06.30",
+        time: "06.00",
         type: "offline",
       },
       {
@@ -279,7 +278,7 @@ export default function Index({ news, articles }) {
         <Slider />
       </div>
 
-      {/* Introduction Section - Responsive */}
+      {/* Introduction Section */}
       <div className="w-full outer-wrapper relative mb-20 lg:mb-0">
         {/* Mobile: Normal flow, Desktop: Absolute positioning */}
         <div className="inner-wrapper !items-stretch flex-col lg:!flex-row gap-5 lg:absolute lg:top-[-120px]">
@@ -292,7 +291,7 @@ export default function Index({ news, articles }) {
       <div className="hidden md:block section-absolute"></div>
       <Statistics />
 
-      {/* Services Section - Responsive Grid */}
+      {/* Services Section Grid */}
       <div className="outer-wrapper !mb-16 lg:!mb-32">
         <div className="inner-wrapper">
           <h1 className="text-center section-title mb-10 lg:mb-20 text-2xl lg:text-4xl">
@@ -323,7 +322,7 @@ export default function Index({ news, articles }) {
         </div>
       </div>
 
-      {/* Shortcuts Section - Responsive */}
+      {/* Shortcuts Section */}
       <div className="outer-wrapper bg-b100 mb-16 lg:mb-32">
         <div className="inner-wrapper !items-center !lg:items-start">
           <div className="py-6 lg:py-10 flex flex-col h-full gap-8 lg:flex-row lg:gap-20 w-full">
@@ -334,7 +333,7 @@ export default function Index({ news, articles }) {
         </div>
       </div>
 
-      {/* News Section - Responsive */}
+      {/* News Section */}
       <div className="outer-wrapper mb-16 lg:mb-32">
         <div className="inner-wrapper !items-start">
           <h1 className="text-center w-full section-title text-2xl lg:text-4xl">
@@ -362,8 +361,9 @@ export default function Index({ news, articles }) {
         </div>
       </div>
 
-      {/* Articles Section - Responsive */}
-      <div className="outer-wrapper mb-16 lg:mb-32 gap-6 lg:gap-10">
+      {/* Articles Section */}
+      {/* Hide temporary */}
+      {/*<div className="outer-wrapper mb-16 lg:mb-32 gap-6 lg:gap-10">
         <h1 className="text-center section-title text-2xl lg:text-4xl">
           Berita & Kegiatan
         </h1>
@@ -391,9 +391,9 @@ export default function Index({ news, articles }) {
             </div>
           )}
         </div>
-      </div>
+      </div>*/}
 
-      {/* Mass Schedule Section - Responsive */}
+      {/* Mass Schedule Section */}
       <div className="h-16 lg:h-32" id="jadwal-misa"></div>
       <div className="outer-wrapper mb-16 lg:mb-32 bg-b100">
         <div className="inner-wrapper !py-6 lg:!py-10">
@@ -414,8 +414,8 @@ export default function Index({ news, articles }) {
                   tempat duduk lansia.
                 </li>
                 <li className="text-sm lg:text-base">
-                  Untuk misa online bisa mengunjungi Channel Youtube Komsos
-                  Santo Bonaventura Pulo Mas.
+                  Untuk misa <i>online</i> bisa mengunjungi Channel Youtube
+                  Komsos Bonaventura.
                 </li>
               </ol>
               <Button

@@ -1,21 +1,17 @@
-import DownloadIcon from '@/assets/icon/download.svg';
-import WhatsappIcon from '@/assets/icon/whatsapp.svg';
-import Baptism from '@/assets/img/sacrament/baptism.png';
-import Communion from '@/assets/img/sacrament/communion.png';
-import Confirmation from '@/assets/img/sacrament/confirmation.png';
-import HeaderImg from '@/assets/img/sacrament/header.png';
-import Marriage from '@/assets/img/sacrament/marriage.png';
-import Reconciliation from '@/assets/img/sacrament/reconciliation.png';
-import Sick from '@/assets/img/sacrament/sick.png';
-import Button from '@/Components/guest/Button/Button';
-import Footer from '@/Components/guest/Footer/Footer';
-import LazyImage from '@/Components/guest/LazyImage';
-import Navbar from '@/Components/guest/Navbar/Navbar';
-import {
-	Head,
-	Link,
-	usePage,
-} from '@inertiajs/react';
+import DownloadIcon from "@/assets/icon/download.svg";
+import WhatsappIcon from "@/assets/icon/whatsapp.svg";
+import Baptism from "@/assets/img/sacrament/baptism.png";
+import Communion from "@/assets/img/sacrament/communion.png";
+import Confirmation from "@/assets/img/sacrament/confirmation.png";
+import HeaderImg from "@/assets/img/sacrament/header.png";
+import Marriage from "@/assets/img/sacrament/marriage.png";
+import Reconciliation from "@/assets/img/sacrament/reconciliation.png";
+import Sick from "@/assets/img/sacrament/sick.png";
+import Button from "@/Components/guest/Button/Button";
+import Footer from "@/Components/guest/Footer/Footer";
+import LazyImage from "@/Components/guest/LazyImage";
+import Navbar from "@/Components/guest/Navbar/Navbar";
+import { Head, Link, usePage } from "@inertiajs/react";
 
 const PREFIX = "/sakramen";
 
@@ -187,7 +183,10 @@ export default function Header({ children, type = "Baptis" }) {
                       key={i}
                       className="gap-3 md:gap-4 !justify-start !px-4 md:!px-6 !text-left text-xs md:text-sm !py-3 group"
                       onClick={() =>
-                        window.open(`${ASSET_URL}/docs/${file.url}`, "_blank")
+                        window.open(
+                          `${ASSET_URL}/docs/forms/${file.url}`,
+                          "_blank",
+                        )
                       }
                     >
                       <img
