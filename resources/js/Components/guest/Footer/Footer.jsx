@@ -83,8 +83,8 @@ export default function Footer() {
           <div className="w-full md:col-span-2 lg:col-span-1">
             <h3 className="mb-4 lg:mb-5 text-xl lg:text-2xl">Alamat</h3>
             <p className="font-secondary text-sm lg:text-base leading-relaxed">
-              Jl. Pulo Mas Timur II No. 4, RT.4/RW.14, Kayu Putih, Pulo Gadung,
-              Jakarta Timur, Jakarta
+              Jl. Pacuan Kuda Raya, RT.1/RW.12, Kayu Putih, Kec. Pulo Gadung,
+              Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13210
             </p>
           </div>
         </div>
@@ -108,9 +108,22 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 lg:pt-6 border-t border-b200">
+          <div className="flex flex-col gap-4 lg:flex-row justify-between  w-full">
             <p className="font-bold font-secondary text-xs sm:text-sm lg:text-base text-center sm:text-left">
-              Copyright © 2024 All rights reserved
+              Copyright © {new Date().getFullYear()} All rights reserved
+            </p>
+
+            <p className="font-secondary lg:w-1/4 lg:text-right text-xs sm:text-sm lg:text-base text-center sm:text-left">
+              Developed by{" "}
+              <a
+                href="https://alvajufinto.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold hover:underline transition-all"
+              >
+                Alva
+              </a>{" "}
+              in collaboration with Komsos Bonaventura
             </p>
           </div>
         </div>

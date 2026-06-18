@@ -16,6 +16,7 @@ use App\Http\Controllers\TerritorialController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WilayahController;
 use App\Models\Article;
+use App\Services\YouTubeService;
 use Carbon\Carbon;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Cache;

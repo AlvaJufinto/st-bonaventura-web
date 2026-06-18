@@ -13,9 +13,11 @@ import Navbar from "@/Components/guest/Navbar/Navbar";
 import NewsCard from "@/Components/guest/NewsCard/NewsCard";
 import { Head, Link, router } from "@inertiajs/react";
 
+import InstagramReel from "./InstagramReel";
 import ShortcutCard from "./ShortcutCard";
 import Slider from "./Slider";
 import Statistics from "./Statistics";
+import YouTubePlaylist from "./YouTubePlaylist";
 
 const WeeklyMass = [
   {
@@ -268,7 +270,7 @@ function IntroductionRight() {
   );
 }
 
-export default function Index({ news, articles }) {
+export default function Index({ news, articles, playlistVideos }) {
   return (
     <div>
       <Head title="Beranda" />
@@ -392,6 +394,11 @@ export default function Index({ news, articles }) {
           )}
         </div>
       </div>*/}
+
+      {new Date() < new Date("2026-06-22T00:00:00") && <InstagramReel />}
+
+      {/*{Video ekopraksis }*/}
+      <YouTubePlaylist videos={playlistVideos} />
 
       {/* Mass Schedule Section */}
       <div className="h-16 lg:h-32" id="jadwal-misa"></div>
