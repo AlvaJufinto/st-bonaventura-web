@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Council;
+use App\Models\Period;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -14,14 +15,30 @@ class CouncilController extends Controller
    */
   public function index()
   {
-    $councils = Council::query()->orderBy('order', 'asc')->with(relations: ['user'])->get();
+    $periodId = request()->query('period');
+    $activePeriod = Period::active()->first();
+    $targetPeriodId = $periodId ?? $activePeriod?->id;
 
-    // dd($councils->toArray());
+    $councils = Council::query()
+      ->orderBy('order', 'asc')
+      ->get()
+      ->map(function ($council) use ($targetPeriodId) {
+        $users = $council->users()
+          ->wherePivot('period_id', $targetPeriodId)
+          ->get();
+        return [
+          'id' => $council->id,
+          'title' => $council->title,
+          'order' => $council->order,
+          'users' => $users,
+        ];
+      });
 
-    return Inertia::render('Council/Index', compact('councils'));
+    $periods = Period::orderBy('start_year', 'desc')->get();
+
+    return Inertia::render('Council/Index', compact('councils', 'periods'));
   }
 
-  // app/Http/Controllers/CouncilController.php
   public function reorder(Request $request)
   {
     $orderedIds = $request->input('ordered_ids');

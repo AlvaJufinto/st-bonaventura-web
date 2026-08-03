@@ -15,6 +15,7 @@ class Council extends Model
     'title',
     'user_id',
     'order',
+    'period_id',
   ];
 
   public function getAuditLabel()
@@ -22,9 +23,10 @@ class Council extends Model
     return $this->title;
   }
 
-
-  public function user()
+  public function users()
   {
-    return $this->belongsTo(User::class);
+    return $this->belongsToMany(User::class, 'council_user')
+      ->withPivot('period_id')
+      ->withTimestamps();
   }
 }

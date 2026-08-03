@@ -154,7 +154,8 @@ class DatabaseSeeder extends Seeder
 			WilayahSeeder::class,
 			OrganizationSeeder::class,
 			ArticleSeeder::class,
-			CouncilSeeder::class
+			CouncilSeeder::class,
+			PeriodSeeder::class,
 		]);
 	}
 }

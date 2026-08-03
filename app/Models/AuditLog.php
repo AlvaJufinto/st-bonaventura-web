@@ -7,10 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class AuditLog extends Model
 {
-  protected $fillable = ['user_id', 'action', 'data', 'user_agent', 'ip_address'];
+  protected $fillable = [
+    'user_id',
+    'action',
+    'auditable_type',
+    'auditable_id',
+    'old_values',
+    'new_values',
+    'ip_address',
+    'user_agent',
+  ];
 
   protected $casts = [
-    'data' => 'array',
+    'old_values' => 'array',
+    'new_values' => 'array',
   ];
 
   public function auditable()

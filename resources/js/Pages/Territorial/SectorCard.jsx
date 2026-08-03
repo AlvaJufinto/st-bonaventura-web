@@ -2,6 +2,8 @@ import Button from "@/Components/guest/Button/Button";
 import { Link } from "@inertiajs/react";
 
 export default function SectorCard({ item }) {
+  const members = item.members || [];
+
   return (
     <div className="w-64 flex flex-col items-stretch p-4 bg-white">
       <div className="mb-8 space-y-2">
@@ -12,8 +14,17 @@ export default function SectorCard({ item }) {
         </p>
       </div>
 
+      {members.length > 0 && (
+        <div className="mb-4 font-secondary">
+          <p className="text-sm text-gray-600">Koordinator:</p>
+          {members.map((m, idx) => (
+            <p key={idx} className="font-semibold">{m.name}</p>
+          ))}
+        </div>
+      )}
+
       <ul className="list-decimal pl-6 mb-12 font-secondary flex flex-col gap-4">
-        {item.children.map((child, index) => (
+        {item.children?.map((child, index) => (
           <li key={index} className="font-secondary text-sm">
             {child.name} — {child.address}
           </li>

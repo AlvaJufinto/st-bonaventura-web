@@ -8,7 +8,8 @@ import { CSS } from "@dnd-kit/utilities";
 export default function SortableItem({ item }) {
   const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
 
-  const { id, title, user } = item;
+  const { id, title, users } = item;
+  const firstUser = users?.[0];
 
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
@@ -17,6 +18,8 @@ export default function SortableItem({ item }) {
     transform: CSS.Transform.toString(transform),
     transition,
   };
+
+  if (!firstUser) return null;
 
   return (
     <div
@@ -29,16 +32,19 @@ export default function SortableItem({ item }) {
       <GripVertical />
       <LazyImage
         src={
-          user.profile_picture
-            ? `${ASSET_URL}/${user.profile_picture}`
+          firstUser.profile_picture
+            ? `${ASSET_URL}/${firstUser.profile_picture}`
             : PlaceHolderImg
         }
         className="!w-48 aspect-square"
       />
       <div className="space-y-4">
-        <h1 className="font-secondary text-2xl">{user.name}</h1>
+        <h1 className="font-secondary text-2xl">{firstUser.name}</h1>
         <p className="font-secondary">{title}</p>
-        <p className="font-secondary">{user.email}</p>
+        <p className="font-secondary">{firstUser.email}</p>
+        {users.length > 1 && (
+          <p className="font-secondary text-gray-500">+{users.length - 1} others</p>
+        )}
       </div>
     </div>
   );

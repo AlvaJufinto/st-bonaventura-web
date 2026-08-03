@@ -27,8 +27,8 @@ class User extends Authenticatable
 		'password',
 		'role_id',
 		'status_id',
-		// 'organization_id',
 		'profile_picture',
+		'period_id',
 	];
 
 	/**
@@ -53,8 +53,8 @@ class User extends Authenticatable
 
 	public function assignedOrganizations()
 	{
-		return $this->belongsToMany(Organization::class)
-			->withPivot('role')
+		return $this->belongsToMany(Organization::class, 'organization_user')
+			->withPivot('role', 'period_id')
 			->withTimestamps();
 	}
 
@@ -78,9 +78,20 @@ class User extends Authenticatable
 		return $this->belongsTo(Status::class, 'status_id');
 	}
 
+	public function period()
+	{
+		return $this->belongsTo(Period::class);
+	}
 
 	public function organizations()
 	{
 		return $this->hasMany(Organization::class, 'head_id');
+	}
+
+	public function councils()
+	{
+		return $this->belongsToMany(Council::class, 'council_user')
+			->withPivot('period_id')
+			->withTimestamps();
 	}
 }

@@ -22,10 +22,10 @@ class Organization extends Model
 		'organization_type_id',
 		'status_id',
 		'head_id',
-		'article_type',
 		'slug',
 		'parent_id',
 		'address',
+		'period_id',
 	];
 
 	public function getAuditLabel()
@@ -75,10 +75,15 @@ class Organization extends Model
 		return $this->hasMany(Article::class, 'publisher_id');
 	}
 
+	public function period()
+	{
+		return $this->belongsTo(Period::class);
+	}
+
 	public function members()
 	{
-		return $this->belongsToMany(User::class, 'organization_user') // pivot table
-			->withPivot('role')
+		return $this->belongsToMany(User::class, 'organization_user')
+			->withPivot('role', 'period_id')
 			->withTimestamps();
 	}
 }
