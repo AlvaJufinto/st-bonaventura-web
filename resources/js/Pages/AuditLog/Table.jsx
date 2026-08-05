@@ -28,20 +28,26 @@ export default function Table({ logs }) {
               {log.auditable?.label || "-"}
             </td>
             <td className="p-3 text-sm font-secondary whitespace-pre-line">
-              {log.data
-                ? Object.entries(log.data).map(([key, value]) => (
-                    <div key={key}>
-                      <strong className="font-secondary">{key}</strong>:{" "}
-                      <span className="text-red-600 line-through font-secondary">
-                        {String(value.old)}
-                      </span>{" "}
-                      →{" "}
-                      <span className="text-green-600 font-secondary">
-                        {String(value.new)}
-                      </span>
-                    </div>
-                  ))
-                : "-"}
+              {(() => {
+                try {
+                  const parsed = JSON.parse(log.data);
+                  if (typeof parsed === 'object' && parsed !== null && Object.keys(parsed).length > 0) {
+                    return Object.entries(parsed).map(([key, value]) => (
+                      <div key={key}>
+                        <strong className="font-secondary">{key}</strong>:{" "}
+                        <span className="text-red-600 line-through font-secondary">
+                          {String(value.old)}
+                        </span>{" "}
+                        →{" "}
+                        <span className="text-green-600 font-secondary">
+                          {String(value.new)}
+                        </span>
+                      </div>
+                    ));
+                  }
+                } catch (e) {}
+                return "-";
+              })()}
             </td>
             <td className="p-3 text-sm font-secondary">
               {log.ip_address || "-"}
