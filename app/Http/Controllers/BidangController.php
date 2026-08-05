@@ -138,6 +138,9 @@ class BidangController extends Controller
   public function approve($id)
   {
     $organization = Organization::findOrFail($id);
+    if ($organization->user_id !== auth()->id() && !auth()->user()->can('publish')) {
+      abort(403);
+    }
     $organization->status_id = 3;
     $organization->save();
 
@@ -147,6 +150,9 @@ class BidangController extends Controller
   public function revert($id)
   {
     $organization = Organization::findOrFail($id);
+    if ($organization->user_id !== auth()->id() && !auth()->user()->can('publish')) {
+      abort(403);
+    }
     $organization->status_id = 2;
     $organization->save();
 

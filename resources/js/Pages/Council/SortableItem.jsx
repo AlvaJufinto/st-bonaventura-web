@@ -9,7 +9,6 @@ export default function SortableItem({ item }) {
   const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
 
   const { id, title, users } = item;
-  const firstUser = users?.[0];
 
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
@@ -19,7 +18,7 @@ export default function SortableItem({ item }) {
     transition,
   };
 
-  if (!firstUser) return null;
+  if (!users || users.length === 0) return null;
 
   return (
     <div
@@ -27,24 +26,31 @@ export default function SortableItem({ item }) {
       {...attributes}
       {...listeners}
       style={style}
-      className="p-4 mb-4 bg-white rounded shadow cursor-move flex gap-4"
+      className="p-4 mb-4 bg-white rounded shadow cursor-move flex items-center gap-4"
     >
-      <GripVertical />
-      <LazyImage
-        src={
-          firstUser.profile_picture
-            ? `${ASSET_URL}/${firstUser.profile_picture}`
-            : PlaceHolderImg
-        }
-        className="!w-48 aspect-square"
-      />
-      <div className="space-y-4">
-        <h1 className="font-secondary text-2xl">{firstUser.name}</h1>
-        <p className="font-secondary">{title}</p>
-        <p className="font-secondary">{firstUser.email}</p>
-        {users.length > 1 && (
-          <p className="font-secondary text-gray-500">+{users.length - 1} others</p>
-        )}
+      <GripVertical className="flex-shrink-0 text-gray-400" />
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 flex-1 min-w-0">
+        {users.map((user) => (
+          <div key={user.id} className="flex items-center gap-2 flex-shrink-0">
+            <LazyImage
+              src={
+                user.profile_picture
+                  ? `${ASSET_URL}/${user.profile_picture}`
+                  : PlaceHolderImg
+              }
+              className="!w-10 !h-10 rounded-full"
+              alt={user.name}
+            />
+            <span className="font-medium text-sm truncate max-w-[150px]" title={user.name}>
+              {user.name}
+            </span>
+          </div>
+        ))}
+      </div>
+      <div className="flex-shrink-0 border-l border-gray-200 pl-4 ml-2">
+        <p className="font-secondary text-sm text-gray-600 whitespace-nowrap">
+          {title}
+        </p>
       </div>
     </div>
   );

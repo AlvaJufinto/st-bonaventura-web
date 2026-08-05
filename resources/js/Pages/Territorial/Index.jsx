@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 
 import DetailSidebar, {
   DetailSidebarProvider,
@@ -18,7 +18,10 @@ export default function Index({ auth, territories, periods, selectedPeriodId }) 
     router.get(route("teritorial.index", { period_id: periodId }));
   }
 
-  const selectedPeriod = periods?.find((p) => p.id === selectedPeriodId) || periods?.[0];
+  const selectedPeriod = useMemo(
+    () => periods?.find((p) => p.id === selectedPeriodId) || periods?.[0],
+    [periods, selectedPeriodId],
+  );
 
   return (
     <DetailSidebarProvider>

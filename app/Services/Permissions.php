@@ -27,8 +27,8 @@ class Permissions
 			'canImpersonate' => $user?->role?->role_level == 1,
 
 			// klo yg ini buat ngeliat dia punya org apa tdk
-			'isHead' => $user?->organizations?->count() > 0,
-			'currentOrganization' => $user?->organizations()->with(['type', 'parent'])?->first() ?? null,
+			'isHead' => $user?->assignedOrganizations()->exists(),
+			'currentOrganization' => $user?->assignedOrganizations()->with(['type', 'parent'])->first(),
 		];
 	}
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 import Button from "@/Components/admin/Button";
 import { useDetailSidebar } from "@/Components/admin/DetailSidebar";
@@ -20,6 +20,8 @@ export default function ChildrenTable({ expandedTerritories, territory, selected
   } = usePage();
 
   const { data, setData, patch, reset, processing } = useForm({});
+
+  const childrenList = useMemo(() => territory.children || [], [territory.children]);
 
   const handleEditInit = (child) => {
     setEditingChildId(child.id);
@@ -107,7 +109,7 @@ export default function ChildrenTable({ expandedTerritories, territory, selected
                 </tr>
               </thead>
               <tbody>
-                {territory.children.map((child, index) => {
+                {childrenList.map((child, index) => {
                   const isEditing = editingChildId === child.id;
                   return (
                     <tr

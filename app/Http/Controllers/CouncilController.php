@@ -20,19 +20,15 @@ class CouncilController extends Controller
     $targetPeriodId = $periodId ?? $activePeriod?->id;
 
     $councils = Council::query()
+      ->with(['users' => fn($q) => $q->wherePivot('period_id', $targetPeriodId)->orderBy('name')])
       ->orderBy('order', 'asc')
       ->get()
-      ->map(function ($council) use ($targetPeriodId) {
-        $users = $council->users()
-          ->wherePivot('period_id', $targetPeriodId)
-          ->get();
-        return [
-          'id' => $council->id,
-          'title' => $council->title,
-          'order' => $council->order,
-          'users' => $users,
-        ];
-      });
+      ->map(fn($council) => [
+        'id' => $council->id,
+        'title' => $council->title,
+        'order' => $council->order,
+        'users' => $council->users,
+      ]);
 
     $periods = Period::orderBy('start_year', 'desc')->get();
 

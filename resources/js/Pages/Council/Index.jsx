@@ -1,7 +1,6 @@
-import { useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Wrapper from "@/Layouts/Wrapper";
-import { Head, usePage, router } from "@inertiajs/react";
+import { Head, router, usePage } from "@inertiajs/react";
 
 import CouncilList from "./CouncilList";
 

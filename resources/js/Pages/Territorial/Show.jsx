@@ -6,6 +6,7 @@ import LazyImage from "@/Components/guest/LazyImage";
 import Navbar from "@/Components/guest/Navbar/Navbar";
 import { titleName } from "@/utils";
 import { Head, Link, router } from "@inertiajs/react";
+import { useMemo } from "react";
 
 export default function Show({ data, articles, periods, selectedPeriodId }) {
   const type = data?.name;
@@ -26,6 +27,8 @@ export default function Show({ data, articles, periods, selectedPeriodId }) {
   const selectedPeriod =
     periods?.find((p) => p.id === selectedPeriodId) || periods?.[0];
 
+  const childrenList = useMemo(() => data.children || [], [data.children]);
+
   return (
     <div>
       <Head title={data.name} />
@@ -41,21 +44,27 @@ export default function Show({ data, articles, periods, selectedPeriodId }) {
               <p className="text-b200 font-secondary font-semibold text-base md:text-lg">
                 {data.alternate_name}
               </p>
-              {(data.organization_type_id != 1 ||
-                data.organization_type_id != 2) && (
-                <p className="font-secondary text-base md:text-lg w-full md:w-3/5">
-                  {data.description}
-                </p>
-              )}
             </div>
-            {data.children.length > 0 && (
+            {childrenList.length > 0 && (
               <ul className="list-decimal space-y-2 pl-6 mb-5 font-secondary">
-                {data.children.map((child, index) => (
+                {childrenList.map((child) => (
                   <li
-                    key={index}
+                    key={child.id}
                     className="font-secondary font-medium text-sm md:text-base"
                   >
-                    {child.name} — {child.address}
+                    <Link
+                      href={
+                        route("lingkungan.guest.show", {
+                          territorial: child.slug,
+                        }) +
+                        (selectedPeriodId
+                          ? `?period_id=${selectedPeriodId}`
+                          : "")
+                      }
+                      className="hover:text-b200 transition-colors"
+                    >
+                      {child.name} — {child.address}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -91,8 +100,8 @@ export default function Show({ data, articles, periods, selectedPeriodId }) {
               {title}
             </h1>
             <div className="flex flex-wrap gap-6">
-              {data.members.map((member, idx) => (
-                <div key={idx} className="w-32 md:w-40 space-y-4">
+              {data.members.map((member) => (
+                <div key={member.id} className="w-32 md:w-40 space-y-4">
                   <LazyImage
                     src={
                       member.profile_picture
@@ -129,25 +138,27 @@ export default function Show({ data, articles, periods, selectedPeriodId }) {
           </div>
         )}
 
-      {data.children.length > 0 && (
+      {childrenList.length > 0 && (
         <div className="outer-wrapper !py-10 md:!py-20 !justify-start min-h-[300px]">
           <div className="inner-wrapper !items-start gap-4 relative">
             <h1 className="tracking-wider text-2xl md:text-4xl">Lingkungan</h1>
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-10 mt-6 md:mt-10">
-              {data.children.map((child) => (
+              {childrenList.map((child) => (
                 <div
                   key={child.id}
                   className="flex flex-col shadow-basic p-3 pt-6 items-center text-center h-full"
                 >
-                  <h1 className="font-secondary font-semibold text-lg md:text-xl">
-                    {data.name}
-                  </h1>
-                  <p className="text-b300 text-2xl md:text-3xl my-2">
+                  <h1 className="font-secondary font-semibold text-lg md:text-xl line-clamp-2 min-h-[56px] flex items-center">
                     {child.name}
-                  </p>
-                  <p className="mb-6 md:mb-10 text-sm md:text-base">
+                  </h1>
+                  <p className="mb-3 text-sm md:text-base text-gray-600 line-clamp-2 min-h-[40px]">
                     {child.address}
                   </p>
+                  {child.members?.[0] && (
+                    <p className="mb-4 font-secondary text-sm md:text-base text-b300 font-medium">
+                      {child.members[0].name}
+                    </p>
+                  )}
                   <Link
                     href={
                       route("lingkungan.guest.show", {

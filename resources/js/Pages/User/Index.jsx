@@ -8,7 +8,7 @@ import { Head, router } from "@inertiajs/react";
 
 import Table from "./Table";
 
-export default function Dashboard({ auth, users }) {
+export default function Dashboard({ auth, users, periods }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const goToPage = (page) => {
@@ -45,7 +45,7 @@ export default function Dashboard({ auth, users }) {
           <Button type="primary">Cari</Button>
         </form>
 
-        <Table users={users.data} searchTerm={searchTerm} />
+        <Table users={users.data} searchTerm={searchTerm} periods={periods} />
         <Pagination
           currentPage={users.current_page}
           totalPages={users.last_page}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 import Badge from "@/Components/admin/Badge";
 import Button from "@/Components/admin/Button";
@@ -175,7 +175,7 @@ const DetailSidebarInfo = ({ territory, selectedPeriodId }) => {
 
   const { props } = usePage();
 
-  const findUpdatedTerritory = () => {
+  const currentTerritory = useMemo(() => {
     if (!territory) return null;
 
     if (props.territories) {
@@ -195,9 +195,12 @@ const DetailSidebarInfo = ({ territory, selectedPeriodId }) => {
     }
 
     return territory;
-  };
+  }, [territory, props.territories]);
 
-  const currentTerritory = findUpdatedTerritory();
+  const childrenList = useMemo(
+    () => currentTerritory?.children || [],
+    [currentTerritory?.children],
+  );
 
   const type =
     currentTerritory?.organization_type_id === 1 ? "wilayah" : "lingkungan";
@@ -398,14 +401,13 @@ const DetailSidebarInfo = ({ territory, selectedPeriodId }) => {
 
       {!isSidebarEditing &&
         currentTerritory &&
-        currentTerritory.children &&
-        currentTerritory.children.length > 0 && (
+        childrenList.length > 0 && (
           <div className="pt-12">
             <h3 className="font-secondary text-lg font-semibold text-gray-800 mb-2">
               Lingkungan:
             </h3>
             <LingkunganSection
-              item={currentTerritory.children}
+              item={childrenList}
               parentId={currentTerritory.id}
               selectedPeriodId={selectedPeriodId}
             />

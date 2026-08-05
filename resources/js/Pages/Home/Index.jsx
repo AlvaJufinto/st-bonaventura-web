@@ -18,6 +18,7 @@ import ShortcutCard from "./ShortcutCard";
 import Slider from "./Slider";
 import Statistics from "./Statistics";
 import YouTubePlaylist from "./YouTubePlaylist";
+import { useMemo } from "react";
 
 const WeeklyMass = [
   {
@@ -342,15 +343,17 @@ export default function Index({ news, articles, playlistVideos }) {
             Warta Minggu
           </h1>
           <div className="py-6 lg:py-10 w-full flex flex-col gap-5">
-            {news?.length > 0 ? (
-              news.map((newsItem, index) => (
-                <NewsCard key={index} data={newsItem} />
-              ))
-            ) : (
-              <div className="w-full min-h-60 lg:min-h-80 flex justify-center items-center text-xl lg:text-2xl font-secondary font-semibold text-gray-800 leading-tight text-center px-4">
-                Tidak Ada Warta Minggu
-              </div>
-            )}
+            {useMemo(() => (
+              news?.length > 0 ? (
+                news.map((newsItem, index) => (
+                  <NewsCard key={index} data={newsItem} />
+                ))
+              ) : (
+                <div className="w-full min-h-60 lg:min-h-80 flex justify-center items-center text-xl lg:text-2xl font-secondary font-semibold text-gray-800 leading-tight text-center px-4">
+                  Tidak Ada Warta Minggu
+                </div>
+              )
+            ), [news])}
           </div>
           {news.length > 0 && (
             <Button

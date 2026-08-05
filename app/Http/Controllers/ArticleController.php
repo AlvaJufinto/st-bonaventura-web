@@ -43,7 +43,7 @@ class ArticleController extends Controller
 	public function create()
 	{
 		$statuses = Status::get();
-		$user = Auth::user();
+		$user = Auth::user()->load('organizations');
 		$organizations = $user->organizations;
 		$articleTypes = ArticleType::get();
 
@@ -132,7 +132,7 @@ class ArticleController extends Controller
 	public function edit(Article $article)
 	{
 		$statuses = Status::get();
-		$user = Auth::user();
+		$user = Auth::user()->load('organizations');
 		$organizations = $user->organizations;
 		$articleTypes = ArticleType::get();
 

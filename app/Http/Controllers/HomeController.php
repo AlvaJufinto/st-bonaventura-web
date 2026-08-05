@@ -41,7 +41,8 @@ class HomeController extends Controller
 
 		$announcements = Article::where('status_id', 3)
 			->where('article_type_id', 3)
-			->with('publisher', 'user', 'articleType');
+			->with('publisher', 'user', 'articleType')
+			->get();
 
 		$playlistVideos = $youtube->getEkopraksisPlaylistVideos();
 

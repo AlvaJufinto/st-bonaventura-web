@@ -7,7 +7,7 @@ async function downscaleImage(src, width, height) {
   return new Promise((resolve) => {
     const img = new Image();
     img.src = src;
-    //img.crossOrigin = "Anonymous";
+    img.crossOrigin = "Anonymous";
     img.onload = () => {
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");

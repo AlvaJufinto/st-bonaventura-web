@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 import Button from "@/Components/admin/Button";
 import { useDetailSidebar } from "@/Components/admin/DetailSidebar";
@@ -76,17 +76,17 @@ export default function ParentTable({
     });
   };
 
-  const getMemberName = (territory) => {
+  const getMemberName = useCallback((territory) => {
     const members = territory.members || [];
     if (members.length === 0) return null;
     return members[0].name;
-  };
+  }, []);
 
-  const getMemberProfile = (territory) => {
+  const getMemberProfile = useCallback((territory) => {
     const members = territory.members || [];
     if (members.length === 0) return null;
     return members[0];
-  };
+  }, []);
 
   return (
     <table className="w-full border-collapse">

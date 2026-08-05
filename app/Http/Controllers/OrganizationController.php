@@ -13,8 +13,8 @@ class OrganizationController extends Controller
 {
 	public function manage()
 	{
-		$organization = Organization::with(['head', 'parent', 'type', 'status'])
-			->where('head_id', auth()->id())
+		$organization = auth()->user()->assignedOrganizations()
+			->with(['head', 'parent', 'type', 'status'])
 			->firstOrFail();
 
 		return Inertia::render('Organization/Manage', [
@@ -24,8 +24,9 @@ class OrganizationController extends Controller
 
 	public function edit()
 	{
-		$userOrganizationId = auth()->user()->organizations->first()->id;
-		$organization = Organization::with(['type', 'status', 'head', 'parent'])->findOrFail(id: $userOrganizationId);
+		$user = auth()->user()->load('assignedOrganizations');
+		$userOrganizationId = $user->assignedOrganizations->first()->id;
+		$organization = Organization::with(['type', 'status', 'head', 'parent'])->findOrFail($userOrganizationId);
 
 		return Inertia::render('Organization/Edit', [
 			'organization' => $organization,
@@ -38,7 +39,8 @@ class OrganizationController extends Controller
 
 	public function update(Request $request)
 	{
-		$userOrganizationId = auth()->user()->organizations->first()->id;
+		$user = auth()->user()->load('organizations');
+		$userOrganizationId = $user->organizations->first()->id;
 		$organization = Organization::with(['type', 'status', 'head', 'parent'])
 			->findOrFail($userOrganizationId);
 
