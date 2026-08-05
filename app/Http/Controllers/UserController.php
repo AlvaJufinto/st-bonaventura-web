@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -16,11 +17,12 @@ class UserController extends Controller
   {
     $query = User::query();
 
-    $query->where('status_id', 3);
-    // $query->whereDoesntHave('organization');
+    $query->where('status_id', 3)->with('role:id,name');
 
-    // Filter berdasarkan search term jika ada
     if ($search = $request->input('search')) {
+      if (strlen($search) > 100) {
+        return response()->json(['data' => []]);
+      }
       $query->whereRaw(
         "MATCH(name, username, email) AGAINST (? IN BOOLEAN MODE)",
         [$search]
@@ -30,7 +32,7 @@ class UserController extends Controller
     $users = $query->limit(10)->get();
 
     return response()->json([
-      'data' => $users,
+      'data' => UserResource::collection($users),
     ]);
   }
 
@@ -42,7 +44,7 @@ class UserController extends Controller
     $query = User::select('id', 'name', 'username', 'email', 'role_id', 'status_id', 'profile_picture')
       ->with([
         'role:id,name',
-        'organizations',
+        'assignedOrganizations:id,name',
         'status:id,name'
       ]);
 
@@ -58,7 +60,9 @@ class UserController extends Controller
 
     $users->appends(['search' => $request->input('search')]);
 
-    return Inertia::render('User/Index', compact('users'));
+    $periods = \App\Models\Period::orderBy('start_year', 'desc')->get();
+
+    return Inertia::render('User/Index', compact('users', 'periods'));
   }
 
   /**

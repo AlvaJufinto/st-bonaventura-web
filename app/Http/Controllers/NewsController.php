@@ -13,9 +13,12 @@ use Inertia\Inertia;
 
 class NewsController extends Controller
 {
-	public function approve($id)
+	public function approve(int $id)
 	{
 		$news = News::findOrFail($id);
+		if ($news->user_id !== auth()->id() && !auth()->user()->can('publish')) {
+			abort(403);
+		}
 		$news->status_id = 3;
 		$news->save();
 
@@ -23,9 +26,12 @@ class NewsController extends Controller
 	}
 
 
-	public function revert($id)
+	public function revert(int $id)
 	{
 		$news = News::findOrFail($id);
+		if ($news->user_id !== auth()->id() && !auth()->user()->can('publish')) {
+			abort(403);
+		}
 		$news->status_id = 2;
 		$news->save();
 

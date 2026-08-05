@@ -22,7 +22,7 @@ return new class extends Migration
 			$table->date('published_date');
 			$table->longText('content');
 
-			$table->foreignId('publisher_id')->nullable()->constrained('organizations', 'id')->onDelete('cascade');
+			$table->foreignId('publisher_id')->nullable()->constrained('organizations', 'id')->onDelete('set null');
 			$table->foreignId('user_id')->constrained()->onDelete('cascade');
 			$table->foreignId('status_id')->constrained()->onDelete('cascade');
 			$table->foreignId('article_type_id')->constrained()->onDelete('cascade');

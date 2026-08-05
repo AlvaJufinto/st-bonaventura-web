@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 import Badge from "@/Components/admin/Badge";
 import Button from "@/Components/admin/Button";
@@ -10,9 +10,9 @@ import { useForm, usePage } from "@inertiajs/react";
 
 import SelectHead from "./SelectHead";
 
-const CreateNewLingkungan = ({ parentId }) => {
+const CreateNewLingkungan = ({ parentId, selectedPeriodId }) => {
   const {
-    props: { auth, statuses },
+    props: { auth, statuses, periods },
   } = usePage();
   const [isCreating, setIsCreating] = useState(false);
 
@@ -24,6 +24,7 @@ const CreateNewLingkungan = ({ parentId }) => {
     user_id: auth?.user?.id,
     organization_type_id: 2,
     parent_id: parentId,
+    period_id: selectedPeriodId || periods?.find((p) => p.is_active)?.id || "",
   });
 
   const handleCreateSubmit = (e) => {
@@ -137,7 +138,7 @@ const CreateNewLingkungan = ({ parentId }) => {
   }
 };
 
-const LingkunganSection = ({ item, parentId }) => {
+const LingkunganSection = ({ item, parentId, selectedPeriodId }) => {
   if (!item) return null;
 
   const lingkunganList = Array.isArray(item) ? item : [];
@@ -158,34 +159,31 @@ const LingkunganSection = ({ item, parentId }) => {
               {child.address || "-"}
             </div>
             <div className="text-xs text-gray-400 font-secondary">
-              {child?.head?.name || "-"}
+              {child.members?.[0]?.name || child?.head?.name || "-"}
             </div>
           </li>
         ))}
       </ul>
 
-      <CreateNewLingkungan parentId={parentId} />
+      <CreateNewLingkungan parentId={parentId} selectedPeriodId={selectedPeriodId} />
     </div>
   );
 };
 
-const DetailSidebarInfo = ({ territory }) => {
+const DetailSidebarInfo = ({ territory, selectedPeriodId }) => {
   const [isSidebarEditing, setIsSidebarEditing] = useState(false);
 
   const { props } = usePage();
 
-  // ini karena wktu update harus ngambil data terbaru dan bukan yg dari props lama
-  const findUpdatedTerritory = () => {
+  const currentTerritory = useMemo(() => {
     if (!territory) return null;
 
-    // Find the territory in the territories array based on ID
     if (props.territories) {
       const updatedParent = props.territories.find(
         (t) => t.id === territory.id
       );
       if (updatedParent) return updatedParent;
 
-      // If not found as parent, check in children
       for (const parent of props.territories) {
         if (parent.children) {
           const updatedChild = parent.children.find(
@@ -197,9 +195,12 @@ const DetailSidebarInfo = ({ territory }) => {
     }
 
     return territory;
-  };
+  }, [territory, props.territories]);
 
-  const currentTerritory = findUpdatedTerritory();
+  const childrenList = useMemo(
+    () => currentTerritory?.children || [],
+    [currentTerritory?.children],
+  );
 
   const type =
     currentTerritory?.organization_type_id === 1 ? "wilayah" : "lingkungan";
@@ -215,6 +216,7 @@ const DetailSidebarInfo = ({ territory }) => {
     description: currentTerritory?.description || "",
     status_id: currentTerritory?.status_id || "",
     head_id: currentTerritory?.head_id || "",
+    period_id: selectedPeriodId,
   });
 
   const saveEdit = () => {
@@ -235,10 +237,17 @@ const DetailSidebarInfo = ({ territory }) => {
         description: currentTerritory.description || "",
         status_id: currentTerritory.status_id || "",
         head_id: currentTerritory.head_id || "",
+        period_id: selectedPeriodId,
       });
     }
     setIsSidebarEditing(false);
-  }, [currentTerritory]);
+  }, [currentTerritory, selectedPeriodId]);
+
+  const getMemberProfile = () => {
+    const members = currentTerritory?.members || [];
+    if (members.length === 0) return null;
+    return members[0];
+  };
 
   if (!currentTerritory) {
     return <div className="p-6">Loading...</div>;
@@ -285,13 +294,13 @@ const DetailSidebarInfo = ({ territory }) => {
             <SelectHead
               data={data}
               setData={setData}
-              currentHead={currentTerritory.head}
+              currentHead={getMemberProfile()}
             />
           )}
-          {currentTerritory.head && !isSidebarEditing && (
-            <Profile user={currentTerritory.head} />
+          {getMemberProfile() && !isSidebarEditing && (
+            <Profile user={getMemberProfile()} />
           )}
-          {!isSidebarEditing && !currentTerritory.head && (
+          {!isSidebarEditing && !getMemberProfile() && (
             <span className="text-sm font-secondary text-gray-500">
               Tidak ada ketua
             </span>
@@ -392,15 +401,15 @@ const DetailSidebarInfo = ({ territory }) => {
 
       {!isSidebarEditing &&
         currentTerritory &&
-        currentTerritory.children &&
-        currentTerritory.children.length > 0 && (
+        childrenList.length > 0 && (
           <div className="pt-12">
             <h3 className="font-secondary text-lg font-semibold text-gray-800 mb-2">
               Lingkungan:
             </h3>
             <LingkunganSection
-              item={currentTerritory.children}
+              item={childrenList}
               parentId={currentTerritory.id}
+              selectedPeriodId={selectedPeriodId}
             />
           </div>
         )}

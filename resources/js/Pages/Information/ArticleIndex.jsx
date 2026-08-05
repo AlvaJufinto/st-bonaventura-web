@@ -4,6 +4,8 @@ import Navbar from "@/Components/guest/Navbar/Navbar";
 import { Head, Link } from "@inertiajs/react";
 
 export default function ArticleIndex({ articles }) {
+  const [featured, ...rest] = articles.data || [];
+
   return (
     <div>
       <Head title="Berita & Kegiatan" />
@@ -24,11 +26,11 @@ export default function ArticleIndex({ articles }) {
       <div id="data"></div>
       <div className="py-12 md:py-24 outer-wrapper !justify-start min-h-svh">
         <div className="inner-wrapper gap-3 md:gap-5 min-h-[600px] px-4 md:px-0">
-          {articles.data.length > 0 ? (
+          {featured ? (
             <>
-              <ArticleCard data={articles.data[0]} />
+              <ArticleCard data={featured} />
               <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
-                {articles.data.slice(1).map((article, index) => (
+                {rest.map((article, index) => (
                   <ArticleCard key={index} type="secondary" data={article} />
                 ))}
               </div>

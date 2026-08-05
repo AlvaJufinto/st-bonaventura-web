@@ -84,6 +84,7 @@ export const titleName = {
   6: "Ketua",
   7: "Ketua",
   9: "Kepala",
+  10: "Perwakilan",
 };
 
 export const organizationType = {

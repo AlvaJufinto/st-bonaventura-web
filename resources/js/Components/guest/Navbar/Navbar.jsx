@@ -184,13 +184,17 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            {/*<a
-              href="https://yubileum2025.parokipulomas.org/"
-              className="h-full items-center justify-center flex"
-              target="_blank"
-            >
-              <Button className="h-fit py-4 px-6">Yubelium 2025</Button>
-            </a>*/}
+            {new Date() < new Date("2026-06-22T00:00:00") && (
+              <a
+                href="#p2a-short-movie"
+                className="h-full items-center justify-center flex"
+                //target="_blank"
+              >
+                <Button className="h-fit py-4 px-6">
+                  P2A JP2CUP Short Movie
+                </Button>
+              </a>
+            )}
           </div>
 
           {/* Mobile Hamburger Menu Button */}
@@ -289,13 +293,16 @@ export default function Navbar() {
               );
             })}
           </div>
-          <a
-            href="https://yubileum2025.parokipulomas.org/"
-            className="pt-4 px-4"
-            target="_blank"
-          >
-            <Button className="h-fit w-full py-4 px-6">Yubelium 2025</Button>
-          </a>
+          {new Date() < new Date("2026-06-22T00:00:00") && (
+            <a
+              href="#p2a-jp2cup-video"
+              className="h-full items-center justify-center flex"
+            >
+              <Button className="h-fit py-4 px-6">
+                P2A JP2CUP Short Movie
+              </Button>
+            </a>
+          )}{" "}
         </div>
       </nav>
       <ScrollToTop />

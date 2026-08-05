@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 import Button from "@/Components/admin/Button";
 import { useDetailSidebar } from "@/Components/admin/DetailSidebar";
@@ -11,7 +11,7 @@ import CreateTeritorial from "./CreateTeritorial";
 import DetailSidebarInfo from "./DetailSidebarInfo";
 import SelectHead from "./SelectHead";
 
-export default function ChildrenTable({ expandedTerritories, territory }) {
+export default function ChildrenTable({ expandedTerritories, territory, selectedPeriodId }) {
   const { openDetailSidebar } = useDetailSidebar();
   const [editingChildId, setEditingChildId] = useState(null);
 
@@ -21,6 +21,8 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
 
   const { data, setData, patch, reset, processing } = useForm({});
 
+  const childrenList = useMemo(() => territory.children || [], [territory.children]);
+
   const handleEditInit = (child) => {
     setEditingChildId(child.id);
     setData({
@@ -28,6 +30,8 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
       alternate_name: child.alternate_name || "",
       address: child.address || "",
       status_id: child.status_id || 3,
+      head_id: child.head_id,
+      period_id: selectedPeriodId,
     });
   };
 
@@ -47,8 +51,8 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
     reset();
   };
 
-  const handleDetailClick = (territory) => {
-    openDetailSidebar({ body: <DetailSidebarInfo territory={territory} /> });
+  const handleDetailClick = (child) => {
+    openDetailSidebar({ body: <DetailSidebarInfo territory={child} selectedPeriodId={selectedPeriodId} /> });
   };
 
   const approveItem = (id) => {
@@ -61,6 +65,12 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
     patch(route("teritorial.revert", id), {
       preserveScroll: true,
     });
+  };
+
+  const getMemberProfile = (child) => {
+    const members = child.members || [];
+    if (members.length === 0) return null;
+    return members[0];
   };
 
   return (
@@ -99,7 +109,7 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
                 </tr>
               </thead>
               <tbody>
-                {territory.children.map((child, index) => {
+                {childrenList.map((child, index) => {
                   const isEditing = editingChildId === child.id;
                   return (
                     <tr
@@ -152,10 +162,10 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
                           <SelectHead
                             data={data}
                             setData={(newData) => setData(newData)}
-                            currentHead={child.head}
+                            currentHead={getMemberProfile(child)}
                           />
-                        ) : child.head ? (
-                          <Profile user={child.head} />
+                        ) : getMemberProfile(child) ? (
+                          <Profile user={getMemberProfile(child)} />
                         ) : (
                           <span className="text-sm text-gray-500">
                             Tidak ada ketua
@@ -195,7 +205,7 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
                           </Dropdown>
                         ) : (
                           <span className="font-secondary text-sm uppercase tracking-wider font-semibold">
-                            {child.status.name}
+                            {child.status?.name}
                           </span>
                         )}
                       </td>
@@ -266,7 +276,7 @@ export default function ChildrenTable({ expandedTerritories, territory }) {
                 })}
               </tbody>
             </table>
-            <CreateTeritorial type="lingkungan" territoryId={territory.id} />
+            <CreateTeritorial type="lingkungan" territoryId={territory.id} selectedPeriodId={selectedPeriodId} />
           </div>
         </div>
       </td>

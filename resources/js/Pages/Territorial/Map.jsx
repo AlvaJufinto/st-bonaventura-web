@@ -3,19 +3,28 @@ import Footer from "@/Components/guest/Footer/Footer";
 import LazyImage from "@/Components/guest/LazyImage";
 import Navbar from "@/Components/guest/Navbar/Navbar";
 import SectorCard from "@/Pages/Territorial/SectorCard";
-import { Head } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 
-export default function Map({ wilayah }) {
+export default function Map({ wilayah, periods, selectedPeriodId }) {
+  function handlePeriodChange(e) {
+    const periodId = e.target.value;
+    router.get(route("map.guest.index", { period_id: periodId }));
+  }
+
+  const selectedPeriod =
+    periods?.find((p) => p.id === selectedPeriodId) || periods?.[0];
+
   return (
     <div>
       <Head title="Warta Minggu" />
       <Navbar />
       <div className="outer-wrapper !py-20 md:!py-40 !justify-start min-h-svh">
         <div className="inner-wrapper !items-start !justify-start relative">
-          <div className="mb-5">
+          <div>
             <p className="small-title">teritorial</p>
             <h1 className="section-title">Peta Wilayah</h1>
           </div>
+
           <LazyImage src={MapImg} />
         </div>
         <div className="inner-wrapper !grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-10 gap-y-12 md:gap-y-24 my-16 md:my-32 !items-stretch">

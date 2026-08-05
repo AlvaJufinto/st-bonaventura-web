@@ -135,9 +135,7 @@ export default function Table({ news }) {
                 )}
               </td>
               <td className="p-3 text-sm">
-                <span className="font-secondary text-sm">
-                  {item.user.username}
-                </span>
+                <span className="font-secondary text-sm">{item.user.name}</span>
               </td>
               <td className={`p-3 ${statusColors[item.status_id]} text-sm`}>
                 {editingId === item.id ? (

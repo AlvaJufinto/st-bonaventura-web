@@ -3,11 +3,20 @@ import Profile from "@/Components/admin/Profile";
 import { statusColors } from "@/utils";
 import { router, usePage } from "@inertiajs/react";
 
+const regexCache = new Map();
+
 export function highlight(text, keyword) {
   if (!keyword) return text;
 
-  const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const regex = new RegExp(`(${escapedKeyword})`, "gi");
+  let regex = regexCache.get(keyword);
+  if (!regex) {
+    const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    regex = new RegExp(`(${escapedKeyword})`, "gi");
+    regexCache.set(keyword, regex);
+  } else {
+    regex.lastIndex = 0;
+  }
+
   const parts = text.split(regex);
 
   return parts.map((part, i) =>
@@ -17,8 +26,15 @@ export function highlight(text, keyword) {
       </mark>
     ) : (
       part
-    )
+    ),
   );
+}
+
+function formatOrgWithPeriod(org, periods) {
+  if (!org) return "";
+  const period = periods?.find((p) => p.id === org.pivot?.period_id);
+  if (!period) return org.name;
+  return `${org.name} (${period.start_year}-${period.end_year})`;
 }
 
 const loginAs = (user) => {
@@ -27,7 +43,7 @@ const loginAs = (user) => {
   }
 };
 
-export default function Table({ users, searchTerm }) {
+export default function Table({ users, searchTerm, periods }) {
   const {
     props: {
       permissions: { canImpersonate },
@@ -75,17 +91,23 @@ export default function Table({ users, searchTerm }) {
               {highlight(user.email, searchTerm)}
             </td>
             <td className="p-3 text-sm font-secondary">
-              {user?.organizations.length === 0 && "Tidak ada"}
-              {user?.organizations.length > 1 ? (
+              {user?.assigned_organizations?.length === 0 && "Tidak ada"}
+              {user?.assigned_organizations?.length > 1 ? (
                 <ul className="p-3 font-secondary list-decimal">
-                  {user.organizations.map((org, i) => (
+                  {user?.assigned_organizations?.map((org, i) => (
                     <li key={i} className="font-secondary">
-                      {highlight(org.name, searchTerm)}
+                      {highlight(formatOrgWithPeriod(org, periods), searchTerm)}
                     </li>
                   ))}
                 </ul>
               ) : (
-                highlight(user?.organizations[0]?.name ?? "", searchTerm)
+                highlight(
+                  formatOrgWithPeriod(
+                    user?.assigned_organizations?.[0],
+                    periods,
+                  ) ?? "",
+                  searchTerm,
+                )
               )}
             </td>
             <td

@@ -6,6 +6,7 @@ import { Head, router } from "@inertiajs/react";
 import Table from "./Table";
 
 export default function Index({ auth, logs }) {
+  console.log("🚀 ~ Index ~ logs:", logs);
   const goToPage = (page) => {
     if (page >= 1 && page <= logs.last_page) {
       router.visit(route("audit.index", { page }));

@@ -13,9 +13,12 @@ import Navbar from "@/Components/guest/Navbar/Navbar";
 import NewsCard from "@/Components/guest/NewsCard/NewsCard";
 import { Head, Link, router } from "@inertiajs/react";
 
+import InstagramReel from "./InstagramReel";
 import ShortcutCard from "./ShortcutCard";
 import Slider from "./Slider";
 import Statistics from "./Statistics";
+import YouTubePlaylist from "./YouTubePlaylist";
+import { useMemo } from "react";
 
 const WeeklyMass = [
   {
@@ -268,7 +271,7 @@ function IntroductionRight() {
   );
 }
 
-export default function Index({ news, articles }) {
+export default function Index({ news, articles, playlistVideos }) {
   return (
     <div>
       <Head title="Beranda" />
@@ -340,15 +343,17 @@ export default function Index({ news, articles }) {
             Warta Minggu
           </h1>
           <div className="py-6 lg:py-10 w-full flex flex-col gap-5">
-            {news?.length > 0 ? (
-              news.map((newsItem, index) => (
-                <NewsCard key={index} data={newsItem} />
-              ))
-            ) : (
-              <div className="w-full min-h-60 lg:min-h-80 flex justify-center items-center text-xl lg:text-2xl font-secondary font-semibold text-gray-800 leading-tight text-center px-4">
-                Tidak Ada Warta Minggu
-              </div>
-            )}
+            {useMemo(() => (
+              news?.length > 0 ? (
+                news.map((newsItem, index) => (
+                  <NewsCard key={index} data={newsItem} />
+                ))
+              ) : (
+                <div className="w-full min-h-60 lg:min-h-80 flex justify-center items-center text-xl lg:text-2xl font-secondary font-semibold text-gray-800 leading-tight text-center px-4">
+                  Tidak Ada Warta Minggu
+                </div>
+              )
+            ), [news])}
           </div>
           {news.length > 0 && (
             <Button
@@ -392,6 +397,11 @@ export default function Index({ news, articles }) {
           )}
         </div>
       </div>*/}
+
+      {new Date() < new Date("2026-06-22T00:00:00") && <InstagramReel />}
+
+      {/*{Video ekopraksis }*/}
+      <YouTubePlaylist videos={playlistVideos} />
 
       {/* Mass Schedule Section */}
       <div className="h-16 lg:h-32" id="jadwal-misa"></div>

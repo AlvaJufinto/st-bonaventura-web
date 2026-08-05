@@ -7,6 +7,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Wrapper from "@/Layouts/Wrapper";
 import { dateFormatter, statusColors } from "@/utils";
 import { Head, router } from "@inertiajs/react";
+import { useMemo } from "react";
 
 export default function Index({ auth, articles, statuses }) {
   console.log("🚀 ~ Index ~ auth:", auth);
@@ -18,7 +19,7 @@ export default function Index({ auth, articles, statuses }) {
 
   const ASSET_URL = import.meta.env.VITE_PUBLIC_AWS_URL;
 
-  const columns = [
+  const columns = useMemo(() => [
     {
       label: "Title",
       accessor: "title",
@@ -119,7 +120,7 @@ export default function Index({ auth, articles, statuses }) {
         </div>
       ),
     },
-  ];
+  ], [auth?.user?.role?.id]);
 
   console.log("🚀 ~ Index ~ columns:", columns);
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 import Button from "@/Components/admin/Button";
 import { useDetailSidebar } from "@/Components/admin/DetailSidebar";
@@ -15,6 +15,7 @@ export default function ParentTable({
   territories,
   expandedTerritories,
   setExpandedTerritories,
+  selectedPeriodId,
 }) {
   const {
     props: { statuses },
@@ -39,6 +40,7 @@ export default function ParentTable({
       address: territory.address,
       status_id: territory.status_id,
       head_id: territory.head_id,
+      period_id: selectedPeriodId,
     });
   };
 
@@ -58,7 +60,7 @@ export default function ParentTable({
 
   const handleDetailClick = (territory) => {
     openDetailSidebar({
-      body: <DetailSidebarInfo territory={territory} />,
+      body: <DetailSidebarInfo territory={territory} selectedPeriodId={selectedPeriodId} />,
     });
   };
 
@@ -73,6 +75,18 @@ export default function ParentTable({
       preserveScroll: true,
     });
   };
+
+  const getMemberName = useCallback((territory) => {
+    const members = territory.members || [];
+    if (members.length === 0) return null;
+    return members[0].name;
+  }, []);
+
+  const getMemberProfile = useCallback((territory) => {
+    const members = territory.members || [];
+    if (members.length === 0) return null;
+    return members[0];
+  }, []);
 
   return (
     <table className="w-full border-collapse">
@@ -170,17 +184,17 @@ export default function ParentTable({
                   <SelectHead
                     data={data}
                     setData={setData}
-                    currentHead={territory.head}
+                    currentHead={getMemberProfile(territory)}
                   />
                 )}
 
-                {territory?.head && editingParentId !== territory.id && (
-                  <Profile user={territory.head} />
+                {getMemberProfile(territory) && editingParentId !== territory.id && (
+                  <Profile user={getMemberProfile(territory)} />
                 )}
 
-                {editingParentId !== territory.id && !territory.head && (
+                {editingParentId !== territory.id && !getMemberName(territory) && (
                   <span className="text-sm font-secondary text-gray-500">
-                    Tidak ada ketua
+                    Tidak ada koordinator
                   </span>
                 )}
               </td>
@@ -218,7 +232,7 @@ export default function ParentTable({
                   </Dropdown>
                 ) : (
                   <span className="font-secondary text-sm uppercase tracking-wider font-semibold">
-                    {territory.status.name}
+                    {territory.status?.name}
                   </span>
                 )}
               </td>
@@ -288,6 +302,7 @@ export default function ParentTable({
             <ChildrenTable
               territory={territory}
               expandedTerritories={expandedTerritories}
+              selectedPeriodId={selectedPeriodId}
             />
           </React.Fragment>
         ))}

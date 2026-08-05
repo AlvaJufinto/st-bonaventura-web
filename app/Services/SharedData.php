@@ -3,25 +3,42 @@
 namespace App\Services;
 
 use App\Models\Organization;
+use App\Models\Period;
 use Illuminate\Support\Facades\Schema;
 
 class SharedData
 {
-  public static function wilayah()
-  {
-    if (!Schema::hasTable('organizations')) {
-      return collect();
-    }
+	public static function wilayah()
+	{
+		$activePeriod = Period::active()->first();
+		$targetPeriodId = $activePeriod?->id;
 
-    return Organization::where('organization_type_id', 1)->where('status_id', 3)->get();
-  }
+		if (!Schema::hasTable('organizations')) {
+			return collect();
+		}
 
-  public static function bidang()
-  {
-    if (!Schema::hasTable('organizations')) {
-      return collect();
-    }
+		return Organization::where('organization_type_id', 1)
+			->where('status_id', 3)
+			->whereHas('members', function ($query) use ($targetPeriodId) {
+				$query->where('organization_user.period_id', $targetPeriodId);
+			})
+			->get();
+	}
 
-    return Organization::whereIn('organization_type_id', [3, 5])->where('status_id', 3)->get();
-  }
+	public static function bidang()
+	{
+		$activePeriod = Period::active()->first();
+		$targetPeriodId = $activePeriod?->id;
+
+		if (!Schema::hasTable('organizations')) {
+			return collect();
+		}
+
+		return Organization::where('organization_type_id', 3)
+			->where('status_id', 3)
+			//->whereHas('members', function ($query) use ($targetPeriodId) {
+			//	$query->where('organization_user.period_id', $targetPeriodId);
+			//})
+			->get();
+	}
 }

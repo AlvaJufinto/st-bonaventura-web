@@ -6,9 +6,9 @@ import InputLabel from "@/Components/admin/InputLabel";
 import { getProperty } from "@/utils";
 import { useForm, usePage } from "@inertiajs/react";
 
-export default function CreateTeritorial({ type, territoryId = null }) {
+export default function CreateTeritorial({ type, territoryId = null, selectedPeriodId = null }) {
   const {
-    props: { auth, statuses },
+    props: { auth, statuses, periods },
   } = usePage();
   const [isCreating, setIsCreating] = useState(false);
 
@@ -28,6 +28,7 @@ export default function CreateTeritorial({ type, territoryId = null }) {
     address: "",
     status_id: 3,
     user_id: auth.user.id,
+    period_id: selectedPeriodId || periods?.find((p) => p.is_active)?.id || "",
     ...payload,
   });
 
@@ -48,8 +49,8 @@ export default function CreateTeritorial({ type, territoryId = null }) {
     return (
       <div className="m-4 ml-0 p-4 border border-gray-300 bg-gray-50 font-secondary">
         <form onSubmit={handleCreateSubmit}>
-          <div className="flex gap-4">
-            <div className="flex-1">
+          <div className="flex gap-4 flex-wrap">
+            <div className="flex-1 min-w-[150px]">
               <InputLabel htmlFor="name" value={property.name} />
               <input
                 type="text"
@@ -61,7 +62,7 @@ export default function CreateTeritorial({ type, territoryId = null }) {
               />
               <InputError message={errors.name} className="mt-2" />
             </div>
-            <div className="flex-1">
+            <div className="flex-1 min-w-[150px]">
               <InputLabel
                 htmlFor="alternate_name"
                 value={property.secondaryName}
@@ -76,7 +77,7 @@ export default function CreateTeritorial({ type, territoryId = null }) {
               />
               <InputError message={errors.alternate_name} className="mt-2" />
             </div>
-            <div className="flex-1">
+            <div className="flex-1 min-w-[150px]">
               <InputLabel htmlFor="address" value={property.address} />
               <input
                 type="text"
@@ -88,7 +89,23 @@ export default function CreateTeritorial({ type, territoryId = null }) {
               />
               <InputError message={errors.address} className="mt-2" />
             </div>
-            <div className="flex-1">
+            <div className="flex-1 min-w-[150px]">
+              <InputLabel htmlFor="period_id" value="Periode" />
+              <select
+                id="period_id"
+                value={data.period_id}
+                onChange={(e) => setData("period_id", parseInt(e.target.value, 10))}
+                className="font-secondary block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none capitalize focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              >
+                {periods?.map((period) => (
+                  <option key={period.id} value={period.id} className="capitalize font-secondary">
+                    {period.name}
+                  </option>
+                ))}
+              </select>
+              <InputError message={errors.period_id} className="mt-2" />
+            </div>
+            <div className="flex-1 min-w-[150px]">
               <InputLabel htmlFor="status" value="Status" />
               <select
                 id="status"
