@@ -1,10 +1,11 @@
+import { useMemo } from "react";
+
 import PlaceHolderImg from "@/assets/img/placeholder.png";
 import Footer from "@/Components/guest/Footer/Footer";
 import LazyImage from "@/Components/guest/LazyImage";
 import Navbar from "@/Components/guest/Navbar/Navbar";
 import { titleName } from "@/utils";
 import { Head, router } from "@inertiajs/react";
-import { useMemo } from "react";
 
 import { usePageBlock } from "./usePageBlock";
 
@@ -124,9 +125,11 @@ export default function Council({ dph, plenoGroups, periods }) {
   const currentPeriodId = params.get("period") || "";
 
   const activePeriod = periods?.find((p) => p.is_active) || periods?.[0];
+  console.log("🚀 ~ Council ~ activePeriod:", activePeriod);
 
   const selectedPeriod =
     periods?.find((p) => p.id == currentPeriodId) || activePeriod;
+  console.log("🚀 ~ Council ~ selectedPeriod:", selectedPeriod);
 
   const allCouncils = dph?.members || [];
 
@@ -189,10 +192,13 @@ export default function Council({ dph, plenoGroups, periods }) {
 
           <div className="disabled mt-20 lg:mt-0">
             {/* DPH */}
+
             <div className="outer-wrapper !py-20 sm:!py-32 md:!py-40 !justify-start min-h-svh">
               <div className="inner-wrapper !items-start !justify-start relative px-4 sm:px-6 lg:px-8">
-                <PeriodFilter />
-
+                {/*<PeriodFilter />*/}
+                <p className="small-title text-b100 font-secondary">
+                  {selectedPeriod ? `Periode ${selectedPeriod.name}` : ""}
+                </p>
                 <h1 className="section-title mb-12">Dewan Paroki Harian</h1>
 
                 <CouncilGroup councils={executiveCouncil} />
